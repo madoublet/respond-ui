@@ -15,6 +15,7 @@ export class PluginsComponent {
 
   id;
   plugin;
+  plugins;
   Plugins;
   errorMessage;
   selectedPlugin;
