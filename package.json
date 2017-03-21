@@ -20,8 +20,15 @@
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
+    "ace-builds": "^1.2.6",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "dropzone": "^4.3.0",
+    "hashedit": "^0.6.30",
+    "moment": "^2.18.0",
+    "ng2-translate": "^5.0.0",
     "rxjs": "^5.1.0",
+    "web-animations-js": "^2.2.2",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
