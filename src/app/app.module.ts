@@ -85,9 +85,13 @@ import { EditUserComponent } from './shared/components/users/edit-user/edit-user
 import { RemoveUserComponent } from './shared/components/users/remove-user/remove-user.component';
 
 // http, routing, translate
-import { HttpModule }     from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { routing } from './app.routes';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 // pipes
 import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
@@ -111,7 +115,18 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       SubmissionsComponent, RemoveSubmissionComponent, ViewSubmissionComponent,
       UsersComponent, AddUserComponent, EditUserComponent, RemoveUserComponent,
       TimeAgoPipe],
-    imports:      [BrowserModule, FormsModule, RouterModule, routing, HttpModule, TranslateModule.forRoot()],
+    imports: [
+      BrowserModule,
+      FormsModule,
+      RouterModule,
+      routing,
+      HttpModule,
+      TranslateModule.forRoot({
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      })
+    ],
     bootstrap:    [AppComponent],
     providers: []
 })
