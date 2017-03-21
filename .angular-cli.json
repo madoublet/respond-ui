@@ -19,9 +19,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "app/shared/resources/reset.css",
+        "app/shared/resources/app.css",
+        "../node_modules/dropzone/dist/min/dropzone.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "app/shared/resources/toast.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
