@@ -1,6 +1,20 @@
-# AngularRespond
+# RespondCMS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+A Responsive CMS powered by Angular 2
+
+## Install Angular CLI and RespondCMS dependencies 
+
+1. Install Angular CLI globally with `npm install -g @angular/cli`
+
+2. Clone the `angular-respond` repo:
+ 
+    `git clone https://github.com/rochecompaan/angular-respond.git`
+
+3. Install dependencies
+
+    `$ cd angular-respond`
+    
+    `$ npm install`
 
 ## Development server
 
