@@ -16,9 +16,15 @@ A Responsive CMS powered by Angular 2
     
     `$ npm install`
 
+## Configure your backend server
+
+Modify the `target` property in proxy.conf.json to point to the your backend server.
+By default it will proxy all requests to `/api` to http://localhost:8080.
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` or `ng serve --proxy-config proxy.conf.json` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+See `ng serve --help` for more options to the `ng serve` command.
 
 ## Code scaffolding
 
