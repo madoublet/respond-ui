@@ -8,7 +8,7 @@ A Responsive CMS powered by Angular 2
 
 2. Clone the `angular-respond` repo:
  
-    `git clone https://github.com/rochecompaan/angular-respond.git`
+    `git clone https://github.com/madoublet/respond-ui`
 
 3. Install dependencies
 
