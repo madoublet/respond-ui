@@ -2,16 +2,17 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class GalleryImageService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/galleries/images/list';
-  private _addUrl = 'api/galleries/images/add';
-  private _editUrl = 'api/galleries/images/edit';
-  private _removeUrl = 'api/galleries/images/remove';
-  private _updateOrderUrl = 'api/galleries/images/order';
+  private _listUrl = environment.apiUrl + '/api/galleries/images/list';
+  private _addUrl = environment.apiUrl + '/api/galleries/images/add';
+  private _editUrl = environment.apiUrl + '/api/galleries/images/edit';
+  private _removeUrl = environment.apiUrl + '/api/galleries/images/remove';
+  private _updateOrderUrl = environment.apiUrl + '/api/galleries/images/order';
 
   /**
    * Lists images
@@ -20,7 +21,7 @@ export class GalleryImageService {
   list (galleryId: string) {
 
     let url = this._listUrl + '/' + encodeURI(galleryId);
-    
+
     let headers = new Headers();
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

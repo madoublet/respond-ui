@@ -2,15 +2,16 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CodeService {
   constructor (private http: Http) {}
 
-  private _retrieveUrl = 'api/code/retrieve';
-  private _saveUrl = 'api/code/save';
-  private _listUrl = 'api/code/list';
-  private _addUrl = 'api/code/add';
+  private _retrieveUrl = environment.apiUrl + '/api/code/retrieve';
+  private _saveUrl = environment.apiUrl + '/api/code/save';
+  private _listUrl = environment.apiUrl + '/api/code/list';
+  private _addUrl = environment.apiUrl + '/api/code/add';
 
 
   /**

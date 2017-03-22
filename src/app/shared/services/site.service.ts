@@ -2,21 +2,22 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SiteService {
   constructor (private http: Http) {}
 
-  private _createUrl = 'api/sites/create';
-  private _reloadUrl = 'api/sites/reload';
-  private _reindexUrl = 'api/sites/reindex';
-  private _sitemapUrl = 'api/sites/sitemap';
-  private _migrateUrl = 'api/sites/migrate';
-  private _templateUrl = 'api/sites/republish/templates';
-  private _listTemplatesUrl = 'api/templates/list';
-  private _listPluginsUrl = 'api/plugins/list';
-  private _updateUrl = 'api/sites/update/plugins';
-  private _removePluginUrl = 'api/plugins/remove';
+  private _createUrl = environment.apiUrl + '/api/sites/create';
+  private _reloadUrl = environment.apiUrl + '/api/sites/reload';
+  private _reindexUrl = environment.apiUrl + '/api/sites/reindex';
+  private _sitemapUrl = environment.apiUrl + '/api/sites/sitemap';
+  private _migrateUrl = environment.apiUrl + '/api/sites/migrate';
+  private _templateUrl = environment.apiUrl + '/api/sites/republish/templates';
+  private _listTemplatesUrl = environment.apiUrl + '/api/templates/list';
+  private _listPluginsUrl = environment.apiUrl + '/api/plugins/list';
+  private _updateUrl = environment.apiUrl + '/api/sites/update/plugins';
+  private _removePluginUrl = environment.apiUrl + '/api/plugins/remove';
 
   /**
    * Login to the application

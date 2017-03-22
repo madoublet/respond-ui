@@ -2,29 +2,30 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/users/list';
-  private _loginUrl = 'api/users/login';
-  private _forgotUrl = 'api/users/forgot';
-  private _resetUrl = 'api/users/reset';
-  private _addUrl = 'api/users/add';
-  private _editUrl = 'api/users/edit';
-  private _removeUrl = 'api/users/remove';
+  private _listUrl = environment.apiUrl + '/api/users/list';
+  private _loginUrl = environment.apiUrl + '/api/users/login';
+  private _forgotUrl = environment.apiUrl + '/api/users/forgot';
+  private _resetUrl = environment.apiUrl + '/api/users/reset';
+  private _addUrl = environment.apiUrl + '/api/users/add';
+  private _editUrl = environment.apiUrl + '/api/users/edit';
+  private _removeUrl = environment.apiUrl + '/api/users/remove';
 
   /**
    * Lists users
    *
    */
   list () {
-    
+
     let headers = new Headers();
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
-  
+
     return this.http.get(this._listUrl, options).map((res:Response) => res.json());
   }
 

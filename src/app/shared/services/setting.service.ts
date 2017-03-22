@@ -2,13 +2,14 @@ import {Injectable}     from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SettingService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/settings/list';
-  private _editUrl = 'api/settings/edit';
+  private _listUrl = environment.apiUrl + '/api/settings/list';
+  private _editUrl = environment.apiUrl + '/api/settings/edit';
 
   /**
    * Lists settings

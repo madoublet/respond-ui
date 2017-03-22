@@ -2,16 +2,17 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MenuService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/menus/list';
-  private _listItemsUrl = 'api/menus/items/list';
-  private _addUrl = 'api/menus/add';
-  private _editUrl = 'api/menus/edit';
-  private _removeUrl = 'api/menus/remove';
+  private _listUrl = environment.apiUrl + '/api/menus/list';
+  private _listItemsUrl = environment.apiUrl + '/api/menus/items/list';
+  private _addUrl = environment.apiUrl + '/api/menus/add';
+  private _editUrl = environment.apiUrl + '/api/menus/edit';
+  private _removeUrl = environment.apiUrl + '/api/menus/remove';
 
   /**
    * Lists menus

@@ -2,16 +2,17 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class FormFieldService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/forms/fields/list';
-  private _addUrl = 'api/forms/fields/add';
-  private _editUrl = 'api/forms/fields/edit';
-  private _removeUrl = 'api/forms/fields/remove';
-  private _updateOrderUrl = 'api/forms/fields/order';
+  private _listUrl = environment.apiUrl + '/api/forms/fields/list';
+  private _addUrl = environment.apiUrl + '/api/forms/fields/add';
+  private _editUrl = environment.apiUrl + '/api/forms/fields/edit';
+  private _removeUrl = environment.apiUrl + '/api/forms/fields/remove';
+  private _updateOrderUrl = environment.apiUrl + '/api/forms/fields/order';
 
   /**
    * Lists fields
