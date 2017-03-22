@@ -2,16 +2,15 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class PageService {
   constructor (private http: Http) {}
 
-  private _listUrl = environment.apiUrl + '/api/pages/list';
-  private _addUrl = environment.apiUrl + '/api/pages/add';
-  private _updateSettingsUrl = environment.apiUrl + '/api/pages/settings';
-  private _removePageUrl = environment.apiUrl + '/api/pages/remove';
+  private _listUrl = 'api/pages/list';
+  private _addUrl = 'api/pages/add';
+  private _updateSettingsUrl = 'api/pages/settings';
+  private _removePageUrl = 'api/pages/remove';
 
   /**
    * Lists pages

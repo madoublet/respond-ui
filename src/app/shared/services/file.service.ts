@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class FileService {
   constructor (private http: Http) {}
 
-  private _listUrl = environment.apiUrl + '/api/files/list';
-  private _removeFileUrl = environment.apiUrl + '/api/files/remove';
+  private _listUrl = 'api/files/list';
+  private _removeFileUrl = 'api/files/remove';
 
   /**
    * Lists files in the application
