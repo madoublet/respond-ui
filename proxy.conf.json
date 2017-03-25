@@ -1,16 +1,21 @@
 {
   "/api": {
-    "target": "http://path-to-server.com",
+    "target": "http://path-to-backend",
     "changeOrigin": true,
     "secure": false
   },
   "/sites": {
-    "target": "http://path-to-server.com",
+    "target": "http://path-to-backend",
     "changeOrigin": true,
     "secure": false
   },
   "/edit": {
-    "target": "http://path-to-server.com",
+    "target": "http://path-to-backend",
+    "changeOrigin": true,
+    "secure": false
+  },
+  "/app/libs": {
+    "target": "http://path-to-backend",
     "changeOrigin": true,
     "secure": false
   }

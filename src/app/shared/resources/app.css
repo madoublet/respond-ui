@@ -1,4 +1,8 @@
 /* css */
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
