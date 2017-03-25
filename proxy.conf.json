@@ -1,6 +1,17 @@
 {
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "http://path-to-server.com",
+    "changeOrigin": true,
+    "secure": false
+  },
+  "/sites": {
+    "target": "http://path-to-server.com",
+    "changeOrigin": true,
+    "secure": false
+  },
+  "/edit": {
+    "target": "http://path-to-server.com",
+    "changeOrigin": true,
     "secure": false
   }
 }
