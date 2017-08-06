@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, Http } from '@angular/http';
-import { HttpClientModule, HttpClient, HttpHandler } from '@angular/common/http';
+
+// forms
 import { FormsModule } from '@angular/forms';
+
+// router
 import { RouterModule, Router } from '@angular/router';
 
 // app component
 import { AppComponent }   from './app.component';
+
+// http
+import { HttpModule, Http } from '@angular/http';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 // common
 import { DrawerComponent } from './shared/components/drawer/drawer.component';
@@ -93,6 +99,11 @@ import { routing } from './app.routes';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, "i18n/", ".json");
+}
+
 // pipes
 import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
 
@@ -121,7 +132,13 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       RouterModule,
       routing,
       HttpModule,
-      TranslateModule.forRoot()
+      TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
       ],
     bootstrap: [ AppComponent ],
     providers: [ TranslateService ]

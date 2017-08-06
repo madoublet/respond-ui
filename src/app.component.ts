@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,13 +10,12 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent {
 
-  constructor(private _translate: TranslateService) {
+  constructor(private translate: TranslateService) {
 
-        // this language will be used as a fallback when a translation isn't found in the current language
-        _translate.setDefaultLang('en');
+        translate.setDefaultLang('en');
 
-         // the lang to use, if the lang isn't available, it will use the current loader to get them
-        _translate.use('en');
+        let browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
 
     }
 

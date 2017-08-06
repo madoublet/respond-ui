@@ -1,18 +1,18 @@
 # RespondCMS
 
-A Responsive CMS powered by Angular 2
+A Responsive CMS powered by Angular 4
 
 ## Install Angular CLI and RespondCMS dependencies 
 
 1. Install Angular CLI globally with `npm install -g @angular/cli`
 
-2. Clone the `angular-respond` repo:
+2. Clone the `respond-ui` repo:
  
     `git clone https://github.com/madoublet/respond-ui`
 
 3. Install dependencies
 
-    `$ cd angular-respond`
+    `$ cd respond-ui`
     
     `$ npm install`
 
