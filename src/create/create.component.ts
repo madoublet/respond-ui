@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { SiteService } from '../shared/services/site.service';
-import { TranslateService } from 'ng2-translate/ng2-translate';
 import { AppService } from '../shared/services/app.service';
 
 declare var toast: any;

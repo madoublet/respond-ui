@@ -101,7 +101,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, "i18n/", ".json");
+    return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
 // pipes
@@ -132,6 +132,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       RouterModule,
       routing,
       HttpModule,
+      HttpClientModule,
       TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
