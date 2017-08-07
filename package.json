@@ -1,6 +1,6 @@
 {
-  "name": "angular-respond",
-  "version": "0.0.0",
+  "name": "respond-ui",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
@@ -54,5 +54,22 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.0.0"
-  }
+  },
+  "description": "Respond 6 is an open source, responsive content management system built on the Lumen PHP and Angular (currently 4) frameworks. Respond 6 is built so that you can quickly build beautiful, responsive websites. The latest version features flat-file storage, a beautiful visual editor, and fast static sites. Learn more about Respond at https://respondcms.com.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madoublet/respond-ui.git"
+  },
+  "keywords": [
+    "angular",
+    "cli",
+    "respond",
+    "cms"
+  ],
+  "author": "Matthew Smith",
+  "bugs": {
+    "url": "https://github.com/madoublet/respond-ui/issues"
+  },
+  "homepage": "https://github.com/madoublet/respond-ui#readme"
 }

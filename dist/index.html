@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Respond</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00ADE3">
+  <meta content="#00ADE3" name="msapplication-TileColor">
+  <meta content="#00ADE3" name="msapplication-TileImage">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="assets/resources/icon.png" rel="icon">
+  <link href="assets/resources/icon.png" rel="apple-touch-icon">
+
+  <!-- fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style type="text/css">
+    body {
+      padding: 49px 0 0 0;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 49px 0 0 0;
+    }
+
+    body .spinner {
+      width: 40px;
+      height: 40px;
+      margin: 100px auto;
+      background-color: #888;
+
+      border-radius: 100%;
+      -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+      animation: sk-scaleout 1.0s infinite ease-in-out;
+    }
+
+    @-webkit-keyframes sk-scaleout {
+      0% { -webkit-transform: scale(0) }
+      100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sk-scaleout {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      } 100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        opacity: 0;
+      }
+    }
+  </style>
+
+
+
+</head>
+<body>
+  <respond-app>
+
+      <!-- loading -->
+      <div class="spinner" title="loading"></div>
+
+    </respond-app>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
