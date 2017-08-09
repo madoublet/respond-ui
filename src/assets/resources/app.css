@@ -875,7 +875,7 @@ body .app-form.standalone {
   }
 
     body .app-form.standalone input, body .app-form.standalone select {
-      width: 100%;
+      width: calc(100% - 20px)
     }
 
   body .app-form small {

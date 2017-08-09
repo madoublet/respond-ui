@@ -8,9 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
-        "favicon.ico",
-        "app/shared/resources/respond-logo.png"
+        "assets"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -26,7 +24,7 @@
         "../node_modules/dropzone/dist/min/dropzone.min.css"
       ],
       "scripts": [
-        "app/shared/resources/toast.js",
+        "assets/resources/toast.js",
         "../node_modules/moment/min/moment-with-locales.min.js",
         "../node_modules/ace-builds/src-min/ace.js",
         "../node_modules/ace-builds/src-min/ext-searchbox.js",
