@@ -19,6 +19,7 @@ export class LoginComponent {
   errorMessage;
   logoUrl
   usesLDAP = false;
+  hasMultipleSites = false;
   defaultLanguage = 'en';
   acknowledgement;
 
@@ -68,12 +69,24 @@ export class LoginComponent {
    * @param {Event} event
    * @param {string} email The user's login email
    * @param {string} password The user's login password
+   * @param {string} test The user's site
    */
-  login(event, email, password) {
-
+  login(event, email, password, site) {
+    
       event.preventDefault();
 
-      this._userService.login(this.id, email, password)
+      let id = undefined;
+
+      if(this.id != undefined) {
+        id = this.id;
+      }
+      
+      if(site != '') {
+        id = site;
+      }
+
+      // login
+      this._userService.login(id, email, password)
                    .subscribe(
                      data => { this.data = data; this.success(); },
                      error => { this.failure(<any>error); }
@@ -97,6 +110,9 @@ export class LoginComponent {
     // set status
     this.setStatus(this.data.user.status, this.data.user.days);
 
+    // set site id
+    localStorage.setItem('respond.siteId', this.data.user.siteId);
+
     // navigate
     this._router.navigate( ['/pages'] );
 
@@ -106,7 +122,12 @@ export class LoginComponent {
    * Routes to the forgot password screen
    */
   forgot() {
-    this._router.navigate( ['/forgot', this.id] );
+    if(this.id != undefined) {
+      this._router.navigate( ['/forgot', this.id] );
+    }
+    else {
+      this._router.navigate( ['/forgot'] );
+    }
   }
 
   /**
@@ -152,13 +173,17 @@ export class LoginComponent {
       localStorage.setItem('stripe_description', stripeDescription);
       localStorage.setItem('stripe_publishable_key', stripePublishableKey);
       localStorage.setItem('stripe_currency', stripeCurrency);
+
   }
-
-
+    
   /**
    * handles error
    */
   failure(obj) {
+
+    if(obj.status == 409) {
+      this.hasMultipleSites = true;
+    }
 
     toast.show('failure');
 

@@ -258,6 +258,7 @@ var UserService = (function () {
         this._addUrl = 'api/users/add';
         this._editUrl = 'api/users/edit';
         this._removeUrl = 'api/users/remove';
+        this._countUrl = 'api/users/site/count';
     }
     /**
      * Lists users
@@ -310,6 +311,20 @@ var UserService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
         return this.http.post(this._resetUrl, body, options);
+    };
+    /**
+     * Determines the # of sites associated with an email
+     *
+     * @param {string} id The site id
+     * @param {string} token The token needed to reset the password
+     * @param {string} password The new password
+     * @return {Observable}
+     */
+    UserService.prototype.hasMultipleSites = function (email) {
+        var body = JSON.stringify({ email: email });
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        return this.http.post(this._countUrl, body, options);
     };
     /**
      * Adds the user
@@ -1500,7 +1515,7 @@ var AdvancedComponent = (function () {
         console.log(obj);
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     AdvancedComponent = __decorate([
@@ -1703,7 +1718,7 @@ var CodeComponent = (function () {
     CodeComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            //  this._router.navigate( ['/login', this.id] );
+            //  this._router.navigate( ['/login'] );
         }
     };
     /**
@@ -1868,7 +1883,7 @@ var ComponentsComponent = (function () {
         console.log(obj);
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     ComponentsComponent = __decorate([
@@ -2204,7 +2219,7 @@ var FilesComponent = (function () {
     FilesComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     FilesComponent = __decorate([
@@ -2249,6 +2264,7 @@ var ForgotComponent = (function () {
         this._userService = _userService;
         this._appService = _appService;
         this._route = _route;
+        this.hasMultipleSites = false;
     }
     ForgotComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2273,10 +2289,18 @@ var ForgotComponent = (function () {
     /**
      * Submit forgot request
      */
-    ForgotComponent.prototype.forgot = function (event, email, password) {
+    ForgotComponent.prototype.forgot = function (event, email, site) {
         var _this = this;
         event.preventDefault();
-        this._userService.forgot(this.id, email)
+        var id = undefined;
+        if (this.id != undefined) {
+            id = this.id;
+        }
+        if (site != '') {
+            id = site;
+        }
+        alert(id);
+        this._userService.forgot(id, email)
             .subscribe(function () { toast.show('success'); }, function (error) { _this.failure(error); });
     };
     /**
@@ -2284,6 +2308,9 @@ var ForgotComponent = (function () {
      */
     ForgotComponent.prototype.failure = function (obj) {
         toast.show('failure');
+        if (obj.status == 409) {
+            this.hasMultipleSites = true;
+        }
     };
     ForgotComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
@@ -2511,7 +2538,7 @@ var FormsComponent = (function () {
     FormsComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     FormsComponent = __decorate([
@@ -2754,7 +2781,7 @@ var GalleriesComponent = (function () {
     GalleriesComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     GalleriesComponent = __decorate([
@@ -2804,6 +2831,7 @@ var LoginComponent = (function () {
         this._router = _router;
         this._translate = _translate;
         this.usesLDAP = false;
+        this.hasMultipleSites = false;
         this.defaultLanguage = 'en';
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -2839,11 +2867,20 @@ var LoginComponent = (function () {
      * @param {Event} event
      * @param {string} email The user's login email
      * @param {string} password The user's login password
+     * @param {string} test The user's site
      */
-    LoginComponent.prototype.login = function (event, email, password) {
+    LoginComponent.prototype.login = function (event, email, password, site) {
         var _this = this;
         event.preventDefault();
-        this._userService.login(this.id, email, password)
+        var id = undefined;
+        if (this.id != undefined) {
+            id = this.id;
+        }
+        if (site != '') {
+            id = site;
+        }
+        // login
+        this._userService.login(id, email, password)
             .subscribe(function (data) { _this.data = data; _this.success(); }, function (error) { _this.failure(error); });
     };
     /**
@@ -2857,6 +2894,8 @@ var LoginComponent = (function () {
         this.setToken(this.data.token);
         // set status
         this.setStatus(this.data.user.status, this.data.user.days);
+        // set site id
+        localStorage.setItem('respond.siteId', this.data.user.siteId);
         // navigate
         this._router.navigate(['/pages']);
     };
@@ -2864,7 +2903,12 @@ var LoginComponent = (function () {
      * Routes to the forgot password screen
      */
     LoginComponent.prototype.forgot = function () {
-        this._router.navigate(['/forgot', this.id]);
+        if (this.id != undefined) {
+            this._router.navigate(['/forgot', this.id]);
+        }
+        else {
+            this._router.navigate(['/forgot']);
+        }
     };
     /**
      * Sets the language for the app
@@ -2907,6 +2951,9 @@ var LoginComponent = (function () {
      * handles error
      */
     LoginComponent.prototype.failure = function (obj) {
+        if (obj.status == 409) {
+            this.hasMultipleSites = true;
+        }
         toast.show('failure');
     };
     LoginComponent = __decorate([
@@ -3136,7 +3183,7 @@ var MenusComponent = (function () {
     MenusComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     MenusComponent = __decorate([
@@ -3309,7 +3356,7 @@ var PagesComponent = (function () {
         console.log(obj);
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     PagesComponent = __decorate([
@@ -3411,7 +3458,7 @@ var PluginsComponent = (function () {
     PluginsComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     PluginsComponent = __decorate([
@@ -3615,7 +3662,7 @@ var SettingsComponent = (function () {
     SettingsComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     SettingsComponent = __decorate([
@@ -3814,7 +3861,7 @@ var SubmissionsComponent = (function () {
     SubmissionsComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     SubmissionsComponent = __decorate([
@@ -3934,7 +3981,7 @@ var UsersComponent = (function () {
     UsersComponent.prototype.failure = function (obj) {
         toast.show('failure');
         if (obj.status == 401) {
-            this._router.navigate(['/login', this.id]);
+            this._router.navigate(['/login']);
         }
     };
     UsersComponent = __decorate([
@@ -4344,12 +4391,20 @@ var AppModule = (function () {
 
 var appRoutes = [
     {
+        path: 'login',
+        component: __WEBPACK_IMPORTED_MODULE_1__login_login_component__["a" /* LoginComponent */]
+    },
+    {
         path: 'login/:id',
         component: __WEBPACK_IMPORTED_MODULE_1__login_login_component__["a" /* LoginComponent */]
     },
     {
         path: 'create',
         component: __WEBPACK_IMPORTED_MODULE_4__create_create_component__["a" /* CreateComponent */]
+    },
+    {
+        path: 'forgot',
+        component: __WEBPACK_IMPORTED_MODULE_2__forgot_forgot_component__["a" /* ForgotComponent */]
     },
     {
         path: 'forgot/:id',
@@ -4413,7 +4468,7 @@ var appRoutes = [
     },
     {
         path: '',
-        redirectTo: '/create',
+        redirectTo: '/login',
         pathMatch: 'full'
     }
 ];
@@ -4905,7 +4960,7 @@ var DrawerComponent = (function () {
         // remove token
         localStorage.removeItem('respond.siteId');
         // redirect
-        this._router.navigate(['/login', this.id]);
+        this._router.navigate(['/login']);
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["e" /* Input */])(),
@@ -8643,7 +8698,7 @@ module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (c
 /* 443 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"forgot($event, email.value)\">\n\n    <h2>{{ 'Forgot Password?' | translate }}</h2>\n\n    <label>{{ 'Email' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email required=\"required\">\n\n    <button type=\"submit\">{{ 'Send' | translate }}</button>\n\n</form>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"forgot($event, email.value, site.value)\">\n\n    <h2>{{ 'Forgot Password?' | translate }}</h2>\n\n    <label>{{ 'Email' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email required=\"required\">\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to retrieve your password. You can speed up the process in the future by navigating to forgot/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Send' | translate }}</button>\n\n</form>"
 
 /***/ }),
 /* 444 */
@@ -8661,7 +8716,7 @@ module.exports = "<menu class=\"app-menu\" [class.noborder]=\"galleries.length !
 /* 446 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"login($event, email.value, password.value)\">\n\n    <label *ngIf=\"usesLDAP === false\">{{ 'Email' | translate }}</label>\n    <label *ngIf=\"usesLDAP === true\">{{ 'Username' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <button type=\"submit\">{{ 'Login' | translate }}</button>\n\n    <a (click)=\"forgot()\">{{ 'Forgot Password?' | translate }}</a>\n\n</form>\n\n<p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"login($event, email.value, password.value, site.value)\">\n\n    <label *ngIf=\"usesLDAP === false\">{{ 'Email' | translate }}</label>\n    <label *ngIf=\"usesLDAP === true\">{{ 'Username' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Login' | translate }}</button>\n\n    <a (click)=\"forgot()\">{{ 'Forgot Password?' | translate }}</a>\n\n</form>\n\n<p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>"
 
 /***/ }),
 /* 447 */

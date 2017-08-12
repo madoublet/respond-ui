@@ -148,7 +148,7 @@ export class AdvancedComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['/login', this.id] );
+      this._router.navigate( ['/login'] );
     }
 
   }

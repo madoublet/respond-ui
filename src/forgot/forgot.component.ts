@@ -18,6 +18,7 @@ export class ForgotComponent {
   id;
   errorMessage;
   logoUrl;
+  hasMultipleSites = false;
 
   constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute) {}
 
@@ -52,11 +53,23 @@ export class ForgotComponent {
   /**
    * Submit forgot request
    */
-  forgot(event, email, password){
+  forgot(event, email, site){
 
       event.preventDefault();
 
-      this._userService.forgot(this.id, email)
+      let id = undefined;
+
+      if(this.id != undefined) {
+        id = this.id;
+      }
+      
+      if(site != '') {
+        id = site;
+      }
+
+      alert(id);
+
+      this._userService.forgot(id, email)
                    .subscribe(
                      () => { toast.show('success'); },
                      error =>  { this.failure(<any>error); }
@@ -70,6 +83,10 @@ export class ForgotComponent {
   failure(obj) {
 
     toast.show('failure');
+
+    if(obj.status == 409) {
+      this.hasMultipleSites = true;
+    }
 
   }
 

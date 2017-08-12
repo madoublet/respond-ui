@@ -13,6 +13,10 @@ body {
   padding: 0 !important;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body h1, body h2, body h3, body h4, body h5, body label, body input, body li, body button, body a, body td{
   font-family: 'Open Sans', sans-serif;
 }

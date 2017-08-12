@@ -14,6 +14,7 @@ export class UserService {
   private _addUrl = 'api/users/add';
   private _editUrl = 'api/users/edit';
   private _removeUrl = 'api/users/remove';
+  private _countUrl = 'api/users/site/count';
 
   /**
    * Lists users
@@ -79,6 +80,24 @@ export class UserService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this._resetUrl, body, options);
+
+  }
+
+  /**
+   * Determines the # of sites associated with an email
+   *
+   * @param {string} id The site id
+   * @param {string} token The token needed to reset the password
+   * @param {string} password The new password
+   * @return {Observable}
+   */
+  hasMultipleSites (email: string) {
+
+    let body = JSON.stringify({ email });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._countUrl, body, options);
 
   }
 

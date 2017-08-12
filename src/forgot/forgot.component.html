@@ -1,11 +1,17 @@
 <div class="logo"><img src="{{ logoUrl }}"></div>
 
-<form class="app-form standalone" (submit)="forgot($event, email.value)">
+<form class="app-form standalone" (submit)="forgot($event, email.value, site.value)">
 
     <h2>{{ 'Forgot Password?' | translate }}</h2>
 
     <label>{{ 'Email' | translate }}</label>
     <input type="text" name="email" #email required="required">
+
+    <div [hidden]="!hasMultipleSites">
+        <label>{{ 'Site Name' | translate }}</label>
+        <input type="text" name="site" #site>
+        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to retrieve your password. You can speed up the process in the future by navigating to forgot/site-name.' | translate }}</small>
+    </div>
 
     <button type="submit">{{ 'Send' | translate }}</button>
 

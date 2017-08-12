@@ -207,7 +207,7 @@ export class DrawerComponent {
     localStorage.removeItem('respond.siteId');
 
     // redirect
-    this._router.navigate( ['/login', this.id] );
+    this._router.navigate( ['/login'] );
 
   }
 

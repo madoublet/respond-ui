@@ -19,12 +19,20 @@ import { CodeComponent } from './code/code.component';
 
 const appRoutes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'login/:id',
     component: LoginComponent
   },
   {
     path: 'create',
     component: CreateComponent
+  },
+  {
+    path: 'forgot',
+    component: ForgotComponent
   },
   {
     path: 'forgot/:id',
@@ -88,7 +96,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/create',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
