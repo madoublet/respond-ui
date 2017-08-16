@@ -16,6 +16,7 @@ export class DrawerComponent {
   globalListener: any;
 
   status: string;
+  hasAccount: boolean;
   daysRemaining: any;
 
   activationMethod: string;
@@ -58,6 +59,7 @@ export class DrawerComponent {
     this.dev = false;
     this.siteUrl = '';
     this.status = 'Active';
+    this.hasAccount = false;
     this.daysRemaining = 0;
     this.activationUrl = '';
 
@@ -78,6 +80,7 @@ export class DrawerComponent {
 
     // set trial information
     this.status = localStorage.getItem('site_status');
+    this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
     this.daysRemaining = parseInt(localStorage.getItem('site_trial_days_remaining'));
 
     // activation
@@ -196,6 +199,9 @@ export class DrawerComponent {
   subscribed() {
     localStorage.setItem('site_status', 'Active');
     this.status = 'Active';
+
+    localStorage.setItem('site_has_account', 'true');
+    this.hasAccount = true;
   }
 
   /**

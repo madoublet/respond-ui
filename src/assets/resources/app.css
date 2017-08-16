@@ -932,6 +932,27 @@ body .app-form.standalone {
     text-align: left;
   }
 
+body .app-table {
+  margin: 20px 20px 20px 20px;
+  width: 100%;
+}
+
+  body .app-table tbody th {
+    width: 20%;
+    text-align: left;
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 5px 0;
+  }
+
+  body .app-table tbody td {
+    text-align: left;
+    color: #111;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+
 /* ack */
 body .acknowledgement {
   text-align: center;

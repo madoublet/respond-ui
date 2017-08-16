@@ -14,6 +14,7 @@
     <li [class.active]="active === 'settings'"><a [routerLink]="['/settings']">{{ 'Settings' | translate }}</a></li>
     <li [class.active]="active === 'code'"><a (click)="viewCode()">{{ 'Code' | translate }}</a></li>
     <li [class.active]="active === 'advanced'"><a [routerLink]="['/advanced']">{{ 'Advanced' | translate }}</a></li>
+    <li [class.active]="active === 'account'" *ngIf="hasAccount == true"><a [routerLink]="['/account']">{{ 'Account' | translate }}</a></li>
     <li><a [href]="siteUrl" target="_blank">{{ 'View Site' | translate }}</a></li>
     <li><a (click)="signOut()">{{ 'Sign Out' | translate }}</a></li>
   </ul>

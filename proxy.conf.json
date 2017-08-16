@@ -1,26 +1,26 @@
 {
   "/api": {
-    "target": "http://path-to-respond.com",
+    "target": "http://dev.respondcms.com",
     "changeOrigin": true,
     "secure": false
   },
   "/sites": {
-    "target": "http://path-to-respond.com",
+    "target": "http://dev.respondcms.com",
     "changeOrigin": true,
     "secure": false
   },
   "/themes": {
-    "target": "http://path-to-respond.com",
+    "target": "http://dev.respondcms.com",
     "changeOrigin": true,
     "secure": false
   },
   "/edit": {
-    "target": "http://path-to-respond.com",
+    "target": "http://dev.respondcms.com",
     "changeOrigin": true,
     "secure": false
   },
   "/app/libs": {
-    "target": "http://path-to-respond.com",
+    "target": "http://dev.respondcms.com",
     "changeOrigin": true,
     "secure": false
   }

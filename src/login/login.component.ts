@@ -108,7 +108,7 @@ export class LoginComponent {
     this.setToken(this.data.token);
 
     // set status
-    this.setStatus(this.data.user.status, this.data.user.days);
+    this.setStatus(this.data.user.status, this.data.user.days, this.data.user.hasAccount);
 
     // set site id
     localStorage.setItem('respond.siteId', this.data.user.siteId);
@@ -150,14 +150,23 @@ export class LoginComponent {
   /**
    * Sets the status
    */
-  setStatus(status, days) {
+  setStatus(status, days, hasAccount) {
+
+      // set 
+      let strHasAccount:string = 'false';
 
       // set expired
       if(status == 'Trial' && days < 0) {
         status = 'Expired';
       }
 
+      // set has account
+      if(hasAccount == true) {
+        strHasAccount = 'true';
+      }
+
       localStorage.setItem('site_status', status);
+      localStorage.setItem('site_has_account', strHasAccount);
       localStorage.setItem('site_trial_days_remaining', days);
   }
 

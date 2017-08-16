@@ -18,6 +18,7 @@ export class SiteService {
   private _listPluginsUrl = 'api/plugins/list';
   private _updateUrl = 'api/sites/update/plugins';
   private _removePluginUrl = 'api/plugins/remove';
+  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve'
 
   /**
    * Login to the application
@@ -55,6 +56,18 @@ export class SiteService {
 
     return this.http.post(this._subscribeUrl, body, options);
 
+  }
+
+  /**
+   * Retrieve subscription
+   *
+   */
+  retrieveSubscription () {
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._retrieveSubscriptionUrl, options).map((res:Response) => res.json());
   }
 
   /**

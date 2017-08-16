@@ -1,62 +1,5 @@
-webpackJsonp([1,5],Array(35).concat([
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(3);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var AppService = (function () {
-    function AppService(http) {
-        this.http = http;
-        this._settingsUrl = 'api/app/settings';
-        this._themesListUrl = 'api/themes/list';
-        this._languagesListUrl = 'api/languages/list';
-    }
-    /**
-     * Retrieve settings for the application
-     *
-     */
-    AppService.prototype.retrieveSettings = function () {
-        return this.http.get(this._settingsUrl).map(function (res) { return res.json(); });
-    };
-    /**
-     * Lists themes in the application
-     *
-     */
-    AppService.prototype.listThemes = function () {
-        return this.http.get(this._themesListUrl).map(function (res) { return res.json(); });
-    };
-    /**
-     * Lists languages available to the application
-     *
-     */
-    AppService.prototype.listLanguages = function () {
-        return this.http.get(this._languagesListUrl).map(function (res) { return res.json(); });
-    };
-    AppService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["f" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
-    ], AppService);
-    return AppService;
-    var _a;
-}());
-
-//# sourceMappingURL=app.service.js.map
-
-/***/ }),
-/* 36 */
+webpackJsonp([1,5],Array(31).concat([
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -89,6 +32,7 @@ var SiteService = (function () {
         this._listPluginsUrl = 'api/plugins/list';
         this._updateUrl = 'api/sites/update/plugins';
         this._removePluginUrl = 'api/plugins/remove';
+        this._retrieveSubscriptionUrl = 'api/sites/subscription/retrieve';
     }
     /**
      * Login to the application
@@ -118,6 +62,16 @@ var SiteService = (function () {
         headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
         return this.http.post(this._subscribeUrl, body, options);
+    };
+    /**
+     * Retrieve subscription
+     *
+     */
+    SiteService.prototype.retrieveSubscription = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        return this.http.get(this._retrieveSubscriptionUrl, options).map(function (res) { return res.json(); });
     };
     /**
      * Reloads the system files
@@ -227,6 +181,67 @@ var SiteService = (function () {
 }());
 
 //# sourceMappingURL=site.service.js.map
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(3);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AppService = (function () {
+    function AppService(http) {
+        this.http = http;
+        this._settingsUrl = 'api/app/settings';
+        this._themesListUrl = 'api/themes/list';
+        this._languagesListUrl = 'api/languages/list';
+    }
+    /**
+     * Retrieve settings for the application
+     *
+     */
+    AppService.prototype.retrieveSettings = function () {
+        return this.http.get(this._settingsUrl).map(function (res) { return res.json(); });
+    };
+    /**
+     * Lists themes in the application
+     *
+     */
+    AppService.prototype.listThemes = function () {
+        return this.http.get(this._themesListUrl).map(function (res) { return res.json(); });
+    };
+    /**
+     * Lists languages available to the application
+     *
+     */
+    AppService.prototype.listLanguages = function () {
+        return this.http.get(this._languagesListUrl).map(function (res) { return res.json(); });
+    };
+    AppService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["f" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
+    ], AppService);
+    return AppService;
+    var _a;
+}());
+
+//# sourceMappingURL=app.service.js.map
 
 /***/ }),
 /* 37 */
@@ -1407,7 +1422,109 @@ var SubmissionService = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AccountComponent = (function () {
+    function AccountComponent(_siteService, _router) {
+        this._siteService = _siteService;
+        this._router = _router;
+        this.addVisible = false;
+        this.removeVisible = false;
+        this.drawerVisible = false;
+        this.settingsVisible = false;
+        this.plan = "";
+        this.amountDisplay = "";
+        this.currency = "";
+        this.interval = "";
+    }
+    /**
+     * Init pages
+     *
+     */
+    AccountComponent.prototype.ngOnInit = function () {
+        this.id = localStorage.getItem('respond.siteId');
+        this.settingsVisible = false;
+        this.drawerVisible = false;
+        this.retrieve();
+    };
+    /**
+     * Retrieves the subscription
+     */
+    AccountComponent.prototype.retrieve = function () {
+        var _this = this;
+        this.reset();
+        this._siteService.retrieveSubscription()
+            .subscribe(function (data) {
+            _this.subscription = data;
+            _this.plan = data.name;
+            _this.amount = data.amount / 100;
+            _this.currency = data.currency.toUpperCase();
+            _this.interval = data.interval;
+            if (_this.currency.toUpperCase() == 'USD') {
+                _this.amountDisplay = "$" + _this.amount;
+            }
+            else {
+                _this.amountDisplay = _this.amount + " " + _this.currency;
+            }
+            console.log(data);
+        }, function (error) { _this.failure(error); });
+    };
+    /**
+     * Resets an modal booleans
+     */
+    AccountComponent.prototype.reset = function () {
+        this.drawerVisible = false;
+    };
+    /**
+     * Shows the drawer
+     */
+    AccountComponent.prototype.toggleDrawer = function () {
+        this.drawerVisible = !this.drawerVisible;
+    };
+    /**
+     * handles error
+     */
+    AccountComponent.prototype.failure = function (obj) {
+        console.log(obj);
+        toast.show('failure');
+        if (obj.status == 401) {
+            this._router.navigate(['/login']);
+        }
+    };
+    AccountComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+            selector: 'respond-account',
+            template: __webpack_require__(437),
+            providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]]
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    ], AccountComponent);
+    return AccountComponent;
+    var _a, _b;
+}());
+
+//# sourceMappingURL=account.component.js.map
+
+/***/ }),
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdvancedComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1521,7 +1638,7 @@ var AdvancedComponent = (function () {
     AdvancedComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-advanced',
-            template: __webpack_require__(436),
+            template: __webpack_require__(438),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -1533,13 +1650,13 @@ var AdvancedComponent = (function () {
 //# sourceMappingURL=advanced.component.js.map
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_code_service__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_code_service__ = __webpack_require__(142);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1754,7 +1871,7 @@ var CodeComponent = (function () {
     CodeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-code',
-            template: __webpack_require__(438),
+            template: __webpack_require__(440),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_code_service__["a" /* CodeService */]],
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_code_service__["a" /* CodeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_code_service__["a" /* CodeService */]) === "function" && _c || Object])
@@ -1766,7 +1883,7 @@ var CodeComponent = (function () {
 //# sourceMappingURL=code.component.js.map
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1889,7 +2006,7 @@ var ComponentsComponent = (function () {
     ComponentsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-components',
-            template: __webpack_require__(439),
+            template: __webpack_require__(441),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_component_service__["a" /* ComponentService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_component_service__["a" /* ComponentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_component_service__["a" /* ComponentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -1901,15 +2018,15 @@ var ComponentsComponent = (function () {
 //# sourceMappingURL=components.component.js.map
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2076,7 +2193,7 @@ var CreateComponent = (function () {
     CreateComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-create',
-            template: __webpack_require__(440),
+            template: __webpack_require__(442),
             providers: [__WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */], __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]) === "function" && _d || Object])
@@ -2088,7 +2205,7 @@ var CreateComponent = (function () {
 //# sourceMappingURL=create.component.js.map
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2124,7 +2241,7 @@ var EditComponent = (function () {
     EditComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit',
-            template: __webpack_require__(441)
+            template: __webpack_require__(443)
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _a || Object])
     ], EditComponent);
@@ -2135,7 +2252,7 @@ var EditComponent = (function () {
 //# sourceMappingURL=edit.component.js.map
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2225,7 +2342,7 @@ var FilesComponent = (function () {
     FilesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-files',
-            template: __webpack_require__(442),
+            template: __webpack_require__(444),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_file_service__["a" /* FileService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_file_service__["a" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_file_service__["a" /* FileService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -2237,14 +2354,14 @@ var FilesComponent = (function () {
 //# sourceMappingURL=files.component.js.map
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2315,7 +2432,7 @@ var ForgotComponent = (function () {
     ForgotComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-forgot',
-            template: __webpack_require__(443),
+            template: __webpack_require__(445),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object])
@@ -2327,7 +2444,7 @@ var ForgotComponent = (function () {
 //# sourceMappingURL=forgot.component.js.map
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2544,7 +2661,7 @@ var FormsComponent = (function () {
     FormsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-forms',
-            template: __webpack_require__(444),
+            template: __webpack_require__(446),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_form_service__["a" /* FormService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_form_field_service__["a" /* FormFieldService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_form_service__["a" /* FormService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_form_service__["a" /* FormService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_form_field_service__["a" /* FormFieldService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_form_field_service__["a" /* FormFieldService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
@@ -2556,7 +2673,7 @@ var FormsComponent = (function () {
 //# sourceMappingURL=forms.component.js.map
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2787,7 +2904,7 @@ var GalleriesComponent = (function () {
     GalleriesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-galleries',
-            template: __webpack_require__(445),
+            template: __webpack_require__(447),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_gallery_service__["a" /* GalleryService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_gallery_image_service__["a" /* GalleryImageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_gallery_service__["a" /* GalleryService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_gallery_image_service__["a" /* GalleryImageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_gallery_image_service__["a" /* GalleryImageService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
@@ -2799,7 +2916,7 @@ var GalleriesComponent = (function () {
 //# sourceMappingURL=galleries.component.js.map
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2807,7 +2924,7 @@ var GalleriesComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2893,7 +3010,7 @@ var LoginComponent = (function () {
         // set token
         this.setToken(this.data.token);
         // set status
-        this.setStatus(this.data.user.status, this.data.user.days);
+        this.setStatus(this.data.user.status, this.data.user.days, this.data.user.hasAccount);
         // set site id
         localStorage.setItem('respond.siteId', this.data.user.siteId);
         // navigate
@@ -2927,12 +3044,19 @@ var LoginComponent = (function () {
     /**
      * Sets the status
      */
-    LoginComponent.prototype.setStatus = function (status, days) {
+    LoginComponent.prototype.setStatus = function (status, days, hasAccount) {
+        // set 
+        var strHasAccount = 'false';
         // set expired
         if (status == 'Trial' && days < 0) {
             status = 'Expired';
         }
+        // set has account
+        if (hasAccount == true) {
+            strHasAccount = 'true';
+        }
         localStorage.setItem('site_status', status);
+        localStorage.setItem('site_has_account', strHasAccount);
         localStorage.setItem('site_trial_days_remaining', days);
     };
     /**
@@ -2959,7 +3083,7 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-login',
-            template: __webpack_require__(446),
+            template: __webpack_require__(448),
             providers: [__WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */]) === "function" && _e || Object])
@@ -2971,7 +3095,7 @@ var LoginComponent = (function () {
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3189,7 +3313,7 @@ var MenusComponent = (function () {
     MenusComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-menus',
-            template: __webpack_require__(447),
+            template: __webpack_require__(449),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_menu_service__["a" /* MenuService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_menu_item_service__["a" /* MenuItemService */]],
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_menu_service__["a" /* MenuService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_menu_service__["a" /* MenuService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_menu_item_service__["a" /* MenuItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_menu_item_service__["a" /* MenuItemService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
@@ -3201,7 +3325,7 @@ var MenusComponent = (function () {
 //# sourceMappingURL=menus.component.js.map
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3362,7 +3486,7 @@ var PagesComponent = (function () {
     PagesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-pages',
-            template: __webpack_require__(448),
+            template: __webpack_require__(450),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -3374,13 +3498,13 @@ var PagesComponent = (function () {
 //# sourceMappingURL=pages.component.js.map
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PluginsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3464,7 +3588,7 @@ var PluginsComponent = (function () {
     PluginsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-plugins',
-            template: __webpack_require__(449),
+            template: __webpack_require__(451),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -3476,14 +3600,14 @@ var PluginsComponent = (function () {
 //# sourceMappingURL=plugins.component.js.map
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3548,7 +3672,7 @@ var ResetComponent = (function () {
     ResetComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-reset',
-            template: __webpack_require__(450),
+            template: __webpack_require__(452),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object])
@@ -3560,13 +3684,13 @@ var ResetComponent = (function () {
 //# sourceMappingURL=reset.component.js.map
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_setting_service__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_setting_service__ = __webpack_require__(256);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3668,7 +3792,7 @@ var SettingsComponent = (function () {
     SettingsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-settings',
-            template: __webpack_require__(451),
+            template: __webpack_require__(453),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_setting_service__["a" /* SettingService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_setting_service__["a" /* SettingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_setting_service__["a" /* SettingService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -3680,7 +3804,7 @@ var SettingsComponent = (function () {
 //# sourceMappingURL=settings.component.js.map
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3768,7 +3892,7 @@ var CodeService = (function () {
 //# sourceMappingURL=code.service.js.map
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3867,7 +3991,7 @@ var SubmissionsComponent = (function () {
     SubmissionsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-submissions',
-            template: __webpack_require__(484),
+            template: __webpack_require__(486),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_submission_service__["a" /* SubmissionService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_submission_service__["a" /* SubmissionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_submission_service__["a" /* SubmissionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -3879,7 +4003,7 @@ var SubmissionsComponent = (function () {
 //# sourceMappingURL=submissions.component.js.map
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3987,7 +4111,7 @@ var UsersComponent = (function () {
     UsersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-users',
-            template: __webpack_require__(485),
+            template: __webpack_require__(487),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -3999,7 +4123,6 @@ var UsersComponent = (function () {
 //# sourceMappingURL=users.component.js.map
 
 /***/ }),
-/* 144 */,
 /* 145 */,
 /* 146 */,
 /* 147 */,
@@ -4052,7 +4175,8 @@ var UsersComponent = (function () {
 /* 194 */,
 /* 195 */,
 /* 196 */,
-/* 197 */
+/* 197 */,
+/* 198 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4061,24 +4185,23 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 197;
+webpackEmptyContext.id = 198;
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(220);
 
 
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
-/* 199 */,
 /* 200 */,
 /* 201 */,
 /* 202 */,
@@ -4097,7 +4220,8 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /* 215 */,
 /* 216 */,
 /* 217 */,
-/* 218 */
+/* 218 */,
+/* 219 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4128,7 +4252,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-app',
-            template: __webpack_require__(437),
+            template: __webpack_require__(439),
             providers: [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]) === "function" && _a || Object])
@@ -4140,71 +4264,72 @@ var AppComponent = (function () {
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_components_drawer_drawer_component__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_components_dropzone_dropzone_component__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login_component__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__forgot_forgot_component__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__reset_reset_component__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__create_create_component__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__advanced_advanced_component__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__code_code_component__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_components_code_add_code_add_code_component__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__edit_edit_component__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__files_files_component__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_components_files_remove_file_remove_file_component__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_components_files_select_file_select_file_component__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__plugins_plugins_component__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_components_plugins_remove_plugin_remove_plugin_component__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__forms_forms_component__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__shared_components_forms_add_form_add_form_component__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__shared_components_forms_edit_form_edit_form_component__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__shared_components_forms_remove_form_remove_form_component__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__shared_components_forms_add_form_field_add_form_field_component__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__shared_components_forms_edit_form_field_edit_form_field_component__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__shared_components_forms_remove_form_field_remove_form_field_component__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__galleries_galleries_component__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__shared_components_galleries_add_gallery_add_gallery_component__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__shared_components_galleries_edit_gallery_edit_gallery_component__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__shared_components_galleries_remove_gallery_remove_gallery_component__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__shared_components_galleries_edit_caption_edit_caption_component__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shared_components_galleries_remove_gallery_image_remove_gallery_image_component__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__menus_menus_component__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__shared_components_menus_add_menu_add_menu_component__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__shared_components_menus_edit_menu_edit_menu_component__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__shared_components_menus_remove_menu_remove_menu_component__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__shared_components_menus_add_menu_item_add_menu_item_component__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__shared_components_menus_edit_menu_item_edit_menu_item_component__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shared_components_menus_remove_menu_item_remove_menu_item_component__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_pages_component__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__shared_components_pages_add_page_add_page_component__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shared_components_pages_page_settings_page_settings_component__ = __webpack_require__(246);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shared_components_pages_remove_page_remove_page_component__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_components_component__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__shared_components_components_add_component_add_component_component__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__shared_components_components_remove_component_remove_component_component__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__settings_settings_component__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__submissions_submissions_component__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__shared_components_submissions_remove_submission_remove_submission_component__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__shared_components_submissions_view_submission_view_submission_component__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__users_users_component__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__shared_components_users_add_user_add_user_component__ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__shared_components_users_edit_user_edit_user_component__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__shared_components_users_remove_user_remove_user_component__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__app_routes__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__ngx_translate_core__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__ngx_translate_http_loader__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__shared_pipes_time_ago_pipe__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_components_drawer_drawer_component__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_components_dropzone_dropzone_component__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login_component__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__forgot_forgot_component__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__reset_reset_component__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__create_create_component__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__advanced_advanced_component__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__account_account_component__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__code_code_component__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_components_code_add_code_add_code_component__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__edit_edit_component__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__files_files_component__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_components_files_remove_file_remove_file_component__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_components_files_select_file_select_file_component__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__plugins_plugins_component__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_components_plugins_remove_plugin_remove_plugin_component__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__forms_forms_component__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__shared_components_forms_add_form_add_form_component__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__shared_components_forms_edit_form_edit_form_component__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__shared_components_forms_remove_form_remove_form_component__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__shared_components_forms_add_form_field_add_form_field_component__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__shared_components_forms_edit_form_field_edit_form_field_component__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__shared_components_forms_remove_form_field_remove_form_field_component__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__galleries_galleries_component__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__shared_components_galleries_add_gallery_add_gallery_component__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__shared_components_galleries_edit_gallery_edit_gallery_component__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__shared_components_galleries_remove_gallery_remove_gallery_component__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shared_components_galleries_edit_caption_edit_caption_component__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__shared_components_galleries_remove_gallery_image_remove_gallery_image_component__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__menus_menus_component__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__shared_components_menus_add_menu_add_menu_component__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__shared_components_menus_edit_menu_edit_menu_component__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__shared_components_menus_remove_menu_remove_menu_component__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__shared_components_menus_add_menu_item_add_menu_item_component__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shared_components_menus_edit_menu_item_edit_menu_item_component__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__shared_components_menus_remove_menu_item_remove_menu_item_component__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_pages_component__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shared_components_pages_add_page_add_page_component__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shared_components_pages_page_settings_page_settings_component__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__shared_components_pages_remove_page_remove_page_component__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__components_components_component__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__shared_components_components_add_component_add_component_component__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__shared_components_components_remove_component_remove_component_component__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__settings_settings_component__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__submissions_submissions_component__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__shared_components_submissions_remove_submission_remove_submission_component__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__shared_components_submissions_view_submission_view_submission_component__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__users_users_component__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__shared_components_users_add_user_add_user_component__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__shared_components_users_edit_user_edit_user_component__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__shared_components_users_remove_user_remove_user_component__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__app_routes__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__ngx_translate_core__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__ngx_translate_http_loader__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__shared_pipes_time_ago_pipe__ = __webpack_require__(255);
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4232,7 +4357,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-// advanced + code
+// advanced + code  + account
+
 
 
 
@@ -4295,7 +4421,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // AoT requires an exported function for factories
 function HttpLoaderFactory(http) {
-    return new __WEBPACK_IMPORTED_MODULE_59__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, "assets/i18n/", ".json");
+    return new __WEBPACK_IMPORTED_MODULE_60__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, "assets/i18n/", ".json");
 }
 // pipes
 
@@ -4311,35 +4437,35 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__reset_reset_component__["a" /* ResetComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__create_create_component__["a" /* CreateComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__shared_components_drawer_drawer_component__["a" /* DrawerComponent */], __WEBPACK_IMPORTED_MODULE_8__shared_components_dropzone_dropzone_component__["a" /* DropzoneComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__edit_edit_component__["a" /* EditComponent */], __WEBPACK_IMPORTED_MODULE_13__advanced_advanced_component__["a" /* AdvancedComponent */], __WEBPACK_IMPORTED_MODULE_14__code_code_component__["a" /* CodeComponent */], __WEBPACK_IMPORTED_MODULE_15__shared_components_code_add_code_add_code_component__["a" /* AddCodeComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__files_files_component__["a" /* FilesComponent */], __WEBPACK_IMPORTED_MODULE_18__shared_components_files_remove_file_remove_file_component__["a" /* RemoveFileComponent */], __WEBPACK_IMPORTED_MODULE_19__shared_components_files_select_file_select_file_component__["a" /* SelectFileComponent */], __WEBPACK_IMPORTED_MODULE_20__plugins_plugins_component__["a" /* PluginsComponent */], __WEBPACK_IMPORTED_MODULE_21__shared_components_plugins_remove_plugin_remove_plugin_component__["a" /* RemovePluginComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__forms_forms_component__["a" /* FormsComponent */], __WEBPACK_IMPORTED_MODULE_23__shared_components_forms_add_form_add_form_component__["a" /* AddFormComponent */], __WEBPACK_IMPORTED_MODULE_24__shared_components_forms_edit_form_edit_form_component__["a" /* EditFormComponent */], __WEBPACK_IMPORTED_MODULE_25__shared_components_forms_remove_form_remove_form_component__["a" /* RemoveFormComponent */], __WEBPACK_IMPORTED_MODULE_26__shared_components_forms_add_form_field_add_form_field_component__["a" /* AddFormFieldComponent */], __WEBPACK_IMPORTED_MODULE_27__shared_components_forms_edit_form_field_edit_form_field_component__["a" /* EditFormFieldComponent */], __WEBPACK_IMPORTED_MODULE_28__shared_components_forms_remove_form_field_remove_form_field_component__["a" /* RemoveFormFieldComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__galleries_galleries_component__["a" /* GalleriesComponent */], __WEBPACK_IMPORTED_MODULE_30__shared_components_galleries_add_gallery_add_gallery_component__["a" /* AddGalleryComponent */], __WEBPACK_IMPORTED_MODULE_31__shared_components_galleries_edit_gallery_edit_gallery_component__["a" /* EditGalleryComponent */], __WEBPACK_IMPORTED_MODULE_32__shared_components_galleries_remove_gallery_remove_gallery_component__["a" /* RemoveGalleryComponent */], __WEBPACK_IMPORTED_MODULE_33__shared_components_galleries_edit_caption_edit_caption_component__["a" /* EditCaptionComponent */], __WEBPACK_IMPORTED_MODULE_34__shared_components_galleries_remove_gallery_image_remove_gallery_image_component__["a" /* RemoveGalleryImageComponent */],
-                __WEBPACK_IMPORTED_MODULE_35__menus_menus_component__["a" /* MenusComponent */], __WEBPACK_IMPORTED_MODULE_36__shared_components_menus_add_menu_add_menu_component__["a" /* AddMenuComponent */], __WEBPACK_IMPORTED_MODULE_37__shared_components_menus_edit_menu_edit_menu_component__["a" /* EditMenuComponent */], __WEBPACK_IMPORTED_MODULE_38__shared_components_menus_remove_menu_remove_menu_component__["a" /* RemoveMenuComponent */], __WEBPACK_IMPORTED_MODULE_39__shared_components_menus_add_menu_item_add_menu_item_component__["a" /* AddMenuItemComponent */], __WEBPACK_IMPORTED_MODULE_40__shared_components_menus_edit_menu_item_edit_menu_item_component__["a" /* EditMenuItemComponent */], __WEBPACK_IMPORTED_MODULE_41__shared_components_menus_remove_menu_item_remove_menu_item_component__["a" /* RemoveMenuItemComponent */],
-                __WEBPACK_IMPORTED_MODULE_42__pages_pages_component__["a" /* PagesComponent */], __WEBPACK_IMPORTED_MODULE_43__shared_components_pages_add_page_add_page_component__["a" /* AddPageComponent */], __WEBPACK_IMPORTED_MODULE_44__shared_components_pages_page_settings_page_settings_component__["a" /* PageSettingsComponent */], __WEBPACK_IMPORTED_MODULE_45__shared_components_pages_remove_page_remove_page_component__["a" /* RemovePageComponent */],
-                __WEBPACK_IMPORTED_MODULE_46__components_components_component__["a" /* ComponentsComponent */], __WEBPACK_IMPORTED_MODULE_47__shared_components_components_add_component_add_component_component__["a" /* AddComponentComponent */], __WEBPACK_IMPORTED_MODULE_48__shared_components_components_remove_component_remove_component_component__["a" /* RemoveComponentComponent */],
-                __WEBPACK_IMPORTED_MODULE_49__settings_settings_component__["a" /* SettingsComponent */],
-                __WEBPACK_IMPORTED_MODULE_50__submissions_submissions_component__["a" /* SubmissionsComponent */], __WEBPACK_IMPORTED_MODULE_51__shared_components_submissions_remove_submission_remove_submission_component__["a" /* RemoveSubmissionComponent */], __WEBPACK_IMPORTED_MODULE_52__shared_components_submissions_view_submission_view_submission_component__["a" /* ViewSubmissionComponent */],
-                __WEBPACK_IMPORTED_MODULE_53__users_users_component__["a" /* UsersComponent */], __WEBPACK_IMPORTED_MODULE_54__shared_components_users_add_user_add_user_component__["a" /* AddUserComponent */], __WEBPACK_IMPORTED_MODULE_55__shared_components_users_edit_user_edit_user_component__["a" /* EditUserComponent */], __WEBPACK_IMPORTED_MODULE_56__shared_components_users_remove_user_remove_user_component__["a" /* RemoveUserComponent */],
-                __WEBPACK_IMPORTED_MODULE_60__shared_pipes_time_ago_pipe__["a" /* TimeAgoPipe */]
+                __WEBPACK_IMPORTED_MODULE_17__edit_edit_component__["a" /* EditComponent */], __WEBPACK_IMPORTED_MODULE_13__advanced_advanced_component__["a" /* AdvancedComponent */], __WEBPACK_IMPORTED_MODULE_15__code_code_component__["a" /* CodeComponent */], __WEBPACK_IMPORTED_MODULE_16__shared_components_code_add_code_add_code_component__["a" /* AddCodeComponent */], __WEBPACK_IMPORTED_MODULE_14__account_account_component__["a" /* AccountComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__files_files_component__["a" /* FilesComponent */], __WEBPACK_IMPORTED_MODULE_19__shared_components_files_remove_file_remove_file_component__["a" /* RemoveFileComponent */], __WEBPACK_IMPORTED_MODULE_20__shared_components_files_select_file_select_file_component__["a" /* SelectFileComponent */], __WEBPACK_IMPORTED_MODULE_21__plugins_plugins_component__["a" /* PluginsComponent */], __WEBPACK_IMPORTED_MODULE_22__shared_components_plugins_remove_plugin_remove_plugin_component__["a" /* RemovePluginComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__forms_forms_component__["a" /* FormsComponent */], __WEBPACK_IMPORTED_MODULE_24__shared_components_forms_add_form_add_form_component__["a" /* AddFormComponent */], __WEBPACK_IMPORTED_MODULE_25__shared_components_forms_edit_form_edit_form_component__["a" /* EditFormComponent */], __WEBPACK_IMPORTED_MODULE_26__shared_components_forms_remove_form_remove_form_component__["a" /* RemoveFormComponent */], __WEBPACK_IMPORTED_MODULE_27__shared_components_forms_add_form_field_add_form_field_component__["a" /* AddFormFieldComponent */], __WEBPACK_IMPORTED_MODULE_28__shared_components_forms_edit_form_field_edit_form_field_component__["a" /* EditFormFieldComponent */], __WEBPACK_IMPORTED_MODULE_29__shared_components_forms_remove_form_field_remove_form_field_component__["a" /* RemoveFormFieldComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__galleries_galleries_component__["a" /* GalleriesComponent */], __WEBPACK_IMPORTED_MODULE_31__shared_components_galleries_add_gallery_add_gallery_component__["a" /* AddGalleryComponent */], __WEBPACK_IMPORTED_MODULE_32__shared_components_galleries_edit_gallery_edit_gallery_component__["a" /* EditGalleryComponent */], __WEBPACK_IMPORTED_MODULE_33__shared_components_galleries_remove_gallery_remove_gallery_component__["a" /* RemoveGalleryComponent */], __WEBPACK_IMPORTED_MODULE_34__shared_components_galleries_edit_caption_edit_caption_component__["a" /* EditCaptionComponent */], __WEBPACK_IMPORTED_MODULE_35__shared_components_galleries_remove_gallery_image_remove_gallery_image_component__["a" /* RemoveGalleryImageComponent */],
+                __WEBPACK_IMPORTED_MODULE_36__menus_menus_component__["a" /* MenusComponent */], __WEBPACK_IMPORTED_MODULE_37__shared_components_menus_add_menu_add_menu_component__["a" /* AddMenuComponent */], __WEBPACK_IMPORTED_MODULE_38__shared_components_menus_edit_menu_edit_menu_component__["a" /* EditMenuComponent */], __WEBPACK_IMPORTED_MODULE_39__shared_components_menus_remove_menu_remove_menu_component__["a" /* RemoveMenuComponent */], __WEBPACK_IMPORTED_MODULE_40__shared_components_menus_add_menu_item_add_menu_item_component__["a" /* AddMenuItemComponent */], __WEBPACK_IMPORTED_MODULE_41__shared_components_menus_edit_menu_item_edit_menu_item_component__["a" /* EditMenuItemComponent */], __WEBPACK_IMPORTED_MODULE_42__shared_components_menus_remove_menu_item_remove_menu_item_component__["a" /* RemoveMenuItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_43__pages_pages_component__["a" /* PagesComponent */], __WEBPACK_IMPORTED_MODULE_44__shared_components_pages_add_page_add_page_component__["a" /* AddPageComponent */], __WEBPACK_IMPORTED_MODULE_45__shared_components_pages_page_settings_page_settings_component__["a" /* PageSettingsComponent */], __WEBPACK_IMPORTED_MODULE_46__shared_components_pages_remove_page_remove_page_component__["a" /* RemovePageComponent */],
+                __WEBPACK_IMPORTED_MODULE_47__components_components_component__["a" /* ComponentsComponent */], __WEBPACK_IMPORTED_MODULE_48__shared_components_components_add_component_add_component_component__["a" /* AddComponentComponent */], __WEBPACK_IMPORTED_MODULE_49__shared_components_components_remove_component_remove_component_component__["a" /* RemoveComponentComponent */],
+                __WEBPACK_IMPORTED_MODULE_50__settings_settings_component__["a" /* SettingsComponent */],
+                __WEBPACK_IMPORTED_MODULE_51__submissions_submissions_component__["a" /* SubmissionsComponent */], __WEBPACK_IMPORTED_MODULE_52__shared_components_submissions_remove_submission_remove_submission_component__["a" /* RemoveSubmissionComponent */], __WEBPACK_IMPORTED_MODULE_53__shared_components_submissions_view_submission_view_submission_component__["a" /* ViewSubmissionComponent */],
+                __WEBPACK_IMPORTED_MODULE_54__users_users_component__["a" /* UsersComponent */], __WEBPACK_IMPORTED_MODULE_55__shared_components_users_add_user_add_user_component__["a" /* AddUserComponent */], __WEBPACK_IMPORTED_MODULE_56__shared_components_users_edit_user_edit_user_component__["a" /* EditUserComponent */], __WEBPACK_IMPORTED_MODULE_57__shared_components_users_remove_user_remove_user_component__["a" /* RemoveUserComponent */],
+                __WEBPACK_IMPORTED_MODULE_61__shared_pipes_time_ago_pipe__["a" /* TimeAgoPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */],
-                __WEBPACK_IMPORTED_MODULE_57__app_routes__["a" /* routing */],
+                __WEBPACK_IMPORTED_MODULE_58__app_routes__["a" /* routing */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["a" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_58__ngx_translate_core__["a" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_59__ngx_translate_core__["a" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_58__ngx_translate_core__["b" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_59__ngx_translate_core__["b" /* TranslateLoader */],
                         useFactory: HttpLoaderFactory,
                         deps: [__WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClient */]]
                     }
                 })
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]],
-            providers: [__WEBPACK_IMPORTED_MODULE_58__ngx_translate_core__["c" /* TranslateService */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_59__ngx_translate_core__["c" /* TranslateService */]]
         })
     ], AppModule);
     return AppModule;
@@ -4348,29 +4474,31 @@ var AppModule = (function () {
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_component__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forgot_forgot_component__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reset_reset_component__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__create_create_component__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_pages_component__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_components_component__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__files_files_component__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__plugins_plugins_component__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__users_users_component__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__menus_menus_component__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__forms_forms_component__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__settings_settings_component__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__submissions_submissions_component__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__galleries_galleries_component__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__edit_edit_component__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__advanced_advanced_component__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__code_code_component__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_component__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forgot_forgot_component__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reset_reset_component__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__create_create_component__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_pages_component__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_components_component__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__files_files_component__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__plugins_plugins_component__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__users_users_component__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__menus_menus_component__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__forms_forms_component__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__settings_settings_component__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__submissions_submissions_component__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__galleries_galleries_component__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__edit_edit_component__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__advanced_advanced_component__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__account_account_component__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__code_code_component__ = __webpack_require__(128);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
+
 
 
 
@@ -4463,8 +4591,12 @@ var appRoutes = [
         component: __WEBPACK_IMPORTED_MODULE_16__advanced_advanced_component__["a" /* AdvancedComponent */]
     },
     {
+        path: 'account',
+        component: __WEBPACK_IMPORTED_MODULE_17__account_account_component__["a" /* AccountComponent */]
+    },
+    {
         path: 'code/:id',
-        component: __WEBPACK_IMPORTED_MODULE_17__code_code_component__["a" /* CodeComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_18__code_code_component__["a" /* CodeComponent */]
     },
     {
         path: '',
@@ -4476,12 +4608,12 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule 
 //# sourceMappingURL=app.routes.js.map
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_code_service__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_code_service__ = __webpack_require__(142);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCodeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4579,7 +4711,7 @@ var AddCodeComponent = (function () {
     AddCodeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-code',
-            template: __webpack_require__(452),
+            template: __webpack_require__(454),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_code_service__["a" /* CodeService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_code_service__["a" /* CodeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_code_service__["a" /* CodeService */]) === "function" && _a || Object])
@@ -4591,7 +4723,7 @@ var AddCodeComponent = (function () {
 //# sourceMappingURL=add-code.component.js.map
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4680,7 +4812,7 @@ var AddComponentComponent = (function () {
     AddComponentComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-component',
-            template: __webpack_require__(453),
+            template: __webpack_require__(455),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */]) === "function" && _a || Object])
@@ -4692,7 +4824,7 @@ var AddComponentComponent = (function () {
 //# sourceMappingURL=add-component.component.js.map
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4787,7 +4919,7 @@ var RemoveComponentComponent = (function () {
     RemoveComponentComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-component',
-            template: __webpack_require__(454),
+            template: __webpack_require__(456),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_component_service__["a" /* ComponentService */]) === "function" && _a || Object])
@@ -4799,14 +4931,14 @@ var RemoveComponentComponent = (function () {
 //# sourceMappingURL=remove-component.component.js.map
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DrawerComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4854,6 +4986,7 @@ var DrawerComponent = (function () {
         this.dev = false;
         this.siteUrl = '';
         this.status = 'Active';
+        this.hasAccount = false;
         this.daysRemaining = 0;
         this.activationUrl = '';
         var url = window.location.href;
@@ -4870,6 +5003,7 @@ var DrawerComponent = (function () {
         var _this = this;
         // set trial information
         this.status = localStorage.getItem('site_status');
+        this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
         this.daysRemaining = parseInt(localStorage.getItem('site_trial_days_remaining'));
         // activation
         this.activationMethod = localStorage.getItem('activation_method');
@@ -4952,6 +5086,8 @@ var DrawerComponent = (function () {
     DrawerComponent.prototype.subscribed = function () {
         localStorage.setItem('site_status', 'Active');
         this.status = 'Active';
+        localStorage.setItem('site_has_account', 'true');
+        this.hasAccount = true;
     };
     /**
      * Signs out of the system
@@ -4979,7 +5115,7 @@ var DrawerComponent = (function () {
     DrawerComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-drawer',
-            template: __webpack_require__(455),
+            template: __webpack_require__(457),
             providers: [__WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* Renderer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* Renderer */]) === "function" && _d || Object])
@@ -4991,7 +5127,7 @@ var DrawerComponent = (function () {
 //# sourceMappingURL=drawer.component.js.map
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5076,7 +5212,7 @@ var DropzoneComponent = (function () {
 //# sourceMappingURL=dropzone.component.js.map
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5171,7 +5307,7 @@ var RemoveFileComponent = (function () {
     RemoveFileComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-file',
-            template: __webpack_require__(456),
+            template: __webpack_require__(458),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */]) === "function" && _a || Object])
@@ -5183,7 +5319,7 @@ var RemoveFileComponent = (function () {
 //# sourceMappingURL=remove-file.component.js.map
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5272,7 +5408,7 @@ var SelectFileComponent = (function () {
     SelectFileComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-select-file',
-            template: __webpack_require__(457),
+            template: __webpack_require__(459),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_file_service__["a" /* FileService */]) === "function" && _a || Object])
@@ -5284,7 +5420,7 @@ var SelectFileComponent = (function () {
 //# sourceMappingURL=select-file.component.js.map
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5393,7 +5529,7 @@ var AddFormFieldComponent = (function () {
     AddFormFieldComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-form-field',
-            template: __webpack_require__(458),
+            template: __webpack_require__(460),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]) === "function" && _a || Object])
@@ -5405,7 +5541,7 @@ var AddFormFieldComponent = (function () {
 //# sourceMappingURL=add-form-field.component.js.map
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5498,7 +5634,7 @@ var AddFormComponent = (function () {
     AddFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-form',
-            template: __webpack_require__(459),
+            template: __webpack_require__(461),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]) === "function" && _a || Object])
@@ -5510,7 +5646,7 @@ var AddFormComponent = (function () {
 //# sourceMappingURL=add-form.component.js.map
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5636,7 +5772,7 @@ var EditFormFieldComponent = (function () {
     EditFormFieldComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-form-field',
-            template: __webpack_require__(460),
+            template: __webpack_require__(462),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]) === "function" && _a || Object])
@@ -5648,7 +5784,7 @@ var EditFormFieldComponent = (function () {
 //# sourceMappingURL=edit-form-field.component.js.map
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5761,7 +5897,7 @@ var EditFormComponent = (function () {
     EditFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-form',
-            template: __webpack_require__(461),
+            template: __webpack_require__(463),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]) === "function" && _a || Object])
@@ -5773,7 +5909,7 @@ var EditFormComponent = (function () {
 //# sourceMappingURL=edit-form.component.js.map
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5883,7 +6019,7 @@ var RemoveFormFieldComponent = (function () {
     RemoveFormFieldComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-form-field',
-            template: __webpack_require__(462),
+            template: __webpack_require__(464),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_field_service__["a" /* FormFieldService */]) === "function" && _a || Object])
@@ -5895,7 +6031,7 @@ var RemoveFormFieldComponent = (function () {
 //# sourceMappingURL=remove-form-field.component.js.map
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5997,7 +6133,7 @@ var RemoveFormComponent = (function () {
     RemoveFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-form',
-            template: __webpack_require__(463),
+            template: __webpack_require__(465),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_form_service__["a" /* FormService */]) === "function" && _a || Object])
@@ -6009,7 +6145,7 @@ var RemoveFormComponent = (function () {
 //# sourceMappingURL=remove-form.component.js.map
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6096,7 +6232,7 @@ var AddGalleryComponent = (function () {
     AddGalleryComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-gallery',
-            template: __webpack_require__(464),
+            template: __webpack_require__(466),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]) === "function" && _a || Object])
@@ -6108,7 +6244,7 @@ var AddGalleryComponent = (function () {
 //# sourceMappingURL=add-gallery.component.js.map
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6224,7 +6360,7 @@ var EditCaptionComponent = (function () {
     EditCaptionComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-caption',
-            template: __webpack_require__(465),
+            template: __webpack_require__(467),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */]) === "function" && _a || Object])
@@ -6236,7 +6372,7 @@ var EditCaptionComponent = (function () {
 //# sourceMappingURL=edit-caption.component.js.map
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6336,7 +6472,7 @@ var EditGalleryComponent = (function () {
     EditGalleryComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-gallery',
-            template: __webpack_require__(466),
+            template: __webpack_require__(468),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]) === "function" && _a || Object])
@@ -6348,7 +6484,7 @@ var EditGalleryComponent = (function () {
 //# sourceMappingURL=edit-gallery.component.js.map
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6456,7 +6592,7 @@ var RemoveGalleryImageComponent = (function () {
     RemoveGalleryImageComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-gallery-image',
-            template: __webpack_require__(467),
+            template: __webpack_require__(469),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_image_service__["a" /* GalleryImageService */]) === "function" && _a || Object])
@@ -6468,7 +6604,7 @@ var RemoveGalleryImageComponent = (function () {
 //# sourceMappingURL=remove-gallery-image.component.js.map
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6570,7 +6706,7 @@ var RemoveGalleryComponent = (function () {
     RemoveGalleryComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-gallery',
-            template: __webpack_require__(468),
+            template: __webpack_require__(470),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_gallery_service__["a" /* GalleryService */]) === "function" && _a || Object])
@@ -6582,7 +6718,7 @@ var RemoveGalleryComponent = (function () {
 //# sourceMappingURL=remove-gallery.component.js.map
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6710,7 +6846,7 @@ var AddMenuItemComponent = (function () {
     AddMenuItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-menu-item',
-            template: __webpack_require__(469),
+            template: __webpack_require__(471),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]) === "function" && _b || Object])
@@ -6722,7 +6858,7 @@ var AddMenuItemComponent = (function () {
 //# sourceMappingURL=add-menu-item.component.js.map
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6809,7 +6945,7 @@ var AddMenuComponent = (function () {
     AddMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-menu',
-            template: __webpack_require__(470),
+            template: __webpack_require__(472),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]) === "function" && _a || Object])
@@ -6821,7 +6957,7 @@ var AddMenuComponent = (function () {
 //# sourceMappingURL=add-menu.component.js.map
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6971,7 +7107,7 @@ var EditMenuItemComponent = (function () {
     EditMenuItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-menu-item',
-            template: __webpack_require__(471),
+            template: __webpack_require__(473),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_page_service__["a" /* PageService */]) === "function" && _b || Object])
@@ -6983,7 +7119,7 @@ var EditMenuItemComponent = (function () {
 //# sourceMappingURL=edit-menu-item.component.js.map
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7083,7 +7219,7 @@ var EditMenuComponent = (function () {
     EditMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-menu',
-            template: __webpack_require__(472),
+            template: __webpack_require__(474),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]) === "function" && _a || Object])
@@ -7095,7 +7231,7 @@ var EditMenuComponent = (function () {
 //# sourceMappingURL=edit-menu.component.js.map
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7205,7 +7341,7 @@ var RemoveMenuItemComponent = (function () {
     RemoveMenuItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-menu-item',
-            template: __webpack_require__(473),
+            template: __webpack_require__(475),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_item_service__["a" /* MenuItemService */]) === "function" && _a || Object])
@@ -7217,7 +7353,7 @@ var RemoveMenuItemComponent = (function () {
 //# sourceMappingURL=remove-menu-item.component.js.map
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7319,7 +7455,7 @@ var RemoveMenuComponent = (function () {
     RemoveMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-menu',
-            template: __webpack_require__(474),
+            template: __webpack_require__(476),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_menu_service__["a" /* MenuService */]) === "function" && _a || Object])
@@ -7331,13 +7467,13 @@ var RemoveMenuComponent = (function () {
 //# sourceMappingURL=remove-menu.component.js.map
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__ = __webpack_require__(92);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7444,7 +7580,7 @@ var AddPageComponent = (function () {
     AddPageComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-page',
-            template: __webpack_require__(475),
+            template: __webpack_require__(477),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */]) === "function" && _c || Object])
@@ -7456,13 +7592,13 @@ var AddPageComponent = (function () {
 //# sourceMappingURL=add-page.component.js.map
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__ = __webpack_require__(92);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageSettingsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7584,7 +7720,7 @@ var PageSettingsComponent = (function () {
     PageSettingsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-page-settings',
-            template: __webpack_require__(476),
+            template: __webpack_require__(478),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */], __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_site_service__["a" /* SiteService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_route_service__["a" /* RouteService */]) === "function" && _c || Object])
@@ -7596,7 +7732,7 @@ var PageSettingsComponent = (function () {
 //# sourceMappingURL=page-settings.component.js.map
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7694,7 +7830,7 @@ var RemovePageComponent = (function () {
     RemovePageComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-page',
-            template: __webpack_require__(477),
+            template: __webpack_require__(479),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_route_service__["a" /* RouteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_page_service__["a" /* PageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_route_service__["a" /* RouteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_route_service__["a" /* RouteService */]) === "function" && _b || Object])
@@ -7706,12 +7842,12 @@ var RemovePageComponent = (function () {
 //# sourceMappingURL=remove-page.component.js.map
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_site_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_site_service__ = __webpack_require__(31);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RemovePluginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7801,7 +7937,7 @@ var RemovePluginComponent = (function () {
     RemovePluginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-plugin',
-            template: __webpack_require__(478),
+            template: __webpack_require__(480),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_site_service__["a" /* SiteService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object])
@@ -7813,7 +7949,7 @@ var RemovePluginComponent = (function () {
 //# sourceMappingURL=remove-plugin.component.js.map
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7908,7 +8044,7 @@ var RemoveSubmissionComponent = (function () {
     RemoveSubmissionComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-submission',
-            template: __webpack_require__(479),
+            template: __webpack_require__(481),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */]) === "function" && _a || Object])
@@ -7920,7 +8056,7 @@ var RemoveSubmissionComponent = (function () {
 //# sourceMappingURL=remove-submission.component.js.map
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8000,7 +8136,7 @@ var ViewSubmissionComponent = (function () {
     ViewSubmissionComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-view-submission',
-            template: __webpack_require__(480),
+            template: __webpack_require__(482),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_submission_service__["a" /* SubmissionService */]) === "function" && _a || Object])
@@ -8012,13 +8148,13 @@ var ViewSubmissionComponent = (function () {
 //# sourceMappingURL=view-submission.component.js.map
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8123,7 +8259,7 @@ var AddUserComponent = (function () {
     AddUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-add-user',
-            template: __webpack_require__(481),
+            template: __webpack_require__(483),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object])
@@ -8135,13 +8271,13 @@ var AddUserComponent = (function () {
 //# sourceMappingURL=add-user.component.js.map
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditUserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8259,7 +8395,7 @@ var EditUserComponent = (function () {
     EditUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-edit-user',
-            template: __webpack_require__(482),
+            template: __webpack_require__(484),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object])
@@ -8271,7 +8407,7 @@ var EditUserComponent = (function () {
 //# sourceMappingURL=edit-user.component.js.map
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8366,7 +8502,7 @@ var RemoveUserComponent = (function () {
     RemoveUserComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-remove-user',
-            template: __webpack_require__(483),
+            template: __webpack_require__(485),
             providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_user_service__["a" /* UserService */]) === "function" && _a || Object])
@@ -8378,7 +8514,7 @@ var RemoveUserComponent = (function () {
 //# sourceMappingURL=remove-user.component.js.map
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8413,7 +8549,7 @@ var TimeAgoPipe = (function () {
 //# sourceMappingURL=time-ago.pipe.js.map
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8473,7 +8609,6 @@ var SettingService = (function () {
 //# sourceMappingURL=setting.service.js.map
 
 /***/ }),
-/* 256 */,
 /* 257 */,
 /* 258 */,
 /* 259 */,
@@ -8653,308 +8788,313 @@ var SettingService = (function () {
 /* 433 */,
 /* 434 */,
 /* 435 */,
-/* 436 */
-/***/ (function(module, exports) {
-
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Advanced' | translate }}</h1>\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"developer-list\" class=\"app-list\">\n    <div class=\"app-list-item\" (click)=\"setActive('plugins')\" [class.selected]=\"selectedOption === 'plugins'\">\n      <h2><span class=\"primary\">{{ 'Re-publish Plugins' | translate }}</span></h2>\n      <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"reload()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- plugins -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('reindex')\" [class.selected]=\"selectedOption === 'reindex'\">\n      <h2><span class=\"primary\">{{ 'Re-index Pages' | translate }}</span></h2>\n      <p>{{ 'Republish the sitemap and pages index.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"reindex()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- sitemap -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('sitemap')\" [class.selected]=\"selectedOption === 'sitemap'\">\n      <h2><span class=\"primary\">{{ 'Re-publish Sitemap' | translate }}</span></h2>\n      <p>{{ 'Republish the sitemap when you make changes outside of the application.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"sitemap()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- sitemap -->\n\n    <!-- \n    <div class=\"app-list-item\" (click)=\"setActive('migrate')\" [class.selected]=\"selectedOption === 'migrate'\">\n      <h2><span class=\"primary\">{{ 'Migrate Respond 5 site' | translate }}</span></h2>\n      <p>{{ 'Updates HTML from Respond 5 so that it consistent with Respond 6' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"migrate()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    migrate -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('templates')\" [class.selected]=\"selectedOption === 'templates'\">\n      <h2><span class=\"primary\">{{ 'Republish Templates' | translate }}</span></h2>\n      <p>{{ 'Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"templates()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- republish template -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('update-plugins')\" [class.selected]=\"selectedOption === 'update-plugins'\">\n      <h2><span class=\"primary\">{{ 'Update Plugins' | translate }}</span></h2>\n      <p>{{ 'Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"update()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- republish template -->\n\n  </div>\n\n</section>\n\n<respond-drawer active=\"advanced\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
-
-/***/ }),
+/* 436 */,
 /* 437 */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Account' | translate }}</h1>\n</menu>\n\n<section class=\"app-main\">\n\n  <table class=\"app-table\">\n    <tbody>\n      <tr>\n        <th>{{ 'Plan' | translate }}</th>\n        <td>{{ plan }}</td>\n      </tr>\n      <tr>\n        <th>{{ 'Amount' | translate }}</th>\n        <td>{{ amountDisplay }}</td>\n      </tr>\n      <tr>\n        <th>{{ 'Interval' | translate }}</th>\n        <td>{{ interval }}</td>\n      </tr>\n    </tbody>\n  </table>\n\n</section>\n\n<respond-drawer active=\"account\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 438 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-interior-menu\">\n  <button class=\"app-back\" (click)=\"back()\"><svg fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z\"/></svg></button>\n  <h2>{{codeUrl}}</h2>\n\n  <button class=\"app-add\" (click)=\"showAdd()\" *ngIf=\"showMenu === true\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n</menu>\n\n<nav class=\"code-menu\" *ngIf=\"showMenu === true\">\n\n  <h2 (click)=\"expand('template')\" [class.expanded]=\"isTemplatesExpanded === true\">\n    <span>{{ 'Templates' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isTemplatesExpanded === true\">\n    <li *ngFor=\"let template of templates\"><a (click)=\"view('template', template)\">{{template}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('page')\" [class.expanded]=\"isPagesExpanded === true\">\n    <span>{{ 'Pages' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isPagesExpanded === true\">\n    <li *ngFor=\"let page of pages\"><a (click)=\"view('page', page)\">{{page}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('component')\" [class.expanded]=\"isComponentsExpanded === true\">\n    <span>{{ 'Components' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isComponentsExpanded === true\">\n    <li *ngFor=\"let component of components\"><a (click)=\"view('component', component)\">{{component}}</a></li>\n  </ul>\n\n\n\n  <h2 (click)=\"expand('stylesheet')\" [class.expanded]=\"isStylesheetsExpanded === true\">\n    CSS\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isStylesheetsExpanded === true\">\n    <li *ngFor=\"let stylesheet of stylesheets\"><a (click)=\"view('stylesheet', stylesheet)\">{{stylesheet}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('script')\" [class.expanded]=\"isScriptsExpanded === true\">\n    JS\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isScriptsExpanded === true\">\n    <li *ngFor=\"let script of scripts\"><a (click)=\"view('script', script)\">{{script}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('plugin')\" [class.expanded]=\"isPluginsExpanded === true\">\n    <span>{{ 'Plugins' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isPluginsExpanded === true\">\n    <li *ngFor=\"let plugin of plugins\"><a (click)=\"view('plugin', plugin)\">{{plugin}}</a></li>\n  </ul>\n\n\n</nav>\n\n<div id=\"editor\" class=\"code-editor\" [class.expanded]=\"showMenu === false\"></div>\n\n<menu class=\"app-interior-menu-alternate\">\n  <button class=\"respond-save\" (click)=\"saveAndExit()\">Save and Exit</button>\n  <button class=\"respond-save primary\" (click)=\"save()\">Save</button>\n</menu>\n\n<respond-add-code [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-code>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Advanced' | translate }}</h1>\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"developer-list\" class=\"app-list\">\n    <div class=\"app-list-item\" (click)=\"setActive('plugins')\" [class.selected]=\"selectedOption === 'plugins'\">\n      <h2><span class=\"primary\">{{ 'Re-publish Plugins' | translate }}</span></h2>\n      <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"reload()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- plugins -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('reindex')\" [class.selected]=\"selectedOption === 'reindex'\">\n      <h2><span class=\"primary\">{{ 'Re-index Pages' | translate }}</span></h2>\n      <p>{{ 'Republish the sitemap and pages index.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"reindex()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- sitemap -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('sitemap')\" [class.selected]=\"selectedOption === 'sitemap'\">\n      <h2><span class=\"primary\">{{ 'Re-publish Sitemap' | translate }}</span></h2>\n      <p>{{ 'Republish the sitemap when you make changes outside of the application.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"sitemap()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- sitemap -->\n\n    <!-- \n    <div class=\"app-list-item\" (click)=\"setActive('migrate')\" [class.selected]=\"selectedOption === 'migrate'\">\n      <h2><span class=\"primary\">{{ 'Migrate Respond 5 site' | translate }}</span></h2>\n      <p>{{ 'Updates HTML from Respond 5 so that it consistent with Respond 6' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"migrate()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    migrate -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('templates')\" [class.selected]=\"selectedOption === 'templates'\">\n      <h2><span class=\"primary\">{{ 'Republish Templates' | translate }}</span></h2>\n      <p>{{ 'Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"templates()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- republish template -->\n\n    <div class=\"app-list-item\" (click)=\"setActive('update-plugins')\" [class.selected]=\"selectedOption === 'update-plugins'\">\n      <h2><span class=\"primary\">{{ 'Update Plugins' | translate }}</span></h2>\n      <p>{{ 'Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.' | translate }}</p>\n      <div class=\"app-list-actions\">\n          <a class=\"primary\" (click)=\"update()\">{{'Execute' | translate }}</a>\n      </div>\n    </div>\n    <!-- republish template -->\n\n  </div>\n\n</section>\n\n<respond-drawer active=\"advanced\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 439 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Components' | translate }}</h1>\n\n    <button class=\"app-add\" (click)=\"showAdd()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"components-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let component of components\" (click)=\"setActive(component)\" [class.selected]=\"component === selectedComponent\">\n      <h2>\n        <span class=\"primary\">{{ component.title }}</span>\n      </h2>\n      <small>\n        {{ component.url }}\n      </small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(component)\">{{'Remove' | translate }}</a>\n          <a (click)=\"editCode(component)\">{{'Edit HTML' | translate }}</a>\n          <a class=\"primary\" (click)=\"edit(component)\">{{'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"components.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-add-component [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-component>\n\n<respond-remove-component [visible]=\"removeVisible\" [component]=\"component\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-component>\n\n<respond-drawer active=\"components\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 /* 440 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n <div class=\"app-slideshow\">\n\n  <div class=\"app-slideshow-item\" *ngFor=\"let theme of themes\" [class.selected]=\"theme === selectedTheme\">\n\n    <div class=\"app-slideshow-container\">\n      <div class=\"screenshot\">\n        <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\">\n      </div>\n      <div class=\"description\">\n        <h2>{{ theme.name }}</h2>\n        <p>{{ theme.desc }}</p>\n        <p>\n          <a class=\"primary\" (click)=\"useTheme()\">{{ 'Use this Theme' | translate }}</a>\n          <a (click)=\"next()\">{{ 'Next Theme' | translate }}</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n  <!-- /.app-slideshow -->\n\n</div>\n\n<div class=\"app-theme-list\">\n\n  <h3>{{ 'All Themes' | translate }}</h3>\n\n  <div>\n    <span class=\"app-theme-image\" *ngFor=\"let theme of themes; let i = index;\" [class.selected]=\"theme === selectedTheme\">\n      <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\" (click)=\"select(i)\">\n    </span>\n  </div>\n\n  <p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>\n\n</div>\n<!-- /.app-theme-list -->\n\n\n<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #createForm=\"ngForm\">\n\n      <h2>{{ 'Create Site' | translate }}</h2>\n\n      <label>{{ 'Site Name' | translate }}</label>\n      <input type=\"text\" name=\"name\"\n        [(ngModel)]=\"model.name\"\n        ngControl=\"name\" required>\n\n\n      <label>{{ 'Email' | translate }}</label>\n      <input type=\"text\" name=\"email\"\n        [(ngModel)]=\"model.email\"\n        ngControl=\"email\" required>\n\n      <label>{{ 'Password' | translate }}</label>\n      <input type=\"password\" name=\"password\"\n        [(ngModel)]=\"model.password\"\n        ngControl=\"password\" required>\n\n      <label *ngIf=\"hasPasscode === true\">{{ 'Passcode' | translate }}</label>\n      <input type=\"text\" name=\"passcode\" *ngIf=\"hasPasscode === true\"\n        [(ngModel)]=\"model.passcode\"\n        ngControl=\"passcode\" required>\n\n      <div *ngIf=\"recaptchaSiteKey !== ''\" class=\"g-recaptcha\" [attr.data-sitekey]=\"recaptchaSiteKey\" data-callback=\"verifyCallback\"></div>\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Create' | translate }}</button>\n      </div>\n\n      <p>{{ 'By creating a site you are accepting our terms of service.' | translate }}</p>\n\n  </form>\n\n</div>\n"
+module.exports = "<menu class=\"app-interior-menu\">\n  <button class=\"app-back\" (click)=\"back()\"><svg fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z\"/></svg></button>\n  <h2>{{codeUrl}}</h2>\n\n  <button class=\"app-add\" (click)=\"showAdd()\" *ngIf=\"showMenu === true\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n</menu>\n\n<nav class=\"code-menu\" *ngIf=\"showMenu === true\">\n\n  <h2 (click)=\"expand('template')\" [class.expanded]=\"isTemplatesExpanded === true\">\n    <span>{{ 'Templates' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isTemplatesExpanded === true\">\n    <li *ngFor=\"let template of templates\"><a (click)=\"view('template', template)\">{{template}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('page')\" [class.expanded]=\"isPagesExpanded === true\">\n    <span>{{ 'Pages' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isPagesExpanded === true\">\n    <li *ngFor=\"let page of pages\"><a (click)=\"view('page', page)\">{{page}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('component')\" [class.expanded]=\"isComponentsExpanded === true\">\n    <span>{{ 'Components' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isComponentsExpanded === true\">\n    <li *ngFor=\"let component of components\"><a (click)=\"view('component', component)\">{{component}}</a></li>\n  </ul>\n\n\n\n  <h2 (click)=\"expand('stylesheet')\" [class.expanded]=\"isStylesheetsExpanded === true\">\n    CSS\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isStylesheetsExpanded === true\">\n    <li *ngFor=\"let stylesheet of stylesheets\"><a (click)=\"view('stylesheet', stylesheet)\">{{stylesheet}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('script')\" [class.expanded]=\"isScriptsExpanded === true\">\n    JS\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isScriptsExpanded === true\">\n    <li *ngFor=\"let script of scripts\"><a (click)=\"view('script', script)\">{{script}}</a></li>\n  </ul>\n\n  <h2 (click)=\"expand('plugin')\" [class.expanded]=\"isPluginsExpanded === true\">\n    <span>{{ 'Plugins' | translate }}</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\">\n        <path d=\"M7 10l5 5 5-5z\"/>\n        <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    </svg>\n  </h2>\n\n  <ul [class.expanded]=\"isPluginsExpanded === true\">\n    <li *ngFor=\"let plugin of plugins\"><a (click)=\"view('plugin', plugin)\">{{plugin}}</a></li>\n  </ul>\n\n\n</nav>\n\n<div id=\"editor\" class=\"code-editor\" [class.expanded]=\"showMenu === false\"></div>\n\n<menu class=\"app-interior-menu-alternate\">\n  <button class=\"respond-save\" (click)=\"saveAndExit()\">Save and Exit</button>\n  <button class=\"respond-save primary\" (click)=\"save()\">Save</button>\n</menu>\n\n<respond-add-code [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-code>"
 
 /***/ }),
 /* 441 */
 /***/ (function(module, exports) {
 
-module.exports = "<iframe [src]=\"url\" class=\"edit-frame\"></iframe>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Components' | translate }}</h1>\n\n    <button class=\"app-add\" (click)=\"showAdd()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"components-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let component of components\" (click)=\"setActive(component)\" [class.selected]=\"component === selectedComponent\">\n      <h2>\n        <span class=\"primary\">{{ component.title }}</span>\n      </h2>\n      <small>\n        {{ component.url }}\n      </small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(component)\">{{'Remove' | translate }}</a>\n          <a (click)=\"editCode(component)\">{{'Edit HTML' | translate }}</a>\n          <a class=\"primary\" (click)=\"edit(component)\">{{'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"components.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-add-component [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-component>\n\n<respond-remove-component [visible]=\"removeVisible\" [component]=\"component\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-component>\n\n<respond-drawer active=\"components\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 442 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Files' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <respond-dropzone (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"files-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let  file of files\" (click)=\"setActive(file)\" [class.selected]=\"file === selectedFile\" [class.image]=\"file.thumb !== ''\">\n      <h2><span class=\"primary\">{{ file.name }}</span><span class=\"secondary\">{{ file.size }} MB</span></h2>\n      <img *ngIf=\"file.thumb !== ''\" class=\"image\" src=\"{{file.thumb}}\">\n      <small>/files/{{ file.name }}</small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(file)\">{{ 'Remove' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"files.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-remove-file [visible]=\"removeVisible\" [file]=\"file\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-file>\n\n<respond-drawer active=\"files\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n <div class=\"app-slideshow\">\n\n  <div class=\"app-slideshow-item\" *ngFor=\"let theme of themes\" [class.selected]=\"theme === selectedTheme\">\n\n    <div class=\"app-slideshow-container\">\n      <div class=\"screenshot\">\n        <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\">\n      </div>\n      <div class=\"description\">\n        <h2>{{ theme.name }}</h2>\n        <p>{{ theme.desc }}</p>\n        <p>\n          <a class=\"primary\" (click)=\"useTheme()\">{{ 'Use this Theme' | translate }}</a>\n          <a (click)=\"next()\">{{ 'Next Theme' | translate }}</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n  <!-- /.app-slideshow -->\n\n</div>\n\n<div class=\"app-theme-list\">\n\n  <h3>{{ 'All Themes' | translate }}</h3>\n\n  <div>\n    <span class=\"app-theme-image\" *ngFor=\"let theme of themes; let i = index;\" [class.selected]=\"theme === selectedTheme\">\n      <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\" (click)=\"select(i)\">\n    </span>\n  </div>\n\n  <p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>\n\n</div>\n<!-- /.app-theme-list -->\n\n\n<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #createForm=\"ngForm\">\n\n      <h2>{{ 'Create Site' | translate }}</h2>\n\n      <label>{{ 'Site Name' | translate }}</label>\n      <input type=\"text\" name=\"name\"\n        [(ngModel)]=\"model.name\"\n        ngControl=\"name\" required>\n\n\n      <label>{{ 'Email' | translate }}</label>\n      <input type=\"text\" name=\"email\"\n        [(ngModel)]=\"model.email\"\n        ngControl=\"email\" required>\n\n      <label>{{ 'Password' | translate }}</label>\n      <input type=\"password\" name=\"password\"\n        [(ngModel)]=\"model.password\"\n        ngControl=\"password\" required>\n\n      <label *ngIf=\"hasPasscode === true\">{{ 'Passcode' | translate }}</label>\n      <input type=\"text\" name=\"passcode\" *ngIf=\"hasPasscode === true\"\n        [(ngModel)]=\"model.passcode\"\n        ngControl=\"passcode\" required>\n\n      <div *ngIf=\"recaptchaSiteKey !== ''\" class=\"g-recaptcha\" [attr.data-sitekey]=\"recaptchaSiteKey\" data-callback=\"verifyCallback\"></div>\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Create' | translate }}</button>\n      </div>\n\n      <p>{{ 'By creating a site you are accepting our terms of service.' | translate }}</p>\n\n  </form>\n\n</div>\n"
 
 /***/ }),
 /* 443 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"forgot($event, email.value, site.value)\">\n\n    <h2>{{ 'Forgot Password?' | translate }}</h2>\n\n    <label>{{ 'Email' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email required=\"required\">\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to retrieve your password. You can speed up the process in the future by navigating to forgot/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Send' | translate }}</button>\n\n</form>"
+module.exports = "<iframe [src]=\"url\" class=\"edit-frame\"></iframe>"
 
 /***/ }),
 /* 444 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\" [class.noborder]=\"forms.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Forms' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showAddField()\" *ngIf=\"forms.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedForm !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let form of forms\" [class.selected]=\"form.id === selectedForm.id\" (click)=\"setActive(form)\">\n        <a>{{form.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n\n  <div id=\"fields-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let field of fields\" (click)=\"setFieldActive(field)\" [class.selected]=\"field === selectedField\">\n      <h2><span class=\"primary\">{{ field.label }}</span></h2>\n      <small>{{ field.type | translate }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveFieldDown(field)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveFieldUp(field)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveField(field)\">{{ 'Remove' | translate }}</a>\n          <a class=\"primary\" (click)=\"showEditField(field)\">{{ 'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"fields.length === 0\">\n    {{ 'Nothing here yet' | translate }}\n    <a (click)=\"showAddField()\" *ngIf=\"forms.length !== 0 && fields.length === 0\">{{ 'Add Form Field' | translate }}</a>\n    <a (click)=\"showAdd()\" *ngIf=\"forms.length === 0\">{{ 'Add Form' | translate }}</a>\n  </p>\n\n</section>\n\n<respond-add-form [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-form>\n\n<respond-edit-form [visible]=\"editVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-form>\n\n<respond-remove-form [visible]=\"removeVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-form>\n\n<respond-add-form-field [visible]=\"addFieldVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-form-field>\n\n<respond-edit-form-field [visible]=\"editFieldVisible\" [form]=\"selectedForm\" [field]=\"selectedField\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-form-field>\n\n<respond-remove-form-field [visible]=\"removeFieldVisible\" [form]=\"selectedForm\" [field]=\"selectedField\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-form-field>\n\n<respond-drawer active=\"forms\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Form' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Form' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Form' | translate }}</a></li>\n  </ul>\n\n</nav>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Files' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <respond-dropzone (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"files-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let  file of files\" (click)=\"setActive(file)\" [class.selected]=\"file === selectedFile\" [class.image]=\"file.thumb !== ''\">\n      <h2><span class=\"primary\">{{ file.name }}</span><span class=\"secondary\">{{ file.size }} MB</span></h2>\n      <img *ngIf=\"file.thumb !== ''\" class=\"image\" src=\"{{file.thumb}}\">\n      <small>/files/{{ file.name }}</small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(file)\">{{ 'Remove' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"files.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-remove-file [visible]=\"removeVisible\" [file]=\"file\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-file>\n\n<respond-drawer active=\"files\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 445 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\" [class.noborder]=\"galleries.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Galleries' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showSelect()\" *ngIf=\"galleries.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedGallery !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let gallery of galleries\" [class.selected]=\"gallery.id === selectedGallery.id\" (click)=\"setActive(gallery)\">\n        <a>{{gallery.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n  <div id=\"images-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let image of images\" (click)=\"setImageActive(image)\" [class.selected]=\"image === selectedImage\" [class.image]=\"image.thumb !== ''\">\n      <h2><span class=\"primary\">{{ image.name }}</span></h2>\n      <img *ngIf=\"image.thumb !== ''\" class=\"image\" src=\"sites/{{id}}/{{image.thumb}}\">\n      <small>{{ image.caption }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveImageDown(image)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveImageUp(image)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveImage(image)\">{{ 'Remove' | translate }}</a>\n          <a (click)=\"showEditImage(image)\" class=\"primary\">{{ 'Edit Caption' | translate }}</a>\n      </div>\n    </div>\n\n    <p class=\"no-list-items\" *ngIf=\"images.length === 0\">\n      {{ 'Nothing here yet' | translate }}\n      <a (click)=\"showSelect()\" *ngIf=\"galleries.length !== 0 && images.length === 0\">{{ 'Add Image' | translate }}</a>\n      <a (click)=\"showAdd()\" *ngIf=\"galleries.length === 0\">{{ 'Add Gallery' | translate }}</a>\n    </p>\n\n  </div>\n\n</section>\n\n<respond-add-gallery [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-gallery>\n\n<respond-edit-gallery [visible]=\"editVisible\" [gallery]=\"selectedGallery\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-gallery>\n\n<respond-remove-gallery [visible]=\"removeVisible\" [gallery]=\"selectedGallery\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-gallery>\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\" (onError)=\"failure($event)\"></respond-select-file>\n\n<respond-edit-caption [visible]=\"editImageVisible\" [gallery]=\"selectedGallery\" [image]=\"selectedImage\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-caption>\n\n<respond-remove-gallery-image [visible]=\"removeImageVisible\" [gallery]=\"selectedGallery\" [image]=\"selectedImage\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-gallery-image>\n\n<respond-drawer active=\"galleries\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Gallery' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Gallery' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Gallery' | translate }}</a></li>\n  </ul>\n\n</nav>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"forgot($event, email.value, site.value)\">\n\n    <h2>{{ 'Forgot Password?' | translate }}</h2>\n\n    <label>{{ 'Email' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email required=\"required\">\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to retrieve your password. You can speed up the process in the future by navigating to forgot/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Send' | translate }}</button>\n\n</form>"
 
 /***/ }),
 /* 446 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"login($event, email.value, password.value, site.value)\">\n\n    <label *ngIf=\"usesLDAP === false\">{{ 'Email' | translate }}</label>\n    <label *ngIf=\"usesLDAP === true\">{{ 'Username' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Login' | translate }}</button>\n\n    <a (click)=\"forgot()\">{{ 'Forgot Password?' | translate }}</a>\n\n</form>\n\n<p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>"
+module.exports = "<menu class=\"app-menu\" [class.noborder]=\"forms.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Forms' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showAddField()\" *ngIf=\"forms.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedForm !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let form of forms\" [class.selected]=\"form.id === selectedForm.id\" (click)=\"setActive(form)\">\n        <a>{{form.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n\n  <div id=\"fields-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let field of fields\" (click)=\"setFieldActive(field)\" [class.selected]=\"field === selectedField\">\n      <h2><span class=\"primary\">{{ field.label }}</span></h2>\n      <small>{{ field.type | translate }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveFieldDown(field)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveFieldUp(field)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveField(field)\">{{ 'Remove' | translate }}</a>\n          <a class=\"primary\" (click)=\"showEditField(field)\">{{ 'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"fields.length === 0\">\n    {{ 'Nothing here yet' | translate }}\n    <a (click)=\"showAddField()\" *ngIf=\"forms.length !== 0 && fields.length === 0\">{{ 'Add Form Field' | translate }}</a>\n    <a (click)=\"showAdd()\" *ngIf=\"forms.length === 0\">{{ 'Add Form' | translate }}</a>\n  </p>\n\n</section>\n\n<respond-add-form [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-form>\n\n<respond-edit-form [visible]=\"editVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-form>\n\n<respond-remove-form [visible]=\"removeVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-form>\n\n<respond-add-form-field [visible]=\"addFieldVisible\" [form]=\"selectedForm\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-form-field>\n\n<respond-edit-form-field [visible]=\"editFieldVisible\" [form]=\"selectedForm\" [field]=\"selectedField\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-form-field>\n\n<respond-remove-form-field [visible]=\"removeFieldVisible\" [form]=\"selectedForm\" [field]=\"selectedField\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-form-field>\n\n<respond-drawer active=\"forms\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Form' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Form' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Form' | translate }}</a></li>\n  </ul>\n\n</nav>"
 
 /***/ }),
 /* 447 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\" [class.noborder]=\"menus.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Menus' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showAddItem()\" *ngIf=\"menus.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedMenu !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let menu of menus\" [class.selected]=\"menu.id === selectedMenu.id\" (click)=\"setActive(menu)\">\n        <a>{{menu.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n\n  <div id=\"items-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let item of items\" (click)=\"setItemActive(item)\" [class.selected]=\"item === selectedItem\">\n      <h2><span class=\"primary\">{{ item.html }}</span></h2>\n      <small>{{ item.url }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveItemDown(item)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveItemUp(item)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveItem(item)\">{{ 'Remove' | translate }}</a>\n          <a class=\"primary\" (click)=\"showEditItem(item)\">{{ 'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"items.length === 0\">\n    {{ 'Nothing here yet' | translate }}\n    <a (click)=\"showAddItem()\" *ngIf=\"menus.length !== 0 && items.length === 0\">{{ 'Add Menu Item' | translate }}</a>\n    <a (click)=\"showAdd()\" *ngIf=\"menus.length === 0\">{{ 'Add Menu' | translate }}</a>\n  </p>\n\n</section>\n\n<respond-add-menu [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-menu>\n\n<respond-edit-menu [visible]=\"editVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-menu>\n\n<respond-remove-menu [visible]=\"removeVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-menu>\n\n<respond-add-menu-item [visible]=\"addItemVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-menu-item>\n\n<respond-edit-menu-item [visible]=\"editItemVisible\" [menu]=\"selectedMenu\" [item]=\"selectedItem\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-menu-item>\n\n<respond-remove-menu-item [visible]=\"removeItemVisible\" [menu]=\"selectedMenu\" [item]=\"selectedItem\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-menu-item>\n\n<respond-drawer active=\"menus\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Menu' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Menu' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Menu' | translate }}</a></li>\n  </ul>\n\n</nav>"
+module.exports = "<menu class=\"app-menu\" [class.noborder]=\"galleries.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Galleries' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showSelect()\" *ngIf=\"galleries.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedGallery !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let gallery of galleries\" [class.selected]=\"gallery.id === selectedGallery.id\" (click)=\"setActive(gallery)\">\n        <a>{{gallery.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n  <div id=\"images-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let image of images\" (click)=\"setImageActive(image)\" [class.selected]=\"image === selectedImage\" [class.image]=\"image.thumb !== ''\">\n      <h2><span class=\"primary\">{{ image.name }}</span></h2>\n      <img *ngIf=\"image.thumb !== ''\" class=\"image\" src=\"sites/{{id}}/{{image.thumb}}\">\n      <small>{{ image.caption }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveImageDown(image)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveImageUp(image)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveImage(image)\">{{ 'Remove' | translate }}</a>\n          <a (click)=\"showEditImage(image)\" class=\"primary\">{{ 'Edit Caption' | translate }}</a>\n      </div>\n    </div>\n\n    <p class=\"no-list-items\" *ngIf=\"images.length === 0\">\n      {{ 'Nothing here yet' | translate }}\n      <a (click)=\"showSelect()\" *ngIf=\"galleries.length !== 0 && images.length === 0\">{{ 'Add Image' | translate }}</a>\n      <a (click)=\"showAdd()\" *ngIf=\"galleries.length === 0\">{{ 'Add Gallery' | translate }}</a>\n    </p>\n\n  </div>\n\n</section>\n\n<respond-add-gallery [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-gallery>\n\n<respond-edit-gallery [visible]=\"editVisible\" [gallery]=\"selectedGallery\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-gallery>\n\n<respond-remove-gallery [visible]=\"removeVisible\" [gallery]=\"selectedGallery\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-gallery>\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\" (onError)=\"failure($event)\"></respond-select-file>\n\n<respond-edit-caption [visible]=\"editImageVisible\" [gallery]=\"selectedGallery\" [image]=\"selectedImage\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-caption>\n\n<respond-remove-gallery-image [visible]=\"removeImageVisible\" [gallery]=\"selectedGallery\" [image]=\"selectedImage\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-gallery-image>\n\n<respond-drawer active=\"galleries\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Gallery' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Gallery' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Gallery' | translate }}</a></li>\n  </ul>\n\n</nav>"
 
 /***/ }),
 /* 448 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Pages' | translate }}</h1>\n\n    <button class=\"app-add\" (click)=\"showAdd()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div class=\"app-search\">\n    <input type=\"search\" [(ngModel)]=\"search\" (input)=\"searchList()\" placeholder=\"{{ 'Search by Name or URL' | translate }}\">\n  </div>\n\n  <div id=\"pages-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let page of filteredPages\" (click)=\"setActive(page)\" [class.selected]=\"page === selectedPage\" [class.image]=\"page.thumb !== ''\">\n      <h2>\n        <span class=\"primary\">{{ page.title }}</span>\n        <svg *ngIf=\"page.location && (page.location !== '')\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" class=\"location\">\n            <path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z\"/>\n            <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n        </svg>\n        <span class=\"secondary\">{{ page.lastModifiedDate | timeAgo }}</span>\n      </h2>\n      <img *ngIf=\"page.thumb !== ''\" class=\"image\" src=\"sites/{{id}}/{{page.thumb}}\">\n      <small>\n        {{ page.url }}\n      </small>\n      <p>{{ page.description }}</p>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(page)\">{{'Remove' | translate }}</a>\n          <a (click)=\"showSettings(page)\">{{'Settings' | translate }}</a>\n          <a (click)=\"editCode(page)\">{{'Edit HTML' | translate }}</a>\n          <a class=\"primary\" (click)=\"edit(page)\">{{'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"pages.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-add-page [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-page>\n\n<respond-page-settings [visible]=\"settingsVisible\" [page]=\"page\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-page-settings>\n\n<respond-remove-page [visible]=\"removeVisible\" [page]=\"page\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-page>\n\n<respond-drawer active=\"pages\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"login($event, email.value, password.value, site.value)\">\n\n    <label *ngIf=\"usesLDAP === false\">{{ 'Email' | translate }}</label>\n    <label *ngIf=\"usesLDAP === true\">{{ 'Username' | translate }}</label>\n    <input type=\"text\" name=\"email\" #email>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <div [hidden]=\"!hasMultipleSites\">\n        <label>{{ 'Site Name' | translate }}</label>\n        <input type=\"text\" name=\"site\" #site>\n        <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.' | translate }}</small>\n    </div>\n\n    <button type=\"submit\">{{ 'Login' | translate }}</button>\n\n    <a (click)=\"forgot()\">{{ 'Forgot Password?' | translate }}</a>\n\n</form>\n\n<p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>"
 
 /***/ }),
 /* 449 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Plugins' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <respond-dropzone url=\"/api/plugins/upload\" (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"plugins-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let  plugin of plugins\" (click)=\"setActive(plugin)\" [class.selected]=\"plugin === selectedPlugin\">\n      <h2><span class=\"icon\" [innerHTML]=\"plugin.display\"></span> <span class=\"primary\">{{ plugin.title }}</span></h2>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(plugin)\">{{ 'Remove' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"plugins.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-drawer active=\"plugins\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<respond-remove-plugin [visible]=\"removeVisible\" [plugin]=\"plugin\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-plugin>"
+module.exports = "<menu class=\"app-menu\" [class.noborder]=\"menus.length !== 0\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Menus' | translate }}</h1>\n\n    <button class=\"app-add position-2\" (click)=\"showAddItem()\" *ngIf=\"menus.length !== 0\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n    <button class=\"app-overflow\" (click)=\"toggleOverflow()\" *ngIf=\"selectedMenu !== undefined\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z\"/></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <nav class=\"app-selector\">\n    <ul>\n      <li *ngFor=\"let menu of menus\" [class.selected]=\"menu.id === selectedMenu.id\" (click)=\"setActive(menu)\">\n        <a>{{menu.name}}</a>\n      </li>\n    </ul>\n  </nav>\n\n\n  <div id=\"items-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let item of items\" (click)=\"setItemActive(item)\" [class.selected]=\"item === selectedItem\">\n      <h2><span class=\"primary\">{{ item.html }}</span></h2>\n      <small>{{ item.url }}</small>\n      <div class=\"app-list-actions\">\n          <span class=\"app-list-alternate-actions\">\n            <a (click)=\"moveItemDown(item)\">{{ 'Move Down' | translate }}</a>\n            <a (click)=\"moveItemUp(item)\">{{ 'Move Up' | translate }}</a>\n          </span>\n          <a (click)=\"showRemoveItem(item)\">{{ 'Remove' | translate }}</a>\n          <a class=\"primary\" (click)=\"showEditItem(item)\">{{ 'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"items.length === 0\">\n    {{ 'Nothing here yet' | translate }}\n    <a (click)=\"showAddItem()\" *ngIf=\"menus.length !== 0 && items.length === 0\">{{ 'Add Menu Item' | translate }}</a>\n    <a (click)=\"showAdd()\" *ngIf=\"menus.length === 0\">{{ 'Add Menu' | translate }}</a>\n  </p>\n\n</section>\n\n<respond-add-menu [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-menu>\n\n<respond-edit-menu [visible]=\"editVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-menu>\n\n<respond-remove-menu [visible]=\"removeVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-menu>\n\n<respond-add-menu-item [visible]=\"addItemVisible\" [menu]=\"selectedMenu\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-menu-item>\n\n<respond-edit-menu-item [visible]=\"editItemVisible\" [menu]=\"selectedMenu\" [item]=\"selectedItem\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-menu-item>\n\n<respond-remove-menu-item [visible]=\"removeItemVisible\" [menu]=\"selectedMenu\" [item]=\"selectedItem\" [index]=\"selectedIndex\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-menu-item>\n\n<respond-drawer active=\"menus\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<nav class=\"app-overflow\" [class.visible]=\"overflowVisible === true\">\n\n  <ul>\n    <li class=\"app-overflow-title\"><span>{{ 'Additional Options' | translate }}</span></li>\n    <li><a (click)=\"showAdd()\">{{ 'Add Menu' | translate }}</a></li>\n    <li><a (click)=\"showEdit()\">{{ 'Edit Menu' | translate }}</a></li>\n    <li><a (click)=\"showRemove()\">{{ 'Remove Menu' | translate }}</a></li>\n  </ul>\n\n</nav>"
 
 /***/ }),
 /* 450 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"reset($event, password.value, retype.value)\">\n\n    <h2>{{ 'Reset Password' | translate }}</h2>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <label>{{ 'Re-Type Password' | translate }}</label>\n    <input type=\"password\" name=\"retype\" #retype>\n\n    <button type=\"submit\">{{ 'Reset Password' | translate }}</button>\n\n</form>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Pages' | translate }}</h1>\n\n    <button class=\"app-add\" (click)=\"showAdd()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div class=\"app-search\">\n    <input type=\"search\" [(ngModel)]=\"search\" (input)=\"searchList()\" placeholder=\"{{ 'Search by Name or URL' | translate }}\">\n  </div>\n\n  <div id=\"pages-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let page of filteredPages\" (click)=\"setActive(page)\" [class.selected]=\"page === selectedPage\" [class.image]=\"page.thumb !== ''\">\n      <h2>\n        <span class=\"primary\">{{ page.title }}</span>\n        <svg *ngIf=\"page.location && (page.location !== '')\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" class=\"location\">\n            <path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z\"/>\n            <path d=\"M0 0h24v24H0z\" fill=\"none\"/>\n        </svg>\n        <span class=\"secondary\">{{ page.lastModifiedDate | timeAgo }}</span>\n      </h2>\n      <img *ngIf=\"page.thumb !== ''\" class=\"image\" src=\"sites/{{id}}/{{page.thumb}}\">\n      <small>\n        {{ page.url }}\n      </small>\n      <p>{{ page.description }}</p>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(page)\">{{'Remove' | translate }}</a>\n          <a (click)=\"showSettings(page)\">{{'Settings' | translate }}</a>\n          <a (click)=\"editCode(page)\">{{'Edit HTML' | translate }}</a>\n          <a class=\"primary\" (click)=\"edit(page)\">{{'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"pages.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-add-page [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-page>\n\n<respond-page-settings [visible]=\"settingsVisible\" [page]=\"page\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-page-settings>\n\n<respond-remove-page [visible]=\"removeVisible\" [page]=\"page\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-page>\n\n<respond-drawer active=\"pages\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 451 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Settings' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <form class=\"app-form\" (ngSubmit)=\"submit()\" #settingsForm=\"ngForm\">\n\n    <div *ngFor=\"let setting of settings\">\n\n      <div [ngSwitch]=\"setting.type\">\n\n        <div *ngSwitchCase=\"'text'\">\n          <label>{{setting.label | translate }}</label>\n          <input type=\"text\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'color'\">\n          <label>{{setting.label | translate }}</label>\n          <input type=\"color\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'image'\">\n          <label>{{setting.label | translate }} <a (click)=\"showSelect(setting)\">{{ 'Select' | translate }}</a></label>\n          <input type=\"text\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'select'\">\n          <label>{{setting.label | translate }}</label>\n          <select id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n            <option *ngFor=\"let option of setting.options\" [value]=\"option\">{{option}}</option>\n          </select>\n        </div>\n\n      </div>\n\n      <small>{{setting.description | translate }}</small>\n\n    </div>\n\n\n    <div class=\"actions\">\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</section>\n\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\"></respond-select-file>\n<respond-drawer active=\"settings\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Plugins' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <respond-dropzone url=\"/api/plugins/upload\" (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"plugins-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let  plugin of plugins\" (click)=\"setActive(plugin)\" [class.selected]=\"plugin === selectedPlugin\">\n      <h2><span class=\"icon\" [innerHTML]=\"plugin.display\"></span> <span class=\"primary\">{{ plugin.title }}</span></h2>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(plugin)\">{{ 'Remove' | translate }}</a>\n      </div>\n    </div>\n  </div>\n\n  <p class=\"no-list-items\" *ngIf=\"plugins.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-drawer active=\"plugins\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>\n\n<respond-remove-plugin [visible]=\"removeVisible\" [plugin]=\"plugin\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-plugin>"
 
 /***/ }),
 /* 452 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Code' | translate }}</h2>\n\n    <label>{{ 'Type' | translate }}</label>\n    <select id=\"hashedit-add-code-type\"\n      [(ngModel)]=\"model.type\"\n      (change)=\"updateUrl($event.target.value)\"\n      name=\"type\">\n      <option value=\"template\">{{ 'Template' | translate }}</option>\n      <option value=\"stylesheet\">CSS</option>\n      <option value=\"script\">JS</option>\n      <option value=\"plugin\">{{ 'Plugin' | translate }}</option>\n    </select>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-code-name\" type=\"text\" maxlength=\"128\" placeholder=\"new-file\" required\n      [(ngModel)]=\"model.name\"\n      name=\"url\">\n\n    <div class=\"or\">{{ 'Or' | translate }}</div>\n\n    <respond-dropzone [url]=\"uploadUrl\" (onAdd)=\"uploaded($event)\"></respond-dropzone>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Code' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n<form class=\"app-form standalone\" (submit)=\"reset($event, password.value, retype.value)\">\n\n    <h2>{{ 'Reset Password' | translate }}</h2>\n\n    <label>{{ 'Password' | translate }}</label>\n    <input type=\"password\" name=\"password\" #password>\n\n    <label>{{ 'Re-Type Password' | translate }}</label>\n    <input type=\"password\" name=\"retype\" #retype>\n\n    <button type=\"submit\">{{ 'Reset Password' | translate }}</button>\n\n</form>"
 
 /***/ }),
 /* 453 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Component' | translate }}</h2>\n\n    <label>{{ 'URL' | translate }}</label>\n    <input id=\"hashedit-add-component-url\" type=\"text\" maxlength=\"128\" placeholder=\"new-component\" required\n      [(ngModel)]=\"model.url\"\n      name=\"url\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Component' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Settings' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <form class=\"app-form\" (ngSubmit)=\"submit()\" #settingsForm=\"ngForm\">\n\n    <div *ngFor=\"let setting of settings\">\n\n      <div [ngSwitch]=\"setting.type\">\n\n        <div *ngSwitchCase=\"'text'\">\n          <label>{{setting.label | translate }}</label>\n          <input type=\"text\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'color'\">\n          <label>{{setting.label | translate }}</label>\n          <input type=\"color\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'image'\">\n          <label>{{setting.label | translate }} <a (click)=\"showSelect(setting)\">{{ 'Select' | translate }}</a></label>\n          <input type=\"text\" id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n        </div>\n\n        <div *ngSwitchCase=\"'select'\">\n          <label>{{setting.label | translate }}</label>\n          <select id=\"{{setting.id}}\" name=\"{{setting.id}}\" [(ngModel)]=\"setting.value\">\n            <option *ngFor=\"let option of setting.options\" [value]=\"option\">{{option}}</option>\n          </select>\n        </div>\n\n      </div>\n\n      <small>{{setting.description | translate }}</small>\n\n    </div>\n\n\n    <div class=\"actions\">\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</section>\n\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\"></respond-select-file>\n<respond-drawer active=\"settings\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
 /* 454 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Component' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>/{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Component' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Code' | translate }}</h2>\n\n    <label>{{ 'Type' | translate }}</label>\n    <select id=\"hashedit-add-code-type\"\n      [(ngModel)]=\"model.type\"\n      (change)=\"updateUrl($event.target.value)\"\n      name=\"type\">\n      <option value=\"template\">{{ 'Template' | translate }}</option>\n      <option value=\"stylesheet\">CSS</option>\n      <option value=\"script\">JS</option>\n      <option value=\"plugin\">{{ 'Plugin' | translate }}</option>\n    </select>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-code-name\" type=\"text\" maxlength=\"128\" placeholder=\"new-file\" required\n      [(ngModel)]=\"model.name\"\n      name=\"url\">\n\n    <div class=\"or\">{{ 'Or' | translate }}</div>\n\n    <respond-dropzone [url]=\"uploadUrl\" (onAdd)=\"uploaded($event)\"></respond-dropzone>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Code' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 455 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"app-drawer\" [class.visible]=\"visible === true\">\n\n  <ul>\n    <li class=\"app-drawer-title\"><span>{{ 'Manage your Site' | translate }}</span></li>\n    <li [class.active]=\"active === 'pages'\"><a [routerLink]=\"['/pages']\">{{ 'Pages' | translate }}</a></li>\n    <li [class.active]=\"active === 'components'\"><a [routerLink]=\"['/components']\">{{ 'Components' | translate }}</a></li>\n    <li [class.active]=\"active === 'menus'\"><a [routerLink]=\"['/menus']\">{{ 'Menus' | translate }}</a></li>\n    <li [class.active]=\"active === 'galleries'\"><a [routerLink]=\"['/galleries']\">{{ 'Galleries' | translate }}</a></li>\n    <li [class.active]=\"active === 'forms'\"><a [routerLink]=\"['/forms']\">{{ 'Forms' | translate }}</a></li>\n    <li [class.active]=\"active === 'submissions'\"><a [routerLink]=\"['/submissions']\">{{ 'Submissions' | translate }}</a></li>\n    <li [class.active]=\"active === 'plugins'\"><a [routerLink]=\"['/plugins']\">{{ 'Plugins' | translate }}</a></li>\n    <li [class.active]=\"active === 'files'\"><a [routerLink]=\"['/files']\">{{ 'Files' | translate }}</a></li>\n    <li [class.active]=\"active === 'users'\"><a [routerLink]=\"['/users']\">{{ 'Users' | translate }}</a></li>\n    <li [class.active]=\"active === 'settings'\"><a [routerLink]=\"['/settings']\">{{ 'Settings' | translate }}</a></li>\n    <li [class.active]=\"active === 'code'\"><a (click)=\"viewCode()\">{{ 'Code' | translate }}</a></li>\n    <li [class.active]=\"active === 'advanced'\"><a [routerLink]=\"['/advanced']\">{{ 'Advanced' | translate }}</a></li>\n    <li><a [href]=\"siteUrl\" target=\"_blank\">{{ 'View Site' | translate }}</a></li>\n    <li><a (click)=\"signOut()\">{{ 'Sign Out' | translate }}</a></li>\n  </ul>\n\n  <a class=\"app-status status-trial\" *ngIf=\"status == 'Trial'\" (click)=\"checkout()\">\n    <h3>{{ 'Status: Trial' | translate }}</h3>\n    <p>{{ daysRemaining }} <span>{{ 'days remaining' | translate }}</span></p>\n    <i class=\"material-icons\">keyboard_arrow_right</i>\n  </a>\n\n  <a class=\"app-status status-expired\" *ngIf=\"status == 'Expired'\" (click)=\"checkout()\">\n    <h3>{{ 'Status: Expired' | translate }}</h3>\n    <p>{{ 'Activate now' | translate }}</p>\n    <i class=\"material-icons\">keyboard_arrow_right</i>\n  </a>\n\n\n</nav>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Component' | translate }}</h2>\n\n    <label>{{ 'URL' | translate }}</label>\n    <input id=\"hashedit-add-component-url\" type=\"text\" maxlength=\"128\" placeholder=\"new-component\" required\n      [(ngModel)]=\"model.url\"\n      name=\"url\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Component' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 456 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove File' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>/file/{{model.name}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove File' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Component' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>/{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Component' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 457 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <h2>{{ 'Select File' | translate }}</h2>\n\n  <respond-dropzone (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"files-list\" class=\"app-modal-list\">\n    <div class=\"app-modal-list-item\" *ngFor=\"let file of files\" (click)=\"select(file)\" [class.image]=\"file.thumb !== ''\">\n      <h2><span class=\"primary\">{{ file.name }}</span></h2>\n      <img *ngIf=\"file.thumb !== ''\" class=\"image\" src=\"{{file.thumb}}\">\n      <small>/files/{{ file.name }}</small>\n    </div>\n  </div>\n\n  <div class=\"actions\">\n    <a (click)=\"hide()\" class=\"primary\">{{ 'Cancel' | translate }}</a>\n  </div>\n\n</div>"
+module.exports = "<nav class=\"app-drawer\" [class.visible]=\"visible === true\">\n\n  <ul>\n    <li class=\"app-drawer-title\"><span>{{ 'Manage your Site' | translate }}</span></li>\n    <li [class.active]=\"active === 'pages'\"><a [routerLink]=\"['/pages']\">{{ 'Pages' | translate }}</a></li>\n    <li [class.active]=\"active === 'components'\"><a [routerLink]=\"['/components']\">{{ 'Components' | translate }}</a></li>\n    <li [class.active]=\"active === 'menus'\"><a [routerLink]=\"['/menus']\">{{ 'Menus' | translate }}</a></li>\n    <li [class.active]=\"active === 'galleries'\"><a [routerLink]=\"['/galleries']\">{{ 'Galleries' | translate }}</a></li>\n    <li [class.active]=\"active === 'forms'\"><a [routerLink]=\"['/forms']\">{{ 'Forms' | translate }}</a></li>\n    <li [class.active]=\"active === 'submissions'\"><a [routerLink]=\"['/submissions']\">{{ 'Submissions' | translate }}</a></li>\n    <li [class.active]=\"active === 'plugins'\"><a [routerLink]=\"['/plugins']\">{{ 'Plugins' | translate }}</a></li>\n    <li [class.active]=\"active === 'files'\"><a [routerLink]=\"['/files']\">{{ 'Files' | translate }}</a></li>\n    <li [class.active]=\"active === 'users'\"><a [routerLink]=\"['/users']\">{{ 'Users' | translate }}</a></li>\n    <li [class.active]=\"active === 'settings'\"><a [routerLink]=\"['/settings']\">{{ 'Settings' | translate }}</a></li>\n    <li [class.active]=\"active === 'code'\"><a (click)=\"viewCode()\">{{ 'Code' | translate }}</a></li>\n    <li [class.active]=\"active === 'advanced'\"><a [routerLink]=\"['/advanced']\">{{ 'Advanced' | translate }}</a></li>\n    <li [class.active]=\"active === 'account'\" *ngIf=\"hasAccount == true\"><a [routerLink]=\"['/account']\">{{ 'Account' | translate }}</a></li>\n    <li><a [href]=\"siteUrl\" target=\"_blank\">{{ 'View Site' | translate }}</a></li>\n    <li><a (click)=\"signOut()\">{{ 'Sign Out' | translate }}</a></li>\n  </ul>\n\n  <a class=\"app-status status-trial\" *ngIf=\"status == 'Trial'\" (click)=\"checkout()\">\n    <h3>{{ 'Status: Trial' | translate }}</h3>\n    <p>{{ daysRemaining }} <span>{{ 'days remaining' | translate }}</span></p>\n    <i class=\"material-icons\">keyboard_arrow_right</i>\n  </a>\n\n  <a class=\"app-status status-expired\" *ngIf=\"status == 'Expired'\" (click)=\"checkout()\">\n    <h3>{{ 'Status: Expired' | translate }}</h3>\n    <p>{{ 'Activate now' | translate }}</p>\n    <i class=\"material-icons\">keyboard_arrow_right</i>\n  </a>\n\n\n</nav>"
 
 /***/ }),
 /* 458 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Form Field' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Label' | translate }}</label>\n      <input id=\"hashedit-add-form-field-label\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.label\"\n        name=\"label\">\n\n      <label>{{ 'Type' | translate }}</label>\n      <select id=\"hashedit-add-form-field-type\"\n        [(ngModel)]=\"model.type\"\n        name=\"isNested\">\n        <option value=\"text\">{{ 'Text' | translate }}</option>\n        <option value=\"email\">{{ 'Email' | translate }}</option>\n        <option value=\"number\">{{ 'Number' | translate }}</option>\n        <option value=\"url\">{{ 'URL' | translate }}</option>\n        <option value=\"tel\">{{ 'Telephone' | translate }}</option>\n        <option value=\"date\">{{ 'Date' | translate }}</option>\n        <option value=\"time\">{{ 'Time' | translate }}</option>\n        <option value=\"textarea\">{{ 'Textarea' | translate }}</option>\n        <option value=\"select\">{{ 'Select List' | translate }}</option>\n        <option value=\"radiolist\">{{ 'Radio List' | translate }}</option>\n        <option value=\"checklist\">{{ 'Checkbox List' | translate }}</option>\n      </select>\n\n      <label>{{ 'Required?' | translate }}</label>\n      <select id=\"hashedit-add-form-field-required\"\n        [(ngModel)]=\"model.required\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Options' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.options\"\n        name=\"options\">\n\n      <label>{{ 'Helper Text' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.helperText\"\n        name=\"helperText\">\n\n      <label>{{ 'Placeholder' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.placeholder\"\n        name=\"placeholder\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-form-field-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Form Field' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove File' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>/file/{{model.name}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove File' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 459 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Form' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Name' | translate }}</label>\n      <input id=\"hashedit-add-form-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.name\"\n        name=\"name\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-form-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Validate with reCAPTCHA' | translate }}</label>\n      <select id=\"hashedit-add-form-validate\"\n        [(ngModel)]=\"model.validate\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Success Message' | translate }}</label>\n      <input id=\"hashedit-add-form-success\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.success\"\n        name=\"success\">\n\n      <label>{{ 'Error Message' | translate }}</label>\n      <input id=\"hashedit-add-form-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.error\"\n        name=\"error\">\n\n      <label>{{ 'reCAPTCHA Error Message' | translate }}</label>\n      <input id=\"hashedit-add-form-recaptcha-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.recaptchaError\"\n        name=\"recaptchaError\">\n\n      <label>{{ 'Email Notifications' | translate }}</label>\n      <input id=\"hashedit-add-form-notify\" type=\"text\" maxlength=\"2048\" placeholder=\"\"\n        [(ngModel)]=\"model.notify\"\n        name=\"recipient\">\n      <small>{{ 'Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.' | translate }}</small>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Form' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <h2>{{ 'Select File' | translate }}</h2>\n\n  <respond-dropzone (onAdd)=\"list($event)\"></respond-dropzone>\n\n  <div id=\"files-list\" class=\"app-modal-list\">\n    <div class=\"app-modal-list-item\" *ngFor=\"let file of files\" (click)=\"select(file)\" [class.image]=\"file.thumb !== ''\">\n      <h2><span class=\"primary\">{{ file.name }}</span></h2>\n      <img *ngIf=\"file.thumb !== ''\" class=\"image\" src=\"{{file.thumb}}\">\n      <small>/files/{{ file.name }}</small>\n    </div>\n  </div>\n\n  <div class=\"actions\">\n    <a (click)=\"hide()\" class=\"primary\">{{ 'Cancel' | translate }}</a>\n  </div>\n\n</div>"
 
 /***/ }),
 /* 460 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit Form Field' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Label' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-label\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.label\"\n        name=\"label\">\n\n      <label>{{ 'Type' | translate }}</label>\n      <select id=\"hashedit-edit-form-field-type\"\n        [(ngModel)]=\"model.type\"\n        name=\"isNested\">\n        <option value=\"text\">{{ 'Text' | translate }}</option>\n        <option value=\"email\">{{ 'Email' | translate }}</option>\n        <option value=\"number\">{{ 'Number' | translate }}</option>\n        <option value=\"url\">{{ 'URL' | translate }}</option>\n        <option value=\"tel\">{{ 'Telephone' | translate }}</option>\n        <option value=\"date\">{{ 'Date' | translate }}</option>\n        <option value=\"time\">{{ 'Time' | translate }}</option>\n        <option value=\"textarea\">{{ 'Textarea' | translate }}</option>\n        <option value=\"select\">{{ 'Select List' | translate }}</option>\n        <option value=\"radiolist\">{{ 'Radio List' | translate }}</option>\n        <option value=\"checklist\">{{ 'Checkbox List' | translate }}</option>\n      </select>\n\n      <label>{{ 'Required?' | translate }}</label>\n      <select id=\"hashedit-edit-form-field-required\"\n        [(ngModel)]=\"model.required\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Options' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.options\"\n        name=\"options\">\n\n      <label>{{ 'Helper Text' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.helperText\"\n        name=\"helperText\">\n\n      <label>{{ 'Placeholder' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.placeholder\"\n        name=\"placeholder\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Form Field' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Label' | translate }}</label>\n      <input id=\"hashedit-add-form-field-label\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.label\"\n        name=\"label\">\n\n      <label>{{ 'Type' | translate }}</label>\n      <select id=\"hashedit-add-form-field-type\"\n        [(ngModel)]=\"model.type\"\n        name=\"isNested\">\n        <option value=\"text\">{{ 'Text' | translate }}</option>\n        <option value=\"email\">{{ 'Email' | translate }}</option>\n        <option value=\"number\">{{ 'Number' | translate }}</option>\n        <option value=\"url\">{{ 'URL' | translate }}</option>\n        <option value=\"tel\">{{ 'Telephone' | translate }}</option>\n        <option value=\"date\">{{ 'Date' | translate }}</option>\n        <option value=\"time\">{{ 'Time' | translate }}</option>\n        <option value=\"textarea\">{{ 'Textarea' | translate }}</option>\n        <option value=\"select\">{{ 'Select List' | translate }}</option>\n        <option value=\"radiolist\">{{ 'Radio List' | translate }}</option>\n        <option value=\"checklist\">{{ 'Checkbox List' | translate }}</option>\n      </select>\n\n      <label>{{ 'Required?' | translate }}</label>\n      <select id=\"hashedit-add-form-field-required\"\n        [(ngModel)]=\"model.required\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Options' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.options\"\n        name=\"options\">\n\n      <label>{{ 'Helper Text' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.helperText\"\n        name=\"helperText\">\n\n      <label>{{ 'Placeholder' | translate }}</label>\n      <input id=\"hashedit-add-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.placeholder\"\n        name=\"placeholder\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-form-field-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Form Field' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 461 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Form' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Name' | translate }}</label>\n      <input id=\"hashedit-edit-form-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.name\"\n        name=\"name\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-form-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Validate with reCAPTCHA' | translate }}</label>\n      <select id=\"hashedit-edit-form-validate\"\n        [(ngModel)]=\"model.validate\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Success Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-success\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.success\"\n        name=\"success\">\n\n      <label>{{ 'Error Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.error\"\n        name=\"error\">\n\n      <label>{{ 'reCAPTCHA Error Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-recaptcha-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.recaptchaError\"\n        name=\"recaptchaError\">\n\n      <label>{{ 'Email Notifications' | translate }}</label>\n      <input id=\"hashedit-edit-form-notify\" type=\"text\" maxlength=\"2048\" placeholder=\"\"\n        [(ngModel)]=\"model.notify\"\n        name=\"notify\">\n      <small>{{ 'Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.' | translate }}</small>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Form' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Name' | translate }}</label>\n      <input id=\"hashedit-add-form-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.name\"\n        name=\"name\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-form-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Validate with reCAPTCHA' | translate }}</label>\n      <select id=\"hashedit-add-form-validate\"\n        [(ngModel)]=\"model.validate\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Success Message' | translate }}</label>\n      <input id=\"hashedit-add-form-success\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.success\"\n        name=\"success\">\n\n      <label>{{ 'Error Message' | translate }}</label>\n      <input id=\"hashedit-add-form-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.error\"\n        name=\"error\">\n\n      <label>{{ 'reCAPTCHA Error Message' | translate }}</label>\n      <input id=\"hashedit-add-form-recaptcha-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.recaptchaError\"\n        name=\"recaptchaError\">\n\n      <label>{{ 'Email Notifications' | translate }}</label>\n      <input id=\"hashedit-add-form-notify\" type=\"text\" maxlength=\"2048\" placeholder=\"\"\n        [(ngModel)]=\"model.notify\"\n        name=\"recipient\">\n      <small>{{ 'Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.' | translate }}</small>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Form' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 462 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Form Field' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.label}}</h3>\n      <p>{{model.type}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit Form Field' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Label' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-label\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.label\"\n        name=\"label\">\n\n      <label>{{ 'Type' | translate }}</label>\n      <select id=\"hashedit-edit-form-field-type\"\n        [(ngModel)]=\"model.type\"\n        name=\"isNested\">\n        <option value=\"text\">{{ 'Text' | translate }}</option>\n        <option value=\"email\">{{ 'Email' | translate }}</option>\n        <option value=\"number\">{{ 'Number' | translate }}</option>\n        <option value=\"url\">{{ 'URL' | translate }}</option>\n        <option value=\"tel\">{{ 'Telephone' | translate }}</option>\n        <option value=\"date\">{{ 'Date' | translate }}</option>\n        <option value=\"time\">{{ 'Time' | translate }}</option>\n        <option value=\"textarea\">{{ 'Textarea' | translate }}</option>\n        <option value=\"select\">{{ 'Select List' | translate }}</option>\n        <option value=\"radiolist\">{{ 'Radio List' | translate }}</option>\n        <option value=\"checklist\">{{ 'Checkbox List' | translate }}</option>\n      </select>\n\n      <label>{{ 'Required?' | translate }}</label>\n      <select id=\"hashedit-edit-form-field-required\"\n        [(ngModel)]=\"model.required\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Options' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.options\"\n        name=\"options\">\n\n      <label>{{ 'Helper Text' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.helperText\"\n        name=\"helperText\">\n\n      <label>{{ 'Placeholder' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-options\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.placeholder\"\n        name=\"placeholder\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-form-field-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 463 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Form' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Form' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Name' | translate }}</label>\n      <input id=\"hashedit-edit-form-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.name\"\n        name=\"name\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-form-cssclass\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Validate with reCAPTCHA' | translate }}</label>\n      <select id=\"hashedit-edit-form-validate\"\n        [(ngModel)]=\"model.validate\"\n        name=\"required\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'Success Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-success\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.success\"\n        name=\"success\">\n\n      <label>{{ 'Error Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.error\"\n        name=\"error\">\n\n      <label>{{ 'reCAPTCHA Error Message' | translate }}</label>\n      <input id=\"hashedit-edit-form-recaptcha-error\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.recaptchaError\"\n        name=\"recaptchaError\">\n\n      <label>{{ 'Email Notifications' | translate }}</label>\n      <input id=\"hashedit-edit-form-notify\" type=\"text\" maxlength=\"2048\" placeholder=\"\"\n        [(ngModel)]=\"model.notify\"\n        name=\"notify\">\n      <small>{{ 'Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.' | translate }}</small>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 464 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Gallery' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-gallery-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Gallery' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Form Field' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.label}}</h3>\n      <p>{{model.type}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 465 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit Caption' | translate }}</h2>\n\n    <label>{{ 'Caption' | translate }}</label>\n    <input id=\"hashedit-edit-caption\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.caption\"\n      name=\"label\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Form' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 466 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Gallery' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-edit-gallery-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Gallery' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-gallery-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add Gallery' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 467 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Image' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button class=\"primary\" type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit Caption' | translate }}</h2>\n\n    <label>{{ 'Caption' | translate }}</label>\n    <input id=\"hashedit-edit-caption\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.caption\"\n      name=\"label\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 468 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Gallery' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Gallery' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-edit-gallery-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 469 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal app-card\" [class.visible]=\"visible === true\" [class.flip]=\"flip === true\">\n\n  <div class=\"app-card-front\">\n\n    <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n      <h2>{{ 'Add Menu Item' | translate }}</h2>\n\n      <label>{{ 'Text (or HTML)' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-html\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.html\"\n        name=\"html\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-css-class\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Is Nested?' | translate }}</label>\n      <select id=\"hashedit-add-menu-item-is-nested\"\n        [(ngModel)]=\"model.isNested\"\n        name=\"isNested\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'URL' | translate }} <a class=\"toggle-select-url\" (click)=\"flipCard()\">{{ 'Select URL' | translate }}</a></label>\n      <input id=\"hashedit-add-menu-item-url\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.url\"\n        name=\"url\">\n\n      <label>{{ 'Target' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-target\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.target\"\n        name=\"target\">\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Add' | translate }}</button>\n      </div>\n\n    </form>\n\n  </div>\n  <!-- /.app-card-front -->\n\n  <div class=\"app-card-back\">\n\n    <h2>{{ 'Select URL' | translate }}</h2>\n\n    <div id=\"pages-list\" class=\"app-modal-list\">\n      <div class=\"app-list-item\" *ngFor=\"let page of pages\" (click)=\"setUrl(page)\">{{page.url}}</div>\n    </div>\n\n    <div class=\"actions\">\n      <a class=\"primary toggle-select-url\" data-i18n (click)=\"flipCard()\">Cancel</a>\n    </div>\n\n  </div>\n  <!-- /.app-card-back -->\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Image' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button class=\"primary\" type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 470 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Menu' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-menu-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Gallery' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 471 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal app-card\" [class.visible]=\"visible === true\" [class.flip]=\"flip === true\">\n\n  <div class=\"app-card-front\">\n\n    <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n      <h2>{{ 'Edit Menu Item' | translate }}</h2>\n\n      <label>{{ 'Text (or HTML)' | translate }}</label>\n      <input id=\"hashedit-edit-menu-item-html\" type=\"text\" required\n        [(ngModel)]=\"model.html\"\n        name=\"html\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-menu-item-css-class\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Is Nested?' | translate }}</label>\n      <select id=\"hashedit-edit-menu-item-is-nested\"\n        [(ngModel)]=\"model.isNested\"\n        name=\"isNested\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'URL' | translate }} <a class=\"toggle-select-url\" (click)=\"flipCard()\">{{ 'Select URL' | translate }}</a></label>\n      <input id=\"hashedit-add-menu-item-url\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.url\"\n        name=\"url\">\n\n      <label>{{ 'Target' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-target\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.target\"\n        name=\"target\">\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Update' | translate }}</button>\n      </div>\n\n    </form>\n\n  </div>\n  <!-- /.app-card-front -->\n\n  <div class=\"app-card-back\">\n\n    <h2>{{ 'Select URL' | translate }}</h2>\n\n    <div id=\"pages-list\" class=\"app-modal-list\">\n      <div class=\"app-list-item\" *ngFor=\"let page of pages\" (click)=\"setUrl(page)\">{{page.url}}</div>\n    </div>\n\n    <div class=\"actions\">\n      <a class=\"primary toggle-select-url\" (click)=\"flipCard()\">{{ 'Cancel' | translate }}</a>\n    </div>\n\n  </div>\n  <!-- /.app-card-back -->\n\n</div>"
+module.exports = "<div class=\"app-modal app-card\" [class.visible]=\"visible === true\" [class.flip]=\"flip === true\">\n\n  <div class=\"app-card-front\">\n\n    <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n      <h2>{{ 'Add Menu Item' | translate }}</h2>\n\n      <label>{{ 'Text (or HTML)' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-html\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n        [(ngModel)]=\"model.html\"\n        name=\"html\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-css-class\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Is Nested?' | translate }}</label>\n      <select id=\"hashedit-add-menu-item-is-nested\"\n        [(ngModel)]=\"model.isNested\"\n        name=\"isNested\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'URL' | translate }} <a class=\"toggle-select-url\" (click)=\"flipCard()\">{{ 'Select URL' | translate }}</a></label>\n      <input id=\"hashedit-add-menu-item-url\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.url\"\n        name=\"url\">\n\n      <label>{{ 'Target' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-target\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.target\"\n        name=\"target\">\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Add' | translate }}</button>\n      </div>\n\n    </form>\n\n  </div>\n  <!-- /.app-card-front -->\n\n  <div class=\"app-card-back\">\n\n    <h2>{{ 'Select URL' | translate }}</h2>\n\n    <div id=\"pages-list\" class=\"app-modal-list\">\n      <div class=\"app-list-item\" *ngFor=\"let page of pages\" (click)=\"setUrl(page)\">{{page.url}}</div>\n    </div>\n\n    <div class=\"actions\">\n      <a class=\"primary toggle-select-url\" data-i18n (click)=\"flipCard()\">Cancel</a>\n    </div>\n\n  </div>\n  <!-- /.app-card-back -->\n\n</div>"
 
 /***/ }),
 /* 472 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Menu' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-edit-menu-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Menu' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-add-menu-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 473 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Menu Item' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.html}}</h3>\n      <small>{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal app-card\" [class.visible]=\"visible === true\" [class.flip]=\"flip === true\">\n\n  <div class=\"app-card-front\">\n\n    <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n      <h2>{{ 'Edit Menu Item' | translate }}</h2>\n\n      <label>{{ 'Text (or HTML)' | translate }}</label>\n      <input id=\"hashedit-edit-menu-item-html\" type=\"text\" required\n        [(ngModel)]=\"model.html\"\n        name=\"html\">\n\n      <label>{{ 'CSS Class' | translate }}</label>\n      <input id=\"hashedit-edit-menu-item-css-class\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.cssClass\"\n        name=\"cssClass\">\n\n      <label>{{ 'Is Nested?' | translate }}</label>\n      <select id=\"hashedit-edit-menu-item-is-nested\"\n        [(ngModel)]=\"model.isNested\"\n        name=\"isNested\">\n        <option value=\"true\">{{ 'Yes' | translate }}</option>\n        <option value=\"false\">{{ 'No' | translate }}</option>\n      </select>\n\n      <label>{{ 'URL' | translate }} <a class=\"toggle-select-url\" (click)=\"flipCard()\">{{ 'Select URL' | translate }}</a></label>\n      <input id=\"hashedit-add-menu-item-url\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.url\"\n        name=\"url\">\n\n      <label>{{ 'Target' | translate }}</label>\n      <input id=\"hashedit-add-menu-item-target\" type=\"text\" maxlength=\"128\" placeholder=\"\"\n        [(ngModel)]=\"model.target\"\n        name=\"target\">\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Update' | translate }}</button>\n      </div>\n\n    </form>\n\n  </div>\n  <!-- /.app-card-front -->\n\n  <div class=\"app-card-back\">\n\n    <h2>{{ 'Select URL' | translate }}</h2>\n\n    <div id=\"pages-list\" class=\"app-modal-list\">\n      <div class=\"app-list-item\" *ngFor=\"let page of pages\" (click)=\"setUrl(page)\">{{page.url}}</div>\n    </div>\n\n    <div class=\"actions\">\n      <a class=\"primary toggle-select-url\" (click)=\"flipCard()\">{{ 'Cancel' | translate }}</a>\n    </div>\n\n  </div>\n  <!-- /.app-card-back -->\n\n</div>"
 
 /***/ }),
 /* 474 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Menu' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Edit Menu' | translate }}</h2>\n\n    <label>{{ 'Name' | translate }}</label>\n    <input id=\"hashedit-edit-menu-name\" type=\"text\" maxlength=\"128\" placeholder=\"\" required\n      [(ngModel)]=\"model.name\"\n      name=\"name\">\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 475 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Page' | translate }}</h2>\n\n    <label>{{ 'Path' | translate }}</label>\n    <select id=\"hashedit-add-page-path\"\n      [(ngModel)]=\"model.path\"\n      name=\"path\">\n      <option *ngFor=\"let route of routes\" [value]=\"route\">{{route}}</option>\n    </select>\n\n    <label>{{ 'URL' | translate }}</label>\n    <input id=\"hashedit-add-page-url\" type=\"text\" maxlength=\"128\" placeholder=\"new-page\" required\n      [(ngModel)]=\"model.url\"\n      name=\"url\">\n\n    <label>{{ 'Title' | translate }}</label>\n    <input id=\"hashedit-add-page-title\" type=\"text\" maxlength=\"128\" required\n      [(ngModel)]=\"model.title\"\n      name=\"title\">\n\n    <label>{{ 'Description' | translate }}</label>\n    <input id=\"hashedit-add-page-desc\" type=\"text\" maxlength=\"128\"\n      [(ngModel)]=\"model.description\"\n      name=\"description\">\n\n    <label>{{ 'Template' | translate }}</label>\n    <select id=\"hashedit-add-page-template\"\n      [(ngModel)]=\"model.template\"\n      name=\"template\">\n      <option *ngFor=\"let template of templates\" [value]=\"template\">{{template}}</option>\n    </select>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\" [disabled]=\"processing\">{{ 'Add Page' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Menu Item' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.html}}</h3>\n      <small>{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 476 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Page Settings' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Title' | translate }}</label>\n      <input id=\"hashedit-page-settings-title\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.title\"\n        name=\"title\">\n\n      <label>{{ 'Description' | translate }}</label>\n      <input id=\"hashedit-page-settings-description\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.description\"\n        name=\"description\">\n\n      <label>{{ 'Keywords' | translate }}</label>\n      <input id=\"hashedit-page-settings-keywords\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.keywords\"\n        name=\"keywords\">\n\n      <label>{{ 'Tags' | translate }}</label>\n      <input id=\"hashedit-page-settings-tags\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.tags\"\n        name=\"tags\">\n        \n      <label>{{ 'Location' | translate }}</label>\n      <input id=\"hashedit-page-settings-location\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.location\"\n        name=\"location\">\n        \n      <label>{{ 'Photo' | translate }} <a (click)=\"showSelect()\">{{ 'Select' | translate }}</a></label>\n      <input id=\"hashedit-page-settings-photo\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.photo\"\n        name=\"photo\">\n\n      <label>{{ 'Custom Header' | translate }}</label>\n      <textarea id=\"hashedit-page-settings-custom-header\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.customHeader\"\n        name=\"customHeader\"></textarea>\n      <small>{{ 'Custom HTML content to be put in the header (e.g. meta tags, stylesheets)' | translate }}</small>\n\n      <label>{{ 'Custom Footer' | translate }}</label>\n      <textarea id=\"hashedit-page-settings-custom-footer\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.customFooter\"\n        name=\"customFooter\"></textarea>\n      <small>{{ 'Custom HTML content to be put in the footer (e.g. javascript)' | translate }}</small>\n\n      <label>{{ 'Callout' | translate }}</label>\n      <input id=\"hashedit-page-settings-callout\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.callout\"\n        name=\"callout\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-page-settings-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option value=\"en\">English (en)</option>\n        <option value=\"es\">Español (es)</option>\n        <option value=\"fr\">Français (fr)</option>\n        <option value=\"gr\">Ελληνικά (gr)</option>\n        <option value=\"ru\">Русский (ru)</option>\n      </select>\n\n      <label>{{ 'Direction' | translate }}</label>\n      <select id=\"hashedit-page-settings-direction\"\n        [(ngModel)]=\"model.direction\"\n        name=\"direction\">\n        <option value=\"ltr\">{{ 'Left-to-Right' | translate }}</option>\n        <option value=\"rtl\">{{ 'Right-to-Left' | translate }}</option>\n      </select>\n\n      <label>{{ 'Template' | translate }}</label>\n      <select id=\"hashedit-add-page-template\"\n        [(ngModel)]=\"model.template\"\n        name=\"template\">\n        <option *ngFor=\"let template of templates\" [value]=\"template\">{{template}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\"></respond-select-file>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Menu' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <p>{{model.id}}</p>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 477 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Page' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>/{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Page' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add Page' | translate }}</h2>\n\n    <label>{{ 'Path' | translate }}</label>\n    <select id=\"hashedit-add-page-path\"\n      [(ngModel)]=\"model.path\"\n      name=\"path\">\n      <option *ngFor=\"let route of routes\" [value]=\"route\">{{route}}</option>\n    </select>\n\n    <label>{{ 'URL' | translate }}</label>\n    <input id=\"hashedit-add-page-url\" type=\"text\" maxlength=\"128\" placeholder=\"new-page\" required\n      [(ngModel)]=\"model.url\"\n      name=\"url\">\n\n    <label>{{ 'Title' | translate }}</label>\n    <input id=\"hashedit-add-page-title\" type=\"text\" maxlength=\"128\" required\n      [(ngModel)]=\"model.title\"\n      name=\"title\">\n\n    <label>{{ 'Description' | translate }}</label>\n    <input id=\"hashedit-add-page-desc\" type=\"text\" maxlength=\"128\"\n      [(ngModel)]=\"model.description\"\n      name=\"description\">\n\n    <label>{{ 'Template' | translate }}</label>\n    <select id=\"hashedit-add-page-template\"\n      [(ngModel)]=\"model.template\"\n      name=\"template\">\n      <option *ngFor=\"let template of templates\" [value]=\"template\">{{template}}</option>\n    </select>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\" [disabled]=\"processing\">{{ 'Add Page' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 478 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Plugin' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>{{model.selector}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Plugin' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #editForm=\"ngForm\">\n\n    <h2>{{ 'Page Settings' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Title' | translate }}</label>\n      <input id=\"hashedit-page-settings-title\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.title\"\n        name=\"title\">\n\n      <label>{{ 'Description' | translate }}</label>\n      <input id=\"hashedit-page-settings-description\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.description\"\n        name=\"description\">\n\n      <label>{{ 'Keywords' | translate }}</label>\n      <input id=\"hashedit-page-settings-keywords\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.keywords\"\n        name=\"keywords\">\n\n      <label>{{ 'Tags' | translate }}</label>\n      <input id=\"hashedit-page-settings-tags\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.tags\"\n        name=\"tags\">\n        \n      <label>{{ 'Location' | translate }}</label>\n      <input id=\"hashedit-page-settings-location\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.location\"\n        name=\"location\">\n        \n      <label>{{ 'Photo' | translate }} <a (click)=\"showSelect()\">{{ 'Select' | translate }}</a></label>\n      <input id=\"hashedit-page-settings-photo\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.photo\"\n        name=\"photo\">\n\n      <label>{{ 'Custom Header' | translate }}</label>\n      <textarea id=\"hashedit-page-settings-custom-header\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.customHeader\"\n        name=\"customHeader\"></textarea>\n      <small>{{ 'Custom HTML content to be put in the header (e.g. meta tags, stylesheets)' | translate }}</small>\n\n      <label>{{ 'Custom Footer' | translate }}</label>\n      <textarea id=\"hashedit-page-settings-custom-footer\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.customFooter\"\n        name=\"customFooter\"></textarea>\n      <small>{{ 'Custom HTML content to be put in the footer (e.g. javascript)' | translate }}</small>\n\n      <label>{{ 'Callout' | translate }}</label>\n      <input id=\"hashedit-page-settings-callout\" type=\"text\" maxlength=\"128\"\n        [(ngModel)]=\"model.callout\"\n        name=\"callout\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-page-settings-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option value=\"en\">English (en)</option>\n        <option value=\"es\">Español (es)</option>\n        <option value=\"fr\">Français (fr)</option>\n        <option value=\"gr\">Ελληνικά (gr)</option>\n        <option value=\"ru\">Русский (ru)</option>\n      </select>\n\n      <label>{{ 'Direction' | translate }}</label>\n      <select id=\"hashedit-page-settings-direction\"\n        [(ngModel)]=\"model.direction\"\n        name=\"direction\">\n        <option value=\"ltr\">{{ 'Left-to-Right' | translate }}</option>\n        <option value=\"rtl\">{{ 'Right-to-Left' | translate }}</option>\n      </select>\n\n      <label>{{ 'Template' | translate }}</label>\n      <select id=\"hashedit-add-page-template\"\n        [(ngModel)]=\"model.template\"\n        name=\"template\">\n        <option *ngFor=\"let template of templates\" [value]=\"template\">{{template}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>\n\n<respond-select-file [visible]=\"selectVisible\" (onCancel)=\"reset($event)\"  (onSelect)=\"select($event)\"></respond-select-file>"
 
 /***/ }),
 /* 479 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Submission' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>{{model.formId}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Submission' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Page' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>/{{model.url}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Page' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 480 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <h2>{{ 'View Submission' | translate }}</h2>\n\n  <table class=\"details\">\n\n    <tr>\n      <td>{{ 'Date' | translate }}</td>\n      <td>{{ model.date }}</td>\n    </tr>\n    <tr>\n      <td>{{ 'Form' | translate }}</td>\n      <td>{{ model.formId }}</td>\n    </tr>\n    <tr *ngFor=\"let field of model.fields\">\n      <td>{{ field.id  }}</td>\n      <td>{{ field.value }}</td>\n    </tr>\n\n  </table>\n\n  <div class=\"actions\">\n    <a (click)=\"hide()\" class=\"primary\">{{ 'Done' | translate }}</a>\n  </div>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Plugin' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.title}}</h3>\n      <small>{{model.selector}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Plugin' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 481 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add User' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Email' | translate }}</label>\n      <input id=\"hashedit-add-user-email\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.email\"\n        name=\"email\">\n\n      <label>{{ 'First Name' | translate }}</label>\n      <input id=\"hashedit-add-user-first-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.firstName\"\n        name=\"firstName\">\n\n      <label>{{ 'Last Name' | translate }}</label>\n      <input id=\"hashedit-add-user-last-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.lastName\"\n        name=\"lastName\">\n\n      <label>{{ 'Password' | translate }}</label>\n      <input id=\"hashedit-add-user-password\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.password\"\n        name=\"password\">\n\n      <label>{{ 'Retype Password' | translate }}</label>\n      <input id=\"hashedit-add-user-retype\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.retype\"\n        name=\"retype\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-add-user-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option *ngFor=\"let language of languages\" [value]=\"language.code\">{{language.text}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add User' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove Submission' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.name}}</h3>\n      <small>{{model.formId}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove Submission' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 482 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit User' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Email' | translate }}</label>\n      <input id=\"hashedit-edit-user-email\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.email\"\n        name=\"email\" disabled=\"disabled\">\n\n      <label>{{ 'First Name' | translate }}</label>\n      <input id=\"hashedit-edit-user-first-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.firstName\"\n        name=\"firstName\">\n\n      <label>{{ 'Last Name' | translate }}</label>\n      <input id=\"hashedit-edit-user-last-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.lastName\"\n        name=\"lastName\">\n\n      <label>{{ 'Password' | translate }}</label>\n      <input id=\"hashedit-edit-user-password\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.password\"\n        name=\"password\">\n\n      <label>{{ 'Retype Password' | translate }}</label>\n      <input id=\"hashedit-edit-user-retype\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.retype\"\n        name=\"retype\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-edit-user-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option *ngFor=\"let language of languages\" [value]=\"language.code\">{{language.text}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <h2>{{ 'View Submission' | translate }}</h2>\n\n  <table class=\"details\">\n\n    <tr>\n      <td>{{ 'Date' | translate }}</td>\n      <td>{{ model.date }}</td>\n    </tr>\n    <tr>\n      <td>{{ 'Form' | translate }}</td>\n      <td>{{ model.formId }}</td>\n    </tr>\n    <tr *ngFor=\"let field of model.fields\">\n      <td>{{ field.id  }}</td>\n      <td>{{ field.value }}</td>\n    </tr>\n\n  </table>\n\n  <div class=\"actions\">\n    <a (click)=\"hide()\" class=\"primary\">{{ 'Done' | translate }}</a>\n  </div>\n\n</div>"
 
 /***/ }),
 /* 483 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove User' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}:</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.firstName}} {{model.lastName}}</h3>\n      <small>{{model.email}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove User' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Add User' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Email' | translate }}</label>\n      <input id=\"hashedit-add-user-email\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.email\"\n        name=\"email\">\n\n      <label>{{ 'First Name' | translate }}</label>\n      <input id=\"hashedit-add-user-first-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.firstName\"\n        name=\"firstName\">\n\n      <label>{{ 'Last Name' | translate }}</label>\n      <input id=\"hashedit-add-user-last-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.lastName\"\n        name=\"lastName\">\n\n      <label>{{ 'Password' | translate }}</label>\n      <input id=\"hashedit-add-user-password\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.password\"\n        name=\"password\">\n\n      <label>{{ 'Retype Password' | translate }}</label>\n      <input id=\"hashedit-add-user-retype\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.retype\"\n        name=\"retype\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-add-user-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option *ngFor=\"let language of languages\" [value]=\"language.code\">{{language.text}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Add User' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 484 */
 /***/ (function(module, exports) {
 
-module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Submissions' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"submissions-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let submission of submissions\" (click)=\"setActive(submission)\" [class.selected]=\"submission === selectedSubmission\">\n      <h2><span class=\"primary\">{{ submission.name }}</span><span class=\"secondary\">{{ submission.date | timeAgo }}</span></h2>\n      <small>{{ submission.formId }}</small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(submission)\">{{ 'Remove Submission' | translate }}</a>\n          <a (click)=\"showView(submission)\" class=\"primary\">{{ 'View Submission' | translate }}</a>\n      </div>\n    </div>\n  </div>\n  \n  <p class=\"no-list-items\" *ngIf=\"submissions.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-view-submission [visible]=\"viewVisible\" [submission]=\"submission\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-view-submission>\n<respond-remove-submission [visible]=\"removeVisible\" [submission]=\"submission\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-submission>\n\n<respond-drawer active=\"submissions\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #addForm=\"ngForm\">\n\n    <h2>{{ 'Edit User' | translate }}</h2>\n\n    <div class=\"app-modal-body\">\n\n      <label>{{ 'Email' | translate }}</label>\n      <input id=\"hashedit-edit-user-email\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.email\"\n        name=\"email\" disabled=\"disabled\">\n\n      <label>{{ 'First Name' | translate }}</label>\n      <input id=\"hashedit-edit-user-first-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.firstName\"\n        name=\"firstName\">\n\n      <label>{{ 'Last Name' | translate }}</label>\n      <input id=\"hashedit-edit-user-last-name\" type=\"text\" maxlength=\"128\" required\n        [(ngModel)]=\"model.lastName\"\n        name=\"lastName\">\n\n      <label>{{ 'Password' | translate }}</label>\n      <input id=\"hashedit-edit-user-password\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.password\"\n        name=\"password\">\n\n      <label>{{ 'Retype Password' | translate }}</label>\n      <input id=\"hashedit-edit-user-retype\" type=\"password\" maxlength=\"128\" required\n        [(ngModel)]=\"model.retype\"\n        name=\"retype\">\n\n      <label>{{ 'Language' | translate }}</label>\n      <select id=\"hashedit-edit-user-language\"\n        [(ngModel)]=\"model.language\"\n        name=\"language\">\n        <option *ngFor=\"let language of languages\" [value]=\"language.code\">{{language.text}}</option>\n      </select>\n\n    </div>\n    <!-- /.app-modal-body -->\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Update' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
 
 /***/ }),
 /* 485 */
 /***/ (function(module, exports) {
 
+module.exports = "<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #removeForm=\"ngForm\">\n\n    <h2>{{ 'Remove User' | translate }}</h2>\n\n    <p>{{ 'Confirm you want to remove:' | translate }}:</p>\n\n    <div class=\"to-be-removed\">\n      <h3>{{model.firstName}} {{model.lastName}}</h3>\n      <small>{{model.email}}</small>\n    </div>\n\n    <div class=\"actions\">\n      <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n      <button type=\"submit\">{{ 'Remove User' | translate }}</button>\n    </div>\n\n  </form>\n\n</div>"
+
+/***/ }),
+/* 486 */
+/***/ (function(module, exports) {
+
+module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Submissions' | translate }}</h1>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"submissions-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let submission of submissions\" (click)=\"setActive(submission)\" [class.selected]=\"submission === selectedSubmission\">\n      <h2><span class=\"primary\">{{ submission.name }}</span><span class=\"secondary\">{{ submission.date | timeAgo }}</span></h2>\n      <small>{{ submission.formId }}</small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(submission)\">{{ 'Remove Submission' | translate }}</a>\n          <a (click)=\"showView(submission)\" class=\"primary\">{{ 'View Submission' | translate }}</a>\n      </div>\n    </div>\n  </div>\n  \n  <p class=\"no-list-items\" *ngIf=\"submissions.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-view-submission [visible]=\"viewVisible\" [submission]=\"submission\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-view-submission>\n<respond-remove-submission [visible]=\"removeVisible\" [submission]=\"submission\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-submission>\n\n<respond-drawer active=\"submissions\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
+
+/***/ }),
+/* 487 */
+/***/ (function(module, exports) {
+
 module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (click)=\"toggleDrawer()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"></path></g></svg></button>\n\n    <h1>{{ 'Users' | translate }}</h1>\n\n    <button class=\"app-add\" (click)=\"showAdd()\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\"><g><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"></path></g></svg></button>\n\n</menu>\n\n<section class=\"app-main\">\n\n  <div id=\"users-list\" class=\"app-list\">\n    <div class=\"app-list-item\" *ngFor=\"let user of users\" (click)=\"setActive(user)\" [class.selected]=\"user === selectedUser\">\n      <h2><span class=\"primary\">{{ user.firstName }} {{ user.lastName }}</span></h2>\n      <small>{{ user.email }}</small>\n      <div class=\"app-list-actions\">\n          <a (click)=\"showRemove(user)\">{{ 'Remove' | translate }}</a>\n          <a (click)=\"showEdit(user)\" class=\"primary\">{{ 'Edit' | translate }}</a>\n      </div>\n    </div>\n  </div>\n  \n  <p class=\"no-list-items\" *ngIf=\"users.length === 0\">{{ 'Nothing here yet' | translate }}</p>\n\n</section>\n\n<respond-add-user [visible]=\"addVisible\" (onCancel)=\"reset($event)\" (onAdd)=\"list($event)\" (onError)=\"failure($event)\"></respond-add-user>\n\n<respond-edit-user [visible]=\"editVisible\" [user]=\"user\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-edit-user>\n\n<respond-remove-user [visible]=\"removeVisible\" [user]=\"user\" (onCancel)=\"reset($event)\" (onUpdate)=\"list($event)\" (onError)=\"failure($event)\"></respond-remove-user>\n\n<respond-drawer active=\"users\" [visible]=\"drawerVisible\" (onHide)=\"reset($event)\"></respond-drawer>"
 
 /***/ }),
-/* 486 */,
-/* 487 */,
 /* 488 */,
 /* 489 */,
 /* 490 */,
@@ -8990,12 +9130,14 @@ module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (c
 /* 520 */,
 /* 521 */,
 /* 522 */,
-/* 523 */
+/* 523 */,
+/* 524 */,
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(198);
+module.exports = __webpack_require__(199);
 
 
 /***/ })
-]),[523]);
+]),[525]);
 //# sourceMappingURL=main.bundle.js.map
