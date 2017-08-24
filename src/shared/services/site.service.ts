@@ -9,6 +9,7 @@ export class SiteService {
 
   private _createUrl = 'api/sites/create';
   private _subscribeUrl = 'api/sites/subscribe';
+  private _unsubscribeUrl = 'api/sites/unsubscribe'
   private _reloadUrl = 'api/sites/reload';
   private _reindexUrl = 'api/sites/reindex';
   private _sitemapUrl = 'api/sites/sitemap';
@@ -55,6 +56,23 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this._subscribeUrl, body, options);
+
+  }
+
+  /**
+   * Unsubscribes a site
+   *
+   * @return {Observable}
+   */
+  unsubscribe () {
+
+    let body = JSON.stringify({  });
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._unsubscribeUrl, body, options);
 
   }
 

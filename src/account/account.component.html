@@ -1,7 +1,7 @@
 <menu class="app-menu">
 
-    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
-
+    <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
+    
     <h1>{{ 'Account' | translate }}</h1>
 </menu>
 
@@ -11,7 +11,7 @@
     <tbody>
       <tr>
         <th>{{ 'Plan' | translate }}</th>
-        <td>{{ plan }}</td>
+        <td>{{ plan }} <a class="app-table-cell-action" (click)="unsubscribe()" *ngIf="hasAccount == true">{{ 'Unsubscribe' | translate }}</a></td>
       </tr>
       <tr>
         <th>{{ 'Amount' | translate }}</th>

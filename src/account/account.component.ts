@@ -24,6 +24,7 @@ export class AccountComponent {
   amountDisplay: string = "";
   currency: string = "";
   interval: string = "";
+  hasAccount: boolean;
 
   constructor (private _siteService: SiteService, private _router: Router) {}
 
@@ -34,6 +35,7 @@ export class AccountComponent {
   ngOnInit() {
 
     this.id = localStorage.getItem('respond.siteId');
+    this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
     this.settingsVisible = false;
     this.drawerVisible = false;
 
@@ -66,6 +68,24 @@ export class AccountComponent {
                          console.log(data); },
                        error =>  { this.failure(<any>error); }
                       );
+  }
+
+  /**
+   * Unsubscribe from the subscription
+   */
+  unsubscribe() {
+    this._siteService.unsubscribe()
+                     .subscribe(
+                       data => { console.log(data); },
+                       error =>  { this.failure(<any>error); }
+                      );
+
+    localStorage.setItem('site_status', 'Active');
+    localStorage.setItem('site_has_account', 'false');
+    this.plan = "Unsubscribed";
+    this.amountDisplay = "";
+    this.interval = "";
+    this.hasAccount = false;
   }
 
   /**

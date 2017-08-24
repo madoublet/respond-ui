@@ -351,10 +351,10 @@ body .app-list {
   }
 
   .app-drawer .app-status {
-    position: absolute;
+    position: fixed;
     width: calc(100% - 20px);
     bottom: 0;
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     width: 230px;
     padding: 10px;
     background: #fff;
@@ -953,6 +953,11 @@ body .app-table {
     padding: 5px 0;
   }
 
+  body .app-table .app-table-cell-action {
+    text-transform: uppercase;
+    margin-left: 10px;
+  }
+
 /* ack */
 body .acknowledgement {
   text-align: center;
@@ -1020,8 +1025,7 @@ body .acknowledgement {
   color: #fff !important;
   width: 50px;
   height: 49px;
-  line-height: 50px;
-  border: 0;
+  border: none;
   outline: none;
   color: #fff;
   z-index: 2;
@@ -1045,7 +1049,6 @@ body .acknowledgement {
   left: 0;
   width: 50px;
   height: 49px;
-  line-height: 49px;
   border: 0;
   outline: none;
   color: #fff;
@@ -1502,8 +1505,16 @@ body .dropzone .dz-message {
       background-color: rgba(255,255,255,.2);
     }
 
+    .app-drawer .app-status {
+      margin: 10px;
+    }
+
   .app-more {
     display: none;
+  }
+
+  .app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow {
+    color: #00ADE3 !important;
   }
 
   .app-menu {
