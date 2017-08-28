@@ -2070,6 +2070,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CreateComponent = (function () {
     function CreateComponent(_siteService, _appService, _router, _translate) {
         this._siteService = _siteService;
@@ -2077,6 +2078,7 @@ var CreateComponent = (function () {
         this._router = _router;
         this._translate = _translate;
         window['verifyCallback'] = this.verifyCallback.bind(this);
+        window['onloadCallback'] = this.onloadCallback.bind(this);
     }
     /**
      * Init pages
@@ -2211,6 +2213,16 @@ var CreateComponent = (function () {
         this.recaptchaResponse = response;
     };
     /**
+     * Called when the reCAPTCHA JS loads
+     */
+    CreateComponent.prototype.onloadCallback = function (response) {
+        var el = this.container.nativeElement;
+        grecaptcha.render(el, {
+            'sitekey': this.recaptchaSiteKey,
+            'callback': 'verifyCallback'
+        });
+    };
+    /**
      * Sets the language for the app
      */
     CreateComponent.prototype.setLanguage = function (language) {
@@ -2218,16 +2230,20 @@ var CreateComponent = (function () {
         // set language
         this._translate.use(language);
     };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ViewChild */])('container'),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* ElementRef */]) === "function" && _a || Object)
+    ], CreateComponent.prototype, "container", void 0);
     CreateComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
             selector: 'respond-create',
             template: __webpack_require__(442),
             providers: [__WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */], __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_services_site_service__["a" /* SiteService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_services_app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]) === "function" && _e || Object])
     ], CreateComponent);
     return CreateComponent;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=create.component.js.map
@@ -8850,7 +8866,7 @@ module.exports = "<menu class=\"app-menu\">\n\n    <button class=\"app-more\" (c
 /* 442 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n <div class=\"app-slideshow\">\n\n  <div class=\"app-slideshow-item\" *ngFor=\"let theme of themes\" [class.selected]=\"theme === selectedTheme\">\n\n    <div class=\"app-slideshow-container\">\n      <div class=\"screenshot\">\n        <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\">\n      </div>\n      <div class=\"description\">\n        <h2>{{ theme.name }}</h2>\n        <p>{{ theme.desc }}</p>\n        <p>\n          <a class=\"primary\" (click)=\"useTheme()\">{{ 'Use this Theme' | translate }}</a>\n          <a (click)=\"next()\">{{ 'Next Theme' | translate }}</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n  <!-- /.app-slideshow -->\n\n</div>\n\n<div class=\"app-theme-list\">\n\n  <h3>{{ 'All Themes' | translate }}</h3>\n\n  <div>\n    <span class=\"app-theme-image\" *ngFor=\"let theme of themes; let i = index;\" [class.selected]=\"theme === selectedTheme\">\n      <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\" (click)=\"select(i)\">\n    </span>\n  </div>\n\n  <p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>\n\n</div>\n<!-- /.app-theme-list -->\n\n\n<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #createForm=\"ngForm\">\n\n      <h2>{{ 'Create Site' | translate }}</h2>\n\n      <label>{{ 'Site Name' | translate }}</label>\n      <input type=\"text\" name=\"name\"\n        [(ngModel)]=\"model.name\"\n        ngControl=\"name\" required>\n\n\n      <label>{{ 'Email' | translate }}</label>\n      <input type=\"text\" name=\"email\"\n        [(ngModel)]=\"model.email\"\n        ngControl=\"email\" required>\n\n      <label>{{ 'Password' | translate }}</label>\n      <input type=\"password\" name=\"password\"\n        [(ngModel)]=\"model.password\"\n        ngControl=\"password\" required>\n\n      <label *ngIf=\"hasPasscode === true\">{{ 'Passcode' | translate }}</label>\n      <input type=\"text\" name=\"passcode\" *ngIf=\"hasPasscode === true\"\n        [(ngModel)]=\"model.passcode\"\n        ngControl=\"passcode\" required>\n\n      <div *ngIf=\"recaptchaSiteKey !== ''\" class=\"g-recaptcha\" [attr.data-sitekey]=\"recaptchaSiteKey\" data-callback=\"verifyCallback\"></div>\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Create' | translate }}</button>\n      </div>\n\n      <p>{{ 'By creating a site you are accepting our terms of service.' | translate }}</p>\n\n  </form>\n\n</div>\n"
+module.exports = "<div class=\"logo\"><img src=\"{{ logoUrl }}\"></div>\n\n <div class=\"app-slideshow\">\n\n  <div class=\"app-slideshow-item\" *ngFor=\"let theme of themes\" [class.selected]=\"theme === selectedTheme\">\n\n    <div class=\"app-slideshow-container\">\n      <div class=\"screenshot\">\n        <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\">\n      </div>\n      <div class=\"description\">\n        <h2>{{ theme.name }}</h2>\n        <p>{{ theme.desc }}</p>\n        <p>\n          <a class=\"primary\" (click)=\"useTheme()\">{{ 'Use this Theme' | translate }}</a>\n          <a (click)=\"next()\">{{ 'Next Theme' | translate }}</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n  <!-- /.app-slideshow -->\n\n</div>\n\n<div class=\"app-theme-list\">\n\n  <h3>{{ 'All Themes' | translate }}</h3>\n\n  <div>\n    <span class=\"app-theme-image\" *ngFor=\"let theme of themes; let i = index;\" [class.selected]=\"theme === selectedTheme\">\n      <img src=\"{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png\" (click)=\"select(i)\">\n    </span>\n  </div>\n\n  <p class=\"acknowledgement\" [innerHTML]=\"acknowledgement\"></p>\n\n</div>\n<!-- /.app-theme-list -->\n\n\n<div class=\"app-modal\" [class.visible]=\"visible === true\">\n\n  <form (ngSubmit)=\"submit()\" #createForm=\"ngForm\">\n\n      <h2>{{ 'Create Site' | translate }}</h2>\n\n      <label>{{ 'Site Name' | translate }}</label>\n      <input type=\"text\" name=\"name\"\n        [(ngModel)]=\"model.name\"\n        ngControl=\"name\" required>\n\n\n      <label>{{ 'Email' | translate }}</label>\n      <input type=\"text\" name=\"email\"\n        [(ngModel)]=\"model.email\"\n        ngControl=\"email\" required>\n\n      <label>{{ 'Password' | translate }}</label>\n      <input type=\"password\" name=\"password\"\n        [(ngModel)]=\"model.password\"\n        ngControl=\"password\" required>\n\n      <label *ngIf=\"hasPasscode === true\">{{ 'Passcode' | translate }}</label>\n      <input type=\"text\" name=\"passcode\" *ngIf=\"hasPasscode === true\"\n        [(ngModel)]=\"model.passcode\"\n        ngControl=\"passcode\" required>\n\n      <div #container id=\"recaptcha-container\" *ngIf=\"recaptchaSiteKey !== ''\" class=\"g-recaptcha\"></div>\n\n      <div class=\"actions\">\n        <a (click)=\"hide()\">{{ 'Cancel' | translate }}</a>\n        <button type=\"submit\">{{ 'Create' | translate }}</button>\n      </div>\n\n      <p>{{ 'By creating a site you are accepting our terms of service.' | translate }}</p>\n\n  </form>\n\n</div>\n"
 
 /***/ }),
 /* 443 */

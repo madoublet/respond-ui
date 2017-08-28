@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SiteService } from '../shared/services/site.service';
 import { AppService } from '../shared/services/app.service';
+import { ElementRef, ViewChild } from '@angular/core';
 
 declare var toast: any;
+declare var grecaptcha: any;
 
 @Component({
     selector: 'respond-create',
@@ -28,8 +30,11 @@ export class CreateComponent {
   acknowledgement;
   defaultLanguage: any;
 
+  @ViewChild('container') container: ElementRef;
+
   constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router, private _translate: TranslateService) {
-    window['verifyCallback'] = this.verifyCallback.bind(this)
+    window['verifyCallback'] = this.verifyCallback.bind(this);
+    window['onloadCallback'] = this.onloadCallback.bind(this)
   }
 
   /**
@@ -207,6 +212,18 @@ export class CreateComponent {
    */
   verifyCallback(response){
     this.recaptchaResponse = response;
+  }
+
+  /**
+   * Called when the reCAPTCHA JS loads
+   */
+  onloadCallback(response){
+    let el = this.container.nativeElement;
+
+    grecaptcha.render(el, {
+      'sitekey' : this.recaptchaSiteKey,
+      'callback' : 'verifyCallback'
+    });
   }
 
   /**
