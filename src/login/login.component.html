@@ -11,7 +11,9 @@
 
     <div [hidden]="!hasMultipleSites">
         <label>{{ 'Site Name' | translate }}</label>
-        <input type="text" name="site" #site>
+        <select name="site" #site>
+            <option *ngFor="let st of availableSites" value="{{st}}">{{st}}</option>
+        </select>
         <small>{{ 'You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.' | translate }}</small>
     </div>
 
