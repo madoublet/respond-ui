@@ -13,11 +13,11 @@ declare var toast: any;
 })
 
 export class LoginComponent {
-
+  availableSites = [];
   data;
   id;
   errorMessage;
-  logoUrl
+  logoUrl;
   usesLDAP = false;
   hasMultipleSites = false;
   defaultLanguage = 'en';
@@ -189,13 +189,19 @@ export class LoginComponent {
    * handles error
    */
   failure(obj) {
-
     if(obj.status == 409) {
       this.hasMultipleSites = true;
+
+      var sites = [];
+      try {
+          sites = JSON.parse(obj._body);
+      } catch (e) {}
+      this.availableSites = sites;
+
+      toast.show('failure', this._translate.instant('You have %s websites, select one for continue.').replace('%s', sites.length));
+    } else {
+      toast.show('failure');
     }
-
-    toast.show('failure');
-
   }
 
 
