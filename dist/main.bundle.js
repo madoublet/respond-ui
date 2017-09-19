@@ -3793,7 +3793,7 @@ var SettingsComponent = (function () {
      * Handles the selection of an image
      */
     SettingsComponent.prototype.select = function (event) {
-        this.setting.value = event.name;
+        this.setting.value = 'files/' + event.name;
         this.selectVisible = false;
     };
     /**
