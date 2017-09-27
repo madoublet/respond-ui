@@ -30,8 +30,8 @@
 
 </section>
 
-<respond-add-component [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-component>
+<respond-add-component [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-component>
 
-<respond-remove-component [visible]="removeVisible" [component]="component" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-component>
+<respond-remove-component [visible]="removeVisible" [component]="component" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-component>
 
-<respond-drawer active="components" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="components" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

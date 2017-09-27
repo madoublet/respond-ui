@@ -91,6 +91,13 @@ export class PageSettingsComponent {
   showSelect() {
     this.selectVisible = true;
   }
+
+  /**
+   * Handles the selection of an image
+   */
+  reset() {
+    this.selectVisible = false;
+  }
   
   /**
    * Handles the selection of an image

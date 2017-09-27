@@ -15,6 +15,7 @@ export class RemoveComponentComponent {
 
   // model to store
   model: {
+    title: '',
     url: ''
   };
 

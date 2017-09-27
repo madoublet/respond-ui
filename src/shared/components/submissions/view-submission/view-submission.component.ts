@@ -18,7 +18,9 @@ export class ViewSubmissionComponent {
   model: {
     id: '',
     name: '',
-    formId: ''
+    formId: '',
+    date: '',
+    fields: null
   };
 
   _visible: boolean = false;

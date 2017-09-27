@@ -44,19 +44,19 @@
 
 </section>
 
-<respond-add-menu [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-menu>
+<respond-add-menu [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-menu>
 
-<respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-edit-menu>
+<respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-edit-menu>
 
-<respond-remove-menu [visible]="removeVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-menu>
+<respond-remove-menu [visible]="removeVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-menu>
 
-<respond-add-menu-item [visible]="addItemVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-menu-item>
+<respond-add-menu-item [visible]="addItemVisible" [menu]="selectedMenu" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-menu-item>
 
-<respond-edit-menu-item [visible]="editItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-edit-menu-item>
+<respond-edit-menu-item [visible]="editItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-edit-menu-item>
 
-<respond-remove-menu-item [visible]="removeItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-menu-item>
+<respond-remove-menu-item [visible]="removeItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-menu-item>
 
-<respond-drawer active="menus" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="menus" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
 <nav class="app-overflow" [class.visible]="overflowVisible === true">
 
@@ -64,7 +64,7 @@
     <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
     <li><a (click)="showAdd()">{{ 'Add Menu' | translate }}</a></li>
     <li><a (click)="showEdit()">{{ 'Edit Menu' | translate }}</a></li>
-    <li><a (click)="showRemove()">{{ 'Remove Menu' | translate }}</a></li>
+    <li><a (click)="showRemove(selectedMenu)">{{ 'Remove Menu' | translate }}</a></li>
   </ul>
 
 </nav>
