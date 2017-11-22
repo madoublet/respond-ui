@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GalleryService } from '../../../../shared/services/gallery.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-edit-gallery',
     templateUrl: 'edit-gallery.component.html',
@@ -77,8 +75,6 @@ export class EditGalleryComponent {
    * Handles a successful edit
    */
   success() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onUpdate.emit(null);

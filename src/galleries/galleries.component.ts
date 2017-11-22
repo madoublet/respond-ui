@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GalleryService } from '../shared/services/gallery.service';
 import { GalleryImageService } from '../shared/services/gallery-image.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-galleries',
     templateUrl: 'galleries.component.html',
-    providers: [GalleryService, GalleryImageService]
+    providers: [GalleryService, GalleryImageService, AppService]
 })
 
 export class GalleriesComponent {
@@ -29,7 +28,7 @@ export class GalleriesComponent {
   drawerVisible: boolean;
   overflowVisible: boolean;
 
-  constructor (private _galleryService: GalleryService, private _galleryImageService: GalleryImageService, private _router: Router) {}
+  constructor (private _galleryService: GalleryService, private _galleryImageService: GalleryImageService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -201,7 +200,7 @@ export class GalleriesComponent {
 
    this._galleryImageService.add(event.name, event.url, event.thumb, caption, this.selectedGallery.id)
                    .subscribe(
-                     data => { this.listImages(); toast.show('success'); },
+                     data => { this.listImages(); this._appService.showToast('success', null); },
                      error => { this.failure(<any>error); }
                     );
 
@@ -282,7 +281,7 @@ export class GalleriesComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

@@ -2,10 +2,13 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { TranslateService } from '@ngx-translate/core';
+
+declare var toast: any;
 
 @Injectable()
 export class AppService {
-  constructor (private http: Http) {}
+  constructor (private http: Http, private translate: TranslateService) {}
 
 
   private _settingsUrl = 'api/app/settings';
@@ -17,7 +20,6 @@ export class AppService {
 
   /**
    * Retrieve settings for the application
-   *
    */
   retrieveSettings () {
 
@@ -27,7 +29,6 @@ export class AppService {
 
   /**
    * Lists themes in the application
-   *
    */
   listThemes () {
 
@@ -37,11 +38,32 @@ export class AppService {
 
   /**
    * Lists languages available to the application
-   *
    */
   listLanguages () {
 
     return this.http.get(this._languagesListUrl).map((res:Response) => res.json());
+
+  }
+
+  /**
+   * Shows the system toast
+   */
+  showToast (type: string, text: string) {
+    
+
+    if(type == 'failure'  && text == null) {
+      text = 'Sorry, you encountered an error. Contact your site administrator if the problem continues.'
+    }
+    else if(type == 'success'  && text == null) {
+      text = 'Success!';
+    }
+    else {
+      text = '';
+    }
+
+    this.translate.get(text).subscribe((res: string) => {
+      toast.show(type, res);
+    });
 
   }
 

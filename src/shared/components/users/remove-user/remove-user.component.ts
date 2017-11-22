@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../../../shared/services/user.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-remove-user',
     templateUrl: 'remove-user.component.html',

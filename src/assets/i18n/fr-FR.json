@@ -106,5 +106,6 @@
 	"View Site": "Voir le site",
 	"Re-publish plugins": "Générer de nouveau les plugins",
 	"Re-publish sitemap": "Générer de nouveau le plan du site",
-    "All themes": "Tous les thèmes"
+	"All themes": "Tous les thèmes",
+	"Success!": "Succès!"
 }

@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from '../shared/services/page.service';
-
-declare var toast: any;
-declare var __moduleName: string;
+import { TranslateService } from '@ngx-translate/core';
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-pages',
     templateUrl: 'pages.component.html',
-    providers: [PageService]
+    providers: [PageService, AppService]
 })
 
 export class PagesComponent {
@@ -25,7 +24,7 @@ export class PagesComponent {
   settingsVisible: boolean = false;
   search: string = null;
 
-  constructor (private _pageService: PageService, private _router: Router) {}
+  constructor (private _pageService: PageService, private _router: Router, private _translate: TranslateService, private _appService: AppService) {}
 
   /**
    * Init pages
@@ -43,7 +42,7 @@ export class PagesComponent {
     this.filteredPages = [];
     this.search = null;
 
-    this.list();
+    this.list('load');
 
   }
 
@@ -57,7 +56,11 @@ export class PagesComponent {
   /**
    * Updates the list
    */
-  list() {
+  list(source) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
     this._pageService.list()
@@ -178,10 +181,9 @@ export class PagesComponent {
    * handles error
    */
   failure (obj) {
-    console.log(obj);
-
-    toast.show('failure');
-
+    
+    this._appService.showToast('failure', obj._body);
+    
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );
     }

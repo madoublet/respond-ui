@@ -3,8 +3,6 @@ import { PageService } from '../../../../shared/services/page.service';
 import { SiteService } from '../../../../shared/services/site.service';
 import { RouteService } from '../../../../shared/services/route.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-page-settings',
     templateUrl: 'page-settings.component.html',
@@ -80,7 +78,7 @@ export class PageSettingsComponent {
     this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.tags, this.model.callout, this.model.language, this.model.direction, this.model.template, this.model.customHeader, this.model.customFooter, this.model.photo, this.model.thumb, this.model.location)
                      .subscribe(
                        data => { this.success(); },
-                       error =>  { this.errorMessage = <any>error; this.error() }
+                       error =>  { this.errorMessage = this.onError.emit(<any>error); }
                       );
 
   }
@@ -113,22 +111,9 @@ export class PageSettingsComponent {
    */
   success() {
 
-    toast.show('success');
-
     this._visible = false;
     this.onUpdate.emit(null);
 
   }
-
-  /**
-   * Handles an error
-   */
-  error() {
-
-    console.log('[respond.error] ' + this.errorMessage);
-    toast.show('failure');
-
-  }
-
 
 }

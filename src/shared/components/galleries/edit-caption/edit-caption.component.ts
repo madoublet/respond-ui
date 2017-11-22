@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GalleryImageService } from '../../../../shared/services/gallery-image.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-edit-caption',
     templateUrl: 'edit-caption.component.html',
@@ -89,8 +87,6 @@ export class EditCaptionComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onAdd.emit(null);

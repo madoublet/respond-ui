@@ -5,7 +5,6 @@ import { SiteService } from '../shared/services/site.service';
 import { AppService } from '../shared/services/app.service';
 import { ElementRef, ViewChild } from '@angular/core';
 
-declare var toast: any;
 declare var grecaptcha: any;
 
 @Component({
@@ -183,8 +182,8 @@ export class CreateComponent {
    */
   success() {
 
-    toast.show('success');
-
+    this._appService.showToast('success', null);
+    
     this._router.navigate( ['/login', this.site.id] );
 
     // clear model
@@ -202,9 +201,7 @@ export class CreateComponent {
    * handles errors
    */
   failure(obj) {
-
-    toast.show('failure');
-
+    this._appService.showToast('failure', obj._body);
   }
 
   /**

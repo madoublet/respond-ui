@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentService } from '../shared/services/component.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AppService } from '../shared/services/app.service';
 
-declare var toast: any;
 declare var __moduleName: string;
 
 @Component({
     selector: 'respond-components',
     templateUrl: 'components.component.html',
-    providers: [ComponentService]
+    providers: [ComponentService, AppService]
 })
 
 export class ComponentsComponent {
@@ -22,7 +23,7 @@ export class ComponentsComponent {
   removeVisible: boolean = false;
   drawerVisible: boolean = false;
 
-  constructor (private _componentService: ComponentService, private _router: Router) {}
+  constructor (private _componentService: ComponentService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -37,14 +38,18 @@ export class ComponentsComponent {
     this.component = {};
     this.components = [];
 
-    this.list();
+    this.list('load');
 
   }
 
   /**
    * Updates the list
    */
-  list() {
+  list(source) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
     this._componentService.list()
@@ -129,9 +134,8 @@ export class ComponentsComponent {
    * handles error
    */
   failure (obj: any) {
-    console.log(obj);
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

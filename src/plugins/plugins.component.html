@@ -11,7 +11,7 @@
   <respond-dropzone url="/api/plugins/upload" (onAdd)="list()"></respond-dropzone>
 
   <div id="plugins-list" class="app-list">
-    <div class="app-list-item" *ngFor="let  plugin of plugins" (click)="setActive(plugin)" [class.selected]="plugin === selectedPlugin">
+    <div class="app-list-item" *ngFor="let  plugin of plugins" (mouseenter)="setActive(plugin)" (click)="setActive(plugin)" [class.selected]="plugin === selectedPlugin">
       <h2><span class="icon" [innerHTML]="plugin.display"></span> <span class="primary">{{ plugin.title }}</span></h2>
       <div class="app-list-actions">
           <a (click)="showRemove(plugin)">{{ 'Remove' | translate }}</a>

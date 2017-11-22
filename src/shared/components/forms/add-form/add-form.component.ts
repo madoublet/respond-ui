@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormService } from '../../../../shared/services/form.service';
-
-declare var toast: any;
+import { AppService } from '../../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-add-form',
     templateUrl: 'add-form.component.html',
-    providers: [FormService]
+    providers: [FormService, AppService]
 })
 
 export class AddFormComponent {
@@ -51,7 +50,7 @@ export class AddFormComponent {
   @Output() onAdd = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _formService: FormService) {}
+  constructor (private _formService: FormService, private _appService: AppService) {}
 
   /**
    * Init
@@ -86,7 +85,7 @@ export class AddFormComponent {
    */
   success() {
 
-    toast.show('success');
+    this._appService.showToast('success', '');
 
     this._visible = false;
     this.onAdd.emit(null);

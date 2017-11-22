@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../../../shared/services/user.service';
 import { AppService } from '../../../../shared/services/app.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-add-user',
     templateUrl: 'add-user.component.html',
@@ -88,7 +86,9 @@ export class AddUserComponent {
 
     if(this.model.password != this.model.retype) {
       console.log('[respond.error] password mismatch');
-      toast.show('failure', 'The password does not match the retype field');
+      
+      this._appService.showToast('failure', 'The password does not match the retype field');
+
       return;
     }
 
@@ -105,8 +105,6 @@ export class AddUserComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onAdd.emit(null);

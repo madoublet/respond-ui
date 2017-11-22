@@ -3,8 +3,6 @@ import { PageService } from '../../../../shared/services/page.service';
 import { SiteService } from '../../../../shared/services/site.service';
 import { RouteService } from '../../../../shared/services/route.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-add-page',
     templateUrl: 'add-page.component.html',
@@ -103,8 +101,6 @@ export class AddPageComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
 
     // set processing
     this.processing = false;

@@ -1,21 +1,25 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal-background" [class.visible]="visible === true">
 
-  <form (ngSubmit)="submit()" #removeForm="ngForm">
+  <div class="app-modal" [class.visible]="visible === true">
 
-    <h2>{{ 'Remove Menu' | translate }}</h2>
+    <form (ngSubmit)="submit()" #removeForm="ngForm">
 
-    <p>{{ 'Confirm you want to remove:' | translate }}</p>
+      <h2>{{ 'Remove Menu' | translate }}</h2>
 
-    <div class="to-be-removed">
-      <h3>{{model.name}}</h3>
-      <p>{{model.id}}</p>
-    </div>
+      <p>{{ 'Confirm you want to remove:' | translate }}</p>
 
-    <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Remove' | translate }}</button>
-    </div>
+      <div class="to-be-removed">
+        <h3>{{model.name}}</h3>
+        <p>{{model.id}}</p>
+      </div>
 
-  </form>
+      <div class="actions">
+        <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+        <button type="submit">{{ 'Remove' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
 
 </div>

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingService } from '../shared/services/setting.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-settings',
     templateUrl: 'settings.component.html',
-    providers: [SettingService]
+    providers: [SettingService, AppService]
 })
 
 export class SettingsComponent {
@@ -20,7 +19,7 @@ export class SettingsComponent {
   drawerVisible: boolean;
   selectVisible: boolean;
 
-  constructor (private _settingService: SettingService, private _router: Router) {}
+  constructor (private _settingService: SettingService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -87,7 +86,7 @@ export class SettingsComponent {
    * Handles success
    */
   success() {
-    toast.show('success');
+    this._appService.showToast('success', '');
   }
 
   /**
@@ -121,7 +120,7 @@ export class SettingsComponent {
    */
   failure (obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

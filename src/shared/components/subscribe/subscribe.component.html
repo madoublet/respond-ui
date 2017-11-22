@@ -1,0 +1,9 @@
+<a class="app-status status-trial" *ngIf="status == 'Trial'" (click)="checkout()">
+  <p>{{ 'Trial started.' | translate }} {{ daysRemaining }} <span>{{ 'days remaining.' | translate }} {{ 'Activate now.' | translate }}</span></p>
+  <i class="material-icons">keyboard_arrow_right</i>
+</a>
+
+<a class="app-status status-expired" *ngIf="status == 'Expired'" (click)="checkout()">
+  <p>{{ 'Subscription expired.' | translate }} {{ 'Activate now.' | translate }}</p>
+  <i class="material-icons">keyboard_arrow_right</i>
+</a>

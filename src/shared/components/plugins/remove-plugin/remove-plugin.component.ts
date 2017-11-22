@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SiteService } from '../../../../shared/services/site.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-remove-plugin',
     templateUrl: 'remove-plugin.component.html',

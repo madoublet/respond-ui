@@ -11,8 +11,8 @@
 <section class="app-main">
 
   <div id="users-list" class="app-list">
-    <div class="app-list-item" *ngFor="let user of users" (click)="setActive(user)" [class.selected]="user === selectedUser">
-      <h2><span class="primary">{{ user.firstName }} {{ user.lastName }}</span></h2>
+    <div class="app-list-item" *ngFor="let user of users" (mouseenter)="setActive(user)" (click)="setActive(user)" [class.selected]="user === selectedUser">
+      <h2><span class="primary"><a (click)="showEdit(user)" >{{ user.firstName }} {{ user.lastName }}</a></span></h2>
       <small>{{ user.email }}</small>
       <div class="app-list-actions">
           <a (click)="showRemove(user)">{{ 'Remove' | translate }}</a>

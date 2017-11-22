@@ -22,8 +22,8 @@
 
 
   <div id="items-list" class="app-list">
-    <div class="app-list-item" *ngFor="let item of items" (click)="setItemActive(item)" [class.selected]="item === selectedItem">
-      <h2><span class="primary">{{ item.html }}</span></h2>
+    <div class="app-list-item" *ngFor="let item of items" (mouseenter)="setItemActive(item)" (click)="setItemActive(item)" [class.selected]="item === selectedItem">
+      <h2><span class="primary"><a (click)="showEditItem(item)">{{ item.html }}</a></span></h2>
       <small>{{ item.url }}</small>
       <div class="app-list-actions">
           <span class="app-list-alternate-actions">
@@ -46,15 +46,15 @@
 
 <respond-add-menu [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-menu>
 
-<respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-edit-menu>
+<respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list('edit')" (onError)="failure($event)"></respond-edit-menu>
 
-<respond-remove-menu [visible]="removeVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-menu>
+<respond-remove-menu [visible]="removeVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-menu>
 
-<respond-add-menu-item [visible]="addItemVisible" [menu]="selectedMenu" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-menu-item>
+<respond-add-menu-item [visible]="addItemVisible" [menu]="selectedMenu" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-menu-item>
 
-<respond-edit-menu-item [visible]="editItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-edit-menu-item>
+<respond-edit-menu-item [visible]="editItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onAdd)="list('edit')" (onError)="failure($event)"></respond-edit-menu-item>
 
-<respond-remove-menu-item [visible]="removeItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-menu-item>
+<respond-remove-menu-item [visible]="removeItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-menu-item>
 
 <respond-drawer active="menus" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 

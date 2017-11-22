@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormService } from '../../../../shared/services/form.service';
-
-declare var toast: any;
+import { AppService } from '../../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-edit-form',
     templateUrl: 'edit-form.component.html',
-    providers: [FormService]
+    providers: [FormService, AppService]
 })
 
 export class EditFormComponent {
@@ -41,7 +40,7 @@ export class EditFormComponent {
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _formService: FormService) {}
+  constructor (private _formService: FormService, private _appService: AppService) {}
 
   /**
    * Init
@@ -85,8 +84,6 @@ export class EditFormComponent {
    */
   success() {
 
-    toast.show('success');
-
     this._visible = false;
     this.onUpdate.emit(null);
 
@@ -98,7 +95,7 @@ export class EditFormComponent {
   error() {
 
     console.log('[respond.error] ' + this.errorMessage);
-    toast.show('failure');
+    this._appService.showToast('failure', '');
 
   }
 

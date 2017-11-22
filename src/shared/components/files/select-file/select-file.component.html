@@ -1,19 +1,23 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal-background" [class.visible]="visible === true">
 
-  <h2>{{ 'Select File' | translate }}</h2>
+  <div class="app-modal" [class.visible]="visible === true">
 
-  <respond-dropzone (onAdd)="list()"></respond-dropzone>
+    <h2>{{ 'Select File' | translate }}</h2>
 
-  <div id="files-list" class="app-modal-list">
-    <div class="app-modal-list-item" *ngFor="let file of files" (click)="select(file)" [class.image]="file.thumb !== ''">
-      <h2><span class="primary">{{ file.name }}</span></h2>
-      <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
-      <small>/files/{{ file.name }}</small>
+    <respond-dropzone (onAdd)="list()"></respond-dropzone>
+
+    <div id="files-list" class="app-modal-list">
+      <div class="app-modal-list-item" *ngFor="let file of files" (click)="select(file)" [class.image]="file.thumb !== ''">
+        <h2><span class="primary">{{ file.name }}</span></h2>
+        <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
+        <small>/files/{{ file.name }}</small>
+      </div>
     </div>
-  </div>
 
-  <div class="actions">
-    <a (click)="hide()" class="primary">{{ 'Cancel' | translate }}</a>
+    <div class="actions">
+      <a (click)="hide()" class="primary">{{ 'Cancel' | translate }}</a>
+    </div>
+
   </div>
 
 </div>

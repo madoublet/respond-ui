@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CodeService } from '../shared/services/code.service';
+import { AppService } from '../shared/services/app.service';
 
-declare var toast: any;
 declare var ace: any;
 
 @Component({
     selector: 'respond-code',
     templateUrl: 'code.component.html',
-    providers: [CodeService],
+    providers: [CodeService, AppService],
 })
 
 export class CodeComponent {
@@ -32,8 +32,9 @@ export class CodeComponent {
   isPluginsExpanded: boolean;
   isComponentsExpanded: boolean;
   addVisible: boolean = false;
+  drawerVisible: boolean = false;
 
-  constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService) {}
+  constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService, private _appService: AppService) {}
 
   /**
    * init
@@ -48,6 +49,7 @@ export class CodeComponent {
     this.codeType = localStorage.getItem('respond.codeType');
     this.showMenu = true;
     this.addVisible = false;
+    this.drawerVisible = false;
 
     // get types
     this.pages = [];
@@ -103,6 +105,13 @@ export class CodeComponent {
 
   }
 
+  /**
+   * Shows the drawer
+   */
+  toggleDrawer() {
+    this.drawerVisible = !this.drawerVisible;
+  }
+
    /**
    * determines which area is expanded by default
    */
@@ -137,13 +146,11 @@ export class CodeComponent {
   }
 
   /**
-   * navigates back
+   * Navigates back
    */
-   back() {
-
-     history.go(-1);
-
-   }
+  back() {
+    history.go(-1);
+  }
 
   /**
    * Updates the list
@@ -246,7 +253,7 @@ export class CodeComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
     //  this._router.navigate( ['/login'] );
@@ -259,7 +266,7 @@ export class CodeComponent {
    */
   success() {
 
-    toast.show('success');
+    this._appService.showToast('success', null);
 
   }
 
@@ -274,21 +281,6 @@ export class CodeComponent {
                        data => { this.success(); this.list(); },
                        error =>  { this.failure(<any>error); }
                       );
-
-  }
-
-  /**
-   * Save the code and go back
-   */
-  saveAndExit() {
-
-    // save code from the editor
-    this._codeService.save(this.editor.getValue(), this.codeUrl, this.codeType)
-                     .subscribe(
-                       data => { this.success(); history.go(-1); },
-                       error =>  { this.failure(<any>error); }
-                      );
-
 
   }
 

@@ -11,7 +11,7 @@
   <respond-dropzone (onAdd)="list()"></respond-dropzone>
 
   <div id="files-list" class="app-list">
-    <div class="app-list-item" *ngFor="let  file of files" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
+    <div class="app-list-item" *ngFor="let  file of files" (mouseenter)="setActive(file)" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
       <h2><span class="primary">{{ file.name }}</span><span class="secondary">{{ file.size }} MB</span></h2>
       <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
       <small>/files/{{ file.name }}</small>

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FileService } from '../../../../shared/services/file.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-select-file',
     templateUrl: 'select-file.component.html',

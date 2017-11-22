@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormService } from '../shared/services/form.service';
 import { FormFieldService } from '../shared/services/form-field.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-forms',
     templateUrl: 'forms.component.html',
-    providers: [FormService, FormFieldService]
+    providers: [FormService, FormFieldService, AppService]
 })
 
 export class FormsComponent {
@@ -29,7 +28,7 @@ export class FormsComponent {
   drawerVisible: boolean;
   overflowVisible: boolean;
 
-  constructor (private _formService: FormService, private _formFieldService: FormFieldService, private _router: Router) {}
+  constructor (private _formService: FormService, private _formFieldService: FormFieldService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -262,7 +261,7 @@ export class FormsComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

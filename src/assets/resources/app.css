@@ -1,4 +1,4 @@
-/* css */
+/* app.css */
 html {
   width: 100%;
   height: 100%;
@@ -100,6 +100,12 @@ body .app-main {
     color: #888;
   }
 
+body .edit-main {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 /* .edit-frame */
 body .edit-frame {
   position: relative;
@@ -111,9 +117,18 @@ body .edit-frame {
 
 /* .app-search */
 body .app-search {
+  position: relative;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 30px;
 }
+
+  body .app-search i {
+    color: #ddd;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 20px;
+  }
 
   body .app-search input[type=search] {
     box-sizing: border-box;
@@ -172,6 +187,11 @@ body .app-list {
     padding: 0;
   }
 
+    body .app-list-item h2 a {
+      color: #00ADE3;
+      font-weight: bold;
+    }
+
     body .app-list-item h2 svg.location, body .app-list-item h2 svg.component {
       height: 15px;
       fill: currentColor;
@@ -182,13 +202,13 @@ body .app-list {
     display: block;
     margin: 10px 0 5px 0;
     font-size: 11px;
-    color: #00ADE3;
+    color: #AAA;
     text-transform: uppercase;
   }
 
   body .app-list-item h2 span.secondary {
     font-weight: normal;
-    color: #888;
+    color: #AAA;
     text-transform: uppercase;
     float: right;
     font-size: 11px;
@@ -196,7 +216,7 @@ body .app-list {
 
   body .app-list-item p {
     font-weight: 400;
-    color: #aaa;
+    color: #888;
     margin: 0 0 2px 0;
     padding: 0;
     line-height: 18px;
@@ -249,12 +269,12 @@ body .app-list {
   }
 
   body .app-list-item .app-list-actions a {
-    text-transform: uppercase;
-    font-size: 13px;
+    font-size: 14px;
     display: inline-block;
     margin-left: 15px;
     text-decoration: none;
     padding-top: 10px;
+    text-transform: uppercase;
   }
 
   body .app-list-item .app-list-actions a.primary {
@@ -350,76 +370,133 @@ body .app-list {
     background-color: #f8f8f8;
   }
 
-  .app-drawer .app-status {
-    position: fixed;
-    width: calc(100% - 20px);
-    bottom: 0;
-    margin: 10px 10px 0 10px;
-    width: 230px;
-    padding: 10px;
-    background: #fff;
+  .app-drawer li a {
+    position: relative;
+    padding-left: 52px;
   }
 
-  .app-drawer .app-status h3, .app-drawer .app-status p {
-    font-size: 13px;
-    margin: 5px 0 0 0;
-    padding: 0;
-    color: #00ADE3;
+  .app-drawer li a i {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    display: inline-block;
+    font-size: 18px;
   }
-
-    .app-drawer .app-status h3 {
-      margin-top: 0;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .app-drawer .app-status i {
-      position: absolute;
-      top: 12px;
-      right: 0;
-      font-size: 30px;
-      color: #00ADE3;
-    }
-
-    .app-drawer .app-status.trial-expired h3, .app-drawer .app-status.trial-expired p, .app-drawer .app-status.trial-expired i {
-      color: #ED4747;
-    }
 
 /* app-toast */
 .app-toast {
   font-family: 'Helvetica', 'Arial', 'sans-serif';
   position: fixed;
   z-index: 1002;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
   background-color: #fff;
   margin: 0;
-  text-align: center;
-  padding: 0;
+  text-align: left;
+  padding: 20px 40px;
+  line-height: 20px;
   color: #FFF;
   background-color: #345A6F;
-  text-transform: uppercase;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
   z-index: 100005;
   visibility: hidden;
   opacity: 0;
-  transition: all 0.25s ease;
+  transition: all 0.1s ease;
+  border-radius: 0.24rem;
+  cursor: pointer;
 }
 
+  .app-toast .toast-icon {
+    position: absolute;
+    top: 19px;
+    left: 10px;
+    font-size: 20px;
+  }
+
+  .app-toast .toast-close {
+    position: absolute;
+    top: 19px;
+    right: 10px;
+    font-size: 20px;
+  }
+
   .app-toast[success] {
-    background-color: #88C425;
+    background-color: #dff0d8;
+    border: 1px solid #d0e9c6;
+    color: #36763d;
   }
 
   .app-toast[failure] {
-    background-color: #ED4747;
+    border: 1px solid #CF4647;
+    background-color: #FCF6F6;
+    color: #CF4647;
   }
 
   .app-toast[active] {
     visibility: visible;
     opacity: 1;
+  }
+
+.app-status {
+  display: block;
+  position: relative;
+  padding: 15px 20px;
+}
+
+  body .app-main .app-status p {
+    margin: 0;
+    padding: 0;
+  }
+
+.app-status i {
+  color: #ddd;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 20px;
+}
+
+.app-status.status-trial {
+  background-color: #dff0d8;
+  border-top: 1px solid #ddd;
+  color: #36763d;
+}
+
+  body .app-main .app-status.status-trial p {
+    color: #36763d;
+  }
+
+  .app-status.status-trial i { 
+    color: #36763d;
+  }
+
+.app-status.status-expired {
+  background-color: #FCF6F6;
+  border-top: 1px solid #ddd;
+  color: #CF4647;
+}
+
+  body .app-main .app-status.status-expired p {
+    color: #CF4647;
+  }
+
+  .app-status.status-expired i { 
+    color: #CF4647;
+  }
+
+/* modal background */
+.app-modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10001;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+  
+  .app-modal-background.visible {
+    display: block;
   }
 
 /* modal */
@@ -968,6 +1045,27 @@ body .acknowledgement {
   padding-bottom: 15px;
 }
 
+/* app footer */
+.app-footer {
+  font-family: 'Open Sans', 'Helvetica', 'Arial', 'sans-serif';
+  position: fixed;
+  z-index: 1002;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  text-align: right;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+  .app-footer a {
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 50px;
+    margin-right: 20px;
+  }
+
 /* app-menu */
 .app-menu {
   font-family: 'Open Sans', 'Helvetica', 'Arial', 'sans-serif';
@@ -1017,7 +1115,7 @@ body .acknowledgement {
   }
 
 /* save */
-.app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow {
+.app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow, .app-alt-action {
   position: fixed;
   top: 0;
   right: 0;
@@ -1032,7 +1130,28 @@ body .acknowledgement {
   cursor: pointer;
 }
 
+/* back */
+.app-menu .app-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 49px;
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  color: #fff;
+  z-index: 2;
+  background-color: transparent;
+  line-height: 0;
+  cursor: pointer;
+}
+
 .app-menu .app-add.position-2{
+  right: 50px;
+}
+
+.app-menu .app-alt-action {
   right: 50px;
 }
 
@@ -1092,42 +1211,6 @@ body .acknowledgement {
   margin: 0 auto;
   width: 40%;
   fill: currentColor;
-}
-
-/* app-toast */
-.app-toast {
-  font-family: 'Helvetica','Arial','sans-serif';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  background-color: #fff;
-  margin: 0;
-  text-align: center;
-  padding: 0;
-  color: #FFF;
-  z-index: 100005;
-  margin-top: -50px;
-  transition: all .25s ease;
-}
-
-.app-toast svg{
-  fill: currentColor;
-  margin-top: 12px;
-}
-
-.app-toast[success] {
-  background-color: #88C425;
-}
-
-.app-toast[failure] {
-  background-color: #ED4747;
-}
-
-.app-toast[active] {
-  margin-top: 0;
 }
 
 /* details table */
@@ -1259,9 +1342,9 @@ body .dropzone .dz-message {
 /* code */
 .code-editor {
   display: block;
-  margin: 50px 0 50px 200px;
+  margin: 0 0 50px 200px;
   width: calc(100vw - 200px);
-  height: calc(100vh - 100px);
+  height: calc(100vh - 50px);
 }
 
   .code-editor.expanded {
@@ -1274,7 +1357,7 @@ body .dropzone .dz-message {
   position: fixed;
   z-index: 1002;
   top: 50px;
-  left: 0;
+  left: 250px;
   height: calc(100% - 100px);
   width: 200px;
   background-color: #fff;
@@ -1349,107 +1432,7 @@ body .dropzone .dz-message {
     display: block;
   }
 
-/* interior menu */
-.app-interior-menu {
-  position: fixed;
-  z-index: 10002;
-  top: 0;
-  left: 0;
-  height: 50px;
-  width: 100%;
-  background-color: rgba(255,255,255,1);
-  margin: 0;
-  padding: 0 0 0 50px;
-  color: #2F3243;
-  border-bottom: 1px solid #DDD;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -ms-overflow-style: none;
-  box-shadow: 2px 2px 5px rgba(0,0,0,.1);
-}
-
-  .app-interior-menu h2 {
-    height: 20px;
-    line-height: 20px;
-    font-size: 15px;
-    text-transform: uppercase;
-    margin: 14px 0;
-    padding: 0;
-    color: #555;
-  }
-
-  .app-interior-menu .app-add {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: #fff;
-    color: #00ADE3 !important;
-    width: 50px;
-    height: 49px;
-    line-height: 50px;
-    border: 0;
-    outline: none;
-    color: #fff;
-    z-index: 2;
-    cursor: pointer;
-  }
-
-    .app-interior-menu .app-add  svg {
-      fill: currentColor;
-    }
-
-  /* back */
-  .app-interior-menu .app-back {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 49px;
-    border: 0;
-    outline: none;
-    font-size: 20px;
-    color: #2F3243;
-    z-index: 2;
-    background-color: transparent;
-    line-height: 0;
-    cursor: pointer;
-  }
-
-/* interior menu */
-.app-interior-menu-alternate {
-  font-family: 'Helvetica','Arial','sans-serif';
-  position: fixed;
-  z-index: 10002;
-  bottom: 0;
-  left: 0;
-  height: 50px;
-  width: calc(100% - 20px);
-  background-color: rgba(255,255,255,1);
-  margin: 0;
-  padding: 0 10px;
-  color: #2F3243;
-  border-top: 1px solid #DDD;
-  text-align: right;
-}
-
-  .app-interior-menu-alternate button {
-    display: inline-block;
-    color: #00ADE3;
-    border: none;
-    background: none;
-    height: 40px;
-    margin: 5px 10px 5px 10px;
-    line-height: 40px;
-    text-transform: uppercase;
-  }
-
-  .app-interior-menu-alternate button.alternate {
-    float: left;
-  }
-
-  .app-interior-menu-alternate button.primary {
-    font-weight: bold;
-  }
+  
 
 /* no items */
 .no-list-items {}
@@ -1461,6 +1444,10 @@ body .dropzone .dz-message {
 @media (min-width:768px) {
 
   body .app-main {
+    padding-left: 250px;
+  }
+
+  body .edit-main {
     padding-left: 250px;
   }
 
@@ -1505,16 +1492,18 @@ body .dropzone .dz-message {
       background-color: rgba(255,255,255,.2);
     }
 
-    .app-drawer .app-status {
-      margin: 10px;
-    }
-
   .app-more {
     display: none;
   }
 
-  .app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow {
+  /* top app menu */
+  .app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow, .app-menu .app-alt-action {
     color: #00ADE3 !important;
+  }
+
+  .app-menu .app-back {
+    left: 260px;
+    color: #111;
   }
 
   .app-menu {
@@ -1524,17 +1513,20 @@ body .dropzone .dz-message {
     color: #111;
   }
 
+    .app-menu.has-back h1 {
+      margin-left: 60px;
+    }
+
     .app-menu h1{
       color: #000;
       font-weight: bold;
     }
 
-    .app-menu .app-add, .app-menu .app-overflow {
+    .app-menu .app-add, .app-menu .app-overflow, .app-menu .app-alt-action {
       background-color: #fff;
       color: #00ADE3;
       box-shadow: none;
     }
-
 
   body .app-modal {
     font-family: 'Helvetica', 'Arial', 'sans-serif';

@@ -1,5 +1,5 @@
 <menu class="app-menu">
-
+  
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
     
     <h1>{{ 'Pages' | translate }}</h1>
@@ -11,13 +11,16 @@
 <section class="app-main">
 
   <div class="app-search">
+    <i class="material-icons">search</i>
     <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or URL' | translate }}">
   </div>
 
+  <respond-subscribe></respond-subscribe>
+
   <div id="pages-list" class="app-list">
-    <div class="app-list-item" *ngFor="let page of filteredPages" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">
+    <div class="app-list-item" *ngFor="let page of filteredPages" (mouseenter)="setActive(page)" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">
       <h2>
-        <span class="primary">{{ page.title }}</span>
+        <span class="primary"><a (click)="edit(page)">{{ page.title }}</a></span>
         <svg *ngIf="page.location && (page.location !== '')" xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24" class="location">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             <path d="M0 0h24v24H0z" fill="none"/>
@@ -42,10 +45,11 @@
 
 </section>
 
-<respond-add-page [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-page>
+<respond-add-page [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-page>
 
-<respond-page-settings [visible]="settingsVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-page-settings>
+<respond-page-settings [visible]="settingsVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list('update')" (onError)="failure($event)"></respond-page-settings>
 
-<respond-remove-page [visible]="removeVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-page>
+<respond-remove-page [visible]="removeVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-page>
 
 <respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+  

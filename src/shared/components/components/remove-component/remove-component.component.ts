@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentService } from '../../../../shared/services/component.service';
-
-declare var toast: any;
+import { AppService } from '../../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-remove-component',
     templateUrl: 'remove-component.component.html',
-    providers: [ComponentService]
+    providers: [ComponentService, AppService]
 })
 
 export class RemoveComponentComponent {
@@ -43,7 +42,7 @@ export class RemoveComponentComponent {
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _componentService: ComponentService) {}
+  constructor (private _componentService: ComponentService, private _appService: AppService) {}
 
   /**
    * Init
@@ -80,6 +79,8 @@ export class RemoveComponentComponent {
 
     this._visible = false;
     this.onUpdate.emit(null);
+
+    this._appService.showToast('success', '');
 
   }
 

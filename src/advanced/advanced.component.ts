@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SiteService } from '../shared/services/site.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-advanced',
     templateUrl: 'advanced.component.html',
-    providers: [SiteService]
+    providers: [SiteService, AppService]
 })
 
 export class AdvancedComponent {
@@ -20,7 +19,7 @@ export class AdvancedComponent {
   drawerVisible: boolean = false;
   settingsVisible: boolean = false;
 
-  constructor (private _siteService: SiteService, private _router: Router) {}
+  constructor (private _siteService: SiteService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init pages
@@ -74,8 +73,12 @@ export class AdvancedComponent {
 
     this._siteService.reload()
                      .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                       data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                       error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
 
   }
@@ -86,9 +89,13 @@ export class AdvancedComponent {
   reindex() {
 
     this._siteService.reindex()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                        error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
 
   }
@@ -98,9 +105,13 @@ export class AdvancedComponent {
    */
   sitemap() {
     this._siteService.sitemap()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                        error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
   }
 
@@ -109,9 +120,13 @@ export class AdvancedComponent {
    */
   migrate() {
     this._siteService.migrate()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                        error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
   }
 
@@ -120,9 +135,13 @@ export class AdvancedComponent {
    */
   templates() {
     this._siteService.republishTemplates()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                        error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
   }
 
@@ -131,9 +150,13 @@ export class AdvancedComponent {
    */
   update() {
     this._siteService.updatePlugins()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                        error => { 
+                        this._appService.showToast('failure', null); 
+                      }
                       );
   }
 
@@ -144,8 +167,7 @@ export class AdvancedComponent {
   failure (obj) {
 
     console.log(obj);
-
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CodeService } from '../../../../shared/services/code.service';
-
-declare var toast: any;
+import { AppService } from '../../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-add-code',
     templateUrl: 'add-code.component.html',
-    providers: [CodeService]
+    providers: [CodeService, AppService]
 })
 
 export class AddCodeComponent {
@@ -37,7 +36,7 @@ export class AddCodeComponent {
   @Output() onAdd = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _codeService: CodeService) {}
+  constructor (private _codeService: CodeService, private _appService: AppService) {}
 
   /**
    * Init
@@ -71,9 +70,7 @@ export class AddCodeComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
-
+    
     this._visible = false;
     this.onAdd.emit(null);
 
@@ -83,8 +80,6 @@ export class AddCodeComponent {
    * Handles a successful upload
    */
   uploaded() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onAdd.emit(null);

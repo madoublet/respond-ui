@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from '../shared/services/menu.service';
 import { MenuItemService } from '../shared/services/menu-item.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-menus',
     templateUrl: 'menus.component.html',
-    providers: [MenuService, MenuItemService],
+    providers: [MenuService, MenuItemService, AppService],
 })
 
 export class MenusComponent {
@@ -30,7 +29,7 @@ export class MenusComponent {
   drawerVisible: boolean;
   overflowVisible: boolean;
 
-  constructor (private _menuService: MenuService, private _menuItemService: MenuItemService, private _router: Router) {}
+  constructor (private _menuService: MenuService, private _menuItemService: MenuItemService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -50,14 +49,18 @@ export class MenusComponent {
     this.menus = [];
     this.items = [];
 
-    this.list();
+    this.list('load');
 
   }
 
   /**
    * Updates the list
    */
-  list() {
+  list(source) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
 
@@ -264,7 +267,7 @@ export class MenusComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

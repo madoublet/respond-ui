@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { SiteService } from '../../../shared/services/site.service';
 import { AppService } from '../../../shared/services/app.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-drawer',
     templateUrl: 'drawer.component.html',
@@ -15,21 +13,10 @@ export class DrawerComponent {
 
   globalListener: any;
 
-  status: string;
-  hasAccount: boolean;
-  daysRemaining: any;
-
-  activationMethod: string;
-  activationUrl: string;
-  stripeAmount: any;
-  stripeName: string;
-  stripeDescription: string;
-  stripePublishableKey: string;
-  stripeCurrency: string;
-
   id;
   dev;
   siteUrl;
+  hasAccount: boolean = false;
   _visible: boolean = false;
   _active: string;
 
@@ -58,11 +45,8 @@ export class DrawerComponent {
     this.id = localStorage.getItem('respond.siteId');
     this.dev = false;
     this.siteUrl = '';
-    this.status = 'Active';
     this.hasAccount = false;
-    this.daysRemaining = 0;
-    this.activationUrl = '';
-
+    
     var url = window.location.href;
 
     if(url.indexOf('?dev') !== -1) {
@@ -78,21 +62,9 @@ export class DrawerComponent {
    */
   settings() {
 
-    // set trial information
-    this.status = localStorage.getItem('site_status');
     this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
-    this.daysRemaining = parseInt(localStorage.getItem('site_trial_days_remaining'));
-
-    // activation
-    this.activationMethod = localStorage.getItem('activation_method');
-    this.activationUrl = localStorage.getItem('activation_url');
-    this.stripeAmount = parseInt(localStorage.getItem('stripe_amount'));
-    this.stripeName = localStorage.getItem('stripe_name');
-    this.stripeDescription = localStorage.getItem('stripe_description');
-    this.stripePublishableKey = localStorage.getItem('stripe_publishable_key');
-    this.stripeCurrency = localStorage.getItem('stripe_currency');
-
-    // list themes in the app
+    
+    // retrieve settings
     this._appService.retrieveSettings()
                      .subscribe(
                        data => {
@@ -123,85 +95,6 @@ export class DrawerComponent {
   hide() {
     this._visible = false;
     this.onHide.emit(null);
-  }
-
-  /**
-   * Reload system files
-   */
-  reload() {
-
-    this._siteService.reload()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
-                      );
-
-  }
-
-  /**
-   * Republish sitemap
-   */
-  sitemap() {
-    this._siteService.sitemap()
-                     .subscribe(
-                       data => { toast.show('success'); },
-                       error => { toast.show('failure');  }
-                      );
-  }
-
-  /**
-   * Stripe checkout
-   */
-  checkout() {
-
-    var context = this;
-
-    // handle stripe activation
-    if(this.activationMethod == 'Stripe') {
-
-      var handler = (<any>window).StripeCheckout.configure({
-        key: this.stripePublishableKey,
-        locale: 'auto',
-        token: function (token: any) {
-
-          // subscribe
-          context._siteService.subscribe(token.id, token.email)
-                       .subscribe(
-                         data => { context.subscribed(); toast.show('success'); },
-                         error => { toast.show('failure');  }
-                        );
-
-        }
-      });
-
-      handler.open({
-        name: this.stripeName,
-        description: this.stripeDescription,
-        amount: this.stripeAmount,
-        currency: this.stripeCurrency
-      });
-
-      this.globalListener = this.renderer.listenGlobal('window', 'popstate', () => {
-        handler.close();
-      });
-
-    }
-    else {
-      window.location.href = this.activationUrl;
-    }
-
-
-  }
-
-  /**
-   * Successfully subscribed
-   */
-  subscribed() {
-    localStorage.setItem('site_status', 'Active');
-    this.status = 'Active';
-
-    localStorage.setItem('site_has_account', 'true');
-    this.hasAccount = true;
   }
 
   /**

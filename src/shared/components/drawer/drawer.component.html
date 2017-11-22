@@ -1,35 +1,23 @@
 <nav class="app-drawer" [class.visible]="visible === true">
-
+  
   <ul>
     <li class="app-drawer-title"><span>{{ 'Manage your Site' | translate }}</span></li>
-    <li [class.active]="active === 'pages'"><a [routerLink]="['/pages']">{{ 'Pages' | translate }}</a></li>
-    <li [class.active]="active === 'components'"><a [routerLink]="['/components']">{{ 'Components' | translate }}</a></li>
-    <li [class.active]="active === 'menus'"><a [routerLink]="['/menus']">{{ 'Menus' | translate }}</a></li>
-    <li [class.active]="active === 'galleries'"><a [routerLink]="['/galleries']">{{ 'Galleries' | translate }}</a></li>
-    <li [class.active]="active === 'forms'"><a [routerLink]="['/forms']">{{ 'Forms' | translate }}</a></li>
-    <li [class.active]="active === 'submissions'"><a [routerLink]="['/submissions']">{{ 'Submissions' | translate }}</a></li>
-    <li [class.active]="active === 'plugins'"><a [routerLink]="['/plugins']">{{ 'Plugins' | translate }}</a></li>
-    <li [class.active]="active === 'files'"><a [routerLink]="['/files']">{{ 'Files' | translate }}</a></li>
-    <li [class.active]="active === 'users'"><a [routerLink]="['/users']">{{ 'Users' | translate }}</a></li>
-    <li [class.active]="active === 'settings'"><a [routerLink]="['/settings']">{{ 'Settings' | translate }}</a></li>
-    <li [class.active]="active === 'code'"><a (click)="viewCode()">{{ 'Code' | translate }}</a></li>
-    <li [class.active]="active === 'advanced'"><a [routerLink]="['/advanced']">{{ 'Advanced' | translate }}</a></li>
-    <li [class.active]="active === 'account'" *ngIf="hasAccount == true"><a [routerLink]="['/account']">{{ 'Account' | translate }}</a></li>
-    <li><a [href]="siteUrl" target="_blank">{{ 'View Site' | translate }}</a></li>
-    <li><a (click)="signOut()">{{ 'Sign Out' | translate }}</a></li>
+    <li [class.active]="active === 'pages'"><a [routerLink]="['/pages']"><i class="material-icons">description</i> {{ 'Pages' | translate }}</a></li>
+    <li [class.active]="active === 'components'"><a [routerLink]="['/components']"><i class="material-icons">extension</i> {{ 'Components' | translate }}</a></li>
+    <li [class.active]="active === 'menus'"><a [routerLink]="['/menus']"><i class="material-icons">subject</i> {{ 'Menus' | translate }}</a></li>
+    <li [class.active]="active === 'galleries'"><a [routerLink]="['/galleries']"><i class="material-icons">photo_library</i> {{ 'Galleries' | translate }}</a></li>
+    <li [class.active]="active === 'forms'"><a [routerLink]="['/forms']"><i class="material-icons">assignment</i> {{ 'Forms' | translate }}</a></li>
+    <li [class.active]="active === 'submissions'"><a [routerLink]="['/submissions']"><i class="material-icons">email</i>  {{ 'Submissions' | translate }}</a></li>
+    <li [class.active]="active === 'plugins'"><a [routerLink]="['/plugins']"><i class="material-icons">widgets</i> {{ 'Plugins' | translate }}</a></li>
+    <li [class.active]="active === 'files'"><a [routerLink]="['/files']"><i class="material-icons">attach_file</i> {{ 'Files' | translate }}</a></li>
+    <li [class.active]="active === 'users'"><a [routerLink]="['/users']"><i class="material-icons">group</i> {{ 'Users' | translate }}</a></li>
+    <li [class.active]="active === 'settings'"><a [routerLink]="['/settings']"><i class="material-icons">settings</i> {{ 'Settings' | translate }}</a></li>
+    <li [class.active]="active === 'code'"><a (click)="viewCode()"><i class="material-icons">code</i> {{ 'Code' | translate }}</a></li>
+    <li [class.active]="active === 'advanced'"><a [routerLink]="['/advanced']"><i class="material-icons">build</i> {{ 'Advanced' | translate }}</a></li>
+    <li [class.active]="active === 'account'" *ngIf="hasAccount == true"><a [routerLink]="['/account']"><i class="material-icons">account_circle</i> {{ 'Account' | translate }}</a></li>
+    <li><a [href]="siteUrl" target="_blank"><i class="material-icons">turned_in_not</i> {{ 'View Site' | translate }}</a></li>
+    <li><a (click)="signOut()"><i class="material-icons">eject</i> {{ 'Sign Out' | translate }}</a></li>
   </ul>
 
-  <a class="app-status status-trial" *ngIf="status == 'Trial'" (click)="checkout()">
-    <h3>{{ 'Status: Trial' | translate }}</h3>
-    <p>{{ daysRemaining }} <span>{{ 'days remaining' | translate }}</span></p>
-    <i class="material-icons">keyboard_arrow_right</i>
-  </a>
-
-  <a class="app-status status-expired" *ngIf="status == 'Expired'" (click)="checkout()">
-    <h3>{{ 'Status: Expired' | translate }}</h3>
-    <p>{{ 'Activate now' | translate }}</p>
-    <i class="material-icons">keyboard_arrow_right</i>
-  </a>
-
-
 </nav>
+  

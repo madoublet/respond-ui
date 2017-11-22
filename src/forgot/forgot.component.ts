@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AppService } from '../shared/services/app.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-forgot',
     templateUrl: 'forgot.component.html',
@@ -71,7 +69,7 @@ export class ForgotComponent {
 
       this._userService.forgot(id, email)
                    .subscribe(
-                     () => { toast.show('success'); },
+                     () => { this._appService.showToast('success', null); },
                      error =>  { this.failure(<any>error); }
                     );
 
@@ -82,7 +80,7 @@ export class ForgotComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 409) {
       this.hasMultipleSites = true;

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GalleryService } from '../../../../shared/services/gallery.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-add-gallery',
     templateUrl: 'add-gallery.component.html',
@@ -73,8 +71,6 @@ export class AddGalleryComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onAdd.emit(null);

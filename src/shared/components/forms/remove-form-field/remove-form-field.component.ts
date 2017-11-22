@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormFieldService } from '../../../../shared/services/form-field.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-remove-form-field',
     templateUrl: 'remove-form-field.component.html',

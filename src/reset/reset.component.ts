@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AppService } from '../shared/services/app.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-reset',
     templateUrl: 'reset.component.html',
@@ -62,7 +60,7 @@ export class ResetComponent {
       else {
         this._userService.reset(this.id, this.token, password)
                      .subscribe(
-                       () => { alert('success'); },
+                       () => { this._appService.showToast('success', null); },
                        error =>  { this.failure(<any>error); }
                       );
       }
@@ -74,7 +72,7 @@ export class ResetComponent {
    */
   failure (obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
   }
 

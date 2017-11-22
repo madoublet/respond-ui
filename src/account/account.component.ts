@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SiteService } from '../shared/services/site.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-account',
     templateUrl: 'account.component.html',
-    providers: [SiteService]
+    providers: [SiteService, AppService]
 })
 
 export class AccountComponent {
@@ -26,7 +25,7 @@ export class AccountComponent {
   interval: string = "";
   hasAccount: boolean;
 
-  constructor (private _siteService: SiteService, private _router: Router) {}
+  constructor (private _siteService: SiteService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init pages
@@ -109,7 +108,7 @@ export class AccountComponent {
 
     console.log(obj);
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

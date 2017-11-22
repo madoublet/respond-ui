@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentService } from '../../../../shared/services/component.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-add-component',
     templateUrl: 'add-component.component.html',
@@ -72,9 +70,6 @@ export class AddComponentComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
-
     this._visible = false;
     this.onAdd.emit(null);
 

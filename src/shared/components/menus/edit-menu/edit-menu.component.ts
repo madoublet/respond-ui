@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuService } from '../../../../shared/services/menu.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-edit-menu',
     templateUrl: 'edit-menu.component.html',
@@ -77,9 +75,7 @@ export class EditMenuComponent {
    * Handles a successful edit
    */
   success() {
-
-    toast.show('success');
-
+    
     this._visible = false;
     this.onUpdate.emit(null);
 

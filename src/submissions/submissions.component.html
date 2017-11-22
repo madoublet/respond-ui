@@ -9,8 +9,8 @@
 <section class="app-main">
 
   <div id="submissions-list" class="app-list">
-    <div class="app-list-item" *ngFor="let submission of submissions" (click)="setActive(submission)" [class.selected]="submission === selectedSubmission">
-      <h2><span class="primary">{{ submission.name }}</span><span class="secondary">{{ submission.date | timeAgo }}</span></h2>
+    <div class="app-list-item" *ngFor="let submission of submissions" (mouseenter)="setActive(submission)" (click)="setActive(submission)" [class.selected]="submission === selectedSubmission">
+      <h2><span class="primary"><a (click)="showView(submission)">{{ submission.name }}</a></span><span class="secondary">{{ submission.date | timeAgo }}</span></h2>
       <small>{{ submission.formId }}</small>
       <div class="app-list-actions">
           <a (click)="showRemove(submission)">{{ 'Remove Submission' | translate }}</a>

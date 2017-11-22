@@ -4,8 +4,6 @@ import { UserService } from '../shared/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../shared/services/app.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-login',
     templateUrl: 'login.component.html',
@@ -99,7 +97,8 @@ export class LoginComponent {
    */
   success() {
 
-    toast.show('success');
+    // show the toast
+    this._appService.showToast('success', null);
 
     // set language
     this.setLanguage(this.data.user.language);
@@ -193,8 +192,9 @@ export class LoginComponent {
     if(obj.status == 409) {
       this.hasMultipleSites = true;
     }
-
-    toast.show('failure');
+    
+    // show the toast
+    this._appService.showToast('failure', obj._body);
 
   }
 

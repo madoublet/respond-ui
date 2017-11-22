@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuItemService } from '../../../../shared/services/menu-item.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-remove-menu-item',
     templateUrl: 'remove-menu-item.component.html',

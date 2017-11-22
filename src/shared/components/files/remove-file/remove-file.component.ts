@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FileService } from '../../../../shared/services/file.service';
-
-declare var toast: any;
+import { AppService } from '../../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-remove-file',
     templateUrl: 'remove-file.component.html',
-    providers: [FileService]
+    providers: [FileService, AppService]
 })
 
 export class RemoveFileComponent {
@@ -44,7 +43,7 @@ export class RemoveFileComponent {
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _fileService: FileService) {}
+  constructor (private _fileService: FileService, private _appService: AppService) {}
 
   /**
    * Init files
@@ -81,6 +80,8 @@ export class RemoveFileComponent {
 
     this._visible = false;
     this.onUpdate.emit(null);
+
+    this._appService.showToast('success', '');
 
   }
 

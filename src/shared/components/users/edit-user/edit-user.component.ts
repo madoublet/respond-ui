@@ -2,9 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../../../shared/services/user.service';
 import { AppService } from '../../../../shared/services/app.service';
 
-declare var __moduleName: string;
-declare var toast: any;
-
 @Component({
     selector: 'respond-edit-user',
     templateUrl: 'edit-user.component.html',
@@ -99,7 +96,7 @@ export class EditUserComponent {
 
     if(this.model.password != this.model.retype) {
       console.log('[respond.error] password mismatch');
-      toast.show('failure', 'The password does not match the retype field');
+      this._appService.showToast('failure', 'The password does not match the retype field');
       return;
     }
 
@@ -116,9 +113,7 @@ export class EditUserComponent {
    * Handles a successful edit
    */
   success() {
-
-    toast.show('success');
-
+    
     this._visible = false;
     this.onUpdate.emit(null);
 

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-users',
     templateUrl: 'users.component.html',
-    providers: [UserService]
+    providers: [UserService, AppService]
 })
 
 export class UsersComponent {
@@ -22,7 +21,7 @@ export class UsersComponent {
   removeVisible: boolean;
   drawerVisible: boolean;
 
-  constructor (private _userService: UserService, private _router: Router) {}
+  constructor (private _userService: UserService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init
@@ -114,7 +113,7 @@ export class UsersComponent {
    */
   failure (obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

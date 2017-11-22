@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-files',
     templateUrl: 'files.component.html',
-    providers: [FileService]
+    providers: [FileService, AppService]
 })
 
 
@@ -22,7 +21,7 @@ export class FilesComponent {
   drawerVisible: boolean;
 
 
-  constructor (private _fileService: FileService, private _router: Router) {}
+  constructor (private _fileService: FileService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init files
@@ -94,7 +93,7 @@ export class FilesComponent {
    */
   failure(obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

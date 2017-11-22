@@ -21,8 +21,8 @@
   </nav>
 
   <div id="images-list" class="app-list">
-    <div class="app-list-item" *ngFor="let image of images" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
-      <h2><span class="primary">{{ image.name }}</span></h2>
+    <div class="app-list-item" *ngFor="let image of images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+      <h2><span class="primary"><a (click)="showEditImage(image)">{{ image.name }}</a></span></h2>
       <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
       <small>{{ image.caption }}</small>
       <div class="app-list-actions">

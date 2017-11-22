@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GalleryImageService } from '../../../../shared/services/gallery-image.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-remove-gallery-image',
     templateUrl: 'remove-gallery-image.component.html',

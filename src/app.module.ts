@@ -16,6 +16,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 // common
 import { DrawerComponent } from './shared/components/drawer/drawer.component';
+import { SubscribeComponent } from './shared/components/subscribe/subscribe.component';
 import { DropzoneComponent } from './shared/components/dropzone/dropzone.component';
 
 // logon, forgot, reset, create
@@ -115,7 +116,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       ForgotComponent,
       ResetComponent,
       CreateComponent,
-      DrawerComponent, DropzoneComponent,
+      DrawerComponent, DropzoneComponent, SubscribeComponent,
       EditComponent, AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,

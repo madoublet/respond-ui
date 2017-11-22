@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubmissionService } from '../shared/services/submission.service';
-
-declare var toast: any;
+import { AppService } from '../shared/services/app.service';
 
 @Component({
     selector: 'respond-submissions',
     templateUrl: 'submissions.component.html',
-    providers: [SubmissionService]
+    providers: [SubmissionService, AppService]
 })
 
 export class SubmissionsComponent {
@@ -21,7 +20,7 @@ export class SubmissionsComponent {
   viewVisible: boolean;
   drawerVisible: boolean;
 
-  constructor (private _submissionService: SubmissionService, private _router: Router) {}
+  constructor (private _submissionService: SubmissionService, private _router: Router, private _appService: AppService) {}
 
   /**
    * Init submissions
@@ -103,7 +102,7 @@ export class SubmissionsComponent {
    */
   failure (obj) {
 
-    toast.show('failure');
+    this._appService.showToast('failure', obj._body);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

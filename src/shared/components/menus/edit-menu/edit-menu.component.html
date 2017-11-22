@@ -1,19 +1,23 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal-background" [class.visible]="visible === true">
 
-  <form (ngSubmit)="submit()" #editForm="ngForm">
+  <div class="app-modal" [class.visible]="visible === true">
 
-    <h2>{{ 'Edit Menu' | translate }}</h2>
+    <form (ngSubmit)="submit()" #editForm="ngForm">
 
-    <label>{{ 'Name' | translate }}</label>
-    <input id="hashedit-edit-menu-name" type="text" maxlength="128" placeholder="" required
-      [(ngModel)]="model.name"
-      name="name">
+      <h2>{{ 'Edit Menu' | translate }}</h2>
 
-    <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Update' | translate }}</button>
-    </div>
+      <label>{{ 'Name' | translate }}</label>
+      <input id="hashedit-edit-menu-name" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.name"
+        name="name">
 
-  </form>
+      <div class="actions">
+        <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+        <button type="submit">{{ 'Update' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
 
 </div>

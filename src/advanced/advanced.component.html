@@ -8,7 +8,7 @@
 <section class="app-main">
 
   <div id="developer-list" class="app-list">
-    <div class="app-list-item" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
+    <div class="app-list-item" (mouseenter)="setActive('plugins')" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
       <h2><span class="primary">{{ 'Re-publish Plugins' | translate }}</span></h2>
       <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>
       <div class="app-list-actions">
@@ -17,7 +17,7 @@
     </div>
     <!-- plugins -->
 
-    <div class="app-list-item" (click)="setActive('reindex')" [class.selected]="selectedOption === 'reindex'">
+    <div class="app-list-item" (mouseenter)="setActive('reindex')" (click)="setActive('reindex')" [class.selected]="selectedOption === 'reindex'">
       <h2><span class="primary">{{ 'Re-index Pages' | translate }}</span></h2>
       <p>{{ 'Republish the sitemap and pages index.' | translate }}</p>
       <div class="app-list-actions">
@@ -26,7 +26,7 @@
     </div>
     <!-- sitemap -->
 
-    <div class="app-list-item" (click)="setActive('sitemap')" [class.selected]="selectedOption === 'sitemap'">
+    <div class="app-list-item" (mouseenter)="setActive('sitemap')" (click)="setActive('sitemap')" [class.selected]="selectedOption === 'sitemap'">
       <h2><span class="primary">{{ 'Re-publish Sitemap' | translate }}</span></h2>
       <p>{{ 'Republish the sitemap when you make changes outside of the application.' | translate }}</p>
       <div class="app-list-actions">
@@ -45,7 +45,7 @@
     </div>
     migrate -->
 
-    <div class="app-list-item" (click)="setActive('templates')" [class.selected]="selectedOption === 'templates'">
+    <div class="app-list-item" (mouseenter)="setActive('templates')" (click)="setActive('templates')" [class.selected]="selectedOption === 'templates'">
       <h2><span class="primary">{{ 'Republish Templates' | translate }}</span></h2>
       <p>{{ 'Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template.' | translate }}</p>
       <div class="app-list-actions">
@@ -54,7 +54,7 @@
     </div>
     <!-- republish template -->
 
-    <div class="app-list-item" (click)="setActive('update-plugins')" [class.selected]="selectedOption === 'update-plugins'">
+    <div class="app-list-item" (mouseenter)="setActive('update-plugins')" (click)="setActive('update-plugins')" [class.selected]="selectedOption === 'update-plugins'">
       <h2><span class="primary">{{ 'Update Plugins' | translate }}</span></h2>
       <p>{{ 'Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.' | translate }}</p>
       <div class="app-list-actions">

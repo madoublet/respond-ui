@@ -1,1 +1,21 @@
-<iframe [src]="url" class="edit-frame"></iframe>
+<menu class="app-menu has-back">
+    <button class="app-back" (click)="back()"><i class="material-icons">arrow_back</i></button>
+
+    <h1>{{ 'Edit' | translate }}</h1>
+
+    <button class="app-alt-action" (click)="showPage()"><i class="material-icons">launch</i></button>
+
+    <button class="app-add" (click)="showAdd()"><i class="material-icons">add</i></button>
+</menu>
+
+<footer class="app-footer">
+    <a (click)="save()">{{ 'Save' | translate }}</a>
+</footer>
+
+<section class="edit-main">
+    <iframe #editFrame [src]="url" class="edit-frame"></iframe>
+</section>
+
+
+
+<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

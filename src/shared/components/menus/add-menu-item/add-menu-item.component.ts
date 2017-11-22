@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuItemService } from '../../../../shared/services/menu-item.service';
 import { PageService } from '../../../../shared/services/page.service';
 
-declare var toast: any;
-
 @Component({
     selector: 'respond-add-menu-item',
     templateUrl: 'add-menu-item.component.html',
@@ -97,8 +95,6 @@ export class AddMenuItemComponent {
    * Handles a successful add
    */
   success() {
-
-    toast.show('success');
 
     this._visible = false;
     this.onAdd.emit(null);
