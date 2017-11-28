@@ -147,5 +147,7 @@
     "Trial started.": "Trial started.",
     "days remaining.": "days remaining.",
     "Activate now.": "Activate now.",
-    "Subscription expired.": "Subscription expired."
+    "Subscription expired.": "Subscription expired.",
+    "Unauthorized": "Unauthorized",
+    "Password mismatch": "Password mismatch"
 }

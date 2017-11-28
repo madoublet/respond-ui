@@ -56,6 +56,14 @@ export class SubscribeComponent {
     this.stripeDescription = localStorage.getItem('stripe_description');
     this.stripePublishableKey = localStorage.getItem('stripe_publishable_key');
     this.stripeCurrency = localStorage.getItem('stripe_currency');
+
+    // set body attribute
+    if(this.status.toUpperCase() == 'EXPIRED' || this.status.toUpperCase() == 'TRIAL') {
+      document.body.setAttribute('show-status', '');
+    }
+    else {
+      document.body.removeAttribute('show-status');
+    }
   }
 
   /**

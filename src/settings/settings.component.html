@@ -1,3 +1,5 @@
+<respond-subscribe></respond-subscribe>
+
 <menu class="app-menu">
 
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
@@ -6,9 +8,9 @@
 
 </menu>
 
-<section class="app-main">
+<form class="app-form" (ngSubmit)="submit()" #settingsForm="ngForm">
 
-  <form class="app-form" (ngSubmit)="submit()" #settingsForm="ngForm">
+<section class="app-main">
 
     <div *ngFor="let setting of settings">
 
@@ -42,14 +44,14 @@
 
     </div>
 
-
-    <div class="actions">
-      <button type="submit">{{ 'Update' | translate }}</button>
-    </div>
-
-  </form>
-
 </section>
+
+
+<footer class="app-footer">
+    <button type="submit">{{ 'Save' | translate }}</button>
+</footer>
+
+</form>
 
 
 <respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)"></respond-select-file>

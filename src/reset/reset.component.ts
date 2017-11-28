@@ -55,7 +55,7 @@ export class ResetComponent {
       event.preventDefault();
 
       if(password !== retype) {
-        alert('Password mismatch');
+        this._appService.showToast('failure', 'Password mismatch');
       }
       else {
         this._userService.reset(this.id, this.token, password)

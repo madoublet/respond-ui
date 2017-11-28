@@ -86,7 +86,7 @@ export class SettingsComponent {
    * Handles success
    */
   success() {
-    this._appService.showToast('success', '');
+    this._appService.showToast('success', null);
   }
 
   /**

@@ -1,3 +1,5 @@
+<respond-subscribe></respond-subscribe>
+
 <menu class="app-menu">
   
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
@@ -14,8 +16,6 @@
     <i class="material-icons">search</i>
     <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or URL' | translate }}">
   </div>
-
-  <respond-subscribe></respond-subscribe>
 
   <div id="pages-list" class="app-list">
     <div class="app-list-item" *ngFor="let page of filteredPages" (mouseenter)="setActive(page)" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">

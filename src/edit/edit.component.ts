@@ -12,6 +12,10 @@ export class EditComponent {
 
   url: SafeResourceUrl;
   drawerVisible: boolean = false;
+  id: string;
+  pageUrl: string;
+  siteUrl: string;
+  fullPageUrl: string;
 
   @ViewChild('editFrame') el: ElementRef;
 
@@ -42,8 +46,6 @@ export class EditComponent {
    */
   buildUrl() {
     
-        this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
-        
         // retrieve settings
         this._appService.retrieveSettings()
                          .subscribe(

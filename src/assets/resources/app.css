@@ -45,6 +45,16 @@ a, a:visited {
   cursor: pointer;
 }
 
+.primary-button {
+  box-sizing: border-box;
+  display: block;
+  background-color: #f0f0f0;
+  padding: 15px 0;
+  text-transform: uppercase;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
 /* containers */
 .app-menu, .app-toast, .app-drawer, .app-config, .app-modal,
 .app-menu *, .app-toast *, .app-drawer *, .app-overflow *, .app-config * , .app-modal * {
@@ -95,6 +105,10 @@ body .app-main {
   margin-top: 0;
 }
 
+  [show-status] .app-main {
+    padding-top: 89px;
+  }
+
   body .app-main p {
     padding: 20px;
     color: #888;
@@ -105,6 +119,11 @@ body .edit-main {
   padding: 0;
   margin: 0;
 }
+
+  [show-status] .edit-main {
+    padding-top: 40px;
+    height: calc(100% - 40px);
+  }
 
 /* .edit-frame */
 body .edit-frame {
@@ -306,6 +325,29 @@ body .app-list {
   font-size: 13px;
 }
 
+  .app-drawer .app-drawer-top {
+    display: block;
+    height: 50px;
+  }
+
+  .app-drawer .app-collapse {
+    position: absolute;
+    top: 17px;
+    left: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .app-drawer .app-collapse i {
+    font-size: 18px;
+  }
+
+  .app-drawer img.logo {
+    display: inline-block;
+    margin: 15px 10px 15px 55px;
+    width: 125px;
+  }
+
   .app-overflow{
     left: auto;
     right: -275px;
@@ -378,7 +420,7 @@ body .app-list {
   .app-drawer li a i {
     position: absolute;
     top: 10px;
-    left: 12px;
+    left: 14px;
     display: inline-block;
     font-size: 18px;
   }
@@ -438,9 +480,16 @@ body .app-list {
   }
 
 .app-status {
+  position: fixed !important;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: block;
   position: relative;
-  padding: 15px 20px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  z-index: 1002;
 }
 
   body .app-main .app-status p {
@@ -451,8 +500,8 @@ body .app-list {
 .app-status i {
   color: #ddd;
   position: absolute;
-  top: 12px;
-  right: 20px;
+  top: 10px;
+  right: 15px;
   font-size: 20px;
 }
 
@@ -888,6 +937,7 @@ body .dropzone {
 /* app-form */
 body .app-form {
   padding: 15px;
+  padding-bottom: 100px;
 }
 
 body .app-form.standalone {
@@ -966,19 +1016,6 @@ body .app-form.standalone {
     font-size: 13px;
     color: #888;
   }
-
-  body .app-form button {
-    display: block;
-    background-color: #f0f0f0;
-    padding: 15px 10px;
-    text-transform: uppercase;
-    border: 1px solid #ddd;
-    min-width: 125px;
-  }
-
-    body .app-form.standalone button {
-      width: 100%;
-    }
 
   body .app-form.standalone  a {
     display: block;
@@ -1066,8 +1103,22 @@ body .acknowledgement {
     margin-right: 20px;
   }
 
+  .app-footer button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #00ADE3;
+    background: none;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 50px;
+    margin-right: 20px;
+  }
+
 /* app-menu */
 .app-menu {
+  box-sizing: border-box;
   font-family: 'Open Sans', 'Helvetica', 'Arial', 'sans-serif';
   position: fixed;
   z-index: 1002;
@@ -1077,13 +1128,17 @@ body .acknowledgement {
   width: 100%;
   background-color: #00ADE3;
   margin: 0;
-  padding: 0 0 0 50px;
+  padding: 0;
   color: #fff;
   border-bottom: 1px solid #DDD;
   overflow-x: auto;
   overflow-y: hidden;
   -ms-overflow-style: none;
 }
+
+  [show-status] .app-menu {
+    top: 40px !important;
+  }
 
   .app-menu.no-border, .app-menu.noborder {
     border: none !important;
@@ -1116,7 +1171,7 @@ body .acknowledgement {
 
 /* save */
 .app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow, .app-alt-action {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   background-color: #00ADE3;
@@ -1132,7 +1187,7 @@ body .acknowledgement {
 
 /* back */
 .app-menu .app-back {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 50px;
@@ -1447,8 +1502,16 @@ body .dropzone .dz-message {
     padding-left: 250px;
   }
 
+  body[drawer-collapse] .app-main {
+    padding-left: 50px;
+  }
+
   body .edit-main {
     padding-left: 250px;
+  }
+
+  body[drawer-collapse] .edit-main {
+    padding-left: 50px;
   }
 
   .app-slideshow-container {
@@ -1476,6 +1539,19 @@ body .dropzone .dz-message {
     border-right: none;
   }
 
+    [drawer-collapse] .app-drawer {
+      width: 50px;
+    }
+
+    [drawer-collapse] .app-drawer li a span {
+      display: none;
+    }
+
+    [show-status] .app-drawer {
+      top: 40px;
+      height: calc(100% - 40px);
+    }
+
     .app-drawer ul {
       border: none;
     }
@@ -1502,16 +1578,22 @@ body .dropzone .dz-message {
   }
 
   .app-menu .app-back {
-    left: 260px;
     color: #111;
   }
 
   .app-menu {
-    margin-left: 250px;
+    width: calc(100% - 250px);
+    left: 250px;
     padding-left: 5px;
     background-color: #fff;
     color: #111;
   }
+
+    body[drawer-collapse] .app-menu {
+      width: calc(100% - 50px);
+      left: 50px;
+    }
+
 
     .app-menu.has-back h1 {
       margin-left: 60px;

@@ -51,14 +51,14 @@ export class AppService {
   showToast (type: string, text: string) {
     
 
-    if(type == 'failure'  && text == null) {
-      text = 'Sorry, you encountered an error. Contact your site administrator if the problem continues.'
+    if(type == 'failure'  && (text == null || text == '')) {
+      text = 'Sorry, you encountered an error. Contact your site administrator if the problem continues.';
     }
-    else if(type == 'success'  && text == null) {
+    else if(type == 'success' && (text == null || text == '')) {
       text = 'Success!';
     }
-    else {
-      text = '';
+    else if(text == null || text == '') {
+      text = 'Uncategorized message';
     }
 
     this.translate.get(text).subscribe((res: string) => {

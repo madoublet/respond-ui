@@ -65,8 +65,6 @@ export class ForgotComponent {
         id = site;
       }
 
-      alert(id);
-
       this._userService.forgot(id, email)
                    .subscribe(
                      () => { this._appService.showToast('success', null); },

@@ -98,6 +98,20 @@ export class DrawerComponent {
   }
 
   /**
+   * Collapses the drawer
+   */
+  collapse() {
+
+    if(document.body.hasAttribute('drawer-collapse')) {
+      document.body.removeAttribute('drawer-collapse');
+    }
+    else {
+      document.body.setAttribute('drawer-collapse', '');
+    }
+
+  }
+
+  /**
    * Signs out of the system
    */
   signOut() {
