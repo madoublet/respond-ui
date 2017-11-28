@@ -45,19 +45,19 @@
 
 </section>
 
-<respond-add-gallery [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-gallery>
+<respond-add-gallery [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-gallery>
 
-<respond-edit-gallery [visible]="editVisible" [gallery]="selectedGallery" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-edit-gallery>
+<respond-edit-gallery [visible]="editVisible" [gallery]="selectedGallery" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-edit-gallery>
 
-<respond-remove-gallery [visible]="removeVisible" [gallery]="selectedGallery" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-gallery>
+<respond-remove-gallery [visible]="removeVisible" [gallery]="selectedGallery" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-gallery>
 
-<respond-select-file [visible]="selectVisible" (onCancel)="reset($event)"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
 
-<respond-edit-caption [visible]="editImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-edit-caption>
+<respond-edit-caption [visible]="editImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-edit-caption>
 
-<respond-remove-gallery-image [visible]="removeImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-gallery-image>
+<respond-remove-gallery-image [visible]="removeImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-gallery-image>
 
-<respond-drawer active="galleries" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="galleries" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
 <nav class="app-overflow" [class.visible]="overflowVisible === true">
 

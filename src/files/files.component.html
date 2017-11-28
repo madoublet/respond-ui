@@ -8,7 +8,7 @@
 
 <section class="app-main">
 
-  <respond-dropzone (onAdd)="list($event)"></respond-dropzone>
+  <respond-dropzone (onAdd)="list()"></respond-dropzone>
 
   <div id="files-list" class="app-list">
     <div class="app-list-item" *ngFor="let  file of files" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
@@ -25,6 +25,6 @@
 
 </section>
 
-<respond-remove-file [visible]="removeVisible" [file]="file" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-file>
+<respond-remove-file [visible]="removeVisible" [file]="file" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-file>
 
-<respond-drawer active="files" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="files" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

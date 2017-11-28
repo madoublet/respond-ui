@@ -128,7 +128,7 @@ export class ComponentsComponent {
   /**
    * handles error
    */
-  failure (obj) {
+  failure (obj: any) {
     console.log(obj);
 
     toast.show('failure');

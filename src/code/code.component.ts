@@ -13,24 +13,24 @@ declare var ace: any;
 
 export class CodeComponent {
 
-  private id: string;
-  private code: string;
-  private codeUrl: string;
-  private codeType: string = 'not-specified';
-  private editor: any;
-  private pages: any;
-  private templates: any;
-  private stylesheets: any;
-  private scripts: any;
-  private plugins: any;
-  private components: any;
-  private showMenu: boolean;
-  private isPagesExpanded: boolean;
-  private isTemplatesExpanded: boolean;
-  private isStylesheetsExpanded: boolean;
-  private isScriptsExpanded: boolean;
-  private isPluginsExpanded: boolean;
-  private isComponentsExpanded: boolean;
+  id: string;
+  code: string;
+  codeUrl: string;
+  codeType: string = 'not-specified';
+  editor: any;
+  pages: any;
+  templates: any;
+  stylesheets: any;
+  scripts: any;
+  plugins: any;
+  components: any;
+  showMenu: boolean;
+  isPagesExpanded: boolean;
+  isTemplatesExpanded: boolean;
+  isStylesheetsExpanded: boolean;
+  isScriptsExpanded: boolean;
+  isPluginsExpanded: boolean;
+  isComponentsExpanded: boolean;
   addVisible: boolean = false;
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService) {}
