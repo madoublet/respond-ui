@@ -27,9 +27,12 @@ import { CreateComponent } from './create/create.component';
 
 // advanced + code  + account
 import { AdvancedComponent } from './advanced/advanced.component';
-import { AccountComponent } from './account/account.component';
 import { CodeComponent } from './code/code.component';
 import { AddCodeComponent } from './shared/components/code/add-code/add-code.component';
+
+// account
+import { AccountComponent } from './account/account.component';
+import { UnsubscribeComponent } from './shared/components/account/unsubscribe/unsubscribe.component';
 
 // edit
 import { EditComponent } from './edit/edit.component';
@@ -117,7 +120,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       ResetComponent,
       CreateComponent,
       DrawerComponent, DropzoneComponent, SubscribeComponent,
-      EditComponent, AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent,
+      EditComponent, AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,

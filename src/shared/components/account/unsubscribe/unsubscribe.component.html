@@ -1,0 +1,20 @@
+<div class="app-modal-background" [class.visible]="visible === true">
+
+  <div class="app-modal" [class.visible]="visible === true">
+
+    <form (ngSubmit)="submit()" #removeForm="ngForm">
+
+      <h2>{{ 'Unsubscribe' | translate }}</h2>
+
+      <p>{{ 'Confirm you want to Unsubscribe.' | translate }}</p>
+
+      <div class="actions">
+        <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+        <button type="submit">{{ 'Unsubscribe' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

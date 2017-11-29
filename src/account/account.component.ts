@@ -24,6 +24,7 @@ export class AccountComponent {
   currency: string = "";
   interval: string = "";
   hasAccount: boolean;
+  unsubscribeVisible: boolean = false;
 
   constructor (private _siteService: SiteService, private _router: Router, private _appService: AppService) {}
 
@@ -37,6 +38,7 @@ export class AccountComponent {
     this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
     this.settingsVisible = false;
     this.drawerVisible = false;
+    this.unsubscribeVisible = false;
 
     this.retrieve();
 
@@ -70,21 +72,21 @@ export class AccountComponent {
   }
 
   /**
+   * Shows the unsubscribe modal
+   */
+  showUnsubscribe() {
+    this.unsubscribeVisible = true;
+  }
+
+  /**
    * Unsubscribe from the subscription
    */
   unsubscribe() {
-    this._siteService.unsubscribe()
-                     .subscribe(
-                       data => { console.log(data); },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    localStorage.setItem('site_status', 'Active');
-    localStorage.setItem('site_has_account', 'false');
     this.plan = "Unsubscribed";
     this.amountDisplay = "";
     this.interval = "";
     this.hasAccount = false;
+    this.unsubscribeVisible = false;
   }
 
   /**
@@ -92,6 +94,7 @@ export class AccountComponent {
    */
   reset() {
     this.drawerVisible = false;
+    this.unsubscribeVisible = false;
   }
 
   /**

@@ -13,7 +13,7 @@
     <tbody>
       <tr>
         <th>{{ 'Plan' | translate }}</th>
-        <td>{{ plan }} <a class="app-table-cell-action" (click)="unsubscribe()" *ngIf="hasAccount == true">{{ 'Unsubscribe' | translate }}</a></td>
+        <td>{{ plan }} <a class="app-table-cell-action" (click)="showUnsubscribe()" *ngIf="hasAccount == true">{{ 'Unsubscribe' | translate }}</a></td>
       </tr>
       <tr>
         <th>{{ 'Amount' | translate }}</th>
@@ -27,5 +27,7 @@
   </table>
 
 </section>
+
+<respond-unsubscribe [visible]="unsubscribeVisible" (onCancel)="reset()" (onUpdate)="unsubscribe()" (onError)="failure($event)"></respond-unsubscribe>
 
 <respond-drawer active="account" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

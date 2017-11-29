@@ -149,5 +149,7 @@
     "Activate now.": "Activate now.",
     "Subscription expired.": "Subscription expired.",
     "Unauthorized": "Unauthorized",
-    "Password mismatch": "Password mismatch"
+    "Password mismatch": "Password mismatch",
+    "Unsubscribe": "Unsubscribe",
+    "Confirm you want to Unsubscribe.": "Confirm you want to Unsubscribe."
 }

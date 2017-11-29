@@ -310,7 +310,7 @@ body .app-list {
 .app-drawer, .app-overflow {
   font-family: 'Helvetica', 'Arial', 'sans-serif';
   position: fixed;
-  z-index: 1002;
+  z-index: 1001;
   top: 50px;
   left: -275px;
   height: calc(100% - 50px);
@@ -1152,7 +1152,7 @@ body .acknowledgement {
     font-family: 'Open Sans', 'sans-serif';
     height: 50px;
     line-height: 50px;
-    margin-left: 15px;
+    margin-left: 60px;
     font-weight: normal;
     color: #888;
     font-size: 18px;
@@ -1218,7 +1218,7 @@ body .acknowledgement {
 
 /* menu */
 .app-menu .app-more {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 50px;
@@ -1412,7 +1412,7 @@ body .dropzone .dz-message {
   position: fixed;
   z-index: 1002;
   top: 50px;
-  left: 250px;
+  left: 0;
   height: calc(100% - 100px);
   width: 200px;
   background-color: #fff;
@@ -1425,6 +1425,11 @@ body .dropzone .dz-message {
   font-size: 13px;
   overflow-y: scroll;
 }
+
+  [show-status] .code-menu {
+    top: 90px;
+    height: calc(100% - 140px);
+  }
 
   .code-menu h2 {
     margin: 20px 10px 5px 10px;
@@ -1581,6 +1586,10 @@ body .dropzone .dz-message {
     color: #111;
   }
 
+  .code-menu {
+    left: 250px;
+  }
+
   .app-menu {
     width: calc(100% - 250px);
     left: 250px;
@@ -1602,6 +1611,7 @@ body .dropzone .dz-message {
     .app-menu h1{
       color: #000;
       font-weight: bold;
+      margin-left: 15px;
     }
 
     .app-menu .app-add, .app-menu .app-overflow, .app-menu .app-alt-action {
