@@ -122,6 +122,8 @@ export class SubscribeComponent {
 
     localStorage.setItem('site_has_account', 'true');
     this.hasAccount = true;
+
+    document.body.removeAttribute('show-status');
   }
 
 }

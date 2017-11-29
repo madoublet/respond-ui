@@ -333,7 +333,7 @@ body .app-list {
   .app-drawer .app-collapse {
     position: absolute;
     top: 17px;
-    left: 14px;
+    left: 16px;
     margin: 0;
     padding: 0;
   }
@@ -420,7 +420,7 @@ body .app-list {
   .app-drawer li a i {
     position: absolute;
     top: 10px;
-    left: 14px;
+    left: 16px;
     display: inline-block;
     font-size: 18px;
   }
