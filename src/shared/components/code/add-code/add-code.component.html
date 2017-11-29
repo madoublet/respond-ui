@@ -22,7 +22,7 @@
 
     <div class="or">{{ 'Or' | translate }}</div>
 
-    <respond-dropzone [url]="uploadUrl" (onAdd)="uploaded($event)"></respond-dropzone>
+    <respond-dropzone [url]="uploadUrl" (onAdd)="uploaded()"></respond-dropzone>
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

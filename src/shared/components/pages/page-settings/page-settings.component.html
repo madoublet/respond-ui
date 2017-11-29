@@ -37,13 +37,13 @@
         name="photo">
 
       <label>{{ 'Custom Header' | translate }}</label>
-      <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="128"
+      <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="256"
         [(ngModel)]="model.customHeader"
         name="customHeader"></textarea>
       <small>{{ 'Custom HTML content to be put in the header (e.g. meta tags, stylesheets)' | translate }}</small>
 
       <label>{{ 'Custom Footer' | translate }}</label>
-      <textarea id="hashedit-page-settings-custom-footer" type="text" maxlength="128"
+      <textarea id="hashedit-page-settings-custom-footer" type="text" maxlength="256"
         [(ngModel)]="model.customFooter"
         name="customFooter"></textarea>
       <small>{{ 'Custom HTML content to be put in the footer (e.g. javascript)' | translate }}</small>
@@ -91,4 +91,4 @@
 
 </div>
 
-<respond-select-file [visible]="selectVisible" (onCancel)="reset($event)"  (onSelect)="select($event)"></respond-select-file>
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)"></respond-select-file>

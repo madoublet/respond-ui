@@ -42,10 +42,10 @@
 
 </section>
 
-<respond-add-page [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-page>
+<respond-add-page [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-page>
 
-<respond-page-settings [visible]="settingsVisible" [page]="page" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-page-settings>
+<respond-page-settings [visible]="settingsVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-page-settings>
 
-<respond-remove-page [visible]="removeVisible" [page]="page" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-page>
+<respond-remove-page [visible]="removeVisible" [page]="page" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-page>
 
-<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

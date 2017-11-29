@@ -8,7 +8,7 @@
 
 <section class="app-main">
 
-  <respond-dropzone url="/api/plugins/upload" (onAdd)="list($event)"></respond-dropzone>
+  <respond-dropzone url="/api/plugins/upload" (onAdd)="list()"></respond-dropzone>
 
   <div id="plugins-list" class="app-list">
     <div class="app-list-item" *ngFor="let  plugin of plugins" (click)="setActive(plugin)" [class.selected]="plugin === selectedPlugin">
@@ -23,6 +23,6 @@
 
 </section>
 
-<respond-drawer active="plugins" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="plugins" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
-<respond-remove-plugin [visible]="removeVisible" [plugin]="plugin" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-plugin>
+<respond-remove-plugin [visible]="removeVisible" [plugin]="plugin" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-plugin>

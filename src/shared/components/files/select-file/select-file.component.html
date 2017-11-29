@@ -2,7 +2,7 @@
 
   <h2>{{ 'Select File' | translate }}</h2>
 
-  <respond-dropzone (onAdd)="list($event)"></respond-dropzone>
+  <respond-dropzone (onAdd)="list()"></respond-dropzone>
 
   <div id="files-list" class="app-modal-list">
     <div class="app-modal-list-item" *ngFor="let file of files" (click)="select(file)" [class.image]="file.thumb !== ''">

@@ -79,7 +79,7 @@ export class SettingsComponent {
    * Handles the selection of an image
    */
   select(event) {
-    this.setting.value = event.name;
+    this.setting.value = 'files/' + event.name;
     this.selectVisible = false;
   }
 
