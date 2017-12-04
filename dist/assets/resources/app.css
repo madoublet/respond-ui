@@ -1503,6 +1503,16 @@ body .dropzone .dz-message {
 
 @media (min-width:768px) {
 
+  .app-footer {
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  body[drawer-collapse] .app-footer {
+    left: 50px;
+    width: calc(100% - 50px);
+  }
+
   body .app-main {
     padding-left: 250px;
   }
@@ -1542,6 +1552,7 @@ body .dropzone .dz-message {
     background-color: #00ADE3;
     color: #fff;
     border-right: none;
+    overflow: hidden;
   }
 
     [drawer-collapse] .app-drawer {

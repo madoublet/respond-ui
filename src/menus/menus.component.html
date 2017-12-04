@@ -46,7 +46,7 @@
 
 </section>
 
-<respond-add-menu [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-menu>
+<respond-add-menu [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-menu>
 
 <respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset()" (onUpdate)="list('edit')" (onError)="failure($event)"></respond-edit-menu>
 
