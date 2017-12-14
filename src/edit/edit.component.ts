@@ -52,7 +52,7 @@ export class EditComponent {
                            data => {
                              this.siteUrl = data.siteUrl;
                              this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
-                             this.fullPageUrl = this.siteUrl + '/' + this.pageUrl + '.html';
+                             this.fullPageUrl = this.siteUrl + '/' + this.pageUrl;
                            },
                            error =>  { }
                           );
