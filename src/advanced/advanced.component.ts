@@ -18,6 +18,7 @@ export class AdvancedComponent {
   removeVisible: boolean = false;
   drawerVisible: boolean = false;
   settingsVisible: boolean = false;
+  canSync: boolean = false;
 
   constructor (private _siteService: SiteService, private _router: Router, private _appService: AppService) {}
 
@@ -28,6 +29,7 @@ export class AdvancedComponent {
   ngOnInit() {
 
     this.id = localStorage.getItem('respond.siteId');
+    this.canSync = (localStorage.getItem('can_sync') == 'true');
     this.settingsVisible = false;
     this.drawerVisible = false;
 
@@ -76,9 +78,7 @@ export class AdvancedComponent {
                        data => { 
                         this._appService.showToast('success', null); 
                       },
-                       error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
                       );
 
   }
@@ -93,9 +93,7 @@ export class AdvancedComponent {
                         data => { 
                         this._appService.showToast('success', null); 
                       },
-                        error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
                       );
 
   }
@@ -109,9 +107,7 @@ export class AdvancedComponent {
                         data => { 
                         this._appService.showToast('success', null); 
                       },
-                        error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
                       );
   }
 
@@ -124,9 +120,7 @@ export class AdvancedComponent {
                         data => { 
                         this._appService.showToast('success', null); 
                       },
-                        error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
                       );
   }
 
@@ -139,9 +133,7 @@ export class AdvancedComponent {
                         data => { 
                         this._appService.showToast('success', null); 
                       },
-                        error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
                       );
   }
 
@@ -154,9 +146,20 @@ export class AdvancedComponent {
                         data => { 
                         this._appService.showToast('success', null); 
                       },
-                        error => { 
-                        this._appService.showToast('failure', null); 
-                      }
+                      error =>  { this.failure(<any>error); }
+                      );
+  }
+
+  /**
+   * Syncs the site to external provider
+   */
+  sync() {
+    this._siteService.sync()
+                      .subscribe(
+                        data => { 
+                        this._appService.showToast('success', null); 
+                      },
+                      error =>  { this.failure(<any>error); }
                       );
   }
 

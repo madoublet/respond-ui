@@ -19,7 +19,8 @@ export class SiteService {
   private _listPluginsUrl = 'api/plugins/list';
   private _updateUrl = 'api/sites/update/plugins';
   private _removePluginUrl = 'api/plugins/remove';
-  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve'
+  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve';
+  private _syncUrl = 'api/sites/sync';
 
   /**
    * Login to the application
@@ -218,6 +219,21 @@ export class SiteService {
     return this.http.post(this._removePluginUrl, body, options);
 
   }
+
+  /**
+   * Syncs the site to an external provider
+   *
+   * @return {Observable}
+   */
+  sync () {
+    
+      let headers = new Headers();
+      headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+      let options = new RequestOptions({ headers: headers });
+  
+      return this.http.get(this._syncUrl, options);
+  
+    }
 
 
 }

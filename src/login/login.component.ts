@@ -109,6 +109,9 @@ export class LoginComponent {
     // set status
     this.setStatus(this.data.user.status, this.data.user.days, this.data.user.hasAccount);
 
+    // set syncability
+    this.setSyncability(this.data.sync.canSync);
+
     // set site id
     localStorage.setItem('respond.siteId', this.data.user.siteId);
 
@@ -137,6 +140,13 @@ export class LoginComponent {
 
       // set language
       this._translate.use(language);
+  }
+
+  /**
+   * Sets whether the site can be synced to another data store (e.g. Amazon S3)
+   */
+  setSyncability(canSync) {
+      localStorage.setItem('can_sync', canSync);
   }
 
   /**

@@ -10,6 +10,17 @@
 <section class="app-main">
 
   <div id="developer-list" class="app-list">
+
+    <div *ngIf="canSync == true" class="app-list-item" (mouseenter)="setActive('sync')" (click)="setActive('sync')" [class.selected]="selectedOption === 'sync'">
+      <h2><span class="primary">{{ 'Sync' | translate }}</span></h2>
+      <p>{{ 'Syncs the site to external provider (e.g. Amazon S3, FTP)' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="sync()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- sync -->
+
+
     <div class="app-list-item" (mouseenter)="setActive('plugins')" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
       <h2><span class="primary">{{ 'Re-publish Plugins' | translate }}</span></h2>
       <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>
