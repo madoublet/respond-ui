@@ -1,6 +1,6 @@
 <respond-subscribe></respond-subscribe>
 
-<menu class="app-menu">
+<menu class="app-menu" [class.noborder]="supportsCloudStorage === true">
 
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
     
@@ -9,6 +9,17 @@
 </menu>
 
 <section class="app-main">
+
+  <nav *ngIf="supportsCloudStorage === true" class="app-selector">
+      <ul>
+        <li [class.selected]="storage == 'local'" (click)="setStorage('local')">
+          <a>{{ 'Local' | translate }}</a>
+        </li>
+        <li [class.selected]="storage == 'cloud'" (click)="setStorage('cloud')">
+          <a>{{ 'Cloud' | translate }}</a>
+        </li>
+      </ul>
+    </nav>
 
   <respond-dropzone (onAdd)="list()"></respond-dropzone>
 

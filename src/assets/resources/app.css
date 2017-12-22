@@ -336,6 +336,7 @@ body .app-list {
     left: 16px;
     margin: 0;
     padding: 0;
+    display: none;
   }
 
   .app-drawer .app-collapse i {
@@ -1503,6 +1504,10 @@ body .dropzone .dz-message {
 
 @media (min-width:768px) {
 
+  .app-drawer .app-collapse {
+    display: block;
+  }
+
   .app-footer {
     left: 250px;
     width: calc(100% - 250px);
@@ -1601,6 +1606,10 @@ body .dropzone .dz-message {
     left: 250px;
   }
 
+  body[drawer-collapse] .code-menu {
+    left: 50px;
+  }
+
   .app-menu {
     width: calc(100% - 250px);
     left: 250px;
@@ -1613,7 +1622,6 @@ body .dropzone .dz-message {
       width: calc(100% - 50px);
       left: 50px;
     }
-
 
     .app-menu.has-back h1 {
       margin-left: 60px;

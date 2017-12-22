@@ -19,6 +19,8 @@ export class FilesComponent {
   selectedFile;
   removeVisible: boolean;
   drawerVisible: boolean;
+  storage: string = 'local';
+  supportsCloudStorage: boolean = false;
 
 
   constructor (private _fileService: FileService, private _router: Router, private _appService: AppService) {}
@@ -86,6 +88,15 @@ export class FilesComponent {
   showRemove(file) {
     this.removeVisible = true;
     this.file = file;
+  }
+
+  /**
+   * Sets the storage type (local or cloud)
+   *
+   * @param {File} file
+   */
+  setStorage(storage) {
+    this.storage = storage;
   }
 
   /**
