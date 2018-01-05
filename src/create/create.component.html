@@ -66,8 +66,8 @@
         [(ngModel)]="model.passcode"
         ngControl="passcode" required>
 
-      <div #container id="recaptcha-container" *ngIf="recaptchaSiteKey !== ''" class="g-recaptcha"></div>
-
+      <div #container id="recaptcha-container" class="g-recaptcha" [class.visible]="recaptchaSiteKey !== ''"></div>
+      
       <div class="actions">
         <a (click)="hide()">{{ 'Cancel' | translate }}</a>
         <button type="submit">{{ 'Create' | translate }}</button>

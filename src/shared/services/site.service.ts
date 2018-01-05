@@ -2,25 +2,26 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SiteService {
   constructor (private http: Http) {}
 
-  private _createUrl = 'api/sites/create';
-  private _subscribeUrl = 'api/sites/subscribe';
-  private _unsubscribeUrl = 'api/sites/unsubscribe'
-  private _reloadUrl = 'api/sites/reload';
-  private _reindexUrl = 'api/sites/reindex';
-  private _sitemapUrl = 'api/sites/sitemap';
-  private _migrateUrl = 'api/sites/migrate';
-  private _templateUrl = 'api/sites/republish/templates';
-  private _listTemplatesUrl = 'api/templates/list';
-  private _listPluginsUrl = 'api/plugins/list';
-  private _updateUrl = 'api/sites/update/plugins';
-  private _removePluginUrl = 'api/plugins/remove';
-  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve';
-  private _syncUrl = 'api/sites/sync';
+  private _createUrl = 'api/sites/create' + environment.urlExtension;
+  private _subscribeUrl = 'api/sites/subscribe' + environment.urlExtension;
+  private _unsubscribeUrl = 'api/sites/unsubscribe' + environment.urlExtension;
+  private _reloadUrl = 'api/sites/reload' + environment.urlExtension;
+  private _reindexUrl = 'api/sites/reindex' + environment.urlExtension;
+  private _sitemapUrl = 'api/sites/sitemap' + environment.urlExtension;
+  private _migrateUrl = 'api/sites/migrate' + environment.urlExtension;
+  private _templateUrl = 'api/sites/republish/templates' + environment.urlExtension;
+  private _listTemplatesUrl = 'api/templates/list' + environment.urlExtension;
+  private _listPluginsUrl = 'api/plugins/list' + environment.urlExtension;
+  private _updateUrl = 'api/sites/update/plugins' + environment.urlExtension;
+  private _removePluginUrl = 'api/plugins/remove' + environment.urlExtension;
+  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve' + environment.urlExtension;
+  private _syncUrl = 'api/sites/sync' + environment.urlExtension;
 
   /**
    * Login to the application

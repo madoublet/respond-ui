@@ -2,16 +2,17 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class GalleryImageService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/galleries/images/list';
-  private _addUrl = 'api/galleries/images/add';
-  private _editUrl = 'api/galleries/images/edit';
-  private _removeUrl = 'api/galleries/images/remove';
-  private _updateOrderUrl = 'api/galleries/images/order';
+  private _listUrl = 'api/galleries/images/list' + environment.urlExtension;
+  private _addUrl = 'api/galleries/images/add' + environment.urlExtension;
+  private _editUrl = 'api/galleries/images/edit' + environment.urlExtension;
+  private _removeUrl = 'api/galleries/images/remove' + environment.urlExtension;
+  private _updateOrderUrl = 'api/galleries/images/order' + environment.urlExtension;
 
   /**
    * Lists images

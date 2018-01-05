@@ -2,14 +2,15 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ComponentService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/components/list';
-  private _addUrl = 'api/components/add';
-  private _removeUrl = 'api/components/remove';
+  private _listUrl = 'api/components/list' + environment.urlExtension;
+  private _addUrl = 'api/components/add' + environment.urlExtension;
+  private _removeUrl = 'api/components/remove' + environment.urlExtension;
 
   /**
    * Lists components

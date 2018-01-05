@@ -217,10 +217,14 @@ export class CreateComponent {
   onloadCallback(response){
     let el = this.container.nativeElement;
 
-    grecaptcha.render(el, {
-      'sitekey' : this.recaptchaSiteKey,
-      'callback' : 'verifyCallback'
-    });
+    if(this.recaptchaSiteKey != '') {
+
+      grecaptcha.render(el, {
+        'sitekey' : this.recaptchaSiteKey,
+        'callback' : 'verifyCallback'
+      });
+
+    }
   }
 
   /**

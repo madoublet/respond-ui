@@ -622,6 +622,12 @@ body .app-modal {
 
   body .app-modal .g-recaptcha {
     margin-bottom: 15px;
+    display: none;
+  }
+
+  body .app-modal .g-recaptcha.visible {
+    margin-bottom: 15px;
+    display: block;
   }
 
   body .app-modal .or {

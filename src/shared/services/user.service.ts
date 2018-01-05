@@ -2,19 +2,20 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/users/list';
-  private _loginUrl = 'api/users/login';
-  private _forgotUrl = 'api/users/forgot';
-  private _resetUrl = 'api/users/reset';
-  private _addUrl = 'api/users/add';
-  private _editUrl = 'api/users/edit';
-  private _removeUrl = 'api/users/remove';
-  private _countUrl = 'api/users/site/count';
+  private _listUrl = 'api/users/list' + environment.urlExtension;
+  private _loginUrl = 'api/users/login' + environment.urlExtension;
+  private _forgotUrl = 'api/users/forgot' + environment.urlExtension;
+  private _resetUrl = 'api/users/reset' + environment.urlExtension;
+  private _addUrl = 'api/users/add' + environment.urlExtension;
+  private _editUrl = 'api/users/edit' + environment.urlExtension;
+  private _removeUrl = 'api/users/remove' + environment.urlExtension;
+  private _countUrl = 'api/users/site/count' + environment.urlExtension;
 
   /**
    * Lists users

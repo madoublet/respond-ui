@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../environments/environment';
 
 declare var toast: any;
 
@@ -11,9 +12,9 @@ export class AppService {
   constructor (private http: Http, private translate: TranslateService) {}
 
 
-  private _settingsUrl = 'api/app/settings';
-  private _themesListUrl = 'api/themes/list';
-  private _languagesListUrl = 'api/languages/list';
+  private _settingsUrl = 'api/app/settings' + environment.urlExtension;
+  private _themesListUrl = 'api/themes/list' + environment.urlExtension;
+  private _languagesListUrl = 'api/languages/list' + environment.urlExtension;
 
   // cache the settings
   private _settings;
