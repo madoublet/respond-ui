@@ -229,10 +229,12 @@ export class CreateComponent {
    */
   setupRecaptcha(el) {
     
-    grecaptcha.render(el, {
-      'sitekey' : this.recaptchaSiteKey,
-      'callback' : 'verifyCallback'
-    });
+    if(this.recaptchaSiteKey != '') {
+      grecaptcha.render(el, {
+        'sitekey' : this.recaptchaSiteKey,
+        'callback' : 'verifyCallback'
+      });
+    }
 
   }
 
