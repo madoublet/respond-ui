@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../shared/services/app.service';
 
@@ -16,10 +18,11 @@ export class EditComponent {
   pageUrl: string;
   siteUrl: string;
   fullPageUrl: string;
+  mode: string = 'page';
 
   @ViewChild('editFrame') el: ElementRef;
 
-  constructor (private _sanitizer: DomSanitizer, private _appService: AppService) {}
+  constructor (private _sanitizer: DomSanitizer, private _appService: AppService, private _router: Router,  private _route: ActivatedRoute) {}
 
   /**
    * Init pages
@@ -33,11 +36,15 @@ export class EditComponent {
 
     this.id = localStorage.getItem('respond.siteId');
     this.pageUrl = localStorage.getItem('respond.pageUrl');
-    editMode = localStorage.getItem('respond.editMode');
+    
+    this._route.params.subscribe(params => {
+      this.mode = params['mode'];
+      this.url = this._sanitizer.bypassSecurityTrustResourceUrl('/edit?q=' + this.id + '/' + this.pageUrl + '&mode=' + this.mode);
+    });
 
     this.buildUrl();
 
-    this.url = this._sanitizer.bypassSecurityTrustResourceUrl('/edit?q=' + this.id + '/' + this.pageUrl + '&mode=' + editMode);
+    
 
   }
 
@@ -98,11 +105,27 @@ export class EditComponent {
 
   }
 
-   /**
+  /**
    * Shows the page
    */
   showPage() {
     window.open(this.fullPageUrl, '_blank');
+  }
+
+  /**
+   * Navigates to the focused mode
+   */
+  showFocused() {
+    
+    if(this.mode == 'page') {
+      var id = Math.random().toString(36).substr(2, 9);
+      this._router.navigate( ['/edit',  id, 'focused'] );
+    }
+    else {
+      var id = Math.random().toString(36).substr(2, 9);
+      this._router.navigate( ['/edit',  id, 'page'] );
+    }
+
   }
 
 

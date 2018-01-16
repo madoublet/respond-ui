@@ -84,7 +84,7 @@ const appRoutes: Routes = [
     component: GalleriesComponent
   },
   {
-    path: 'edit/:id',
+    path: 'edit/:id/:mode',
     component: EditComponent
   },
   {

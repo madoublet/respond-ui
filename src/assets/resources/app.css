@@ -1176,8 +1176,8 @@ body .acknowledgement {
     margin: 10px;
   }
 
-/* save */
-.app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow, .app-alt-action {
+/* overflow */
+.app-menu .app-overflow {
   position: absolute;
   top: 0;
   right: 0;
@@ -1190,6 +1190,44 @@ body .acknowledgement {
   color: #fff;
   z-index: 2;
   cursor: pointer;
+}
+
+/* primary action */
+.app-menu .app-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.app-menu .app-actions button {
+  position: relative;
+  background-color: #fff;
+  color: #fff !important;
+  border: none;
+  height: 49px;
+  z-index: 2;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 10px 0 0;
+  outline: none;
+}
+
+.app-menu .app-actions button i {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  color: #00ADE3;
+}
+
+.app-menu .app-actions button span {
+  padding-left: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #00ADE3;
 }
 
 /* back */
@@ -1439,54 +1477,64 @@ body .dropzone .dz-message {
   }
 
   .code-menu h2 {
-    margin: 20px 10px 5px 10px;
-    padding: 0;
-    color: #00ADE3;
+    position: relative;
+    color: #888;
     font-size: 12px;
-    text-transform: uppercase;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .code-menu h2 i {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 15px;
+    color: #888;
     cursor: pointer;
   }
 
-    .code-menu h2 svg {
-      fill: currentColor;
-      width: 18px;
-      height: 18px;
-      margin-bottom: -4px;
-    }
-
-      .code-menu h2.expanded svg {
-        visibility: hidden;
-      }
-
   .code-menu ul {
-    margin: 10px 0 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
     font-size: 12px;
-    text-transform: uppercase;
+    text-transform: none;
     border-top: 1px solid #f8f8f8;
-    display: none;
   }
-
-    .code-menu ul.expanded {
-      display: block;
-    }
 
   .code-menu li {
     margin: 0;
     padding: 0;
     list-style: none;
-    color: ;
+    color: #555;
     font-size: 12px;
     text-transform: uppercase;
   }
 
   .code-menu li a {
     display: block;
-    padding: 10px;
+    padding: 10px 10px 10px 30px;
     line-height: 15px;
     color: #555;
+    text-transform: none;
     border-bottom: 1px solid #f8f8f8;
+    position: relative;
+  }
+
+  .code-menu li i.icon {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    font-size: 15px;
+    color: #888;
+  }
+
+  .code-menu li i.not-editable {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 15px;
+    color: #ccc;
   }
 
 

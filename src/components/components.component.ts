@@ -109,11 +109,10 @@ export class ComponentsComponent {
    */
   edit(component) {
     localStorage.setItem('respond.pageUrl', 'components/' + component.url);
-    localStorage.setItem('respond.editMode', 'component');
 
     var id = Math.random().toString(36).substr(2, 9);
 
-    this._router.navigate( ['/edit',  id] );
+    this._router.navigate( ['/edit',  id, 'component'] );
   }
 
   /**

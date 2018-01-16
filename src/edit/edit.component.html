@@ -5,9 +5,25 @@
 
     <h1>{{ 'Edit' | translate }}</h1>
 
-    <button class="app-alt-action" (click)="showPage()"><i class="material-icons">launch</i></button>
+    <div class="app-actions">
 
-    <button class="app-add" (click)="showAdd()"><i class="material-icons">add</i></button>
+        <button (click)="showFocused()" *ngIf="mode != 'component'">
+            <i class="material-icons">filter_tilt_shift</i>
+            <span *ngIf="mode == 'page'">{{ 'Focused Mode' | translate }}</span>
+            <span *ngIf="mode == 'focused'">{{ 'WYSIWYG Mode' | translate }}</span>
+        </button>
+        
+        <button (click)="showPage()">
+            <i class="material-icons">launch</i>
+            <span>{{ 'View Page' | translate }}</span>
+        </button>
+
+        <button (click)="showAdd()">
+            <i class="material-icons">add</i>
+            <span>{{ 'Add Content' | translate }}</span>
+        </button>
+    </div>
+
 </menu>
 
 <footer class="app-footer">

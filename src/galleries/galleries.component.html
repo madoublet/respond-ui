@@ -6,10 +6,17 @@
     
     <h1>{{ 'Galleries' | translate }}</h1>
 
-    <button class="app-add position-2" (click)="showSelect()" *ngIf="galleries.length !== 0"><i class="material-icons">add</i></button>
+    <div class="app-actions">
+      <button (click)="showSelect()">
+        <i class="material-icons">add</i>
+        <span>{{ 'Add Image' | translate }}</span>
+      </button>
 
-    <button class="app-overflow" (click)="toggleOverflow()" *ngIf="selectedGallery !== undefined"><i class="material-icons">more_vert</i></button>
-
+      <button (click)="toggleOverflow()">
+          <i class="material-icons">more_vert</i>
+          <span>{{ 'More' | translate }}</span>
+        </button>
+    </div>
 </menu>
 
 <section class="app-main">

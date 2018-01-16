@@ -6,7 +6,12 @@
     
     <h1>{{ 'Components' | translate }}</h1>
 
-    <button class="app-add" (click)="showAdd()"><i class="material-icons">add</i></button>
+    <div class="app-actions">
+      <button (click)="showAdd()">
+        <i class="material-icons">add</i>
+        <span>{{ 'Add Component' | translate }}</span>
+      </button>
+    </div>
 
 </menu>
 

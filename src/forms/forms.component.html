@@ -6,9 +6,17 @@
     
     <h1>{{ 'Forms' | translate }}</h1>
 
-    <button class="app-add position-2" (click)="showAddField()" *ngIf="forms.length !== 0"><i class="material-icons">add</i></button>
+    <div class="app-actions">
+      <button (click)="showAddField()">
+        <i class="material-icons">add</i>
+        <span>{{ 'Add Form Field' | translate }}</span>
+      </button>
 
-    <button class="app-overflow" (click)="toggleOverflow()" *ngIf="selectedForm !== undefined"><i class="material-icons">more_vert</i></button>
+      <button (click)="toggleOverflow()">
+          <i class="material-icons">more_vert</i>
+          <span>{{ 'More' | translate }}</span>
+        </button>
+    </div>
 
 </menu>
 

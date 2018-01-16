@@ -99,7 +99,6 @@ export class CreateComponent {
                          this.themesLocation = data.themesLocation;
                          this.recaptchaSiteKey = data.recaptchaSiteKey;
                          this.defaultLanguage = data.defaultLanguage;
-
                          this.setLanguage(this.defaultLanguage);
                        },
                        error =>  { this.failure(<any>error); }
@@ -215,16 +214,28 @@ export class CreateComponent {
    * Called when the reCAPTCHA JS loads
    */
   onloadCallback(response){
-    let el = this.container.nativeElement;
 
+    var context = this,
+        el = this.container.nativeElement;
+
+    setTimeout(function() {
+      context.setupRecaptcha(el);
+    }, 1000);
+  
+  }
+
+  /**
+   * Setup the Recaptcha
+   */
+  setupRecaptcha(el) {
+    
     if(this.recaptchaSiteKey != '') {
-
       grecaptcha.render(el, {
         'sitekey' : this.recaptchaSiteKey,
         'callback' : 'verifyCallback'
       });
-
     }
+
   }
 
   /**

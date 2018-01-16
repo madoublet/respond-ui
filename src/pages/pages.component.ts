@@ -156,11 +156,10 @@ export class PagesComponent {
    */
   edit(page) {
     localStorage.setItem('respond.pageUrl', page.url);
-    localStorage.setItem('respond.editMode', 'page');
 
     var id = Math.random().toString(36).substr(2, 9);
 
-    this._router.navigate( ['/edit',  id] );
+    this._router.navigate( ['/edit',  id, 'page'] );
   }
 
   /**
@@ -169,7 +168,11 @@ export class PagesComponent {
    * @param {Page} page
    */
   editCode(page) {
-    localStorage.setItem('respond.codeUrl', page.url);
+
+    let url = '', parts = page.url.split('.');
+    url = parts[0] + '.html';
+
+    localStorage.setItem('respond.codeUrl', url);
     localStorage.setItem('respond.codeType', 'page');
 
     var id = Math.random().toString(36).substr(2, 9);

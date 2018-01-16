@@ -11,8 +11,21 @@ export class CodeService {
   private _retrieveUrl = 'api/code/retrieve' + environment.urlExtension;
   private _saveUrl = 'api/code/save' + environment.urlExtension;
   private _listUrl = 'api/code/list' + environment.urlExtension;
+  private _listFilesUrl = 'api/code/listFiles' + environment.urlExtension;
   private _addUrl = 'api/code/add' + environment.urlExtension;
 
+  /**
+   * List files by type
+   *
+   */
+  listFiles (dir: string) {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._listFilesUrl + '?dir=' + dir, options).map((res:Response) => res.json());
+  }
 
   /**
    * List code by type
@@ -32,13 +45,13 @@ export class CodeService {
    * @param {string} url
    * @return {Observable}
    */
-  retrieve (url: string, type: string) {
+  retrieve (url: string) {
 
     let headers = new Headers();
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this._retrieveUrl + '?type=' + type + '&url=' + url, options).map((res:Response) => res.text());
+    return this.http.get(this._retrieveUrl + '?url=' + url, options).map((res:Response) => res.text());
 
   }
 
@@ -49,9 +62,9 @@ export class CodeService {
    * @param {string} cssClass
    * @return {Observable}
    */
-  save (value: string, url: string, type: string) {
+  save (value: string, url: string) {
 
-    let body = JSON.stringify({ value, url, type });
+    let body = JSON.stringify({ value, url });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

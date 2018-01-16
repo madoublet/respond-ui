@@ -24,15 +24,11 @@ export class CodeComponent {
   scripts: any;
   plugins: any;
   components: any;
+  files: any;
   showMenu: boolean;
-  isPagesExpanded: boolean;
-  isTemplatesExpanded: boolean;
-  isStylesheetsExpanded: boolean;
-  isScriptsExpanded: boolean;
-  isPluginsExpanded: boolean;
-  isComponentsExpanded: boolean;
   addVisible: boolean = false;
   drawerVisible: boolean = false;
+  path: string = '/';
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService, private _appService: AppService) {}
 
@@ -52,20 +48,7 @@ export class CodeComponent {
     this.drawerVisible = false;
 
     // get types
-    this.pages = [];
-    this.templates = [];
-    this.stylesheets = [];
-    this.scripts = [];
-    this.plugins = [];
-    this.components = [];
-
-    // set expanded
-    this.isPagesExpanded = false;
-    this.isTemplatesExpanded = false;
-    this.isStylesheetsExpanded = false;
-    this.isScriptsExpanded = false;
-    this.isPluginsExpanded = false;
-    this.isComponentsExpanded = false;
+    this.files = [];
 
     if(this.codeType == 'page' || this.codeType == 'component') {
       this.showMenu = false;
@@ -75,33 +58,6 @@ export class CodeComponent {
     }
 
     this.retrieve();
-    this.setExpanded();
-
-  }
-
-  /**
-   * determines which area is expanded by default
-   */
-  setExpanded() {
-
-    if(this.codeType == 'page') {
-      this.isPagesExpanded = true;
-    }
-    else if(this.codeType == 'template') {
-      this.isTemplatesExpanded = true;
-    }
-    else if(this.codeType == 'stylesheet') {
-      this.isStylesheetsExpanded = true;
-    }
-    else if(this.codeType == 'script') {
-      this.isScriptsExpanded = true;
-    }
-    else if(this.codeType == 'plugin') {
-      this.isPluginsExpanded = true;
-    }
-    else if(this.codeType == 'component') {
-      this.isComponentsExpanded = true;
-    }
 
   }
 
@@ -110,32 +66,6 @@ export class CodeComponent {
    */
   toggleDrawer() {
     this.drawerVisible = !this.drawerVisible;
-  }
-
-   /**
-   * determines which area is expanded by default
-   */
-  expand(codeType: string) {
-
-    if(codeType == 'page') {
-      this.isPagesExpanded = !this.isPagesExpanded;
-    }
-    else if(codeType == 'template') {
-      this.isTemplatesExpanded = !this.isTemplatesExpanded;
-    }
-    else if(codeType == 'stylesheet') {
-      this.isStylesheetsExpanded = !this.isStylesheetsExpanded;
-    }
-    else if(codeType == 'script') {
-      this.isScriptsExpanded = !this.isScriptsExpanded;
-    }
-    else if(codeType == 'plugin') {
-      this.isPluginsExpanded = !this.isPluginsExpanded;
-    }
-    else if(codeType == 'component') {
-      this.isComponentsExpanded = !this.isComponentsExpanded;
-    }
-
   }
 
   /**
@@ -157,7 +87,7 @@ export class CodeComponent {
    */
   retrieve() {
 
-    this._codeService.retrieve(this.codeUrl, this.codeType)
+    this._codeService.retrieve(this.codeUrl)
                      .subscribe(
                        data => { this.setupEditor(data); },
                        error =>  { this.failure(<any>error); }
@@ -175,46 +105,59 @@ export class CodeComponent {
   }
 
   /**
+   * Shows the folder
+   */
+  showFolder(path) {
+
+    this.path = this.path + path + '/';
+    this.list();
+
+  }
+
+  /**
+   * Go up a directory
+   */
+  up() {
+
+    let arr = this.path.split('/').filter(function(el) {return el.length != 0}), 
+              str = '';
+
+    // pop the last one off to move up          
+    arr.pop();
+
+    // rejoin with /
+    str = '/' + arr.join('/');
+
+    this.path = str;
+    this.list();
+
+  }
+
+  /**
+   * Shows the file
+   */
+  showFile(path, isEditable) {
+
+    if(isEditable == true) {
+
+      this.codeUrl = this.path + path;
+      this.retrieve();
+
+    }
+    
+  }
+
+  /**
    * Updates the list
    */
   list() {
 
     this.reset();
 
-    this._codeService.list('page')
-                     .subscribe(
-                       data => { this.pages = data; },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    this._codeService.list('template')
-                     .subscribe(
-                       data => { this.templates = data; },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    this._codeService.list('stylesheet')
-                     .subscribe(
-                       data => { this.stylesheets = data; },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    this._codeService.list('script')
-                     .subscribe(
-                       data => { this.scripts = data; },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    this._codeService.list('plugin')
-                     .subscribe(
-                       data => { this.plugins = data; },
-                       error =>  { this.failure(<any>error); }
-                      );
-
-    this._codeService.list('component')
-                     .subscribe(
-                       data => { this.components = data; },
-                       error =>  { this.failure(<any>error); }
+    this._codeService.listFiles(this.path)
+                      .subscribe(
+                        data => { this.files = data; },
+                        error =>  { this.failure(<any>error); }
                       );
   }
 
@@ -276,7 +219,7 @@ export class CodeComponent {
   save() {
 
     // save code from the editor
-    this._codeService.save(this.editor.getValue(), this.codeUrl, this.codeType)
+    this._codeService.save(this.editor.getValue(), this.codeUrl)
                      .subscribe(
                        data => { this.success(); this.list(); },
                        error =>  { this.failure(<any>error); }
