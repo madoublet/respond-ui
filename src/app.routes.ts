@@ -100,6 +100,10 @@ const appRoutes: Routes = [
     component: CodeComponent
   },
   {
+    path: 'products',
+    loadChildren: 'app/pro/pro.module#ProModule'
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'

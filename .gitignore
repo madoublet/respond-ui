@@ -2,6 +2,9 @@
 
 package-lock.json
 
+/src/app/pro
+/src/app/pro/*
+
 # compiled output
 /tmp
 /out-tsc

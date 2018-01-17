@@ -15,8 +15,6 @@ import { HttpModule, Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 // common
-import { DrawerComponent } from './shared/components/drawer/drawer.component';
-import { SubscribeComponent } from './shared/components/subscribe/subscribe.component';
 import { DropzoneComponent } from './shared/components/dropzone/dropzone.component';
 
 // logon, forgot, reset, create
@@ -111,6 +109,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 // pipes
 import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -119,7 +118,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       ForgotComponent,
       ResetComponent,
       CreateComponent,
-      DrawerComponent, DropzoneComponent, SubscribeComponent,
+      DropzoneComponent,
       EditComponent, AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
@@ -132,6 +131,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       UsersComponent, AddUserComponent, EditUserComponent, RemoveUserComponent,
       TimeAgoPipe ],
     imports: [
+      SharedModule,
       BrowserModule,
       FormsModule,
       RouterModule,

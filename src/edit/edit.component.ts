@@ -76,7 +76,9 @@ export class EditComponent {
    * navigates back
    */
   back() {
-    history.go(-1);
+
+    this._router.navigate( ['/pages'] );
+    
   }
 
   save() {
