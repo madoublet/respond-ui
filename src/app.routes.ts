@@ -1,22 +1,23 @@
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { ForgotComponent } from './forgot/forgot.component';
-import { ResetComponent } from './reset/reset.component';
-import { CreateComponent } from './create/create.component';
-import { PagesComponent } from './pages/pages.component';
-import { ComponentsComponent } from './components/components.component';
-import { FilesComponent } from './files/files.component';
-import { PluginsComponent } from './plugins/plugins.component';
-import { UsersComponent } from './users/users.component';
-import { MenusComponent } from './menus/menus.component';
-import { FormsComponent } from './forms/forms.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SubmissionsComponent } from './submissions/submissions.component';
-import { GalleriesComponent } from './galleries/galleries.component';
-import { EditComponent } from './edit/edit.component';
-import { AdvancedComponent } from './advanced/advanced.component';
-import { AccountComponent } from './account/account.component';
-import { CodeComponent } from './code/code.component';
+import { LoginComponent } from './app/login/login.component';
+import { ForgotComponent } from './app/forgot/forgot.component';
+import { ResetComponent } from './app/reset/reset.component';
+import { CreateComponent } from './app/create/create.component';
+import { PagesComponent } from './app/pages/pages.component';
+import { ComponentsComponent } from './app/components/components.component';
+import { FilesComponent } from './app/files/files.component';
+import { PluginsComponent } from './app/plugins/plugins.component';
+import { UsersComponent } from './app/users/users.component';
+import { MenusComponent } from './app/menus/menus.component';
+import { FormsComponent } from './app/forms/forms.component';
+import { SettingsComponent } from './app/settings/settings.component';
+import { SubmissionsComponent } from './app/submissions/submissions.component';
+import { GalleriesComponent } from './app/galleries/galleries.component';
+import { EditComponent } from './app/edit/edit.component';
+import { AdvancedComponent } from './app/advanced/advanced.component';
+import { AccountComponent } from './app/account/account.component';
+import { CodeComponent } from './app/code/code.component';
+import { environment } from './environments/environment';
 
 const appRoutes: Routes = [
   {
@@ -98,8 +99,8 @@ const appRoutes: Routes = [
   {
     path: 'code/:id',
     component: CodeComponent
-  },
-  {
+  }
+  /*{
     path: 'products',
     loadChildren: 'app/pro/pro.module#ProModule'
   },
@@ -107,7 +108,24 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
-  }
+  }*/
 ];
+
+// push pro routes
+if(environment.build == 'pro') {
+  appRoutes.push(
+    {
+      path: 'products',
+      loadChildren: 'app/pro/pro.module#ProModule'
+    });
+}
+
+// push redirect route
+appRoutes.push(
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  });
 
 export const routing = RouterModule.forRoot(appRoutes);

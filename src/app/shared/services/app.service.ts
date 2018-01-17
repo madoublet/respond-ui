@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 declare var toast: any;
 
@@ -51,7 +51,6 @@ export class AppService {
    */
   showToast (type: string, text: string) {
     
-
     if(type == 'failure'  && (text == null || text == '')) {
       text = 'Sorry, you encountered an error. Contact your site administrator if the problem continues.';
     }

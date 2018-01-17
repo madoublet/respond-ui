@@ -2,40 +2,40 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class FormService {
+export class GalleryService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/forms/list' + environment.urlExtension;
-  private _addUrl = 'api/forms/add' + environment.urlExtension;
-  private _editUrl = 'api/forms/edit' + environment.urlExtension;
-  private _removeUrl = 'api/forms/remove' + environment.urlExtension;
+  private _listUrl = 'api/galleries/list' + environment.urlExtension;
+  private _addUrl = 'api/galleries/add' + environment.urlExtension;
+  private _editUrl = 'api/galleries/edit' + environment.urlExtension;
+  private _removeUrl = 'api/galleries/remove' + environment.urlExtension;
 
   /**
    * Lists forms
    *
    */
   list () {
-
+  
     let headers = new Headers();
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
-
+  
     return this.http.get(this._listUrl, options).map((res:Response) => res.json());
   }
 
   /**
-   * Adds a form
+   * Adds a gallery
    *
    * @param {string} name
    * @param {string} cssClass
    * @return {Observable}
    */
-  add (name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
+  add (name: string) {
 
-    let body = JSON.stringify({ name, cssClass, validate, success, error, recaptchaError, notify });
+    let body = JSON.stringify({ name });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -45,14 +45,14 @@ export class FormService {
   }
 
   /**
-   * Edits a form
+   * Edits a gallery
    *
    * @param {string} name
    * @return {Observable}
    */
-  edit (id: string, name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
+  edit (id: string, name: string) {
 
-    let body = JSON.stringify({ id, name, cssClass, validate, success, error, recaptchaError, notify });
+    let body = JSON.stringify({ id, name });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -62,7 +62,7 @@ export class FormService {
   }
 
   /**
-   * Removes a form
+   * Removes a gallery
    *
    * @param {string} id
    * @return {Observable}

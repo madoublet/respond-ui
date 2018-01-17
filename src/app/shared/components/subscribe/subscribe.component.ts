@@ -1,6 +1,6 @@
 import { Component, Renderer, EventEmitter, Input, Output } from '@angular/core';
-import { SiteService } from '../../../../shared/services/site.service';
-import { AppService } from '../../../../shared/services/app.service';
+import { SiteService } from '../../../shared/services/site.service';
+import { AppService } from '../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-subscribe',
