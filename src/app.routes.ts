@@ -99,8 +99,8 @@ const appRoutes: Routes = [
   {
     path: 'code/:id',
     component: CodeComponent
-  }
-  /*{
+  },
+  {
     path: 'products',
     loadChildren: 'app/pro/pro.module#ProModule'
   },
@@ -108,24 +108,7 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
-  }*/
+  }
 ];
-
-// push pro routes
-if(environment.build == 'pro') {
-  appRoutes.push(
-    {
-      path: 'products',
-      loadChildren: 'app/pro/pro.module#ProModule'
-    });
-}
-
-// push redirect route
-appRoutes.push(
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  });
 
 export const routing = RouterModule.forRoot(appRoutes);

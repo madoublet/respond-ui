@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../shared/services/app.service';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'respond-login',
@@ -35,7 +36,6 @@ export class LoginComponent {
 
       // retrieve settings
       this.settings();
-
   }
 
   /**

@@ -2,6 +2,7 @@ import { Component, Renderer, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router';
 import { SiteService } from '../../../shared/services/site.service';
 import { AppService } from '../../../shared/services/app.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'respond-drawer',
@@ -16,6 +17,7 @@ export class DrawerComponent {
   id;
   dev;
   siteUrl;
+  build: string = 'core';
   hasAccount: boolean = false;
   _visible: boolean = false;
   _active: string;
@@ -46,6 +48,7 @@ export class DrawerComponent {
     this.dev = false;
     this.siteUrl = '';
     this.hasAccount = false;
+    this.build = environment.build;
     
     var url = window.location.href;
 

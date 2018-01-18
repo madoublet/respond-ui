@@ -10,7 +10,7 @@
     <li [class.active]="active === 'menus'"><a [routerLink]="['/menus']"><i class="material-icons">subject</i> <span>{{ 'Menus' | translate }}</span></a></li>
     <li [class.active]="active === 'galleries'"><a [routerLink]="['/galleries']"><i class="material-icons">photo_library</i> <span>{{ 'Galleries' | translate }}</span></a></li>
     <li [class.active]="active === 'forms'"><a [routerLink]="['/forms']"><i class="material-icons">assignment</i> <span>{{ 'Forms' | translate }}</span></a></li>
-    <li [class.active]="active === 'products'"><a [routerLink]="['/products']"><i class="material-icons">email</i>  <span>{{ 'Products' | translate }}</span></a></li>
+    <li *ngIf="build == 'pro'" [class.active]="active === 'products'"><a [routerLink]="['/products']"><i class="material-icons">shopping_cart</i>  <span>{{ 'Products' | translate }}</span></a></li>
     <li [class.active]="active === 'submissions'"><a [routerLink]="['/submissions']"><i class="material-icons">email</i>  <span>{{ 'Submissions' | translate }}</span></a></li>
     <li [class.active]="active === 'plugins'"><a [routerLink]="['/plugins']"><i class="material-icons">widgets</i> <span>{{ 'Plugins' | translate }}</span></a></li>
     <li [class.active]="active === 'files'"><a [routerLink]="['/files']"><i class="material-icons">attach_file</i> <span>{{ 'Files' | translate }}</span></a></li>

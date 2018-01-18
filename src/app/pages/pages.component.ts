@@ -33,6 +33,7 @@ export class PagesComponent {
   ngOnInit() {
 
     this.id = localStorage.getItem('respond.siteId');
+
     this.addVisible = false;
     this.removeVisible = false;
     this.settingsVisible = false;
