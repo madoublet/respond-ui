@@ -151,5 +151,14 @@
     "Unauthorized": "Unauthorized",
     "Password mismatch": "Password mismatch",
     "Unsubscribe": "Unsubscribe",
-    "Confirm you want to Unsubscribe.": "Confirm you want to Unsubscribe."
+    "Confirm you want to Unsubscribe.": "Confirm you want to Unsubscribe.",
+    "Products": "Products",
+    "Add Product": "Add Product",
+    "SKU": "SKU",
+    "Is Shipped?": "Is Shipped?",
+    "Price": "Price",
+    "Is Subscription?": "Is Subscription?",
+    "Stripe Plan": "Stripe Plan",
+    "Display Plan Price": "Display Plan Price",
+    "Remove Product": "Remove Product"
 }

@@ -1,0 +1,27 @@
+<respond-subscribe></respond-subscribe>
+
+<menu class="app-menu">
+
+  <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
+  
+  <h1>{{ 'Products' | translate }}</h1>
+
+  <div class="app-actions">
+    <button (click)="showAdd()">
+      <i class="material-icons">add</i>
+      <span>{{ 'Add Product' | translate }}</span>
+    </button>
+  </div>
+
+</menu>
+
+<section class="app-main">
+  <p>
+    Products works!
+  </p>
+</section>
+
+<respond-add-product [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-product>
+<respond-remove-product [visible]="removeVisible" [product]="product" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-product>
+
+<respond-drawer active="products" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

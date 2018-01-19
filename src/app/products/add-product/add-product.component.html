@@ -1,0 +1,60 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Add Product' | translate }}</h2>
+
+    <div class="app-modal-body">
+      <label>{{ 'Name' | translate }}</label>
+      <input id="add-product-name" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.name"
+        name="name">
+
+      <label>{{ 'SKU' | translate }}</label>
+      <input id="add-product-sku" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.sku"
+        name="sku">
+
+      <label>{{ 'Is Shipped?' | translate }}</label>
+      <select id="add-product-is-shipped"
+        [(ngModel)]="model.shipped"
+        name="shipped">
+        <option value="true">{{ 'Yes' | translate }}</option>
+        <option value="false">{{ 'No' | translate }}</option>
+      </select>  
+
+      <label>{{ 'Price' | translate }}</label>
+      <input id="add-product-price" type="number" maxlength="128" placeholder="" required
+        [(ngModel)]="model.price"
+        name="price">
+
+      <label>{{ 'Is Subscription?' | translate }}</label>
+      <select id="add-product-is-subscription"
+        [(ngModel)]="model.subscription"
+        name="subscription">
+        <option value="true">{{ 'Yes' | translate }}</option>
+        <option value="false">{{ 'No' | translate }}</option>
+      </select>
+       
+      <div *ngIf="model.subscription == 'true'">
+        <label>{{ 'Stripe Plan ID' | translate }}</label>
+        <input id="add-product-plan" type="text" maxlength="128" placeholder="" required
+          [(ngModel)]="model.plan"
+          name="plan">
+
+        <label>{{ 'Display Plan Price' | translate }}</label>
+        <input id="add-product-plan-price" type="text" maxlength="128" placeholder="" required
+          [(ngModel)]="model.planPrice"
+          name="planPrice">
+        <small>{{ 'e.g.: $25 /month' | translate }}</small>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Add Product' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

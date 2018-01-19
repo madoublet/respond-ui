@@ -102,7 +102,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: 'app/pro/pro.module#ProModule'
+    loadChildren: 'app/products/products.module#ProductsModule'
   },
   {
     path: '',
