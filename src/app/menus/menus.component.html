@@ -32,7 +32,10 @@
 
 
   <div id="items-list" class="app-list">
-    <div class="app-list-item" *ngFor="let item of items" (mouseenter)="setItemActive(item)" (click)="setItemActive(item)" [class.selected]="item === selectedItem">
+    <div class="app-list-item" *ngFor="let item of items" (mouseenter)="setItemActive(item)" (click)="setItemActive(item)" [class.selected]="item === selectedItem" [class.nested]="item.isNested === true">
+      
+      <i *ngIf="item.isNested === true" class="nested-icon material-icons">subdirectory_arrow_right</i>
+      
       <h2><span class="primary"><a (click)="showEditItem(item)">{{ item.html }}</a></span></h2>
       <small>{{ item.url }}</small>
       <div class="app-list-actions">

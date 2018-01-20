@@ -179,6 +179,18 @@ body .app-list {
     position: relative;
   }
 
+  body .app-list-item.nested {
+    border-left: 20px solid #f0f0f0;
+  }
+
+    body .app-list-item.nested .nested-icon {
+      position: absolute;
+      top: 32px;
+      left: -18px;
+      font-size: 15px;
+      color: #555;
+    }
+
   body .app-list-item.image {
     padding-left: 80px;
     min-height: 50px;
@@ -1201,7 +1213,7 @@ body .acknowledgement {
 
 .app-menu .app-actions button {
   position: relative;
-  background-color: #fff;
+  background-color: transparent;
   color: #fff !important;
   border: none;
   height: 49px;
@@ -1219,7 +1231,7 @@ body .acknowledgement {
   font-size: 18px;
   margin: 0;
   padding: 0;
-  color: #00ADE3;
+  color: #fff;
 }
 
 .app-menu .app-actions button span {
@@ -1227,7 +1239,7 @@ body .acknowledgement {
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
-  color: #00ADE3;
+  color: #fff;
 }
 
 /* back */
@@ -1245,20 +1257,6 @@ body .acknowledgement {
   background-color: transparent;
   line-height: 0;
   cursor: pointer;
-}
-
-.app-menu .app-add.position-2{
-  right: 50px;
-}
-
-.app-menu .app-alt-action {
-  right: 50px;
-}
-
-.app-menu .app-save svg, .app-menu .app-add svg, .app-menu .app-overflow svg {
-  fill: currentColor;
-  height: 24px;
-  margin: 0 auto 0 auto;
 }
 
 /* menu */
@@ -1647,9 +1645,22 @@ body .dropzone .dz-message {
     display: none;
   }
 
-  /* top app menu */
-  .app-menu .app-save, .app-menu .app-add, .app-menu .app-overflow, .app-menu .app-alt-action {
-    color: #00ADE3 !important;
+  /* primary action */
+.app-menu .app-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+  /* app-actions */
+  .app-menu .app-actions button {}
+
+  .app-menu .app-actions button i {
+    color: #00ADE3;
+  }
+
+  .app-menu .app-actions button span {
+    color: #00ADE3;
   }
 
   .app-menu .app-back {
