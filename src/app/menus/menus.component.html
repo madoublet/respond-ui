@@ -31,20 +31,18 @@
   </nav>
 
 
-  <div id="items-list" class="app-list">
-    <div class="app-list-item" *ngFor="let item of items" (mouseenter)="setItemActive(item)" (click)="setItemActive(item)" [class.selected]="item === selectedItem" [class.nested]="item.isNested === true">
+  <div id="items-list" class="app-list" [sortablejs]="items" [sortablejsOptions]="options">
+    <div class="app-list-item sortable" *ngFor="let item of items" (mouseenter)="setItemActive(item)" (click)="setItemActive(item)" [class.selected]="item === selectedItem" [class.nested]="item.isNested === true">
       
       <i *ngIf="item.isNested === true" class="nested-icon material-icons">subdirectory_arrow_right</i>
       
+      <i class="sortable-handle material-icons">apps</i>
+
       <h2><span class="primary"><a (click)="showEditItem(item)">{{ item.html }}</a></span></h2>
       <small>{{ item.url }}</small>
       <div class="app-list-actions">
-          <span class="app-list-alternate-actions">
-            <a (click)="moveItemDown(item)">{{ 'Move Down' | translate }}</a>
-            <a (click)="moveItemUp(item)">{{ 'Move Up' | translate }}</a>
-          </span>
-          <a (click)="showRemoveItem(item)">{{ 'Remove' | translate }}</a>
-          <a class="primary" (click)="showEditItem(item)">{{ 'Edit' | translate }}</a>
+         <a (click)="showRemoveItem(item)">{{ 'Remove' | translate }}</a>
+         <a class="primary" (click)="showEditItem(item)">{{ 'Edit' | translate }}</a>
       </div>
     </div>
   </div>

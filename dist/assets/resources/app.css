@@ -196,6 +196,18 @@ body .app-list {
     min-height: 50px;
   }
 
+  body .app-list-item.sortable {
+    padding-left: 25px;
+  }
+
+  body .app-list-item .sortable-handle {
+    font-size: 15px;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    color: #AAA;
+  }
+
   body .app-list-item .icon {
     display: inline-block;
     color: #888;

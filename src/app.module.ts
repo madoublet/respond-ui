@@ -10,6 +10,9 @@ import { RouterModule, Router } from '@angular/router';
 // app component
 import { AppComponent }   from './app.component';
 
+// sortable
+import { SortablejsModule } from 'angular-sortablejs';
+
 // http
 import { HttpModule, Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -146,7 +149,10 @@ import { SharedModule } from './app/shared/shared.module';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+      SortablejsModule.forRoot({
+        animation: 200
+        }),
       ],
     bootstrap: [ AppComponent ],
     providers: [ TranslateService ]

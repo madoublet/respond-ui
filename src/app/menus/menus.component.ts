@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuService } from '../shared/services/menu.service';
 import { MenuItemService } from '../shared/services/menu-item.service';
 import { AppService } from '../shared/services/app.service';
+import { SortablejsOptions } from 'angular-sortablejs';
 
 @Component({
     selector: 'respond-menus',
@@ -28,6 +29,11 @@ export class MenusComponent {
   removeItemVisible: boolean;
   drawerVisible: boolean;
   overflowVisible: boolean;
+
+  options: SortablejsOptions = {
+    handle: '.sortable-handle',
+    onUpdate: () => this.updateOrder()
+  };
 
   constructor (private _menuService: MenuService, private _menuItemService: MenuItemService, private _router: Router, private _appService: AppService) {}
 
@@ -257,7 +263,7 @@ export class MenusComponent {
 
     this._menuItemService.updateOrder(this.selectedMenu.id, this.items)
                      .subscribe(
-                       data => { },
+                       data => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  { this.failure(<any>error); }
                       );
   }
