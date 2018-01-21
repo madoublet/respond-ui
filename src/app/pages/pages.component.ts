@@ -3,28 +3,32 @@ import { Router } from '@angular/router';
 import { PageService } from '../shared/services/page.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../shared/services/app.service';
+import { RouteService } from '../shared/services/route.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'respond-pages',
     templateUrl: 'pages.component.html',
-    providers: [PageService, AppService]
+    providers: [PageService, AppService, RouteService]
 })
 
 export class PagesComponent {
 
-  id;
-  page;
-  pages;
+  id: string;
+  page: any;
+  pages: any;
+  routes: any;
   filteredPages: any;
-  errorMessage;
-  selectedPage;
+  errorMessage: string;
+  selectedPage: any;
   addVisible: boolean = false;
   removeVisible: boolean = false;
   drawerVisible: boolean = false;
   settingsVisible: boolean = false;
   search: string = null;
+  foldersVisible: boolean = false;
 
-  constructor (private _pageService: PageService, private _router: Router, private _translate: TranslateService, private _appService: AppService) {}
+  constructor (private _pageService: PageService, private _router: Router, private _translate: TranslateService, private _appService: AppService, private _routeService: RouteService) {}
 
   /**
    * Init pages
@@ -40,6 +44,7 @@ export class PagesComponent {
     this.drawerVisible = false;
     this.page = {};
     this.pages = [];
+    this.routes = [];
     this.filteredPages = [];
     this.search = null;
 
@@ -64,11 +69,22 @@ export class PagesComponent {
     }
 
     this.reset();
+
+    // list pages
     this._pageService.list()
                      .subscribe(
                        data => { this.pages = data; this.copy(); },
                        error =>  { this.failure(<any>error); }
                       );
+
+    // list routes
+    this._routeService.list()
+                     .subscribe(
+                       data => { this.routes = data; },
+                       error =>  { this.failure(<any>error); }
+                      );
+
+
   }
 
   /**
@@ -76,25 +92,79 @@ export class PagesComponent {
    */
   searchList() {
 
-    var keys = 'title,url';
+    let keys = 'title,url', context = this;
 
     // reset when nothing is typed
     if(!this.search) {
       this.copy();
     }
 
-    // filter items
-    /*
-    this.filteredPages = Object.assign([], this.pages).filter(
-      item => item.url.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-    )*/
+    // folder search
+    if (this.search.indexOf('url:') != -1) {
+      keys = 'url';
 
-    this.filteredPages = Object.assign([], this.pages).filter(
-      item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
-    );
+      let searchStr = this.search.replace('url: /', '').trim();
 
+      // find root items
+      if(searchStr == '') {
+        
+        this.filteredPages = [];
+
+        this.pages.forEach(function(page) {
+          if(page.url.indexOf('/') == -1) {
+            context.filteredPages.push(page);
+          }
+        });
+
+      }
+      else {
+        // filter items
+        this.filteredPages = Object.assign([], this.pages).filter(
+          item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(searchStr, 'gi').test(item[key]))
+        );
+      }
+
+    
+    }
+    else {
+
+      // filter items
+      this.filteredPages = Object.assign([], this.pages).filter(
+        item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
+      );
+
+    }
 
   }
+
+  /**
+   * Searches the list
+   */
+  searchListForRoute(route:string) {
+
+    var keys = 'url';
+
+    this.search = 'url: ' + route;
+
+    this.searchList();
+
+    this.foldersVisible = false;
+  }
+
+  /**
+   * Shows the folders
+   */
+  showFoldersList() { 
+    this.foldersVisible = true;
+  }
+
+  /**
+   * Shows the folders
+   */
+  hideFoldersList() { 
+    this.foldersVisible = false;
+  }
+
 
   /**
    * Resets an modal booleans

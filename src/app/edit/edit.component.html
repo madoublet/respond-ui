@@ -34,6 +34,6 @@
     <iframe #editFrame [src]="url" class="edit-frame"></iframe>
 </section>
 
+<respond-drawer active="pages" [confirm]="true" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
-
-<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+<respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>

@@ -1,0 +1,16 @@
+<div class="app-modal-background" [class.visible]="visible === true">
+    
+  <div class="app-modal" [class.visible]="visible === true">
+
+      <h2>{{ 'Confirm' | translate }}</h2>
+
+      <p>{{ 'You may have unsaved changes.  Do you want to continue?' | translate }}</p>
+
+      <div class="actions">
+        <a (click)="cancel()">{{ 'Cancel' | translate }}</a>
+        <button (click)="continue()">{{ 'Continue' | translate }}</button>
+      </div>
+
+  </div>
+
+</div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormService } from '../shared/services/form.service';
 import { FormFieldService } from '../shared/services/form-field.service';
 import { AppService } from '../shared/services/app.service';
+import { SortablejsOptions } from 'angular-sortablejs';
 
 @Component({
     selector: 'respond-forms',
@@ -27,6 +28,11 @@ export class FormsComponent {
   removeFieldVisible: boolean;
   drawerVisible: boolean;
   overflowVisible: boolean;
+
+  options: SortablejsOptions = {
+    handle: '.sortable-handle',
+    onUpdate: () => this.updateOrder()
+  };
 
   constructor (private _formService: FormService, private _formFieldService: FormFieldService, private _router: Router, private _appService: AppService) {}
 
@@ -251,7 +257,7 @@ export class FormsComponent {
 
     this._formFieldService.updateOrder(this.selectedForm.id, this.fields)
                      .subscribe(
-                       data => { },
+                       data => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  this.errorMessage = <any>error
                       );
   }

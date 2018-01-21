@@ -17,10 +17,20 @@ export class DrawerComponent {
   id;
   dev;
   siteUrl;
+  route: any;
   build: string = 'core';
   hasAccount: boolean = false;
+  confirmVisible: boolean = false;
   _visible: boolean = false;
   _active: string;
+  _confirm: boolean = false;
+
+  @Input()
+  set confirm(confirm: boolean){
+    this._confirm = confirm;
+  }
+
+  get confirm() { return this._confirm }
 
   @Input()
   set visible(visible: boolean){
@@ -48,6 +58,7 @@ export class DrawerComponent {
     this.dev = false;
     this.siteUrl = '';
     this.hasAccount = false;
+    this.confirmVisible = false;
     this.build = environment.build;
     
     var url = window.location.href;
@@ -81,14 +92,50 @@ export class DrawerComponent {
   /**
    * View the code editor
    */
+  navigate(route) {
+
+    if(this._confirm === true) {
+
+      this.route = route;
+
+      // show the confirm modal
+      this.confirmVisible = true;
+
+    }
+    else {
+      this.route = route;
+      this._router.navigate(this.route);
+    }
+
+  }
+
+  /**
+   * Cancels navigation
+   */
+  cancelNavigation() {
+    this.confirmVisible = false;
+    return true;
+  }
+
+  /**
+   * Continues navigation
+   */
+  continueNavigation() {
+    this.confirmVisible = false;
+    this._router.navigate(this.route);
+  }
+
+  /**
+   * View the code editor
+   */
   viewCode() {
 
-    localStorage.setItem('respond.codeUrl', 'templates/default.html');
-    localStorage.setItem('respond.codeType', 'template');
+    localStorage.setItem('respond.codeUrl', 'index.html');
+    localStorage.setItem('respond.codeType', 'default');
 
     var id = Math.random().toString(36).substr(2, 9);
 
-    this._router.navigate( ['/code',  id] );
+    this.navigate(['/code',  id]);
 
   }
 
@@ -122,8 +169,8 @@ export class DrawerComponent {
     // remove token
     localStorage.removeItem('respond.siteId');
 
-    // redirect
-    this._router.navigate( ['/login'] );
+    // navigate
+    this.navigate(['/login']);
 
   }
 

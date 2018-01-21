@@ -137,10 +137,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 MIT
 MIT
 
-@angular/router@5.0.2
-MIT
-MIT
-
 @angular/platform-browser@5.0.2
 MIT
 MIT
@@ -149,11 +145,15 @@ MIT
 MIT
 MIT
 
-@angular/common@5.0.2
+@angular/router@5.0.2
 MIT
 MIT
 
 sortablejs@1.7.0
+MIT
+MIT
+
+@angular/common@5.0.2
 MIT
 MIT
 

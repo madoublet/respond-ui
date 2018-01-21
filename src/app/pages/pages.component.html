@@ -18,8 +18,16 @@
 <section class="app-main">
 
   <div class="app-search">
-    <i class="material-icons">search</i>
+    <i class="search material-icons">search</i>
+    <a (click)="showFoldersList()"><i class="folders material-icons">folder_open</i></a>
     <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or URL' | translate }}">
+  </div>
+
+  <div *ngIf="foldersVisible == true" class="filter-list">
+      <a (click)="hideFoldersList()"><i class="filter-list-close material-icons">close</i></a>
+      <div *ngFor="let route of routes" (click)="searchListForRoute(route)">
+        <a>{{route}}</a>
+      </div>
   </div>
 
   <div id="pages-list" class="app-list">

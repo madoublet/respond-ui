@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GalleryService } from '../shared/services/gallery.service';
 import { GalleryImageService } from '../shared/services/gallery-image.service';
 import { AppService } from '../shared/services/app.service';
+import { SortablejsOptions } from 'angular-sortablejs';
 
 @Component({
     selector: 'respond-galleries',
@@ -27,6 +28,11 @@ export class GalleriesComponent {
   removeImageVisible: boolean;
   drawerVisible: boolean;
   overflowVisible: boolean;
+
+  options: SortablejsOptions = {
+    handle: '.sortable-handle',
+    onUpdate: () => this.updateOrder()
+  };
 
   constructor (private _galleryService: GalleryService, private _galleryImageService: GalleryImageService, private _router: Router, private _appService: AppService) {}
 
@@ -271,7 +277,7 @@ export class GalleriesComponent {
 
     this._galleryImageService.updateOrder(this.images, this.selectedGallery.id)
                      .subscribe(
-                       data => { },
+                       data => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  { this.failure(<any>error); }
                       );
   }

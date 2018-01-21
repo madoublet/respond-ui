@@ -5,23 +5,25 @@
   </div>  
 
   <ul>
-    <li [class.active]="active === 'pages'"><a [routerLink]="['/pages']"><i class="material-icons">description</i> <span>{{ 'Pages' | translate }}</span></a></li>
-    <li [class.active]="active === 'components'"><a [routerLink]="['/components']"><i class="material-icons">extension</i> <span>{{ 'Components' | translate }}</span></a></li>
-    <li [class.active]="active === 'menus'"><a [routerLink]="['/menus']"><i class="material-icons">subject</i> <span>{{ 'Menus' | translate }}</span></a></li>
-    <li [class.active]="active === 'galleries'"><a [routerLink]="['/galleries']"><i class="material-icons">photo_library</i> <span>{{ 'Galleries' | translate }}</span></a></li>
-    <li [class.active]="active === 'forms'"><a [routerLink]="['/forms']"><i class="material-icons">assignment</i> <span>{{ 'Forms' | translate }}</span></a></li>
-    <li *ngIf="build == 'pro'" [class.active]="active === 'products'"><a [routerLink]="['/products']"><i class="material-icons">shopping_cart</i>  <span>{{ 'Products' | translate }}</span></a></li>
-    <li [class.active]="active === 'submissions'"><a [routerLink]="['/submissions']"><i class="material-icons">email</i>  <span>{{ 'Submissions' | translate }}</span></a></li>
-    <li [class.active]="active === 'plugins'"><a [routerLink]="['/plugins']"><i class="material-icons">widgets</i> <span>{{ 'Plugins' | translate }}</span></a></li>
-    <li [class.active]="active === 'files'"><a [routerLink]="['/files']"><i class="material-icons">attach_file</i> <span>{{ 'Files' | translate }}</span></a></li>
-    <li [class.active]="active === 'users'"><a [routerLink]="['/users']"><i class="material-icons">group</i> <span>{{ 'Users' | translate }}</span></a></li>
-    <li [class.active]="active === 'settings'"><a [routerLink]="['/settings']"><i class="material-icons">settings</i> <span>{{ 'Settings' | translate }}</span></a></li>
+    <li [class.active]="active === 'pages'"><a (click) ="navigate(['/pages'])"><i class="material-icons">description</i> <span>{{ 'Pages' | translate }}</span></a></li>
+    <li [class.active]="active === 'components'"><a (click) ="navigate(['/components'])"><i class="material-icons">extension</i> <span>{{ 'Components' | translate }}</span></a></li>
+    <li [class.active]="active === 'menus'"><a (click) ="navigate(['/menus'])"><i class="material-icons">subject</i> <span>{{ 'Menus' | translate }}</span></a></li>
+    <li [class.active]="active === 'galleries'"><a (click) ="navigate(['/galleries'])"><i class="material-icons">photo_library</i> <span>{{ 'Galleries' | translate }}</span></a></li>
+    <li [class.active]="active === 'forms'"><a (click) ="navigate(['/forms'])"><i class="material-icons">assignment</i> <span>{{ 'Forms' | translate }}</span></a></li>
+    <li *ngIf="build == 'pro'" [class.active]="active === 'products'"><a (click) ="navigate(['/products'])"><i class="material-icons">shopping_cart</i>  <span>{{ 'Products' | translate }}</span></a></li>
+    <li [class.active]="active === 'submissions'"><a (click) ="navigate(['/submissions'])"><i class="material-icons">email</i>  <span>{{ 'Submissions' | translate }}</span></a></li>
+    <li [class.active]="active === 'plugins'"><a (click) ="navigate(['/plugins'])"><i class="material-icons">widgets</i> <span>{{ 'Plugins' | translate }}</span></a></li>
+    <li [class.active]="active === 'files'"><a (click) ="navigate(['/files'])"><i class="material-icons">attach_file</i> <span>{{ 'Files' | translate }}</span></a></li>
+    <li [class.active]="active === 'users'"><a (click) ="navigate(['/users'])"><i class="material-icons">group</i> <span>{{ 'Users' | translate }}</span></a></li>
+    <li [class.active]="active === 'settings'"><a (click) ="navigate(['/settings'])"><i class="material-icons">settings</i> <span>{{ 'Settings' | translate }}</span></a></li>
     <li [class.active]="active === 'code'"><a (click)="viewCode()"><i class="material-icons">code</i> <span>{{ 'Code' | translate }}</span></a></li>
-    <li [class.active]="active === 'advanced'"><a [routerLink]="['/advanced']"><i class="material-icons">build</i> <span>{{ 'Advanced' | translate }}</span></a></li>
-    <li [class.active]="active === 'account'" *ngIf="hasAccount == true"><a [routerLink]="['/account']"><i class="material-icons">account_circle</i> <span>{{ 'Account' | translate }}</span></a></li>
+    <li [class.active]="active === 'advanced'"><a (click) ="navigate(['/advanced'])"><i class="material-icons">build</i> <span>{{ 'Advanced' | translate }}</span></a></li>
+    <li [class.active]="active === 'account'" *ngIf="hasAccount == true"><a (click) ="navigate(['/account'])"><i class="material-icons">account_circle</i> <span>{{ 'Account' | translate }}</span></a></li>
     <li><a [href]="siteUrl" target="_blank"><i class="material-icons">turned_in_not</i> <span>{{ 'View Site' | translate }}</span></a></li>
     <li><a (click)="signOut()"><i class="material-icons">eject</i> <span>{{ 'Sign Out' | translate }}</span></a></li>
   </ul>
 
 </nav>
+
+<respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>
   

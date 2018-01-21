@@ -141,11 +141,18 @@ body .app-search {
   padding: 0 0 0 30px;
 }
 
-  body .app-search i {
+  body .app-search i.search {
     color: #ddd;
     position: absolute;
     top: 10px;
     left: 20px;
+    font-size: 20px;
+  }
+
+  body .app-search i.folders {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     font-size: 20px;
   }
 
@@ -154,12 +161,37 @@ body .app-search {
     padding: 11px 20px;
     margin: 0;
     border: 0;
-    width: 100%;
+    width: calc(100% - 40px);
     outline: none;
   }
 
   body .app-search input[type=search]::placeholder {
     color: #ccc;
+  }
+
+/* filter-list */
+body .filter-list {
+  position: relative;
+  margin: 0;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+  background-color: #f8f8f8;
+}
+
+  body .filter-list .filter-list-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #888;
+    font-size: 15px;
+  }
+
+  body .filter-list>div {
+    padding: 5px 20px;
+  }
+
+  body .filter-list>div a {
+    font-size: 14px;
   }
 
 /* .app-list */
@@ -200,12 +232,17 @@ body .app-list {
     padding-left: 25px;
   }
 
+  body .app-list-item.image.sortable {
+    padding-left: 95px;
+  }
+
   body .app-list-item .sortable-handle {
     font-size: 15px;
     position: absolute;
     top: 20px;
     left: 5px;
     color: #AAA;
+    cursor: move;
   }
 
   body .app-list-item .icon {
@@ -288,6 +325,10 @@ body .app-list {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #fff;
+  }
+
+  body .app-list-item.sortable .image {
+    left: 30px;
   }
 
   body .app-list-item[read=true] {

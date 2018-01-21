@@ -31,15 +31,14 @@
   </nav>
 
 
-  <div id="fields-list" class="app-list">
-    <div class="app-list-item" *ngFor="let field of fields" (mouseenter)="setFieldActive(field)" (click)="setFieldActive(field)" [class.selected]="field === selectedField">
+  <div id="fields-list" class="app-list" [sortablejs]="fields" [sortablejsOptions]="options">
+    <div class="app-list-item sortable" *ngFor="let field of fields" (mouseenter)="setFieldActive(field)" (click)="setFieldActive(field)" [class.selected]="field === selectedField">
+      
+      <i class="sortable-handle material-icons">apps</i>
+
       <h2><span class="primary"><a (click)="showEditField(field)">{{ field.label }}</a></span></h2>
       <small>{{ field.type | translate }}</small>
       <div class="app-list-actions">
-          <span class="app-list-alternate-actions">
-            <a (click)="moveFieldDown(field)">{{ 'Move Down' | translate }}</a>
-            <a (click)="moveFieldUp(field)">{{ 'Move Up' | translate }}</a>
-          </span>
           <a (click)="showRemoveField(field)">{{ 'Remove' | translate }}</a>
           <a class="primary" (click)="showEditField(field)">{{ 'Edit' | translate }}</a>
       </div>

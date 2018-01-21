@@ -29,16 +29,15 @@
     </ul>
   </nav>
 
-  <div id="images-list" class="app-list">
-    <div class="app-list-item" *ngFor="let image of images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+  <div id="images-list" class="app-list" [sortablejs]="images" [sortablejsOptions]="options">
+    <div class="app-list-item sortable" *ngFor="let image of images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+      
+      <i class="sortable-handle material-icons">apps</i>
+      
       <h2><span class="primary"><a (click)="showEditImage(image)">{{ image.name }}</a></span></h2>
       <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
       <small>{{ image.caption }}</small>
       <div class="app-list-actions">
-          <span class="app-list-alternate-actions">
-            <a (click)="moveImageDown(image)">{{ 'Move Down' | translate }}</a>
-            <a (click)="moveImageUp(image)">{{ 'Move Up' | translate }}</a>
-          </span>
           <a (click)="showRemoveImage(image)">{{ 'Remove' | translate }}</a>
           <a (click)="showEditImage(image)" class="primary">{{ 'Edit Caption' | translate }}</a>
       </div>

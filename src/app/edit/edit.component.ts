@@ -19,6 +19,7 @@ export class EditComponent {
   siteUrl: string;
   fullPageUrl: string;
   mode: string = 'page';
+  confirmVisible: boolean = false;
 
   @ViewChild('editFrame') el: ElementRef;
 
@@ -77,7 +78,7 @@ export class EditComponent {
    */
   back() {
 
-    this._router.navigate( ['/pages'] );
+    this.confirmVisible = true;
     
   }
 
@@ -128,6 +129,22 @@ export class EditComponent {
       this._router.navigate( ['/edit',  id, 'page'] );
     }
 
+  }
+
+  /**
+   * Cancels navigation
+   */
+  cancelNavigation() {
+    this.confirmVisible = false;
+    return true;
+  }
+
+  /**
+   * Continues navigation
+   */
+  continueNavigation() {
+    this.confirmVisible = false;
+    this._router.navigate(['/pages']);
   }
 
 

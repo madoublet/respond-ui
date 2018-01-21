@@ -48,4 +48,6 @@
 
 <respond-add-code [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-code>
 
-<respond-drawer active="code" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+<respond-drawer active="code" [confirm]="true" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+
+<respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>

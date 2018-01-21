@@ -29,6 +29,7 @@ export class CodeComponent {
   addVisible: boolean = false;
   drawerVisible: boolean = false;
   path: string = '/';
+  confirmVisible: boolean = false;
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService, private _appService: AppService) {}
 
@@ -79,7 +80,7 @@ export class CodeComponent {
    * Navigates back
    */
   back() {
-    history.go(-1);
+    this.confirmVisible = true; 
   }
 
   /**
@@ -232,6 +233,22 @@ export class CodeComponent {
    */
   showAdd() {
     this.addVisible = true;
+  }
+
+  /**
+   * Cancels navigation
+   */
+  cancelNavigation() {
+    this.confirmVisible = false;
+    return true;
+  }
+
+  /**
+   * Continues navigation
+   */
+  continueNavigation() {
+    this.confirmVisible = false;
+    history.go(-1);
   }
 
 }
