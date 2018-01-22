@@ -5,6 +5,6 @@
 
 export const environment = {
   production: true,
-  build: 'pro',
+  build: 'core',
   urlExtension: ''
 };
