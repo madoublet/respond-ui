@@ -99,6 +99,22 @@ body .app-selector li.selected a {
   border-bottom: 3px solid #fff;
 }
 
+body .app-selector li.app-selector-add a {
+  position: relative;
+  display: inline-block;
+  padding: 5px 0 15px 25px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+body .app-selector li.app-selector-add i {
+  font-size: 13px;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+
 /* .app-main */
 body .app-main {
   padding-top: 49px;

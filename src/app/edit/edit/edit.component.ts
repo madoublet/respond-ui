@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
-import { AppService } from '../shared/services/app.service';
+import { AppService } from '../../shared/services/app.service';
 
 @Component({
     selector: 'respond-edit',
@@ -20,10 +20,14 @@ export class EditComponent {
   fullPageUrl: string;
   mode: string = 'page';
   confirmVisible: boolean = false;
+  element: any;
+  elementVisible: boolean = false;
 
   @ViewChild('editFrame') el: ElementRef;
 
-  constructor (private _sanitizer: DomSanitizer, private _appService: AppService, private _router: Router,  private _route: ActivatedRoute) {}
+  constructor (private _sanitizer: DomSanitizer, private _appService: AppService, private _router: Router,  private _route: ActivatedRoute) {
+    window['configurePlugin'] = this.configurePlugin.bind(this);
+  }
 
   /**
    * Init pages
@@ -82,6 +86,9 @@ export class EditComponent {
     
   }
 
+  /**
+   * Calls save in the editor
+   */
   save() {
 
     // show menu in the editor
@@ -146,6 +153,26 @@ export class EditComponent {
     this.confirmVisible = false;
     this._router.navigate(['/pages']);
   }
+
+  /**
+   * Call settings
+   */
+  configurePlugin(element: any) {
+    alert('hello');
+    console.log(element);
+
+    // set element
+    this.element = {
+      id: element.id,
+      cssclass: element.cssClass,
+      html: element.innerHTML
+    };
+
+    // set visible
+    this.elementVisible = true;
+    
+  }
+  
 
 
 }

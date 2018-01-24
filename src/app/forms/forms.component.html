@@ -27,6 +27,12 @@
       <li *ngFor="let form of forms" [class.selected]="form.id === selectedForm.id" (click)="setActive(form)">
         <a>{{form.name}}</a>
       </li>
+      <li class="app-selector-add">
+        <a (click)="showAdd()">
+          <i class="material-icons">add</i>
+          <span>{{ 'Add Form' | translate }}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 

@@ -29,7 +29,7 @@
     "angular-sortablejs": "^2.5.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "dropzone": "^5.2.0",
+    "dropzone": "^5.3.0",
     "hashedit": "^0.6.30",
     "moment": "^2.18.0",
     "rxjs": "^5.1.0",

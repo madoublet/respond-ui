@@ -36,7 +36,8 @@ import { AccountComponent } from './app/account/account.component';
 import { UnsubscribeComponent } from './app/shared/components/account/unsubscribe/unsubscribe.component';
 
 // edit
-import { EditComponent } from './app/edit/edit.component';
+import { EditComponent } from './app/edit/edit/edit.component';
+import { EditElementComponent } from './app/edit/edit-element/edit-element.component';
 
 // files
 import { FilesComponent } from './app/files/files.component';
@@ -124,7 +125,8 @@ import { SharedModule } from './app/shared/shared.module';
       ResetComponent,
       CreateComponent,
       DropzoneComponent,
-      EditComponent, AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
+      EditComponent, EditElementComponent,
+      AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,

@@ -13,7 +13,7 @@ import { FormsComponent } from './app/forms/forms.component';
 import { SettingsComponent } from './app/settings/settings.component';
 import { SubmissionsComponent } from './app/submissions/submissions.component';
 import { GalleriesComponent } from './app/galleries/galleries.component';
-import { EditComponent } from './app/edit/edit.component';
+import { EditComponent } from './app/edit/edit/edit.component';
 import { AdvancedComponent } from './app/advanced/advanced.component';
 import { AccountComponent } from './app/account/account.component';
 import { CodeComponent } from './app/code/code.component';

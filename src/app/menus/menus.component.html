@@ -27,6 +27,12 @@
       <li *ngFor="let menu of menus" [class.selected]="menu.id === selectedMenu.id" (click)="setActive(menu)">
         <a>{{menu.name}}</a>
       </li>
+      <li class="app-selector-add">
+        <a (click)="showAdd()">
+          <i class="material-icons">add</i>
+          <span>{{ 'Add Menu' | translate }}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
