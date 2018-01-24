@@ -9,15 +9,48 @@
       [(ngModel)]="model.id"
       name="id">
 
-      <label>{{ 'CSS Class' | translate }}</label>
-      <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
-        [(ngModel)]="model.cssClass"
-        name="cssclass">
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.cssClass"
+      name="cssclass">
 
-      <label>{{ 'HTML' | translate }}</label>
-      <textarea id="edit-element-html" type="text"
-        [(ngModel)]="model.html"
-        name="html"></textarea>
+    <label>{{ 'HTML' | translate }}</label>
+    <textarea id="edit-element-html" type="text"
+      [(ngModel)]="model.html"
+      name="html"></textarea>
+
+    <!--
+    <div *ngFor="let attribute of attributes">
+
+      <div [ngSwitch]="setting.type">
+
+        <div *ngSwitchCase="'text'">
+          <label>{{setting.label | translate }}</label>
+          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+        </div>
+
+        <div *ngSwitchCase="'color'">
+          <label>{{setting.label | translate }}</label>
+          <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+        </div>
+
+        <div *ngSwitchCase="'image'">
+          <label>{{setting.label | translate }} <a (click)="showSelect(setting)">{{ 'Select' | translate }}</a></label>
+          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+        </div>
+
+        <div *ngSwitchCase="'select'">
+          <label>{{setting.label | translate }}</label>
+          <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+            <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
+          </select>
+        </div>
+
+      </div>
+
+      <small>{{setting.description | translate }}</small>
+
+    </div>  -->
   
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
