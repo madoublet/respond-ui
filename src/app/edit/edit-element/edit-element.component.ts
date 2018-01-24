@@ -19,27 +19,20 @@ export class EditElementComponent {
     // set visible
     this._visible = visible;
 
-    // reset model
-    this.model = {
-      id: '',
-      cssclass: '',
-      html: ''
-    };
-
-  }
-
-  @Input()
-  set element(element: any){
-
-    // reset model
-    this.model = element;
-
   }
 
   get visible() { return this._visible; }
 
+  @Input()
+  set attrs(attrs: any){
+
+    // reset model
+    this.model = attrs;
+
+  }
+
   @Output() onCancel = new EventEmitter<any>();
-  @Output() onAdd = new EventEmitter<any>();
+  @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
   constructor () {}
@@ -51,7 +44,7 @@ export class EditElementComponent {
 
     this.model = {
       id: '',
-      cssclass: '',
+      cssClass: '',
       html: ''
     };
 
@@ -69,16 +62,8 @@ export class EditElementComponent {
    * Submits the form
    */
   submit() {
-
-
-  }
-
-  /**
-   * Handles a successful add
-   */
-  success() {
     this._visible = false;
-    this.onAdd.emit(null);
+    this.onUpdate.emit(this.model);
   }
 
 }

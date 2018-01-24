@@ -4,27 +4,24 @@
 
     <h2>{{ 'Edit Element' | translate }}</h2>
 
-    <div class="app-modal-body">
-      <label>{{ 'ID' | translate }}</label>
-      <input id="edit-element-id" type="text" maxlength="128" placeholder="" required
-        [(ngModel)]="model.id"
-        name="id">
+    <label>{{ 'ID' | translate }}</label>
+    <input id="edit-element-id" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.id"
+      name="id">
 
-        <label>{{ 'CSS Class' | translate }}</label>
-        <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
-          [(ngModel)]="model.cssclass"
-          name="cssclass">
+      <label>{{ 'CSS Class' | translate }}</label>
+      <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.cssClass"
+        name="cssclass">
 
-        <label>{{ 'CSS Class' | translate }}</label>
-        <input id="edit-element-html" type="text" maxlength="128" placeholder="" required
-          [(ngModel)]="model.html"
-          name="html">
+      <label>{{ 'HTML' | translate }}</label>
+      <textarea id="edit-element-html" type="text"
+        [(ngModel)]="model.html"
+        name="html"></textarea>
   
-    </div>
-
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Add Product' | translate }}</button>
+      <button type="submit">{{ 'Update' | translate }}</button>
     </div>
 
   </form>

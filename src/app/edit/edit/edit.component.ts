@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
@@ -20,13 +20,13 @@ export class EditComponent {
   fullPageUrl: string;
   mode: string = 'page';
   confirmVisible: boolean = false;
-  element: any;
-  elementVisible: boolean = false;
+  editElementVisible: boolean = false;
+  attrs: any;
 
   @ViewChild('editFrame') el: ElementRef;
 
   constructor (private _sanitizer: DomSanitizer, private _appService: AppService, private _router: Router,  private _route: ActivatedRoute) {
-    window['configurePlugin'] = this.configurePlugin.bind(this);
+    // (<any>window).configurePlugin = this.configurePlugin.bind(this);
   }
 
   /**
@@ -37,8 +37,6 @@ export class EditComponent {
 
     var editMode, fullPageUrl;
 
-    this.drawerVisible = false;
-
     this.id = localStorage.getItem('respond.siteId');
     this.pageUrl = localStorage.getItem('respond.pageUrl');
     
@@ -48,9 +46,6 @@ export class EditComponent {
     });
 
     this.buildUrl();
-
-    
-
   }
 
   /**
@@ -70,11 +65,13 @@ export class EditComponent {
                           );
       }
 
-    /**
+  /**
    * Resets an modal booleans
    */
   reset() {
     this.drawerVisible = false;
+    this.confirmVisible = false;
+    this.editElementVisible = false;
   }
 
   /**
@@ -95,6 +92,18 @@ export class EditComponent {
     this.el.nativeElement.contentWindow.hashedit.save();
 
     this._appService.showToast('success', null);
+
+  }
+
+  /**
+   * Calls save in the editor
+   */
+  update(attrs:any) {
+
+    this.reset();
+
+    // show menu in the editor
+    this.el.nativeElement.contentWindow.hashedit.update(attrs)
 
   }
 
@@ -154,22 +163,19 @@ export class EditComponent {
     this._router.navigate(['/pages']);
   }
 
-  /**
-   * Call settings
-   */
-  configurePlugin(element: any) {
-    alert('hello');
-    console.log(element);
+  @HostListener("window:message",["$event"])
+  configurePlugin($event:MessageEvent) {
 
-    // set element
-    this.element = {
-      id: element.id,
-      cssclass: element.cssClass,
-      html: element.innerHTML
-    };
+    let data = $event.data;
+    
+    // look for element in message
+    if(data.attrs) {
 
-    // set visible
-    this.elementVisible = true;
+      this.attrs = data.attrs;
+
+      // set visible
+      this.editElementVisible = true;
+    }
     
   }
   
