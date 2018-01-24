@@ -26,6 +26,12 @@
       <li *ngFor="let gallery of galleries" [class.selected]="gallery.id === selectedGallery.id" (click)="setActive(gallery)">
         <a>{{gallery.name}}</a>
       </li>
+      <li class="app-selector-add">
+        <a (click)="showAdd()">
+          <i class="material-icons">add</i>
+          <span>{{ 'Add Gallery' | translate }}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
