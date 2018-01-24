@@ -36,6 +36,6 @@
 
 <respond-drawer active="pages" [confirm]="true" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
-<respond-edit-element [visible]="editElementVisible" [attrs]="attrs" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-element>
+<respond-edit-element [visible]="editElementVisible" [title]="title" [selector]="selector" [properties]="properties" [attributes]="attributes" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-element>
 
 <respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>

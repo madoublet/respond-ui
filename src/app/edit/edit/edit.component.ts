@@ -21,7 +21,11 @@ export class EditComponent {
   mode: string = 'page';
   confirmVisible: boolean = false;
   editElementVisible: boolean = false;
-  attrs: any;
+
+  title: string = 'Element';
+  selector: string = '';
+  properties: any = {id: '', cssClass: '', html: ''};
+  attributes: any = {};
 
   @ViewChild('editFrame') el: ElementRef;
 
@@ -98,12 +102,18 @@ export class EditComponent {
   /**
    * Calls save in the editor
    */
-  update(attrs:any) {
+  update(obj) {
 
-    this.reset();
+    console.log('object!');
+    console.log(obj);
 
     // show menu in the editor
-    this.el.nativeElement.contentWindow.hashedit.update(attrs)
+    this.el.nativeElement.contentWindow.hashedit.update(obj)
+
+    console.log('after update()');
+
+    // reset
+    this.reset();
 
   }
 
@@ -167,12 +177,19 @@ export class EditComponent {
   configurePlugin($event:MessageEvent) {
 
     let data = $event.data;
-    
+
     // look for element in message
-    if(data.attrs) {
+    if(data.properties) {
 
-      this.attrs = data.attrs;
+      this.title = data.title;
+      this.selector = data.selector;
+      this.properties = data.properties;
 
+      // set attributes if available
+      if(data.attributes != null && data.attributes != undefined) {
+        this.attributes = data.attributes;
+      }
+    
       // set visible
       this.editElementVisible = true;
     }
