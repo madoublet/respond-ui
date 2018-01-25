@@ -1,16 +1,22 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormService } from '../../shared/services/form.service';
+import { GalleryService } from '../../shared/services/gallery.service';
+import { PageService } from '../../shared/services/page.service';
+import { ComponentService } from '../../shared/services/component.service';
 
 @Component({
     selector: 'respond-edit-element',
     templateUrl: 'edit-element.component.html',
-    providers: [FormService]
+    providers: [FormService, GalleryService, PageService, ComponentService]
 })
 
 export class EditElementComponent {
 
   // lists
   forms: any = [];
+  galleries: any = [];
+  pages: any = [];
+  components: any = [];
 
   // set model
   model: any = {
@@ -93,6 +99,18 @@ export class EditElementComponent {
               attributes[x].type = 'form';
               this.listForms();
             }
+            else if(attributes[x].values[0] == 'respond.galleries') {
+              attributes[x].type = 'gallery';
+              this.listGalleries();
+            } 
+            else if(attributes[x].values[0] == 'respond.pages') {
+              attributes[x].type = 'page';
+              this.listPages();
+            } 
+            else if(attributes[x].values[0] == 'respond.components') {
+              attributes[x].type = 'component';
+              this.listComponents();
+            } 
           }
 
       } 
@@ -111,7 +129,7 @@ export class EditElementComponent {
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _formService: FormService) {}
+  constructor (private _formService: FormService, private _gallerySerivce: GalleryService, private _pageService: PageService, private _componentService: ComponentService) {}
 
   /**
    * Init
@@ -146,5 +164,39 @@ export class EditElementComponent {
                        error =>  { }
                       );
   }
+
+  /**
+   * lists the galleries
+   */
+  listGalleries() {
+    this._gallerySerivce.list()
+                     .subscribe(
+                       data => { this.galleries = data; },
+                       error =>  { }
+                      );
+  }
+
+  /**
+   * lists the pages
+   */
+  listPages() {
+    this._pageService.list()
+                     .subscribe(
+                       data => { this.pages = data; },
+                       error =>  { }
+                      );
+  }
+
+  /**
+   * lists the components
+   */
+  listComponents() {
+    this._componentService.list()
+                     .subscribe(
+                       data => { this.components = data; },
+                       error =>  { }
+                      );
+  }
+
 
 }

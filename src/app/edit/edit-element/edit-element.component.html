@@ -36,11 +36,32 @@
         </div>
 
         <div *ngSwitchCase="'form'">
-            <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-              <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
-            </select>
-          </div>
+          <label>{{attribute.label | translate }}</label>
+          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
+          </select>
+        </div>
+
+        <div *ngSwitchCase="'gallery'">
+          <label>{{attribute.label | translate }}</label>
+          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <option *ngFor="let gallery of galleries" [value]="gallery.id">{{gallery.name}}</option>
+          </select>
+        </div>
+
+        <div *ngSwitchCase="'page'">
+          <label>{{attribute.label | translate }}</label>
+          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <option *ngFor="let pages of pages" [value]="page.url">{{page.title}}</option>
+          </select>
+        </div>
+
+        <div *ngSwitchCase="'component'">
+          <label>{{attribute.label | translate }}</label>
+          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <option *ngFor="let component of components" [value]="component.url">{{component.title}}</option>
+          </select>
+        </div>
 
       </div>
 
