@@ -19,38 +19,32 @@
       [(ngModel)]="model.html"
       name="html"></textarea>
 
-    <!--
     <div *ngFor="let attribute of attributes">
 
-      <div [ngSwitch]="setting.type">
+      <div [ngSwitch]="attribute.type">
 
         <div *ngSwitchCase="'text'">
-          <label>{{setting.label | translate }}</label>
-          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
-
-        <div *ngSwitchCase="'color'">
-          <label>{{setting.label | translate }}</label>
-          <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
-
-        <div *ngSwitchCase="'image'">
-          <label>{{setting.label | translate }} <a (click)="showSelect(setting)">{{ 'Select' | translate }}</a></label>
-          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+          <label>{{attribute.label | translate }}</label>
+          <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.attr">
         </div>
 
         <div *ngSwitchCase="'select'">
-          <label>{{setting.label | translate }}</label>
-          <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-            <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
+          <label>{{attribute.label | translate }}</label>
+          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
           </select>
         </div>
 
+        <div *ngSwitchCase="'form'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
+            </select>
+          </div>
+
       </div>
 
-      <small>{{setting.description | translate }}</small>
-
-    </div>  -->
+    </div>
   
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

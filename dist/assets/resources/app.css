@@ -145,8 +145,8 @@ body .edit-main {
 body .edit-frame {
   position: relative;
   width: 100%;
-  height: 100%;
-  margin: 0;
+  height: calc(100% - 100px);;
+  margin: 50px 0 0 0;
   padding: 0;
 }
 
@@ -1494,8 +1494,8 @@ body .dropzone .dz-message {
 .code-editor {
   display: block;
   margin: 0 0 50px 200px;
-  width: calc(100vw - 200px);
-  height: calc(100vh - 50px);
+  width: calc(100% - 200px);
+  height: calc(100vh - 140px);
 }
 
   .code-editor.expanded {

@@ -104,13 +104,8 @@ export class EditComponent {
    */
   update(obj) {
 
-    console.log('object!');
-    console.log(obj);
-
     // show menu in the editor
     this.el.nativeElement.contentWindow.hashedit.update(obj)
-
-    console.log('after update()');
 
     // reset
     this.reset();

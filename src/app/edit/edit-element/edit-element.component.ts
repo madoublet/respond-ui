@@ -1,12 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormService } from '../../shared/services/form.service';
 
 @Component({
     selector: 'respond-edit-element',
     templateUrl: 'edit-element.component.html',
-    providers: []
+    providers: [FormService]
 })
 
 export class EditElementComponent {
+
+  // lists
+  forms: any = [];
 
   // set model
   model: any = {
@@ -75,6 +79,27 @@ export class EditElementComponent {
   @Input()
   set attributes(attributes: any){
 
+    // walk through attributs
+    for(let x=0; x<attributes.length; x++) {
+
+      // check for values
+      if(attributes[x].values != null && attributes[x].values != undefined) {
+
+          // make sure a value exists
+          if(attributes[x].values.length > 0) {
+
+            // inject forms
+            if(attributes[x].values[0] == 'respond.forms') {
+              attributes[x].type = 'form';
+              this.listForms();
+            }
+          }
+
+      } 
+
+    }
+
+
     // reset model
     this._attributes = attributes;
 
@@ -86,7 +111,7 @@ export class EditElementComponent {
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor () {}
+  constructor (private _formService: FormService) {}
 
   /**
    * Init
@@ -109,6 +134,17 @@ export class EditElementComponent {
   submit() {
     this._visible = false;
     this.onUpdate.emit({properties: this.model, attributes: this._attributes});
+  }
+
+  /**
+   * lists the forms
+   */
+  listForms() {
+    this._formService.list()
+                     .subscribe(
+                       data => { this.forms = data; },
+                       error =>  { }
+                      );
   }
 
 }
