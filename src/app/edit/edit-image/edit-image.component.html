@@ -1,0 +1,41 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit Image' | translate }}</h2>
+
+    <label>{{ 'ID' | translate }}</label>
+    <input id="edit-element-id" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.id"
+      name="id">
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.cssClass"
+      name="cssclass">
+
+    <label>{{ 'Source' | translate }}  <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
+    <input id="edit-element-html" type="text"
+      [(ngModel)]="model.src"
+      name="src">
+
+    <label>{{ 'Alt' | translate }}</label>
+    <input id="edit-element-alt" type="text"
+      [(ngModel)]="model.alt"
+      name="alt">
+
+    <label>{{ 'Title' | translate }}</label>
+    <input id="edit-element-title" type="text"
+      [(ngModel)]="model.title"
+      name="title">
+      
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>

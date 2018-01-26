@@ -1,0 +1,26 @@
+<div class="app-modal-background" [class.visible]="visible === true">
+
+  <div class="app-modal" [class.visible]="visible === true">
+
+    <h2>{{ 'Select Page' | translate }}</h2>
+
+    <div class="app-search">
+      <i class="search material-icons">search</i>
+      <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or URL' | translate }}">
+    </div>
+
+    <div class="app-modal-list">
+      <div class="app-modal-list-item" *ngFor="let page of filteredPages" (click)="select(page)" [class.image]="page.thumb !== ''">
+        <h2><span class="primary">{{ page.title }}</span></h2>
+        <img *ngIf="page.thumb !== ''" class="image" src="sites/{{id}}/{{page.thumb}}">
+        <small>{{ page.url }}</small>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a (click)="hide()" class="primary">{{ 'Cancel' | translate }}</a>
+    </div>
+
+  </div>
+
+</div>

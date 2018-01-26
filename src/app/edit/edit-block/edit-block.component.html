@@ -1,0 +1,24 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit Layout' | translate }}</h2>
+
+    <label>{{ 'ID' | translate }}</label>
+    <input id="edit-block-id" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.id"
+      name="id">
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="edit-block-class" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.cssClass"
+      name="cssclass">
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

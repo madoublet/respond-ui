@@ -19,9 +19,15 @@ export class EditComponent {
   siteUrl: string;
   fullPageUrl: string;
   mode: string = 'page';
+
+  // visibles
   confirmVisible: boolean = false;
   editElementVisible: boolean = false;
+  editImageVisible: boolean = false;
+  editLinkVisible: boolean = false;
+  editBlockVisible: boolean = false;
 
+  type: string = 'element';
   title: string = 'Element';
   selector: string = '';
   properties: any = {id: '', cssClass: '', html: ''};
@@ -76,6 +82,9 @@ export class EditComponent {
     this.drawerVisible = false;
     this.confirmVisible = false;
     this.editElementVisible = false;
+    this.editImageVisible = false;
+    this.editLinkVisible = false;
+    this.editBlockVisible = false;
   }
 
   /**
@@ -103,6 +112,9 @@ export class EditComponent {
    * Calls save in the editor
    */
   update(obj) {
+
+    // add type
+    obj.type = this.type;
 
     // show menu in the editor
     this.el.nativeElement.contentWindow.hashedit.update(obj)
@@ -173,6 +185,10 @@ export class EditComponent {
 
     let data = $event.data;
 
+    if(data.type) {
+      this.type = data.type;
+    }
+
     // look for element in message
     if(data.properties) {
 
@@ -185,8 +201,20 @@ export class EditComponent {
         this.attributes = data.attributes;
       }
     
-      // set visible
-      this.editElementVisible = true;
+      // show the appropriate modal
+      if(data.type == 'image') {
+        this.editImageVisible = true;
+      }
+      else if(data.type == 'link') {
+        this.editLinkVisible = true;
+      }
+      else if(data.type == 'block') {
+        this.editBlockVisible = true;
+      }
+      else {
+        this.editElementVisible = true;
+      }
+      
     }
     
   }

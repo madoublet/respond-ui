@@ -157,6 +157,14 @@ body .app-search {
   padding: 0 0 0 30px;
 }
 
+  body .app-search-border-top {
+    border-top: 1px solid #ddd;
+  }
+
+  body .app-modal .app-search {
+    border: 1px solid #ddd;
+  }
+
   body .app-search i.search {
     color: #ddd;
     position: absolute;
@@ -179,6 +187,10 @@ body .app-search {
     border: 0;
     width: calc(100% - 40px);
     outline: none;
+  }
+
+  body .app-modal .app-search input[type=search] {
+    width: calc(100% - 10px);
   }
 
   body .app-search input[type=search]::placeholder {
@@ -831,6 +843,8 @@ body .app-modal {
       position: relative;
       border-top: 1px solid #ddd;
       cursor: pointer;
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
     body .app-modal-list .app-modal-list-item:first-child {

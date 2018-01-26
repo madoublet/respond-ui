@@ -1,18 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FileService } from '../../../../shared/services/file.service';
+import { PageService } from '../../../../shared/services/page.service';
 
 @Component({
-    selector: 'respond-select-file',
-    templateUrl: 'select-file.component.html',
-    providers: [FileService]
+    selector: 'respond-select-page',
+    templateUrl: 'select-page.component.html',
+    providers: [PageService]
 })
 
-export class SelectFileComponent {
+export class SelectPageComponent {
 
-  file: any;
-  files: any;
-  filteredFiles: any = [];
-  errorMessage: string;
+  id: string;
+  page: any;
+  pages: any;
+  filteredPages: any = [];
+  errorMessage;
   search: string = null;
 
   _visible: boolean = false;
@@ -31,13 +32,14 @@ export class SelectFileComponent {
   @Output() onSelect = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _fileService: FileService) {}
+  constructor (private _pageService: PageService) {}
 
   /**
    * Init files
    */
   ngOnInit() {
 
+    this.id = localStorage.getItem('respond.siteId');
     this.list();
 
   }
@@ -46,7 +48,7 @@ export class SelectFileComponent {
    * Make a copy of the pages
    */
   copy() {
-    this.filteredFiles = Object.assign([], this.files);
+    this.filteredPages = Object.assign([], this.pages);
    }
 
   /**
@@ -55,9 +57,9 @@ export class SelectFileComponent {
   list() {
 
     this.reset();
-    this._fileService.list()
+    this._pageService.list()
                      .subscribe(
-                       data => { this.files = data; this.copy() },
+                       data => { this.pages = data; this.copy(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
   }
@@ -67,7 +69,7 @@ export class SelectFileComponent {
    */
   searchList() {
 
-    let keys = 'name', context = this;
+    let keys = 'title,url', context = this;
 
     // reset when nothing is typed
     if(!this.search) {
@@ -75,7 +77,7 @@ export class SelectFileComponent {
     }
 
     // filter items
-    this.filteredFiles = Object.assign([], this.files).filter(
+    this.filteredPages = Object.assign([], this.pages).filter(
       item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
     );
 
@@ -85,7 +87,7 @@ export class SelectFileComponent {
    * Resets an modal booleans
    */
   reset() {
-    this.file = {};
+    this.page = {};
   }
 
   /**
@@ -99,9 +101,9 @@ export class SelectFileComponent {
   /**
    * Submits the form
    */
-  select(file) {
+  select(page) {
 
-    this.onSelect.emit(file);
+    this.onSelect.emit(page);
 
   }
 

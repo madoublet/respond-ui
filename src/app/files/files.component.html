@@ -10,21 +10,15 @@
 
 <section class="app-main">
 
-  <nav *ngIf="supportsCloudStorage === true" class="app-selector">
-      <ul>
-        <li [class.selected]="storage == 'local'" (click)="setStorage('local')">
-          <a>{{ 'Local' | translate }}</a>
-        </li>
-        <li [class.selected]="storage == 'cloud'" (click)="setStorage('cloud')">
-          <a>{{ 'Cloud' | translate }}</a>
-        </li>
-      </ul>
-    </nav>
-
   <respond-dropzone (onAdd)="list()"></respond-dropzone>
 
+  <div class="app-search app-search-border-top">
+    <i class="search material-icons">search</i>
+    <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by File Name' | translate }}">
+  </div>
+
   <div id="files-list" class="app-list">
-    <div class="app-list-item" *ngFor="let  file of files" (mouseenter)="setActive(file)" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
+    <div class="app-list-item" *ngFor="let file of filteredFiles" (mouseenter)="setActive(file)" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
       <h2><span class="primary">{{ file.name }}</span><span class="secondary">{{ file.size }} MB</span></h2>
       <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
       <small>/files/{{ file.name }}</small>

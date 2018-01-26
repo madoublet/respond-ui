@@ -38,4 +38,10 @@
 
 <respond-edit-element [visible]="editElementVisible" [title]="title" [selector]="selector" [properties]="properties" [attributes]="attributes" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-element>
 
+<respond-edit-block [visible]="editBlockVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-block>
+
+<respond-edit-image [visible]="editImageVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-image>
+
+<respond-edit-link [visible]="editLinkVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-link>
+
 <respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>

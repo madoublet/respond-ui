@@ -38,6 +38,9 @@ import { UnsubscribeComponent } from './app/shared/components/account/unsubscrib
 // edit
 import { EditComponent } from './app/edit/edit/edit.component';
 import { EditElementComponent } from './app/edit/edit-element/edit-element.component';
+import { EditBlockComponent } from './app/edit/edit-block/edit-block.component';
+import { EditImageComponent } from './app/edit/edit-image/edit-image.component';
+import { EditLinkComponent } from './app/edit/edit-link/edit-link.component';
 
 // files
 import { FilesComponent } from './app/files/files.component';
@@ -79,6 +82,7 @@ import { PagesComponent } from './app/pages/pages.component';
 import { AddPageComponent } from './app/shared/components/pages/add-page/add-page.component';
 import { PageSettingsComponent } from './app/shared/components/pages/page-settings/page-settings.component';
 import { RemovePageComponent } from './app/shared/components/pages/remove-page/remove-page.component';
+import { SelectPageComponent } from './app/shared/components/pages/select-page/select-page.component';
 
 // component
 import { ComponentsComponent } from './app/components/components.component';
@@ -125,13 +129,13 @@ import { SharedModule } from './app/shared/shared.module';
       ResetComponent,
       CreateComponent,
       DropzoneComponent,
-      EditComponent, EditElementComponent,
+      EditComponent, EditElementComponent, EditBlockComponent, EditImageComponent, EditLinkComponent,
       AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,
       MenusComponent, AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent,
-      PagesComponent, AddPageComponent, PageSettingsComponent, RemovePageComponent,
+      PagesComponent, AddPageComponent, PageSettingsComponent, RemovePageComponent, SelectPageComponent,
       ComponentsComponent, AddComponentComponent, RemoveComponentComponent,
       SettingsComponent,
       SubmissionsComponent, RemoveSubmissionComponent, ViewSubmissionComponent,

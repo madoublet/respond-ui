@@ -1,0 +1,41 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit Element' | translate }}</h2>
+
+    <label>{{ 'ID' | translate }}</label>
+    <input id="edit-element-id" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.id"
+      name="id">
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="edit-element-class" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.cssClass"
+      name="cssclass">
+
+    <label>{{ 'Link' | translate }} <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
+    <input id="edit-element-href" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.href"
+      name="href">
+
+    <label>{{ 'Target' | translate }}</label>
+    <input id="edit-element-target" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.target"
+      name="target">
+
+    <label>{{ 'Title' | translate }}</label>
+    <input id="edit-element-title" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.title"
+      name="title">
+  
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>
+
+<respond-select-page [visible]="selectVisible" (onCancel)="reset()" (onSelect)="select($event)" (onError)="failure($event)"></respond-select-page>

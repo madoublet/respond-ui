@@ -6,8 +6,13 @@
 
     <respond-dropzone (onAdd)="list()"></respond-dropzone>
 
+    <div class="app-search">
+      <i class="search material-icons">search</i>
+      <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by File Name' | translate }}">
+    </div>
+
     <div id="files-list" class="app-modal-list">
-      <div class="app-modal-list-item" *ngFor="let file of files" (click)="select(file)" [class.image]="file.thumb !== ''">
+      <div class="app-modal-list-item" *ngFor="let file of filteredFiles" (click)="select(file)" [class.image]="file.thumb !== ''">
         <h2><span class="primary">{{ file.name }}</span></h2>
         <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
         <small>/files/{{ file.name }}</small>

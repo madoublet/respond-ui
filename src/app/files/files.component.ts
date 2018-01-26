@@ -12,11 +12,13 @@ import { AppService } from '../shared/services/app.service';
 
 export class FilesComponent {
 
-  id;
-  file;
-  files;
-  errorMessage;
-  selectedFile;
+  id: string;
+  search: string;
+  file: any;
+  files: any;
+  filteredFiles: any = [];
+  errorMessage: string;
+  selectedFile: any;
   removeVisible: boolean;
   drawerVisible: boolean;
   storage: string = 'local';
@@ -43,6 +45,13 @@ export class FilesComponent {
   }
 
   /**
+   * Make a copy of the pages
+   */
+  copy() {
+    this.filteredFiles = Object.assign([], this.files);
+   }
+
+  /**
    * Updates the list
    */
   list() {
@@ -50,9 +59,28 @@ export class FilesComponent {
     this.reset();
     this._fileService.list()
                      .subscribe(
-                       data => { this.files = data; },
+                       data => { this.files = data; this.copy(); },
                        error =>  { this.failure(<any>error); }
                       );
+  }
+
+  /**
+   * Searches the list
+   */
+  searchList() {
+
+    let keys = 'name', context = this;
+
+    // reset when nothing is typed
+    if(!this.search) {
+      this.copy();
+    }
+
+    // filter items
+    this.filteredFiles = Object.assign([], this.files).filter(
+      item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
+    );
+
   }
 
   /**
