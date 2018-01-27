@@ -19,6 +19,11 @@
     "changeOrigin": true,
     "secure": true
   },
+  "/editor": {
+    "target": "http://dev.respondcms.com",
+    "changeOrigin": true,
+    "secure": true
+  },
   "/app/libs": {
     "target": "http://dev.respondcms.com",
     "changeOrigin": true,

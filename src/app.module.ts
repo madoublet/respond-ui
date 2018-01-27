@@ -39,6 +39,7 @@ import { UnsubscribeComponent } from './app/shared/components/account/unsubscrib
 import { EditComponent } from './app/edit/edit/edit.component';
 import { EditElementComponent } from './app/edit/edit-element/edit-element.component';
 import { EditBlockComponent } from './app/edit/edit-block/edit-block.component';
+import { AddBlockComponent } from './app/edit/add-block/add-block.component';
 import { EditImageComponent } from './app/edit/edit-image/edit-image.component';
 import { EditLinkComponent } from './app/edit/edit-link/edit-link.component';
 
@@ -129,7 +130,7 @@ import { SharedModule } from './app/shared/shared.module';
       ResetComponent,
       CreateComponent,
       DropzoneComponent,
-      EditComponent, EditElementComponent, EditBlockComponent, EditImageComponent, EditLinkComponent,
+      EditComponent, EditElementComponent, EditBlockComponent, AddBlockComponent, EditImageComponent, EditLinkComponent,
       AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,

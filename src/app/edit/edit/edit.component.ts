@@ -26,6 +26,7 @@ export class EditComponent {
   editImageVisible: boolean = false;
   editLinkVisible: boolean = false;
   editBlockVisible: boolean = false;
+  addBlockVisible: boolean = false;
 
   type: string = 'element';
   title: string = 'Element';
@@ -85,6 +86,7 @@ export class EditComponent {
     this.editImageVisible = false;
     this.editLinkVisible = false;
     this.editBlockVisible = false;
+    this.addBlockVisible = false;
   }
 
   /**
@@ -102,7 +104,7 @@ export class EditComponent {
   save() {
 
     // show menu in the editor
-    this.el.nativeElement.contentWindow.hashedit.save();
+    this.el.nativeElement.contentWindow.editor.save();
 
     this._appService.showToast('success', null);
 
@@ -117,11 +119,27 @@ export class EditComponent {
     obj.type = this.type;
 
     // show menu in the editor
-    this.el.nativeElement.contentWindow.hashedit.update(obj)
+    this.el.nativeElement.contentWindow.editor.update(obj)
 
     // reset
     this.reset();
 
+  }
+
+  /**
+   * Calls save in the editor
+   */
+  addBlock(obj) {
+
+    // add type
+    obj.type = 'add-block';
+
+    // show menu in the editor
+    this.el.nativeElement.contentWindow.editor.update(obj)
+
+    // reset
+    this.reset();
+    
   }
 
   /**
@@ -137,7 +155,7 @@ export class EditComponent {
   showAdd() {
 
     // show menu in the editor
-    this.el.nativeElement.contentWindow.hashedit.showMenu();
+    this.el.nativeElement.contentWindow.editor.showMenu();
 
   }
 
@@ -146,6 +164,10 @@ export class EditComponent {
    */
   showPage() {
     window.open(this.fullPageUrl, '_blank');
+  }
+
+  showAddBlock() {
+    this.addBlockVisible = true;
   }
 
   /**

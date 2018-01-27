@@ -33,7 +33,7 @@ export class EditElementComponent {
                         cssClass: '',
                         html: ''
                       };
-  _attributes: any = {};
+  _attributes: any = [];
 
   _visible: boolean = false;
 

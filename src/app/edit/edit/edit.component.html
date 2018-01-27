@@ -7,15 +7,21 @@
 
     <div class="app-actions">
 
+        <!--
         <button (click)="showFocused()" *ngIf="mode != 'component'">
             <i class="material-icons">filter_tilt_shift</i>
             <span *ngIf="mode == 'page'">{{ 'Focused Mode' | translate }}</span>
             <span *ngIf="mode == 'focused'">{{ 'WYSIWYG Mode' | translate }}</span>
-        </button>
-        
+        </button> -->
+
         <button (click)="showPage()">
             <i class="material-icons">launch</i>
             <span>{{ 'View Page' | translate }}</span>
+        </button>
+
+        <button (click)="showAddBlock()">
+            <i class="material-icons">view_column</i>
+            <span>{{ 'Add Layout' | translate }}</span>
         </button>
 
         <button (click)="showAdd()">
@@ -39,6 +45,8 @@
 <respond-edit-element [visible]="editElementVisible" [title]="title" [selector]="selector" [properties]="properties" [attributes]="attributes" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-element>
 
 <respond-edit-block [visible]="editBlockVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-block>
+
+<respond-add-block [visible]="addBlockVisible" (onCancel)="reset()" (onUpdate)="addBlock($event)"></respond-add-block>
 
 <respond-edit-image [visible]="editImageVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-image>
 

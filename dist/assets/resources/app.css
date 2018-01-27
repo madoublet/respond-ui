@@ -826,6 +826,44 @@ body .app-modal {
     text-transform: uppercase;
   }
 
+  /* app-modal-cards */
+  body .app-modal-cards {
+    overflow: auto;
+    margin: 25px -20px;
+    vertical-align: top;
+    height: calc(90vh - 140px);
+  }
+
+    body .app-modal-card {
+      display: inline-block;
+      width: 120px;
+      height: 200px;
+      padding: 0;
+      margin: 0 0 25px 25px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      vertical-align: top;
+      cursor: pointer;
+    }
+
+    body .app-modal-card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    body .app-modal-card img {
+      margin: 10px;
+      padding: 0;
+    }
+
+    body .app-modal-card h2 {
+      margin: 0;
+      padding: 0 10px 10px 10px;
+      font-size: 13px;
+      line-height: 20px;
+      font-weight: normal;
+    }
+
   /* app-modal-list */
   body .app-modal-list {
     height: 320px;
@@ -890,7 +928,6 @@ body .app-modal {
     body .app-modal-list .app-list-item:last-child {
       border-bottom: none;
     }
-
 
     body .app-modal-list-item.image {
       padding-left: 80px;
@@ -958,6 +995,10 @@ body .app-modal {
       background-size: cover;
       background-repeat: no-repeat;
       background-color: #fff;
+    }
+
+    body .app-modal-list-item .image.square {
+      border-radius: 0;
     }
 
 /* app-card */
@@ -1800,6 +1841,12 @@ body .dropzone .dz-message {
     visibility: visible;
     opacity: 1;
     transform: translate(-50%, -50%) scale(1,1);
+  }
+
+  body .app-modal.full-screen {
+    width: 90%;
+    max-height: 90%;
+    height: 90%;
   }
 
   body .app-modal-body {
