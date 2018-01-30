@@ -50,7 +50,11 @@ export class LoginComponent {
                          this.acknowledgement = data.acknowledgement;
                          this.usesLDAP = data.usesLDAP;
                          this.defaultLanguage = data.defaultLanguage;
+                         
+                         // set mode
+                         localStorage.setItem('respond_mode', data.mode);
 
+                         // set language
                          this.setLanguage(this.defaultLanguage);
 
                          // set activation

@@ -8,6 +8,7 @@ export class ProductService {
   constructor (private http: Http) {}
 
   private _listUrl = 'api/products/list';
+  private _retrieveUrl = 'api/products/retrieve';
   private _addUrl = 'api/products/add';
   private _editUrl = 'api/products/edit';
   private _removeUrl = 'api/products/remove';
@@ -26,9 +27,24 @@ export class ProductService {
   }
 
   /**
+   * Retrieves a specific product for a site
+   * 
+   * @param {string} id The id for the product (must be unique)
+   * @return {Observable}
+   */
+  retrieve (id: string) {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._retrieveUrl + '/' + id, options).map((res:Response) => res.json());
+  }
+
+  /**
    * Adds a product
    *
-   * @param {string} sku The sku for the product (must be unique)
+   * @param {string} id The id for the product (must be unique)
    * @param {string} name The name of the product
    * @param {boolean} shipped Whether the product is shipped or not
    * @param {number} price The price of the product
@@ -38,21 +54,21 @@ export class ProductService {
    * @param {string} planPrice The text representation of the plan price (e.g. $25 /month)
    * @return {Observable}
    */
-  add (sku: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
+  add (id: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ sku, name, shipped, price, file, subscription, plan, planPrice });
+    let body = JSON.stringify({ id, name, shipped, price, file, subscription, plan, planPrice });
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let _options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this._addUrl, body, options)
-                    .map((res:Response) => res.json());
+    return this.http.post(this._addUrl, body, _options);
 
   }
 
   /**
    * Edits a product
    *
-   * @param {string} sku The sku for the product (must be unique)
+   * @param {string} id The id for the product (must be unique)
    * @param {string} name The name of the product
    * @param {boolean} shipped Whether the product is shipped or not
    * @param {number} price The price of the product
@@ -62,9 +78,9 @@ export class ProductService {
    * @param {string} planPrice The text representation of the plan price (e.g. $25 /month)
    * @return {Observable}
    */
-  edit (sku: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
+  edit (id: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ sku, name, shipped, price, file, subscription, plan, planPrice });
+    let body = JSON.stringify({ id, name, shipped, price, file, subscription, plan, planPrice });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
@@ -76,13 +92,12 @@ export class ProductService {
   /**
    * Removes a product
    *
-   * @param {string} name
-   * @param {string} index
+   * @param {string} id The ID of the product
    * @return {Observable}
    */
-  remove (sku: string) {
+  remove (id: string) {
 
-    let body = JSON.stringify({ sku });
+    let body = JSON.stringify({ id });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

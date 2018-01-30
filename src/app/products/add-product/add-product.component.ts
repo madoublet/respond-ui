@@ -22,7 +22,7 @@ export class AddProductComponent {
 
     // reset model
     this.model = {
-      sku: '',
+      id: Math.random().toString(36).substr(2, 9).toUpperCase(),
       name: '',
       shipped: false,
       price: 25.00,
@@ -48,7 +48,7 @@ export class AddProductComponent {
   ngOnInit() {
 
     this.model = {
-      sku: '',
+      id:  '',
       name: '',
       shipped: false,
       price: 25.00,
@@ -73,7 +73,7 @@ export class AddProductComponent {
    */
   submit() {
 
-    this._productService.add(this.model.sku, this.model.name, this.model.shipped, this.model.price, this.model.file, this.model.subsription, this.model.plan, this.model.planPrice)
+    this._productService.add(this.model.id, this.model.name, this.model.shipped, this.model.price, this.model.file, this.model.subscription, this.model.plan, this.model.planPrice)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

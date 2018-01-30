@@ -5,17 +5,23 @@
     <h2>{{ 'Add Product' | translate }}</h2>
 
     <div class="app-modal-body">
+
       <label>{{ 'Name' | translate }}</label>
       <input id="add-product-name" type="text" maxlength="128" placeholder="" required
         [(ngModel)]="model.name"
         name="name">
 
-      <label>{{ 'SKU' | translate }}</label>
-      <input id="add-product-sku" type="text" maxlength="128" placeholder="" required
-        [(ngModel)]="model.sku"
-        name="sku">
+      <label>{{ 'ID' | translate }}</label>
+      <input id="add-product-id" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.id"
+        name="id">
 
-      <label>{{ 'Is Shipped?' | translate }}</label>
+      <label>{{ 'Price' | translate }}</label>
+      <input id="add-product-price" type="number" maxlength="128" placeholder="" required
+        [(ngModel)]="model.price"
+        name="price">
+
+      <label>{{ 'Will the product be shipped?' | translate }}</label>
       <select id="add-product-is-shipped"
         [(ngModel)]="model.shipped"
         name="shipped">
@@ -23,12 +29,7 @@
         <option value="false">{{ 'No' | translate }}</option>
       </select>  
 
-      <label>{{ 'Price' | translate }}</label>
-      <input id="add-product-price" type="number" maxlength="128" placeholder="" required
-        [(ngModel)]="model.price"
-        name="price">
-
-      <label>{{ 'Is Subscription?' | translate }}</label>
+      <label>{{ 'Is the product a subscription?' | translate }}</label>
       <select id="add-product-is-subscription"
         [(ngModel)]="model.subscription"
         name="subscription">

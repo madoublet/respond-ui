@@ -9,7 +9,8 @@
       <p>{{ 'Confirm you want to remove:' | translate }}</p>
 
       <div class="to-be-removed">
-        <h3>{{model.sku}}</h3>
+        <h3>{{model.name}}</h3>
+        <small>{{ 'ID' | translate }}: {{model.id}}</small>
       </div>
 
       <div class="actions">

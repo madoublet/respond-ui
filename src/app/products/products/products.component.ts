@@ -11,23 +11,63 @@ import { ProductService } from '../../shared/services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
+  selectedProduct: any = {};
+  product: any = {};
+  products: any = [];
+  filteredProducts: any = [];
+
   drawerVisible: boolean = false;
   addVisible: boolean = false;
   removeVisible: boolean = false;
-  product: any;
-  products: any;
+  search: string = '';
 
   constructor(public translate: TranslateService, private _router: Router, private _appService: AppService, private _productService: ProductService) { }
 
   ngOnInit() {
-    this.product = {};
-    this.products = [];
+    this.list('load');
   }
+
+  /**
+   * Make a copy of the pages
+   */
+  copy() {
+    this.filteredProducts = Object.assign([], this.products);
+   }
 
   /**
    * Updates the list
    */
   list(source) {
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
+
+    this.reset();
+
+    // list pages
+    this._productService.list()
+                    .subscribe(
+                      data => { this.products = data; this.copy(); },
+                      error =>  { this.failure(<any>error); }
+                    );
+  }
+
+  /**
+   * Searches the list
+   */
+  searchList() {
+
+    let keys = 'name,id', context = this;
+
+    // reset when nothing is typed
+    if(!this.search) {
+      this.copy();
+    }
+
+    // filter items
+    this.filteredProducts = Object.assign([], this.products).filter(
+      item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
+    );
 
   }
 
@@ -39,12 +79,22 @@ export class ProductsComponent implements OnInit {
   }
 
   /**
+   * Sets the list item to active
+   *
+   * @param {Product} product
+   */
+  setActive(product) {
+    this.selectedProduct = product;
+  }
+
+  /**
    * Resets an modal booleans
    */
   reset() {
     this.drawerVisible = false;
     this.addVisible = false;
     this.removeVisible = false;
+    this.product = {};
   }
 
   /* 
@@ -55,9 +105,31 @@ export class ProductsComponent implements OnInit {
   }
 
   /**
+   * Shows the remove dialog
+   *
+   * @param {Product} product
+   */
+  showRemove(product) {
+    this.removeVisible = true;
+    this.product = product;
+  }
+
+  /**
+   * Edits a product
+   *
+   * @param {Product} product
+   */
+  edit(product) {
+    this._router.navigate( ['/products/edit', product.id] );
+  }
+
+
+  /**
    * handles error
    */
   failure (obj: any) {
+
+    console.log(obj);
 
     this._appService.showToast('failure', obj._body);
 

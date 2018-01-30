@@ -1,0 +1,105 @@
+<respond-subscribe></respond-subscribe>
+
+<menu class="app-menu no-border has-back">
+
+    <button class="app-back" (click)="back()"><i class="material-icons">arrow_back</i></button>
+
+    <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
+    
+    <h1>{{ 'Edit Product' | translate }}</h1>
+
+    <div class="app-actions">
+      <button (click)="showSelect()" *ngIf="tab === 'images'">
+        <i class="material-icons">add</i>
+        <span>{{ 'Add Image' | translate }}</span>
+      </button>
+
+      <button (click)="showSelect()"  *ngIf="tab === 'options'">
+        <i class="material-icons">add</i>
+        <span>{{ 'Add Option' | translate }}</span>
+      </button>
+    </div>
+</menu>
+
+<section class="app-main">
+
+  <nav class="app-selector">
+    <ul>
+      <li [class.selected]="tab === 'details'" (click)="setActive('details')">
+        <a>{{ 'Details' | translate }}</a>
+      </li>
+      <li [class.selected]="tab === 'images'" (click)="setActive('images')">
+        <a>{{ 'Images' | translate }}</a>
+      </li>
+      <li [class.selected]="tab === 'options'" (click)="setActive('options')">
+        <a>{{ 'Options' | translate }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <form *ngIf="tab === 'details'" class="app-form" (ngSubmit)="submit()" #settingsForm="ngForm">
+
+    <label>{{ 'Name' | translate }}</label>
+    <input id="edit-product-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="product.name"
+      name="name">
+    <small>{{ 'ID' | translate }}: {{ product.id }}</small>
+
+    <label>{{ 'Price' | translate }}</label>
+    <input id="edit-product-price" type="number" maxlength="128" step="0.01" placeholder="" required
+      [(ngModel)]="product.price"
+      name="price">
+
+    <label>{{ 'Will the product be shipped?' | translate }}</label>
+    <select id="edit-product-is-shipped"
+      [(ngModel)]="product.shipped"
+      name="shipped">
+      <option value="true">{{ 'Yes' | translate }}</option>
+      <option value="false">{{ 'No' | translate }}</option>
+    </select>  
+
+    <label>{{ 'Is the product a subscription?' | translate }}</label>
+    <select id="edit-product-is-subscription"
+      [(ngModel)]="product.subscription"
+      name="subscription">
+      <option value="true">{{ 'Yes' | translate }}</option>
+      <option value="false">{{ 'No' | translate }}</option>
+    </select>
+      
+    <div *ngIf="product.subscription == 'true'">
+      <label>{{ 'Stripe Plan ID' | translate }}</label>
+      <input id="edit-product-plan" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="product.plan"
+        name="plan">
+
+      <label>{{ 'Display Plan Price' | translate }}</label>
+      <input id="edit-product-plan-price" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="product.planPrice"
+        name="planPrice">
+      <small>{{ 'e.g.: $25 /month' | translate }}</small>
+    </div>
+
+    <footer class="app-footer">
+        <button type="submit">{{ 'Save' | translate }}</button>
+    </footer>
+
+  </form>
+
+  <div id="images-list" class="app-list" [sortablejs]="images" [sortablejsOptions]="sortableOptions">
+    <div class="app-list-item sortable" *ngFor="let image of images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+      
+      <i class="sortable-handle material-icons">apps</i>
+      
+      <h2><span class="primary"><a (click)="showEditImage(image)">{{ image.name }}</a></span></h2>
+      <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
+      <small>{{ image.caption }}</small>
+      <div class="app-list-actions">
+          <a (click)="showRemoveImage(image)">{{ 'Remove' | translate }}</a>
+          <a (click)="showEditImage(image)" class="primary">{{ 'Edit Caption' | translate }}</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<respond-drawer active="products" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

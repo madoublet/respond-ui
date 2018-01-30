@@ -1113,7 +1113,7 @@ body .app-form.standalone {
     font-size: 13px;
   }
 
-  body .app-form input[type=text], body .app-form input[type=password], body .app-form select {
+  body .app-form input[type=text], body .app-form input[type=number], body .app-form input[type=password], body .app-form select {
     display: block;
     margin: 0 0 25px 0;
     padding: 10px;
@@ -1121,6 +1121,14 @@ body .app-form.standalone {
     line-height: 17px;
     font-size: 14px;
     min-width: 250px;
+  }
+
+  body .app-form input[disabled] {
+    color: #ccc;
+  }
+
+  body .app-form select {
+    min-width: 275px !important;
   }
 
   body .app-form textarea {

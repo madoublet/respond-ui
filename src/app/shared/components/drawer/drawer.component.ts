@@ -18,7 +18,7 @@ export class DrawerComponent {
   dev;
   siteUrl;
   route: any;
-  build: string = 'core';
+  mode: string = 'core';
   hasAccount: boolean = false;
   confirmVisible: boolean = false;
   _visible: boolean = false;
@@ -59,8 +59,8 @@ export class DrawerComponent {
     this.siteUrl = '';
     this.hasAccount = false;
     this.confirmVisible = false;
-    this.build = environment.build;
-    
+    this.mode = localStorage.getItem('respond_mode');
+
     var url = window.location.href;
 
     if(url.indexOf('?dev') !== -1) {

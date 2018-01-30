@@ -16,9 +16,32 @@
 </menu>
 
 <section class="app-main">
-  <p>
-    Products works!
-  </p>
+
+    <div class="app-search">
+      <i class="search material-icons">search</i>
+      <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or ID' | translate }}">
+    </div>
+
+    <div id="products-list" class="app-list">
+      <div class="app-list-item" *ngFor="let product of filteredProducts" (mouseenter)="setActive(product)" (click)="setActive(product)" [class.selected]="product === selectedProduct">
+        <h2>
+          <span class="primary"><a (click)="edit(product)">{{ product.name }}</a></span>
+          <span class="secondary">{{ product.price }}</span>
+        </h2>
+        <small>
+          {{ product.id }}
+        </small>
+        <div class="app-list-actions">
+            <a (click)="showRemove(product)">{{'Remove' | translate }}</a>
+            <a class="primary" (click)="edit(product)">{{'Edit' | translate }}</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="no-list-items" *ngIf="products.length === 0">
+      {{ 'Nothing here yet' | translate }}
+    </p>
+  
 </section>
 
 <respond-add-product [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-product>

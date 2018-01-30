@@ -12,9 +12,7 @@ export class RemoveProductComponent {
   errorMessage;
 
   // model to store
-  model: {
-    sku: ''
-  };
+  model: any = {};
 
   _visible: boolean = false;
 
@@ -62,7 +60,7 @@ export class RemoveProductComponent {
    */
   submit() {
 
-    this._productService.remove(this.model.sku)
+    this._productService.remove(this.model.id)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
