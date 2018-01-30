@@ -13,6 +13,12 @@ export class ProductService {
   private _editUrl = 'api/products/edit';
   private _removeUrl = 'api/products/remove';
 
+  // images
+  private _listImagesUrl = 'api/products/images/list';
+  private _addImagesUrl = 'api/products/images/add';
+  private _editImagesUrl = 'api/products/images/edit';
+  private _removeImagesUrl = 'api/products/images/remove';
+
   /**
    * Lists products for a site
    *
@@ -103,6 +109,26 @@ export class ProductService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this._removeUrl, body, options);
+
+  }
+
+  /**
+   * Adds an image
+   *
+   * @param {string} name
+   * @param {string} url
+   * @param {string} caption
+   * @param {string} productId
+   * @return {Observable}
+   */
+  addImage (id: string, name: string, url: string, thumb: string, caption: string, productId: string) {
+
+    let body = JSON.stringify({ id, name, url, thumb, caption, productId });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let _options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._addImagesUrl, body, _options);
 
   }
 
