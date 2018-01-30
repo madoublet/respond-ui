@@ -15,8 +15,6 @@ export class EditProductComponent {
   tab: string = 'details';
   id;
   product: any = {};
-  options: any = [];
-  images: any = [];
   errorMessage;
   selectedImage;
   selectedIndex;
@@ -29,9 +27,9 @@ export class EditProductComponent {
   addOptionVisible: boolean = false;
   drawerVisible: boolean;
 
-  sortableOptions: SortablejsOptions = {
+  imageOptions: SortablejsOptions = {
     handle: '.sortable-handle',
-    onUpdate: () => this.updateOrder()
+    onUpdate: () => this.updateImageOrder()
   };
 
   constructor (private _productService: ProductService, private _route: ActivatedRoute, private _router: Router, private _appService: AppService) {}
@@ -92,36 +90,6 @@ export class EditProductComponent {
   }
 
   /**
-   * Updates the list
-   */
-  list() {
-
-    this.reset();
-
-    /*
-    this._productService.list()
-                     .subscribe(
-                       data => { this.galleries = data; this.success(); },
-                       error =>  { this.failure(<any>error); }
-                      );*/
-
-  }
-
-  /**
-   * list images for the product
-   */
-  listImages() {
-
-    /*
-    this._productService.list(this.selectedGallery.id)
-                     .subscribe(
-                       data => { this.images = data; },
-                       error => { this.failure(<any>error); }
-                      ); */
-
-  }
-
-  /**
    * go back
    */
   back() {
@@ -158,7 +126,7 @@ export class EditProductComponent {
    */
   setImageActive(image) {
     this.selectedImage = image;
-    this.selectedIndex = this.images.indexOf(image);
+    this.selectedIndex = this.product.images.indexOf(image);
   }
 
   /**
@@ -194,7 +162,6 @@ export class EditProductComponent {
    * Shows the select dialog
    */
   showSelect() {
-    alert('boom');
     this.selectVisible = true;
   }
 
@@ -210,14 +177,15 @@ export class EditProductComponent {
    */
   select(event) {
 
-   var caption = '';
+    alert('selected');
 
-   /*
-   this._galleryImageService.add(event.name, event.url, event.thumb, caption, this.selectedGallery.id)
-                   .subscribe(
-                     data => { this.listImages(); this._appService.showToast('success', null); },
-                     error => { this.failure(<any>error); }
-                    ); */
+    let caption = '', id = Math.random().toString(36).substr(2, 9).toUpperCase();
+    
+    this._productService.addImage(id, event.name, event.url, event.thumb, caption, this.product.id)
+                              .subscribe(
+                                data => { this.success(); },
+                                error =>  { this.failure(<any>error); }
+                              );
 
     this.selectVisible = false;
   }
@@ -247,14 +215,13 @@ export class EditProductComponent {
    * Updates the order of the field fields
    *
    */
-  updateOrder() {
+  updateImageOrder() {
 
-    /*
-    this._galleryImageService.updateOrder(this.images, this.selectedGallery.id)
-                     .subscribe(
-                       data => { this._appService.showToast('success', 'Order updated successfully'); },
-                       error =>  { this.failure(<any>error); }
-                      ); */
+    this._productService.updateImageOrder(this.product.images, this.product.id)
+                      .subscribe(
+                        data => { this._appService.showToast('success', 'Order updated successfully'); },
+                        error =>  { this.failure(<any>error); }
+                      );
   }
 
   /**
@@ -273,6 +240,7 @@ export class EditProductComponent {
    */
   success() {
     this._appService.showToast('success', null);
+    this.retrieve();
   }
 
   /**

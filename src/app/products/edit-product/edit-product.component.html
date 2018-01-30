@@ -85,13 +85,13 @@
 
   </form>
 
-  <div id="images-list" class="app-list" [sortablejs]="images" [sortablejsOptions]="sortableOptions">
-    <div class="app-list-item sortable" *ngFor="let image of images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+  <div id="images-list" class="app-list" [sortablejs]="product.images" [sortablejsOptions]="imageOptions" *ngIf="tab === 'images'">
+    <div class="app-list-item sortable" *ngFor="let image of product.images" (mouseenter)="setImageActive(image)" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
       
       <i class="sortable-handle material-icons">apps</i>
       
       <h2><span class="primary"><a (click)="showEditImage(image)">{{ image.name }}</a></span></h2>
-      <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
+      <img *ngIf="image.thumb !== ''" class="image" src="{{image.thumb}}">
       <small>{{ image.caption }}</small>
       <div class="app-list-actions">
           <a (click)="showRemoveImage(image)">{{ 'Remove' | translate }}</a>

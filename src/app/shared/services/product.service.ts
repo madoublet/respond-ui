@@ -14,10 +14,10 @@ export class ProductService {
   private _removeUrl = 'api/products/remove';
 
   // images
-  private _listImagesUrl = 'api/products/images/list';
   private _addImagesUrl = 'api/products/images/add';
   private _editImagesUrl = 'api/products/images/edit';
   private _removeImagesUrl = 'api/products/images/remove';
+  private _updateImageOrderUrl = 'api/products/images/order'
 
   /**
    * Lists products for a site
@@ -129,6 +129,24 @@ export class ProductService {
     let _options = new RequestOptions({ headers: headers });
 
     return this.http.post(this._addImagesUrl, body, _options);
+
+  }
+
+  /**
+   * Updates the order of images
+   *
+   * @param {string} id
+   * @param {array} images
+   * @return {Observable}
+   */
+  updateImageOrder (images, productId: string) {
+
+    let body = JSON.stringify({ images, productId });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._updateImageOrderUrl, body, options);
 
   }
 
