@@ -4,26 +4,34 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { SelectFileComponent } from './components/files/select-file/select-file.component';
+import { DropzoneComponent } from './components/dropzone/dropzone.component';
 import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     DrawerComponent, 
     ConfirmComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    SelectFileComponent,
+    DropzoneComponent
   ],
   imports: [
     RouterModule,
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
     TranslateModule,
     DrawerComponent,
     SubscribeComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    SelectFileComponent,
+    DropzoneComponent
   ]
 })
 export class SharedModule { }

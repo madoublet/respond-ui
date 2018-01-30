@@ -17,9 +17,6 @@ import { SortablejsModule } from 'angular-sortablejs';
 import { HttpModule, Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
-// common
-import { DropzoneComponent } from './app/shared/components/dropzone/dropzone.component';
-
 // logon, forgot, reset, create
 import { LoginComponent } from './app/login/login.component';
 import { ForgotComponent } from './app/forgot/forgot.component';
@@ -46,7 +43,6 @@ import { EditLinkComponent } from './app/edit/edit-link/edit-link.component';
 // files
 import { FilesComponent } from './app/files/files.component';
 import { RemoveFileComponent } from './app/shared/components/files/remove-file/remove-file.component';
-import { SelectFileComponent } from './app/shared/components/files/select-file/select-file.component';
 
 // plugins
 import { PluginsComponent } from './app/plugins/plugins.component';
@@ -129,10 +125,9 @@ import { SharedModule } from './app/shared/shared.module';
       ForgotComponent,
       ResetComponent,
       CreateComponent,
-      DropzoneComponent,
       EditComponent, EditElementComponent, EditBlockComponent, AddBlockComponent, EditImageComponent, EditLinkComponent,
       AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
-      FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
+      FilesComponent, RemoveFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,
       MenusComponent, AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent,

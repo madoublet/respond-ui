@@ -14,7 +14,7 @@
         <span>{{ 'Add Image' | translate }}</span>
       </button>
 
-      <button (click)="showSelect()"  *ngIf="tab === 'options'">
+      <button (click)="showAddOption()"  *ngIf="tab === 'options'">
         <i class="material-icons">add</i>
         <span>{{ 'Add Option' | translate }}</span>
       </button>
@@ -103,3 +103,5 @@
 </section>
 
 <respond-drawer active="products" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>

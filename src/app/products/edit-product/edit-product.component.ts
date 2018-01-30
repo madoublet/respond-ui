@@ -26,6 +26,7 @@ export class EditProductComponent {
   removeVisible: boolean = false;
   selectVisible: boolean = false;
   removeImageVisible: boolean = false;
+  addOptionVisible: boolean = false;
   drawerVisible: boolean;
 
   sortableOptions: SortablejsOptions = {
@@ -138,6 +139,7 @@ export class EditProductComponent {
     this.removeImageVisible = false;
     this.editImageVisible = false;
     this.drawerVisible = false;
+    this.addOptionVisible = false;
   }
 
   /**
@@ -192,7 +194,15 @@ export class EditProductComponent {
    * Shows the select dialog
    */
   showSelect() {
+    alert('boom');
     this.selectVisible = true;
+  }
+
+  /**
+   * Shows the select dialog
+   */
+  showAddOption() {
+    this.addOptionVisible = true;
   }
 
   /**
