@@ -14,11 +14,12 @@
         <span>{{ 'Add Image' | translate }}</span>
       </button>
 
+      <!--
       <button (click)="showAddOption()"  *ngIf="tab === 'options'">
         <i class="material-icons">add</i>
         <span>{{ 'Add Option' | translate }}</span>
-      </button>
-    </div>
+      </button>-->
+    </div> 
 </menu>
 
 <section class="app-main">
@@ -31,9 +32,10 @@
       <li [class.selected]="tab === 'images'" (click)="setActive('images')">
         <a>{{ 'Images' | translate }}</a>
       </li>
+      <!--
       <li [class.selected]="tab === 'options'" (click)="setActive('options')">
         <a>{{ 'Options' | translate }}</a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 
@@ -105,3 +107,5 @@
 <respond-drawer active="products" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
 <respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
+<respond-remove-product-image [visible]="removeImageVisible" [image]="selectedImage" [productId]="product.id" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-product-image>
+

@@ -65,6 +65,19 @@ export class EditProductComponent {
   }
 
   /**
+   * Updates the list
+   */
+  list(source) {
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
+
+    // retrieves the data
+    this.retrieve();
+
+  }
+
+  /**
    * Retrieve the product
    */
   retrieve() {
@@ -88,6 +101,8 @@ export class EditProductComponent {
                       );
 
   }
+
+
 
   /**
    * go back
