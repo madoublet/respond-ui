@@ -150,4 +150,38 @@ export class ProductService {
 
   }
 
+  /**
+   * Removes an image from a product
+   *
+   * @param {string} id The ID of the product
+   * @return {Observable}
+   */
+  removeImage (id: string, productId: string) {
+
+    let body = JSON.stringify({ id, productId });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._removeUrl, body, options);
+
+  }
+
+  /**
+   * Edits the caption for an image
+   *
+   * @param {string} id The ID of the product
+   * @return {Observable}
+   */
+  editImage (id: string, caption: string, productId: string) {
+
+    let body = JSON.stringify({ id, caption, productId });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._removeUrl, body, options);
+
+  }
+
 }
