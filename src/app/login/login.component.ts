@@ -137,6 +137,13 @@ export class LoginComponent {
   }
 
   /**
+   * Routes to the create screen
+   */
+  create() {
+    this._router.navigate( ['/create'] );
+  }
+
+  /**
    * Sets the language for the app
    */
   setLanguage(language) {

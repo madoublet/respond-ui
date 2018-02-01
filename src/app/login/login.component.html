@@ -16,7 +16,11 @@
 
     <button type="submit" class="primary-button">{{ 'Login' | translate }}</button>
 
-    <a (click)="forgot()">{{ 'Forgot Password?' | translate }}</a>
+    <div class="secondary-actions">
+        <a (click)="forgot()">{{ 'Forgot Password?' | translate }}</a>
+
+        <a (click)="create()">{{ 'Create Site' | translate }}</a>
+    </div>
 
 </form>
 
