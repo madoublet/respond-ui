@@ -41,7 +41,7 @@ body p, body label, body input, body button {
 }
 
 a, a:visited {
-  color: #00ADE3;
+  color: #537895;
   cursor: pointer;
 }
 
@@ -79,7 +79,7 @@ body .app-selector ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: #00ADE3;
+  background-color: #537895;
 }
 
 body .app-selector li {
@@ -103,8 +103,7 @@ body .app-selector li.app-selector-add a {
   position: relative;
   display: inline-block;
   padding: 5px 0 15px 25px;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -203,7 +202,7 @@ body .filter-list {
   margin: 0;
   padding: 20px 0;
   border-top: 1px solid #ddd;
-  background-color: #f8f8f8;
+  background-color: #EBF2F7;
 }
 
   body .filter-list .filter-list-close {
@@ -296,14 +295,14 @@ body .app-list {
   }
 
     body .app-list-item h2 a {
-      color: #00ADE3;
+      color: #537895;
       font-weight: bold;
     }
 
     body .app-list-item h2 svg.location, body .app-list-item h2 svg.component {
       height: 15px;
       fill: currentColor;
-      color: #00ADE3;
+      color: #537895;
     }
 
   body .app-list-item small {
@@ -369,10 +368,9 @@ body .app-list {
   }
 
   body .app-list-item .app-list-actions {
-    display: block;
+    display: none;
     text-align: right;
-    visibility: hidden;
-    height: 0;
+    padding: 10px 0;
     transition: all 0.2s ease;
   }
 
@@ -381,13 +379,22 @@ body .app-list {
   }
 
   body .app-list-item .app-list-actions a {
-    font-size: 14px;
     display: inline-block;
-    margin-left: 15px;
     text-decoration: none;
     padding-top: 10px;
-    text-transform: uppercase;
+    color: #537895;
+    font-size: 13px;
+    padding: 8px 15px;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
   }
+
+    body .app-list-item .app-list-actions a:hover {
+      box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+    }
+  
 
   body .app-list-item .app-list-actions a.primary {
     font-weight: 700;
@@ -395,7 +402,7 @@ body .app-list {
   }
 
   body .app-list-item.selected .app-list-actions {
-    visibility: visible;
+    display: block;
     height: 15px;
   }
 
@@ -461,7 +468,7 @@ body .app-list {
   .app-drawer a, .app-overflow a {
     text-decoration: none;
     cursor: pointer;
-    color: #00ADE3;
+    color: #537895;
     padding: 0 15px;
     display: block;
 
@@ -671,7 +678,7 @@ body .app-modal {
   }
 
   body .app-modal a, body .app-modal a:visited {
-    color: #00ADE3
+    color: #537895
   }
 
   body .app-modal[visible],  body .app-modal.visible {
@@ -762,14 +769,16 @@ body .app-modal {
   }
 
   body .app-modal h2 {
-    color: #888;
+    color: #537895;
+    font-size: 18px;
     margin: 0 0 25px 0;
     padding: 0;
+    font-weight: 799l
   }
 
   body .app-modal .actions {
     position: absolute;
-    bottom: 25px;
+    bottom: 20px;
     right: 25px;
     margin: 0;
     padding: 0;
@@ -778,12 +787,20 @@ body .app-modal {
   }
 
   body .app-modal .actions button {
-    color: #00ADE3;
+    color: #537895;
     background: none;
     border: none;
-    margin-left: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
+    margin-left: 5px;
+    font-size: 14px;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700 !important;
+  }
+
+  body .app-modal .actions button:hover {
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   }
 
   body .app-modal .actions button[disabled] {
@@ -791,8 +808,11 @@ body .app-modal {
   }
 
   body .app-modal .actions a {
-    margin-left: 15px;
-    text-transform: uppercase;
+    margin-left: 14px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
     cursor: pointer;
   }
 
@@ -952,7 +972,7 @@ body .app-modal {
       margin: 10px 0 0 0;
       padding: 0 0 15px 0;
       font-size: 11px;
-      color: #00ADE3;
+      color: #537895;
       text-transform: uppercase;
     }
 
@@ -1232,7 +1252,6 @@ body .acknowledgement {
 }
 
   .app-footer a {
-    text-transform: uppercase;
     font-size: 14px;
     line-height: 50px;
     margin-right: 20px;
@@ -1241,15 +1260,21 @@ body .acknowledgement {
   .app-footer button {
     position: absolute;
     right: 0;
-    top: 0;
-    color: #00ADE3;
+    top: 6px;
+    color: #537895;
     background: none;
     border: none;
-    text-transform: uppercase;
     font-size: 14px;
-    line-height: 50px;
-    margin-right: 20px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
   }
+
+    .app-footer button:hover {
+      box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+    }
 
 /* app-menu */
 .app-menu {
@@ -1261,7 +1286,7 @@ body .acknowledgement {
   left: 0;
   height: 50px;
   width: 100%;
-  background-color: #00ADE3;
+  background-color: #537895;
   margin: 0;
   padding: 0;
   color: #fff;
@@ -1304,27 +1329,12 @@ body .acknowledgement {
     margin: 10px;
   }
 
-/* overflow */
-.app-menu .app-overflow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #00ADE3;
-  color: #fff !important;
-  width: 50px;
-  height: 49px;
-  border: none;
-  outline: none;
-  color: #fff;
-  z-index: 2;
-  cursor: pointer;
-}
-
 /* primary action */
 .app-menu .app-actions {
   position: absolute;
   top: 0;
   right: 0;
+  margin: 6px 10px;
 }
 
 .app-menu .app-actions button {
@@ -1332,18 +1342,23 @@ body .acknowledgement {
   background-color: transparent;
   color: #fff !important;
   border: none;
-  height: 49px;
-  z-index: 2;
-  cursor: pointer;
-  padding: 0;
-  margin: 0 10px 0 0;
+  z-index: 2; 
+  padding: 8px 15px;
+  margin: 0 0 0 5px;
   outline: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
 }
+
+  .app-menu .app-actions button:hover {
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  }
 
 .app-menu .app-actions button i {
   position: absolute;
-  top: 16px;
-  left: 0;
+  top: 9px;
+  left: 12px;
   font-size: 18px;
   margin: 0;
   padding: 0;
@@ -1352,8 +1367,7 @@ body .acknowledgement {
 
 .app-menu .app-actions button span {
   padding-left: 20px;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 13px;
   text-align: center;
   color: #fff;
 }
@@ -1386,12 +1400,12 @@ body .acknowledgement {
   outline: none;
   color: #fff;
   z-index: 2;
-  background-color: #00ADE3;
+  background-color: #537895;
   cursor: pointer;
 }
 
 .app-menu .app-more:hover {
-  background-color: #00ADE3;
+  background-color: #537895;
   color: #fff !important;
 }
 
@@ -1415,7 +1429,7 @@ body .acknowledgement {
 }
 
 .app-menu a:hover {
-  background-color: #00ADE3 !important;
+  background-color: #537895 !important;
   color: #fff !important;
   height: 50px;
 }
@@ -1509,8 +1523,8 @@ body .dropzone .dz-message {
   }
 
   .app-slideshow-container div.description a.primary {
-    border: 1px solid #00ADE3;
-    color: #00ADE3;
+    border: 1px solid #537895;
+    color: #537895;
   }
 
 /* theme list */
@@ -1722,10 +1736,11 @@ body .dropzone .dz-message {
     height: 100%;
     left: 0;
     box-shadow: none;
-    background-color: #00ADE3;
+    background-color: #537895;
     color: #fff;
     border-right: none;
     overflow: hidden;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   }
 
     [drawer-collapse] .app-drawer {
@@ -1772,11 +1787,11 @@ body .dropzone .dz-message {
   .app-menu .app-actions button {}
 
   .app-menu .app-actions button i {
-    color: #00ADE3;
+    color: #537895;
   }
 
   .app-menu .app-actions button span {
-    color: #00ADE3;
+    color: #537895;
   }
 
   .app-menu .app-back {
@@ -1816,7 +1831,7 @@ body .dropzone .dz-message {
 
     .app-menu .app-add, .app-menu .app-overflow, .app-menu .app-alt-action {
       background-color: #fff;
-      color: #00ADE3;
+      color: #537895;
       box-shadow: none;
     }
 
@@ -1869,11 +1884,11 @@ body .dropzone .dz-message {
   }
 
     body .app-selector li a {
-      color: #00ADE3;
+      color: #537895;
     }
 
     body .app-selector li.selected a {
-      border-bottom: 3px solid #00ADE3;
+      border-bottom: 3px solid #537895;
     }
 
 }

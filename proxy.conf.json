@@ -29,6 +29,11 @@
     "changeOrigin": true,
     "secure": true
   },
+  "/resources": {
+    "target": "http://dev.respondcms.com",
+    "changeOrigin": true,
+    "secure": true
+  },
   "/dev": {
     "target": "http://dev.respondcms.com",
     "changeOrigin": true,
