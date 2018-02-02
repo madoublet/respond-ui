@@ -17,6 +17,9 @@ body {
   display: none !important;
 }
 
+	
+textarea, input, button { outline: none; }
+
 body h1, body h2, body h3, body h4, body h5, body label, body input, body li, body button, body a, body td{
   font-family: 'Open Sans', sans-serif;
 }
@@ -862,23 +865,25 @@ body .app-modal {
 
     body .app-modal-card {
       display: inline-block;
-      width: 120px;
-      height: 200px;
+      width: 90px;
+      height: 90px;
       padding: 0;
-      margin: 0 0 25px 25px;
+      margin: 0 0 10px 10px;
       border: 1px solid #ddd;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      box-shadow: 1px 1px 1px #ddd;
       transition: 0.3s;
       vertical-align: top;
       cursor: pointer;
+      text-align: center;
     }
 
     body .app-modal-card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      box-shadow: 3px 3px 3px #aaa;
     }
 
     body .app-modal-card img {
-      margin: 10px;
+      height: 20px;
+      margin: 0 auto;
       padding: 0;
     }
 
@@ -886,7 +891,7 @@ body .app-modal {
       margin: 0;
       padding: 0 10px 10px 10px;
       font-size: 13px;
-      line-height: 20px;
+      line-height: 16px;
       font-weight: normal;
     }
 
@@ -960,6 +965,11 @@ body .app-modal {
       min-height: 70px;
     }
 
+    body .app-modal-list-item.icon {
+      padding-left: 50px;
+      min-height: 50px;
+    }
+
     body .app-modal-list-item.selected {
       background-color: #fff;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, .15);
@@ -971,6 +981,14 @@ body .app-modal {
       color: #111;
       margin: 0 0 2px 0;
       padding: 15px 0 0 0;
+    }
+
+    body .app-modal-list-item.icon h2 {
+      font-size: 14px;
+      font-weight: normal;
+      color: #111;
+      margin: 0 0 2px 0;
+      padding: 18px 0 0 0;
     }
 
     body .app-modal-list-item small {
@@ -1017,6 +1035,18 @@ body .app-modal {
       height: 50px;
       border-radius: 50%;
       border: 1px solid #f0f0f0;
+      float: left;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #fff;
+    }
+
+    body .app-modal-list-item .icon {
+      position: absolute;
+      top: 15px;
+      left: 10px;
+      width: 20px;
+      height: 20px;
       float: left;
       background-size: cover;
       background-repeat: no-repeat;

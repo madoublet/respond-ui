@@ -1,47 +1,47 @@
-<div class="app-modal full-screen" [class.visible]="visible === true">
+<div class="app-modal" [class.visible]="visible === true">
 
   <h2>{{ 'Add Layout' | translate }}</h2>
 
 
-  <div id="layout-list" class="app-modal-cards">
-      <div class="app-modal-card" (click)="add('1-column')">
-          <img src="assets/resources/1-column.png">
+  <div id="layout-list" class="app-modal-list">
+      <div class="app-modal-list-item icon" (click)="add('1-column')">
+          <img class="icon" src="assets/resources/1-column.png">
           <div class="app-modal-card-container">
             <h2>{{ '1 Column Layout' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('2-column')">
-          <img src="assets/resources/2-column.png">
+      <div class="app-modal-list-item icon" (click)="add('2-column')">
+          <img class="icon" src="assets/resources/2-column.png">
           <div class="app-modal-card-container">
             <h2>{{ '2 Column Layout' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('2-column-weighted-left')">
-          <img src="assets/resources/2-column-weighted-left.png">
+      <div class="app-modal-list-item icon" (click)="add('2-column-weighted-left')">
+          <img class="icon" src="assets/resources/2-column-weighted-left.png">
           <div class="app-modal-card-container">
             <h2>{{ '2 Column Layout Weighted Left' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('2-column-weighted-right')">
-          <img src="assets/resources/2-column-weighted-right.png">
+      <div class="app-modal-list-item icon" (click)="add('2-column-weighted-right')">
+          <img class="icon" src="assets/resources/2-column-weighted-right.png">
           <div class="app-modal-card-container">
             <h2>{{ '2 Column Layout Weighted Right' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('3-column')">
-          <img src="assets/resources/3-column.png">
+      <div class="app-modal-list-item icon" (click)="add('3-column')">
+          <img class="icon" src="assets/resources/3-column.png">
           <div class="app-modal-card-container">
             <h2>{{ '3 Column Layout' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('4-column')">
-          <img src="assets/resources/4-column.png">
+      <div class="app-modal-list-item icon" (click)="add('4-column')">
+          <img class="icon" src="assets/resources/4-column.png">
           <div class="app-modal-card-container">
             <h2>{{ '4 Column Layout' | translate }}</h2>
           </div>
       </div>
-      <div class="app-modal-card" (click)="add('jumbotron')">
-          <img src="assets/resources/jumbotron.png">
+      <div class="app-modal-list-item icon" (click)="add('jumbotron')">
+          <img class="icon" src="assets/resources/jumbotron.png">
           <div class="app-modal-card-container">
             <h2>{{ 'Jumbotron Layout' | translate }}</h2>
           </div>
