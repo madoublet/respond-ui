@@ -18,12 +18,12 @@ export class EditProductComponent {
   errorMessage;
   selectedImage;
   selectedIndex;
-  editImageVisible;
   addVisible: boolean = false;;
   editVisible: boolean = false;
   removeVisible: boolean = false;
   selectVisible: boolean = false;
   removeImageVisible: boolean = false;
+  editImageVisible: boolean = false;
   addOptionVisible: boolean = false;
   drawerVisible: boolean;
 
@@ -70,6 +70,7 @@ export class EditProductComponent {
   list(source) {
     if(source != 'load') {
       this._appService.showToast('success', null);
+      this.reset();
     }
 
     // retrieves the data
@@ -123,6 +124,7 @@ export class EditProductComponent {
     this.editImageVisible = false;
     this.drawerVisible = false;
     this.addOptionVisible = false;
+    this.editImageVisible = false;
   }
 
   /**
@@ -192,8 +194,6 @@ export class EditProductComponent {
    */
   select(event) {
 
-    alert('selected');
-
     let caption = '', id = Math.random().toString(36).substr(2, 9).toUpperCase();
     
     this._productService.addImage(id, event.name, event.url, event.thumb, caption, this.product.id)
@@ -224,7 +224,6 @@ export class EditProductComponent {
     this.selectedImage = image;
     this.editImageVisible = true;
   }
-
 
   /**
    * Updates the order of the field fields

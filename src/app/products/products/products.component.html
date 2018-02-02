@@ -26,7 +26,7 @@
       <div class="app-list-item" *ngFor="let product of filteredProducts" (mouseenter)="setActive(product)" (click)="setActive(product)" [class.selected]="product === selectedProduct">
         <h2>
           <span class="primary"><a (click)="edit(product)">{{ product.name }}</a></span>
-          <span class="secondary">{{ product.price }}</span>
+          <span class="secondary">${{ product.price }} USD</span>
         </h2>
         <small>
           {{ product.id }}

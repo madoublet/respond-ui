@@ -163,7 +163,7 @@ export class ProductService {
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this._removeUrl, body, options);
+    return this.http.post(this._removeImagesUrl, body, options);
 
   }
 
@@ -180,7 +180,7 @@ export class ProductService {
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this._removeUrl, body, options);
+    return this.http.post(this._editImagesUrl, body, options);
 
   }
 

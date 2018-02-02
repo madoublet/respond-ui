@@ -108,4 +108,5 @@
 
 <respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
 <respond-remove-product-image [visible]="removeImageVisible" [image]="selectedImage" [productId]="product.id" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-product-image>
+<respond-edit-product-image [visible]="editImageVisible" [image]="selectedImage" [productId]="product.id" (onCancel)="reset()" (onUpdate)="list('edit')" (onError)="failure($event)"></respond-edit-product-image>
 

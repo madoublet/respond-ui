@@ -8,6 +8,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { RemoveProductComponent } from './remove-product/remove-product.component';
 import { RemoveProductImageComponent } from './remove-product-image/remove-product-image.component';
+import { EditProductImageComponent } from './edit-product-image/edit-product-image.component';
 import { SharedModule } from '../shared/shared.module';
 
 // sortable
@@ -25,6 +26,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FormsModule,
     SortablejsModule
   ],
-  declarations: [ProductsComponent, AddProductComponent, EditProductComponent, RemoveProductComponent, RemoveProductImageComponent]
+  declarations: [ProductsComponent, AddProductComponent, EditProductComponent, RemoveProductComponent, RemoveProductImageComponent, EditProductImageComponent]
 })
 export class ProductsModule { }
