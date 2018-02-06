@@ -2,13 +2,13 @@
 
   <div class="app-modal" [class.visible]="visible === true">
 
-    <form (ngSubmit)="submit()" #editForm="ngForm">
+    <form (ngSubmit)="submit()" #editForm="ngForm" ngNativeValidate>
 
       <h2>{{ 'Page Settings' | translate }}</h2>
 
       <div class="app-modal-body">
 
-        <label>{{ 'Title' | translate }}</label>
+        <label>* {{ 'Title' | translate }}</label>
         <input id="hashedit-page-settings-title" type="text" maxlength="128" required
           [(ngModel)]="model.title"
           name="title">
