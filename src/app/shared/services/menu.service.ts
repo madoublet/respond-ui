@@ -8,11 +8,11 @@ import { environment } from '../../../environments/environment';
 export class MenuService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/menus/list' + environment.urlExtension;
-  private _listItemsUrl = 'api/menus/items/list' + environment.urlExtension;
-  private _addUrl = 'api/menus/add' + environment.urlExtension;
-  private _editUrl = 'api/menus/edit' + environment.urlExtension;
-  private _removeUrl = 'api/menus/remove' + environment.urlExtension;
+  private _listUrl = 'api/menus/list';
+  private _listItemsUrl = 'api/menus/items/list';
+  private _addUrl = 'api/menus/add';
+  private _editUrl = 'api/menus/edit';
+  private _removeUrl = 'api/menus/remove';
 
   /**
    * Lists menus

@@ -41,7 +41,7 @@
 
 <div class="app-modal" [class.visible]="visible === true">
 
-  <form (ngSubmit)="submit()" #createForm="ngForm">
+  <form (ngSubmit)="submit()" #createForm="ngForm" ngNativeValidate>
 
       <h2>{{ 'Create Site' | translate }}</h2>
 

@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 export class SettingService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/settings/list' + environment.urlExtension;
-  private _editUrl = 'api/settings/edit' + environment.urlExtension;
+  private _listUrl = 'api/settings/list';
+  private _editUrl = 'api/settings/edit';
 
   /**
    * Lists settings

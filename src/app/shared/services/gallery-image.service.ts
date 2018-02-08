@@ -8,11 +8,11 @@ import { environment } from '../../../environments/environment';
 export class GalleryImageService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/galleries/images/list' + environment.urlExtension;
-  private _addUrl = 'api/galleries/images/add' + environment.urlExtension;
-  private _editUrl = 'api/galleries/images/edit' + environment.urlExtension;
-  private _removeUrl = 'api/galleries/images/remove' + environment.urlExtension;
-  private _updateOrderUrl = 'api/galleries/images/order' + environment.urlExtension;
+  private _listUrl = 'api/galleries/images/list';
+  private _addUrl = 'api/galleries/images/add';
+  private _editUrl = 'api/galleries/images/edit';
+  private _removeUrl = 'api/galleries/images/remove';
+  private _updateOrderUrl = 'api/galleries/images/order';
 
   /**
    * Lists images

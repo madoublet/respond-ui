@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 export class FileService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/files/list' + environment.urlExtension;
-  private _removeFileUrl = 'api/files/remove' + environment.urlExtension;
+  private _listUrl = 'api/files/list';
+  private _removeFileUrl = 'api/files/remove';
 
   /**
    * Lists files in the application

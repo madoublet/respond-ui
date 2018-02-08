@@ -4,7 +4,7 @@
 
     <div class="app-card-front">
 
-      <form (ngSubmit)="submit()" #addForm="ngForm">
+      <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
         <h2>{{ 'Edit Menu Item' | translate }}</h2>
 

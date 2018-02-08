@@ -8,9 +8,9 @@ import { environment } from '../../../environments/environment';
 export class ComponentService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/components/list' + environment.urlExtension;
-  private _addUrl = 'api/components/add' + environment.urlExtension;
-  private _removeUrl = 'api/components/remove' + environment.urlExtension;
+  private _listUrl = 'api/components/list';
+  private _addUrl = 'api/components/add';
+  private _removeUrl = 'api/components/remove';
 
   /**
    * Lists components

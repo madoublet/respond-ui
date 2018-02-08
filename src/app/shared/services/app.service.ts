@@ -12,9 +12,9 @@ export class AppService {
   constructor (private http: Http, private translate: TranslateService) {}
 
 
-  private _settingsUrl = 'api/app/settings' + environment.urlExtension;
-  private _themesListUrl = 'api/themes/list' + environment.urlExtension;
-  private _languagesListUrl = 'api/languages/list' + environment.urlExtension;
+  private _settingsUrl = 'api/app/settings';
+  private _themesListUrl = 'api/themes/list';
+  private _languagesListUrl = 'api/languages/list';
 
   // cache the settings
   private _settings;

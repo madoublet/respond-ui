@@ -8,11 +8,11 @@ import { environment } from '../../../environments/environment';
 export class FormFieldService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/forms/fields/list' + environment.urlExtension;
-  private _addUrl = 'api/forms/fields/add' + environment.urlExtension;
-  private _editUrl = 'api/forms/fields/edit' + environment.urlExtension;
-  private _removeUrl = 'api/forms/fields/remove' + environment.urlExtension;
-  private _updateOrderUrl = 'api/forms/fields/order' + environment.urlExtension;
+  private _listUrl = 'api/forms/fields/list';
+  private _addUrl = 'api/forms/fields/add';
+  private _editUrl = 'api/forms/fields/edit';
+  private _removeUrl = 'api/forms/fields/remove';
+  private _updateOrderUrl = 'api/forms/fields/order';
 
   /**
    * Lists fields

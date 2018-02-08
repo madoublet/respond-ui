@@ -8,10 +8,10 @@ import { environment } from '../../../environments/environment';
 export class GalleryService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/galleries/list' + environment.urlExtension;
-  private _addUrl = 'api/galleries/add' + environment.urlExtension;
-  private _editUrl = 'api/galleries/edit' + environment.urlExtension;
-  private _removeUrl = 'api/galleries/remove' + environment.urlExtension;
+  private _listUrl = 'api/galleries/list';
+  private _addUrl = 'api/galleries/add';
+  private _editUrl = 'api/galleries/edit';
+  private _removeUrl = 'api/galleries/remove';
 
   /**
    * Lists forms

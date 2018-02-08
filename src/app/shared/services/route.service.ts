@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 export class RouteService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/routes/list' + environment.urlExtension;
+  private _listUrl = 'api/routes/list';
 
   /**
    * Lists pages in the application

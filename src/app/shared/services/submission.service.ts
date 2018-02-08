@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 export class SubmissionService {
   constructor (private http: Http) {}
 
-  private _listUrl = 'api/submissions/list' + environment.urlExtension;
-  private _removeUrl = 'api/submissions/remove' + environment.urlExtension;
+  private _listUrl = 'api/submissions/list';
+  private _removeUrl = 'api/submissions/remove';
 
   /**
    * Lists submissions in the application

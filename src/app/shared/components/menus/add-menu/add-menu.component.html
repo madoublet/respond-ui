@@ -2,7 +2,7 @@
 
   <div class="app-modal" [class.visible]="visible === true">
 
-    <form (ngSubmit)="submit()" #addForm="ngForm">
+    <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
       <h2>{{ 'Add Menu' | translate }}</h2>
 

@@ -112,19 +112,6 @@ export class AdvancedComponent {
   }
 
   /**
-   * Migrate R5 site
-   */
-  migrate() {
-    this._siteService.migrate()
-                      .subscribe(
-                        data => { 
-                        this._appService.showToast('success', null); 
-                      },
-                      error =>  { this.failure(<any>error); }
-                      );
-  }
-
-  /**
    * Republish Templates
    */
   templates() {

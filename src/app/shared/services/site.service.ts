@@ -8,20 +8,20 @@ import { environment } from '../../../environments/environment';
 export class SiteService {
   constructor (private http: Http) {}
 
-  private _createUrl = 'api/sites/create' + environment.urlExtension;
-  private _subscribeUrl = 'api/sites/subscribe' + environment.urlExtension;
-  private _unsubscribeUrl = 'api/sites/unsubscribe' + environment.urlExtension;
-  private _reloadUrl = 'api/sites/reload' + environment.urlExtension;
-  private _reindexUrl = 'api/sites/reindex' + environment.urlExtension;
-  private _sitemapUrl = 'api/sites/sitemap' + environment.urlExtension;
-  private _migrateUrl = 'api/sites/migrate' + environment.urlExtension;
-  private _templateUrl = 'api/sites/republish/templates' + environment.urlExtension;
-  private _listTemplatesUrl = 'api/templates/list' + environment.urlExtension;
-  private _listPluginsUrl = 'api/plugins/list' + environment.urlExtension;
-  private _updateUrl = 'api/sites/update/plugins' + environment.urlExtension;
-  private _removePluginUrl = 'api/plugins/remove' + environment.urlExtension;
-  private _retrieveSubscriptionUrl = 'api/sites/subscription/retrieve' + environment.urlExtension;
-  private _syncUrl = 'api/sites/sync' + environment.urlExtension;
+  private _createUrl = 'api/sites/create';
+  private _subscribeUrl = 'api/payment/subscribe';
+  private _unsubscribeUrl = 'api/payment/unsubscribe';
+  private _reloadUrl = 'api/sites/reload';
+  private _reindexUrl = 'api/sites/reindex';
+  private _sitemapUrl = 'api/sites/sitemap';
+  private _migrateUrl = 'api/sites/migrate';
+  private _templateUrl = 'api/sites/republish/templates';
+  private _listTemplatesUrl = 'api/templates/list';
+  private _listPluginsUrl = 'api/plugins/list';
+  private _updateUrl = 'api/sites/update/plugins';
+  private _removePluginUrl = 'api/plugins/remove';
+  private _retrieveSubscriptionUrl = 'api/payment/subscription/retrieve';
+  private _syncUrl = 'api/cloud/sync';
 
   /**
    * Login to the application
@@ -132,21 +132,6 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._sitemapUrl, options);
-
-  }
-
-  /**
-   * Migrates a R5 site to R6
-   *
-   * @return {Observable}
-   */
-  migrate () {
-
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.get(this._migrateUrl, options);
 
   }
 

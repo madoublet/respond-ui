@@ -1,7 +1,7 @@
 <div class="app-modal-background" [class.visible]="visible === true">
   <div class="app-modal" [class.visible]="visible === true">
 
-    <form (ngSubmit)="submit()" #removeForm="ngForm">
+    <form (ngSubmit)="submit()" #removeForm="ngForm" ngNativeValidate>
 
       <h2>{{ 'Remove Submission' | translate }}</h2>
 

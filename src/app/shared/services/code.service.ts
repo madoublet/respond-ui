@@ -8,11 +8,11 @@ import { environment } from '../../../environments/environment';
 export class CodeService {
   constructor (private http: Http) {}
 
-  private _retrieveUrl = 'api/code/retrieve' + environment.urlExtension;
-  private _saveUrl = 'api/code/save' + environment.urlExtension;
-  private _listUrl = 'api/code/list' + environment.urlExtension;
-  private _listFilesUrl = 'api/code/listFiles' + environment.urlExtension;
-  private _addUrl = 'api/code/add' + environment.urlExtension;
+  private _retrieveUrl = 'api/code/retrieve';
+  private _saveUrl = 'api/code/save';
+  private _listUrl = 'api/code/list';
+  private _listFilesUrl = 'api/code/listFiles';
+  private _addUrl = 'api/code/add';
 
   /**
    * List files by type
