@@ -15,7 +15,10 @@ export class EditBlockComponent {
       id: '',
       cssClass: '',
       backgroundImage: '',
-      backgroundColor: ''
+      backgroundColor: '',
+      backgroundSize: '',
+      backgroundPosition: '',
+      backgroundRepeat: ''
     };
 
   // model to store
@@ -71,6 +74,9 @@ export class EditBlockComponent {
     this.model.cssClass = properties.cssClass;
     this.model.backgroundImage = properties.backgroundImage;
     this.model.backgroundColor = properties.backgroundColor;
+    this.model.backgroundSize = properties.backgroundSize;
+    this.model.backgroundPosition = properties.backgroundPosition;
+    this.model.backgroundRepeat = properties.backgroundRepeat;
 
   }
 

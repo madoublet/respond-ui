@@ -1,66 +1,75 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal-slide" [class.visible]="visible === true">
+
+  <a (click)="hide()"><i class="app-modal-slide-close material-icons">close</i></a>
 
   <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
-    <h2>{{ 'Edit Element' | translate }}</h2>
+    <div class="body app-modal-slide-body">
 
-    <label>{{ 'ID' | translate }}</label>
-    <input id="edit-element-id" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.id"
-      name="id">
+      <label>{{ 'ID' | translate }}</label>
+      <input id="edit-element-id" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.id"
+        name="id">
 
-    <label>{{ 'CSS Class' | translate }}</label>
-    <input id="edit-element-class" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.cssClass"
-      name="cssclass">
+      <label>{{ 'CSS Class' | translate }}</label>
+      <input id="edit-element-class" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.cssClass"
+        name="cssclass">
 
-    <label>{{ 'HTML' | translate }}</label>
-    <textarea id="edit-element-html"
-      [(ngModel)]="model.html"
-      name="html"></textarea>
+      <label>{{ 'Text Color' | translate }}</label>
+      <input id="edit-block-class" type="color" maxlength="128" placeholder=""
+        [(ngModel)]="model.textColor"
+        name="textColor">
 
-    <div *ngFor="let attribute of attributes">
+      <label>{{ 'HTML' | translate }}</label>
+      <textarea id="edit-element-html"
+        [(ngModel)]="model.html"
+        name="html"></textarea>
 
-      <div [ngSwitch]="attribute.type">
+      <div *ngFor="let attribute of attributes">
 
-        <div *ngSwitchCase="'text'">
-          <label>{{attribute.label | translate }}</label>
-          <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.attr">
-        </div>
+        <div [ngSwitch]="attribute.type">
 
-        <div *ngSwitchCase="'select'">
-          <label>{{attribute.label | translate }}</label>
-          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-            <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
-          </select>
-        </div>
+          <div *ngSwitchCase="'text'">
+            <label>{{attribute.label | translate }}</label>
+            <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.attr">
+          </div>
 
-        <div *ngSwitchCase="'form'">
-          <label>{{attribute.label | translate }}</label>
-          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-            <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
-          </select>
-        </div>
+          <div *ngSwitchCase="'select'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
+            </select>
+          </div>
 
-        <div *ngSwitchCase="'gallery'">
-          <label>{{attribute.label | translate }}</label>
-          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-            <option *ngFor="let gallery of galleries" [value]="gallery.id">{{gallery.name}}</option>
-          </select>
-        </div>
+          <div *ngSwitchCase="'form'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
+            </select>
+          </div>
 
-        <div *ngSwitchCase="'page'">
-          <label>{{attribute.label | translate }}</label>
-          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-            <option *ngFor="let pages of pages" [value]="page.url">{{page.title}}</option>
-          </select>
-        </div>
+          <div *ngSwitchCase="'gallery'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let gallery of galleries" [value]="gallery.id">{{gallery.name}}</option>
+            </select>
+          </div>
 
-        <div *ngSwitchCase="'component'">
-          <label>{{attribute.label | translate }}</label>
-          <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-            <option *ngFor="let component of components" [value]="component.url">{{component.title}}</option>
-          </select>
+          <div *ngSwitchCase="'page'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let pages of pages" [value]="page.url">{{page.title}}</option>
+            </select>
+          </div>
+
+          <div *ngSwitchCase="'component'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+              <option *ngFor="let component of components" [value]="component.url">{{component.title}}</option>
+            </select>
+          </div>
+
         </div>
 
       </div>
@@ -68,7 +77,6 @@
     </div>
   
     <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
       <button type="submit">{{ 'Update' | translate }}</button>
     </div>
 

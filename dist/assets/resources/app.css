@@ -434,6 +434,11 @@ body .app-list {
   font-size: 13px;
 }
 
+  [show-status] .app-overflow {
+    top: 90px;
+    height: calc(100% - 90px);
+  }
+
   .app-drawer .app-drawer-top {
     display: block;
     height: 50px;
@@ -718,6 +723,10 @@ body .app-modal {
     font-size: 14px;
   }
 
+  body .app-modal input[type=color] {
+    margin: 0 0 15px 0;
+  }
+
   body .app-modal textarea {
     display: block;
     margin: 0 0 15px 0;
@@ -854,46 +863,6 @@ body .app-modal {
     color: #CF4647;
     text-transform: uppercase;
   }
-
-  /* app-modal-cards */
-  body .app-modal-cards {
-    overflow: auto;
-    margin: 25px -20px;
-    vertical-align: top;
-    height: calc(90vh - 140px);
-  }
-
-    body .app-modal-card {
-      display: inline-block;
-      width: 90px;
-      height: 90px;
-      padding: 0;
-      margin: 0 0 10px 10px;
-      border: 1px solid #ddd;
-      box-shadow: 1px 1px 1px #ddd;
-      transition: 0.3s;
-      vertical-align: top;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    body .app-modal-card:hover {
-      box-shadow: 3px 3px 3px #aaa;
-    }
-
-    body .app-modal-card img {
-      height: 20px;
-      margin: 0 auto;
-      padding: 0;
-    }
-
-    body .app-modal-card h2 {
-      margin: 0;
-      padding: 0 10px 10px 10px;
-      font-size: 13px;
-      line-height: 16px;
-      font-weight: normal;
-    }
 
   /* app-modal-list */
   body .app-modal-list {
@@ -1074,7 +1043,7 @@ body .app-modal {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 25px 25px 75px 25px;
+    padding: 25px;
     margin: 0;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -1113,15 +1082,194 @@ body .app-modal {
     display: block;
   }
 
-/* dropzone */
-body .dropzone {
-  min-height: inherit;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+/* app-modal-slide */
+body .app-modal-slide {
+  font-family: 'Helvetica', 'Arial', 'sans-serif';
+  box-sizing: border-box;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  z-index: 10001;
+  width: 200px;
+  height: calc(100vh - 100px);
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+  overflow-x: auto;
+  visibility: hidden;
+  opacity: 0;
+  right: -250px;
+  transition: all 0.1s ease;
+  border-left: 1px solid #DDD;;
+  box-sizing: border-box;
+  background-color: #EBF2F7;
 }
 
-  body .dropzone .dz-message {
+  [show-status] .app-modal-slide {
+    top: 90px;
+    height: calc(100vh - 140px);
+  }
+
+  body .app-modal-slide-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #888;
+    font-size: 15px;
+  }
+
+  body .app-modal-slide-body {
+    overflow-y: auto;
+    padding-top: 10px;
+    height: calc(100% - 50px);
+  }
+
+  body .app-modal-slide a, body .app-modal-slide a:visited {
+    color: #537895
+  }
+
+  body .app-modal-slide[visible],  body .app-modal-slide.visible {
+    visibility: visible;
+    opacity: 1;
+    right: 0;
+  }
+
+  body .app-modal-slide label {
+    font-weight: normal;
+    display: block;
+    margin: 0;
+    padding: 0 0 5px 0;
+    color: #537895;
+    font-size: 11px;
+  }
+
+  body .app-modal-slide label a {
+    float: right;
+    cursor: pointer;
     text-transform: uppercase;
+    font-size: 10px;
+    font-weight: normal;
+  }
+
+  body .app-modal-slide input[type=text], body .app-modal-slide input[type=password], body .app-modal-slide select {
+    margin: 0 0 15px 0;
+    padding: 10px;
+    color: #555;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  body .app-modal-slide input[type=color] {
+    margin: 0 0 15px 0;
+  }
+
+  body .app-modal-slide textarea {
+    display: block;
+    margin: 0 0 15px 0;
+    padding: 10px;
+    color: #555;
+    line-height: 17px;
+    outline: none;
+    font-size: 14px;
+    width: calc(100% - 20px);
+  }
+
+  body .app-modal-slide .g-recaptcha {
+    margin-bottom: 15px;
+    display: none;
+  }
+
+  body .app-modal-slide .g-recaptcha.visible {
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  body .app-modal-slide small {
+    font-weight: normal;
+    font-size: 12px;
+    display: block;
+    margin: -8px;
+    padding: 0 0 15px 10px;
+  }
+
+  body .app-modal-slide input[disabled] {
+    border: none;
+    padding: 10px 0 10px 0;
+  }
+
+  body .app-modal-slide input[type=submit] {
+    background-color: #f0f0f0;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+  }
+
+  body .app-modal-slide select {
+    border-radius: 0;
+    padding: 5px 5px 5px 15px;
+    margin: 0 0 15px 0;
+    height: 40px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  body .app-modal-slide h4 {
+    display: block;
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 10px 5px 5px 5px;
+    color: #09203F;
+    font-size: 11px;
+  }
+
+  body .app-modal-slide .actions {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    font-size: 14px;
+  }
+
+  body .app-modal-slide .actions button {
+    color: #537895;
+    background: none;
+    background-color: #fff;
+    border: none;
+    margin-left: 5px;
+    font-size: 14px;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700 !important;
+  }
+
+  body .app-modal-slide .actions button:hover {
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  }
+
+  body .app-modal-slide .actions button[disabled] {
+    color: #ccc;
+  }
+
+  body .app-modal-slide .actions a {
+    margin-left: 14px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  body .app-modal-slide .actions a.primary {
+    font-weight: bold;
+  }
+
+  body .app-modal-slide p {
+    font-size: 14px;
+    line-height: 20px;
   }
 
 /* app-form */

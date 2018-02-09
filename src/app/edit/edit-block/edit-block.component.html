@@ -1,33 +1,75 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal-slide" [class.visible]="visible === true">
 
-  <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
+    <a (click)="hide()"><i class="app-modal-slide-close material-icons">close</i></a>
+  
+    <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
+  
+      <div class="body app-modal-slide-body">
 
-    <h2>{{ 'Edit Layout' | translate }}</h2>
+        <label>{{ 'ID' | translate }}</label>
+        <input id="edit-block-id" type="text" maxlength="128" placeholder=""
+          [(ngModel)]="model.id"
+          name="id">
 
-    <label>{{ 'ID' | translate }}</label>
-    <input id="edit-block-id" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.id"
-      name="id">
+        <label>{{ 'CSS Class' | translate }}</label>
+        <input id="edit-block-class" type="text" maxlength="128" placeholder=""
+          [(ngModel)]="model.cssClass"
+          name="cssclass">
 
-    <label>{{ 'CSS Class' | translate }}</label>
-    <input id="edit-block-class" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.cssClass"
-      name="cssclass">
+        <label>{{ 'Background Image' | translate }} <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
+        <input id="edit-block-background-image" type="text" maxlength="128" placeholder=""
+          [(ngModel)]="model.backgroundImage"
+          name="backgroundImage">
 
-    <label>{{ 'Background Image' | translate }} <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
-    <input id="edit-block-background-image" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.backgroundImage"
-      name="backgroundImage">
+        <label>{{ 'Background Size' | translate }}</label>
+        <select id="edit-block-background-size"
+          [(ngModel)]="model.backgroundSize"
+          name="backgroundSize">
+            <option></option>
+            <option>cover</option>
+            <option>auto</option>
+            <option>contain</option>
+        </select>
 
-    <label>{{ 'Background Color' | translate }}</label>
-    <input id="edit-block-class" type="color" maxlength="128" placeholder=""
-      [(ngModel)]="model.backgroundColor"
-      name="backgroundColor">
+        <label>{{ 'Background Position' | translate }}</label>
+        <select id="edit-block-background-position"
+          [(ngModel)]="model.backgroundPosition"
+          name="backgroundPosition">
+            <option></option>
+            <option>center center</option>
+            <option>top left</option>
+            <option>top center</option>
+            <option>top right</option>
+            <option>center left</option>
+            <option>center center</option>
+            <option>center right</option>
+            <option>left left</option>
+            <option>left center</option>
+            <option>left right</option>
+        </select>
 
-    <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Update' | translate }}</button>
-    </div>
+        <label>{{ 'Background Repeat' | translate }}</label>
+        <select id="edit-block-background-repeat"
+          [(ngModel)]="model.backgroundRepeat"
+          name="backgroundRepeat">
+            <option></option>
+            <option>no-repeat</option>
+            <option>repeat</option>
+            <option>repeat-x</option>
+            <option>repeat-y</option>
+        </select>
+
+
+        <label>{{ 'Background Color' | translate }}</label>
+        <input id="edit-block-class" type="color" maxlength="128" placeholder=""
+          [(ngModel)]="model.backgroundColor"
+          name="backgroundColor">
+      
+      </div>
+
+      <div class="actions">
+        <button type="submit">{{ 'Update' | translate }}</button>
+      </div>
 
   </form>
 

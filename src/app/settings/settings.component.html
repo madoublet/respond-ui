@@ -21,6 +21,11 @@
           <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
+        <div *ngSwitchCase="'number'">
+          <label>{{setting.label | translate }}</label>
+          <input type="number" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+        </div>
+
         <div *ngSwitchCase="'color'">
           <label>{{setting.label | translate }}</label>
           <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">

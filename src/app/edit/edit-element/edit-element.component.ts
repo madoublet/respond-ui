@@ -22,6 +22,7 @@ export class EditElementComponent {
   model: any = {
       id: '',
       cssClass: '',
+      textColor: '',
       html: ''
     };
 
@@ -76,6 +77,7 @@ export class EditElementComponent {
     // set model
     this.model.id = properties.id;
     this.model.cssClass = properties.cssClass;
+    this.model.textColor = properties.textColor;
     this.model.html = properties.html;
 
   }
