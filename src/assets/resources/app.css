@@ -709,7 +709,7 @@ body .app-modal {
     font-size: 12px;
   }
 
-  body .app-modal input, body .app-modal select {
+  body .app-modal input[type=text], body .app-modal input[type=password], body .app-modal select {
     margin: 0 0 15px 0;
     padding: 10px;
     color: #555;

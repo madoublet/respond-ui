@@ -5,14 +5,24 @@
     <h2>{{ 'Edit Layout' | translate }}</h2>
 
     <label>{{ 'ID' | translate }}</label>
-    <input id="edit-block-id" type="text" maxlength="128" placeholder="" required
+    <input id="edit-block-id" type="text" maxlength="128" placeholder=""
       [(ngModel)]="model.id"
       name="id">
 
     <label>{{ 'CSS Class' | translate }}</label>
-    <input id="edit-block-class" type="text" maxlength="128" placeholder="" required
+    <input id="edit-block-class" type="text" maxlength="128" placeholder=""
       [(ngModel)]="model.cssClass"
       name="cssclass">
+
+    <label>{{ 'Background Image' | translate }} <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
+    <input id="edit-block-background-image" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.backgroundImage"
+      name="backgroundImage">
+
+    <label>{{ 'Background Color' | translate }}</label>
+    <input id="edit-block-class" type="color" maxlength="128" placeholder=""
+      [(ngModel)]="model.backgroundColor"
+      name="backgroundColor">
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
@@ -22,3 +32,5 @@
   </form>
 
 </div>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>

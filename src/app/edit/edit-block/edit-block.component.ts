@@ -8,10 +8,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class EditBlockComponent {
 
+  selectVisible: boolean = false;
+
   // set model
   model: any = {
       id: '',
-      cssClass: ''
+      cssClass: '',
+      backgroundImage: '',
+      backgroundColor: ''
     };
 
   // model to store
@@ -65,6 +69,8 @@ export class EditBlockComponent {
     // set model
     this.model.id = properties.id;
     this.model.cssClass = properties.cssClass;
+    this.model.backgroundImage = properties.backgroundImage;
+    this.model.backgroundColor = properties.backgroundColor;
 
   }
 
@@ -83,6 +89,32 @@ export class EditBlockComponent {
 
   }
 
+  /* 
+   * shows the select file modal
+   */
+  showSelect() {
+    this.selectVisible = true;
+  }
+
+  /**
+   * reset
+   */
+  reset() {
+    this.selectVisible = false;
+  }
+
+  /**
+   * select
+   */
+  select(event) {
+
+    // set src to selected file
+    this.model.backgroundImage = 'files/' + event.name;
+
+    // reset
+    this.reset();
+  }
+
   /**
    * Hides the add component modal
    */
@@ -97,6 +129,14 @@ export class EditBlockComponent {
   submit() {
     this._visible = false;
     this.onUpdate.emit({properties: this.model, attributes: this._attributes});
+  }
+
+  /**
+   * failure
+   */
+  failure(event) {
+    // reset
+    this.reset();
   }
 
 }
