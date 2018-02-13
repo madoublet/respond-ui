@@ -4,13 +4,28 @@
 
     <h2>{{ 'Add Component' | translate }}</h2>
 
-    <label>{{ 'URL' | translate }}</label>
-    <input id="hashedit-add-component-url" type="text" maxlength="128" placeholder="new-component" required
-      [(ngModel)]="model.url"
+    <label>* {{ 'Name' | translate }}</label>
+    <input id="add-component-name" type="text" maxlength="128" required
+      [(ngModel)]="model.name"
       name="url">
 
+    <label>* {{ 'URL' | translate }}</label>
+    <input id="add-component-url" type="text" maxlength="128" placeholder="new-component" required
+      [(ngModel)]="model.url"
+      name="url">
+    <small>{{ 'Do not include extension (e.g.: .html)' | translate }}</small>
+
+    <label>{{ 'Code Only?' | translate }}</label>
+    <select id="add-component-code-only"
+      [(ngModel)]="model.codeOnly"
+      name="isNested">
+      <option value="true">{{ 'Yes' | translate }}</option>
+      <option value="false">{{ 'No' | translate }}</option>
+    </select>
+    <small>{{ 'Set code only for more complicated code not meant to render in the visual editor.' | translate }}</small>
+
     <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button (click)="hide()">{{ 'Cancel' | translate }}</button>
       <button type="submit">{{ 'Add Component' | translate }}</button>
     </div>
 

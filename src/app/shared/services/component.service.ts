@@ -30,9 +30,9 @@ export class ComponentService {
    * @param {string} url
    * @return {Observable}
    */
-  add (url: string) {
+  add (name: string, url: string, codeOnly: boolean) {
 
-    let body = JSON.stringify({ url });
+    let body = JSON.stringify({ name, url, codeOnly });
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));

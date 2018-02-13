@@ -140,7 +140,7 @@ export class AddBlockComponent {
           '</div>';
     }
     
-    this.onUpdate.emit({properties: {html: html}, attributes: []});
+    this.onUpdate.emit({type: 'add-block', properties: {html: html}, attributes: []});
   }
 
 }

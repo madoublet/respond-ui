@@ -3,26 +3,37 @@ import { FormService } from '../../shared/services/form.service';
 import { GalleryService } from '../../shared/services/gallery.service';
 import { PageService } from '../../shared/services/page.service';
 import { ComponentService } from '../../shared/services/component.service';
+import { ProductService } from '../../shared/services/product.service';
 
 @Component({
     selector: 'respond-edit-element',
     templateUrl: 'edit-element.component.html',
-    providers: [FormService, GalleryService, PageService, ComponentService]
+    providers: [FormService, GalleryService, PageService, ComponentService, ProductService]
 })
 
 export class EditElementComponent {
+
+  isExpanded: boolean = true;
+  isHtmlExpanded: boolean = false;
+  showRemove: boolean = false;
 
   // lists
   forms: any = [];
   galleries: any = [];
   pages: any = [];
   components: any = [];
+  products: any = [];
 
   // set model
   model: any = {
       id: '',
       cssClass: '',
       textColor: '',
+      textAlignment: '',
+      textShadowColor: '',
+      textShadowHorizontal: '',
+      textShadowVertical: '',
+      textShadowBlur: '',
       html: ''
     };
 
@@ -49,26 +60,6 @@ export class EditElementComponent {
   get visible() { return this._visible; }
 
   @Input()
-  set title(title: string){
-
-    // reset model
-    this._title = title;
-
-  }
-
-  get title() { return this._title; }
-
-  @Input()
-  set selector(selector: string){
-
-    // reset model
-    this._selector = selector;
-
-  }
-
-  get selector() { return this._selector; }
-
-  @Input()
   set properties(properties: any){
 
     // reset model
@@ -78,7 +69,15 @@ export class EditElementComponent {
     this.model.id = properties.id;
     this.model.cssClass = properties.cssClass;
     this.model.textColor = properties.textColor;
+    this.model.textAlignment = properties.textAlignment;
     this.model.html = properties.html;
+
+    this.model.textShadowColor = properties.textShadowColor;
+    this.model.textShadowHorizontal = properties.textShadowHorizontal;
+    this.model.textShadowVertical = properties.textShadowVertical;
+    this.model.textShadowBlur = properties.textShadowBlur;
+
+    this.reset();
 
   }
 
@@ -113,6 +112,10 @@ export class EditElementComponent {
               attributes[x].type = 'component';
               this.listComponents();
             } 
+            else if(attributes[x].values[0] == 'respond.products') {
+              attributes[x].type = 'product';
+              this.listProducts();
+            } 
           }
 
       } 
@@ -129,9 +132,10 @@ export class EditElementComponent {
 
   @Output() onCancel = new EventEmitter<any>();
   @Output() onUpdate = new EventEmitter<any>();
+  @Output() onCommand = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _formService: FormService, private _gallerySerivce: GalleryService, private _pageService: PageService, private _componentService: ComponentService) {}
+  constructor (private _formService: FormService, private _gallerySerivce: GalleryService, private _pageService: PageService, private _componentService: ComponentService, private _productService: ProductService) {}
 
   /**
    * Init
@@ -149,11 +153,18 @@ export class EditElementComponent {
   }
 
   /**
+   * Resets any transitional states
+   */
+  reset() {
+    this.showRemove = false;
+    this.isHtmlExpanded = false;
+  }
+
+  /**
    * Submits the form
    */
   submit() {
-    this._visible = false;
-    this.onUpdate.emit({properties: this.model, attributes: this._attributes});
+    this.onUpdate.emit({type: 'element', properties: this.model, attributes: this._attributes});
   }
 
   /**
@@ -200,5 +211,76 @@ export class EditElementComponent {
                       );
   }
 
+  /**
+   * lists the components
+   */
+  listProducts() {
+    this._productService.list()
+                     .subscribe(
+                       data => { this.products = data; },
+                       error =>  { }
+                      );
+  }
+
+  /**
+   * toggle expanded
+   */
+  toggleIsExpanded() {
+    this.isExpanded = !this.isExpanded;
+  }
+
+  /**
+   * toggle expanded
+   */
+  toggleHtml() {
+    this.isHtmlExpanded = !this.isHtmlExpanded;
+  }
+
+  /**
+   * set model.alignment
+   */
+  setAlignment(alignment:string) {
+    this.model.textAlignment = alignment;
+    this.submit();
+  }
+
+  /**
+   * toggle the show remove headline
+   */
+  toggleShowRemove() {
+    this.showRemove = !this.showRemove;
+  }
+
+  /**
+   * send command to remove element
+   */
+  remove() {
+    this.onCommand.emit('element.remove');
+    this.showRemove = false;
+  }
+
+  /**
+   * resets the styles on text shadow
+   */
+  resetTextShadow() {
+
+    this.model.textShadowColor = '';
+    this.model.textShadowHorizontal = '';
+    this.model.textShadowVertical = '';
+    this.model.textShadowColor = '';
+    this.model.textShadowBlur = '';
+
+    this.submit();
+  }
+
+  /**
+   * resets the styles on text shadow
+   */
+  resetTextColor() {
+
+    this.model.textColor = '';
+
+    this.submit();
+  }
 
 }

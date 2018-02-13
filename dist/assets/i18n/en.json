@@ -164,5 +164,16 @@
     "Order updated successfully": "Order updated successfully",
     "Confirm": "Confirm",
     "You may have unsaved changes.  Do you want to continue?": "You may have unsaved changes.  Do you want to continue?",
-    "Search by File Name": "Search by File Name"
+    "Search by File Name": "Search by File Name",
+    "Do not include extension (e.g.: .html)": "Do not include extension (e.g.: .html)",
+    "Code Only?": "Code Only?",
+    "Set code only for more complicated code not meant to render in the visual editor.": "Set code only for more complicated code not meant to render in the visual editor.",
+    "Remove Element?": "Remove Element?",
+    "Remove Layout?": "Remove Layout?",
+    "Element": "Element",
+    "Block": "Block",
+    "Text Color": "Text Color",
+    "Text Shadow": "Text Shadow",
+    "Reset": "Reset",
+    "Show": "Show"
 }

@@ -8,6 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class EditBlockComponent {
 
+  isExpanded: boolean = false;
+  showRemove: boolean = false;
+
   selectVisible: boolean = false;
 
   // set model
@@ -44,26 +47,6 @@ export class EditBlockComponent {
   get visible() { return this._visible; }
 
   @Input()
-  set title(title: string){
-
-    // reset model
-    this._title = title;
-
-  }
-
-  get title() { return this._title; }
-
-  @Input()
-  set selector(selector: string){
-
-    // reset model
-    this._selector = selector;
-
-  }
-
-  get selector() { return this._selector; }
-
-  @Input()
   set properties(properties: any){
 
     // reset model
@@ -85,6 +68,7 @@ export class EditBlockComponent {
   @Output() onCancel = new EventEmitter<any>();
   @Output() onUpdate = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
+  @Output() onCommand = new EventEmitter<any>();
 
   constructor () {}
 
@@ -119,6 +103,9 @@ export class EditBlockComponent {
 
     // reset
     this.reset();
+
+    // submit
+    this.submit();
   }
 
   /**
@@ -133,8 +120,7 @@ export class EditBlockComponent {
    * Submits the form
    */
   submit() {
-    this._visible = false;
-    this.onUpdate.emit({properties: this.model, attributes: this._attributes});
+    this.onUpdate.emit({type: 'block', properties: this.model, attributes: this._attributes});
   }
 
   /**
@@ -143,6 +129,36 @@ export class EditBlockComponent {
   failure(event) {
     // reset
     this.reset();
+  }
+
+  /**
+   * toggle expanded
+   */
+  toggleIsExpanded() {
+    this.isExpanded = !this.isExpanded;
+  }
+
+  /**
+   * toggle the show remove headline
+   */
+  toggleShowRemove() {
+    this.showRemove = !this.showRemove;
+  }
+
+  /**
+   * send command to remove element
+   */
+  remove() {
+    this.onCommand.emit('block.remove');
+    this.showRemove = false;
+  }
+
+  /**
+   * reset the background color
+   */
+  resetBackgroundColor() {
+    this.model.backgroundColor = '';
+    this.submit();
   }
 
 }

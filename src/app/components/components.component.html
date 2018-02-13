@@ -20,15 +20,15 @@
   <div id="components-list" class="app-list">
     <div class="app-list-item" *ngFor="let component of components" (mouseenter)="setActive(component)" (click)="setActive(component)" [class.selected]="component === selectedComponent">
       <h2>
-        <span class="primary"><a (click)="edit(component)">{{ component.title }}</a></span>
+        <span class="primary"><a (click)="edit(component)">{{ component.name }}</a></span>
       </h2>
       <small>
-        {{ component.url }}
+        components/{{ component.url }}
       </small>
       <div class="app-list-actions">
           <a (click)="showRemove(component)">{{'Remove' | translate }}</a>
-          <a (click)="editCode(component)">{{'Edit HTML' | translate }}</a>
-          <a class="primary" (click)="edit(component)">{{'Edit' | translate }}</a>
+          <a [class.primary]="component.codeOnly == true" (click)="editCode(component)">{{'Edit HTML' | translate }}</a>
+          <a *ngIf="component.codeOnly == false" class="primary" (click)="edit(component)">{{'Edit' | translate }}</a>
       </div>
     </div>
   </div>

@@ -8,13 +8,17 @@
 
 </menu>
 
-<form class="app-form" (ngSubmit)="submit()" #settingsForm="ngForm">
+<form class="app-form settings-form" (ngSubmit)="submit()" #settingsForm="ngForm">
 
 <section class="app-main">
 
     <div *ngFor="let setting of settings">
 
       <div [ngSwitch]="setting.type">
+
+        <div *ngSwitchCase="'title'">
+          <h3>{{setting.label | translate }}</h3>
+        </div>
 
         <div *ngSwitchCase="'text'">
           <label>{{setting.label | translate }}</label>
@@ -45,7 +49,7 @@
 
       </div>
 
-      <small>{{setting.description | translate }}</small>
+      <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
 
     </div>
 

@@ -118,7 +118,7 @@ export class EditLinkComponent {
    */
   submit() {
     this._visible = false;
-    this.onUpdate.emit({properties: this.model});
+    this.onUpdate.emit({type: 'link', properties: this.model});
   }
 
 }

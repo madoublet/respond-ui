@@ -32,6 +32,23 @@
 
 </menu>
 
+<aside class="app-edit-menu" [class.visible]="editElementVisible">
+
+    <div class="app-edit-menu-section" [class.visible]="editTextVisible">
+
+        <h4>{{ 'Text' | translate }}</h4>
+
+        <i class="format-icon material-icons" (click)="sendCommand('Bold')">format_bold</i>
+        <i class="format-icon material-icons" (click)="sendCommand('Italic')">format_italic</i>
+        <i class="format-icon material-icons" (click)="sendCommand('Underline')">format_underlined</i>
+        <i class="format-icon material-icons" (click)="sendCommand('Link')">link</i>
+
+    </div>
+
+    <respond-edit-element [visible]="editElementVisible" [properties]="element.properties" [attributes]="element.attributes" (onCancel)="reset()" (onUpdate)="update($event)" (onCommand)="sendCommand($event)"></respond-edit-element>
+    <respond-edit-block [visible]="editBlockVisible" [properties]="block.properties" (onCancel)="reset()" (onUpdate)="update($event)" (onCommand)="sendCommand($event)"></respond-edit-block>   
+</aside>
+
 <footer class="app-footer">
     <button (click)="save()">{{ 'Save' | translate }}</button>
 </footer>
@@ -42,14 +59,10 @@
 
 <respond-drawer active="pages" [confirm]="true" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
-<respond-edit-element [visible]="editElementVisible" [title]="title" [selector]="selector" [properties]="properties" [attributes]="attributes" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-element>
-
-<respond-edit-block [visible]="editBlockVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-block>
-
 <respond-add-block [visible]="addBlockVisible" (onCancel)="reset()" (onUpdate)="addBlock($event)"></respond-add-block>
 
-<respond-edit-image [visible]="editImageVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-image>
+<respond-edit-image [visible]="editImageVisible" [properties]="image.properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-image>
 
-<respond-edit-link [visible]="editLinkVisible" [title]="title" [properties]="properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-link>
+<respond-edit-link [visible]="editLinkVisible" [properties]="link.properties" (onCancel)="reset()" (onUpdate)="update($event)"></respond-edit-link>
 
 <respond-confirm [visible]="confirmVisible" (onCancel)="cancelNavigation()" (onContinue)="continueNavigation()"></respond-confirm>

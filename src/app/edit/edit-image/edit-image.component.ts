@@ -20,7 +20,6 @@ export class EditImageComponent {
     };
 
   // model to store
-  _title: string = 'Image';
   _properties: any = {
                       id: '',
                       cssClass: '',
@@ -118,7 +117,7 @@ export class EditImageComponent {
    */
   submit() {
     this._visible = false;
-    this.onUpdate.emit({properties: this.model});
+    this.onUpdate.emit({type: 'image', properties: this.model});
   }
 
 }

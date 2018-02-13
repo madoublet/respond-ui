@@ -1,30 +1,58 @@
-<div class="app-modal-slide" [class.visible]="visible === true">
-
-  <a (click)="hide()"><i class="app-modal-slide-close material-icons">close</i></a>
+<div class="app-edit-menu-section" [class.visible]="visible === true">
 
   <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
-    <div class="body app-modal-slide-body">
+    <h4 *ngIf="showRemove == false" (click)="toggleIsExpanded()" [class.collapsed]="isExpanded == false">{{ 'Element' | translate }} 
+      <i (click)="toggleShowRemove()" *ngIf="isExpanded == true" class="delete-icon material-icons" title="{{ 'Remove' | translate }} ">cancel</i>
+      <i *ngIf="isExpanded == false" class="expand-icon material-icons">expand_more</i>
+      <i *ngIf="isExpanded == true" class="expand-icon material-icons">expand_less</i>
+    </h4>
+
+    <h4 *ngIf="showRemove == true" class="remove">{{ 'Remove Element?' | translate }}
+      <i (click)="remove()" class="confirm-icon material-icons">check</i>
+      <i (click)="toggleShowRemove()" class="cancel-icon material-icons">close</i>
+    </h4>
+
+    <div *ngIf="isExpanded == true">
 
       <label>{{ 'ID' | translate }}</label>
       <input id="edit-element-id" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.id"
-        name="id">
+        name="id" (change)="submit()">
 
       <label>{{ 'CSS Class' | translate }}</label>
       <input id="edit-element-class" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.cssClass"
-        name="cssclass">
+        name="cssclass" (change)="submit()">
 
-      <label>{{ 'Text Color' | translate }}</label>
-      <input id="edit-block-class" type="color" maxlength="128" placeholder=""
+      <i class="format-icon material-icons" (click)="setAlignment('left')" [class.selected]="model.textAlignment =='left'">format_align_left</i>
+      <i class="format-icon material-icons" (click)="setAlignment('center')" [class.selected]="model.textAlignment =='center'">format_align_center</i>
+      <i class="format-icon material-icons" (click)="setAlignment('right')" [class.selected]="model.textAlignment =='right'">format_align_right</i>
+
+      <label>{{ 'Text Color' | translate }} <a (click)="resetTextColor()">{{'Reset' | translate }}</a></label>
+      <input id="edit-element-text-color" type="color"
         [(ngModel)]="model.textColor"
-        name="textColor">
+        name="textColor" (change)="submit()">
 
-      <label>{{ 'HTML' | translate }}</label>
-      <textarea id="edit-element-html"
-        [(ngModel)]="model.html"
-        name="html"></textarea>
+      <label>{{ 'Text Shadow' | translate }} <a (click)="resetTextShadow()">{{'Reset' | translate }}</a></label>
+
+      <div class="text-shadow-container">
+        <input id="edit-block-text-shadow-color" type="color"
+          [(ngModel)]="model.textShadowColor"
+          name="textShadowColor" (change)="submit()">
+
+        <input id="edit-element-text-shadow-horizontal" type="number"
+          [(ngModel)]="model.textShadowHorizontal"
+          name="textShadowHorizontal" (change)="submit()" placeholder="H">
+
+        <input id="edit-element-text-shadow-vertical" type="number"
+          [(ngModel)]="model.textShadowVertical"
+          name="textShadowVertical" (change)="submit()" placeholder="V">
+
+        <input id="edit-element-text-shadow-blur" type="number"
+          [(ngModel)]="model.textShadowBlur"
+          name="textShadowBlur" (change)="submit()" placeholder="B">
+      </div>
 
       <div *ngFor="let attribute of attributes">
 
@@ -32,41 +60,48 @@
 
           <div *ngSwitchCase="'text'">
             <label>{{attribute.label | translate }}</label>
-            <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.attr">
+            <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
           </div>
 
           <div *ngSwitchCase="'select'">
             <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
             </select>
           </div>
 
           <div *ngSwitchCase="'form'">
             <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let form of forms" [value]="form.id">{{form.name}}</option>
             </select>
           </div>
 
           <div *ngSwitchCase="'gallery'">
             <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let gallery of galleries" [value]="gallery.id">{{gallery.name}}</option>
             </select>
           </div>
 
           <div *ngSwitchCase="'page'">
             <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let pages of pages" [value]="page.url">{{page.title}}</option>
             </select>
           </div>
 
           <div *ngSwitchCase="'component'">
             <label>{{attribute.label | translate }}</label>
-            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value">
-              <option *ngFor="let component of components" [value]="component.url">{{component.title}}</option>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
+              <option *ngFor="let component of components" [value]="component.url">{{component.name}}</option>
+            </select>
+          </div>
+
+          <div *ngSwitchCase="'product'">
+            <label>{{attribute.label | translate }}</label>
+            <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
+              <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
             </select>
           </div>
 
@@ -74,12 +109,13 @@
 
       </div>
 
-    </div>
-  
-    <div class="actions">
-      <button type="submit">{{ 'Update' | translate }}</button>
+      <label>{{ 'HTML' | translate }} <a (click)="toggleHtml()">{{'Show' | translate }}</a></label>
+      <textarea id="edit-element-html"
+        [(ngModel)]="model.html"
+        name="html" (change)="submit()" *ngIf="isHtmlExpanded"></textarea>
+
     </div>
 
   </form>
-
+  
 </div>

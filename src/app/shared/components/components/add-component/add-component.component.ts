@@ -22,7 +22,9 @@ export class AddComponentComponent {
 
     // reset model
     this.model = {
-      url: ''
+      name: '',
+      url: '',
+      codeOnly: false
     };
 
   }
@@ -55,10 +57,8 @@ export class AddComponentComponent {
    */
   submit() {
 
-    // set full path
-    var fullUrl = 'components/' + this.model.url;
-
-    this._componentService.add(fullUrl)
+    // add component
+    this._componentService.add(this.model.name, this.model.url, this.model.codeOnly)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

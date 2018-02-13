@@ -248,6 +248,7 @@ export class CodeComponent {
    */
   continueNavigation() {
     this.confirmVisible = false;
+
     history.go(-1);
   }
 

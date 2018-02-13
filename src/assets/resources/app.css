@@ -17,7 +17,6 @@ body {
   display: none !important;
 }
 
-	
 textarea, input, button { outline: none; }
 
 body h1, body h2, body h3, body h4, body h5, body label, body input, body li, body button, body a, body td{
@@ -317,9 +316,8 @@ body .app-list {
   body .app-list-item small {
     display: block;
     margin: 10px 0 5px 0;
-    font-size: 11px;
+    font-size: 12px;
     color: #AAA;
-    text-transform: uppercase;
   }
 
   body .app-list-item h2 span.secondary {
@@ -714,7 +712,7 @@ body .app-modal {
     font-size: 12px;
   }
 
-  body .app-modal input[type=text], body .app-modal input[type=password], body .app-modal select {
+  body .app-modal input[type=text], body .app-modal input[type=number], body .app-modal input[type=password], body .app-modal select {
     margin: 0 0 15px 0;
     padding: 10px;
     color: #555;
@@ -761,8 +759,9 @@ body .app-modal {
     font-weight: normal;
     font-size: 12px;
     display: block;
-    margin: -8px;
-    padding: 0 0 15px 10px;
+    margin: -5px;
+    padding: 0 0 25px 10px;
+    line-height: 18px;
   }
 
   body .app-modal input[disabled] {
@@ -1082,8 +1081,8 @@ body .app-modal {
     display: block;
   }
 
-/* app-modal-slide */
-body .app-modal-slide {
+/* app-edit-modal */
+body .app-edit-menu {
   font-family: 'Helvetica', 'Arial', 'sans-serif';
   box-sizing: border-box;
   position: fixed;
@@ -1092,48 +1091,124 @@ body .app-modal-slide {
   z-index: 10001;
   width: 200px;
   height: calc(100vh - 100px);
-  padding: 10px;
-  border-bottom: 1px solid #DDD;
+  padding: 0;
   overflow-x: auto;
-  visibility: hidden;
-  opacity: 0;
-  right: -250px;
-  transition: all 0.1s ease;
-  border-left: 1px solid #DDD;;
+  right: 0;
   box-sizing: border-box;
-  background-color: #EBF2F7;
+  color: #2F3243;
+  display: none;
 }
 
-  [show-status] .app-modal-slide {
+  body .app-edit-menu.visible {
+    display: block;
+  }
+
+  [show-status] .app-edit-menu {
     top: 90px;
     height: calc(100vh - 140px);
   }
 
-  body .app-modal-slide-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #888;
-    font-size: 15px;
-  }
+body .app-edit-menu .format-icon {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 0 10px 0;
+  padding: 0;
+  width: 39px;
+  height: 39px;
+  line-height: 39px;
+  font-size: 15px;
+  color: #537895;
+  text-align: center;
+  border: 1px solid rgba(83,120,149,.1);
+}
 
-  body .app-modal-slide-body {
-    overflow-y: auto;
-    padding-top: 10px;
-    height: calc(100% - 50px);
-  }
+body .app-edit-menu .format-icon.selected {
+  background-color: rgba(255,255,255,0.95);
+}
 
-  body .app-modal-slide a, body .app-modal-slide a:visited {
+body .app-edit-menu .format-icon:hover {
+  background-color: rgba(255,255,255,0.9);
+}
+
+body .app-edit-menu h4 {
+  position: relative;
+  display: block;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+  padding: 10px 0 10px 0;
+  color: #537895;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+body .app-edit-menu h4.collapsed {
+  margin-bottom: 0;
+}
+
+body .app-edit-menu h4.remove {
+  margin: 0 -10px 5px -10px;
+  padding: 10px 10px;
+  color: #fff;
+  background-color: #CF4647;
+}
+
+
+body .app-edit-menu h4 i.expand-icon {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #537895;
+  border-radius: 50%;
+}
+
+body .app-edit-menu h4 i.delete-icon {
+  position: absolute;
+  right: 22px;
+  top: 6.5px;
+  font-size: 18px;
+  color: #537895;
+  cursor: pointer;
+}
+
+body .app-edit-menu h4 i.cancel-icon {
+  position: absolute;
+  right: 33px;
+  top: 8px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+}
+
+body .app-edit-menu h4 i.confirm-icon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+}
+
+body .app-edit-menu-section {
+  border-bottom: 1px solid #ddd;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0 10px 0 10px;
+  margin: 0;
+}
+
+  body .app-edit-menu-section a, body .app-edit-menu-section a:visited {
     color: #537895
   }
 
-  body .app-modal-slide[visible],  body .app-modal-slide.visible {
+  body .app-edit-menu-section[visible],  body .app-edit-menu-section.visible {
     visibility: visible;
     opacity: 1;
-    right: 0;
   }
 
-  body .app-modal-slide label {
+  body .app-edit-menu-section label {
     font-weight: normal;
     display: block;
     margin: 0;
@@ -1142,7 +1217,7 @@ body .app-modal-slide {
     font-size: 11px;
   }
 
-  body .app-modal-slide label a {
+  body .app-edit-menu-section label a {
     float: right;
     cursor: pointer;
     text-transform: uppercase;
@@ -1150,132 +1225,88 @@ body .app-modal-slide {
     font-weight: normal;
   }
 
-  body .app-modal-slide input[type=text], body .app-modal-slide input[type=password], body .app-modal-slide select {
-    margin: 0 0 15px 0;
-    padding: 10px;
+  body .app-edit-menu-section input[type=text], body .app-edit-menu-section input[type=number], body .app-edit-menu-section input[type=password], body .app-edit-menu-section select {
+    margin: 0 0 10px 0;
+    padding: 5px;
     color: #555;
     box-sizing: border-box;
     width: 100%;
-    font-size: 14px;
+    font-size: 12px;
   }
 
-  body .app-modal-slide input[type=color] {
-    margin: 0 0 15px 0;
+  body .app-edit-menu-section input[type=color] {
+    margin: 0 1px 10px 0;
+    width: 30px;
+    height: 29px;
   }
 
-  body .app-modal-slide textarea {
+  body .app-edit-menu-section .text-shadow-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  body .app-edit-menu-section .text-shadow-container input {
+    max-width: 40px;
+    display: inline-block !important;
+    vertical-align: top;
+  }
+
+  body .app-edit-menu-section textarea {
     display: block;
     margin: 0 0 15px 0;
-    padding: 10px;
+    padding: 5px;
     color: #555;
     line-height: 17px;
     outline: none;
-    font-size: 14px;
-    width: calc(100% - 20px);
-  }
-
-  body .app-modal-slide .g-recaptcha {
-    margin-bottom: 15px;
-    display: none;
-  }
-
-  body .app-modal-slide .g-recaptcha.visible {
-    margin-bottom: 15px;
-    display: block;
-  }
-
-  body .app-modal-slide small {
-    font-weight: normal;
     font-size: 12px;
+    width: calc(100% - 15px);
+  }
+
+  body .app-edit-menu-section small {
+    font-weight: normal;
+    font-size: 11px;
     display: block;
     margin: -8px;
     padding: 0 0 15px 10px;
   }
 
-  body .app-modal-slide input[disabled] {
+  body .app-edit-menu-section input[disabled] {
     border: none;
     padding: 10px 0 10px 0;
   }
 
-  body .app-modal-slide input[type=submit] {
+  body .app-edit-menu-section input[type=submit] {
     background-color: #f0f0f0;
     padding: 15px 10px;
     text-transform: uppercase;
     border: 1px solid #ddd;
   }
 
-  body .app-modal-slide select {
+  body .app-edit-menu-section select {
     border-radius: 0;
-    padding: 5px 5px 5px 15px;
     margin: 0 0 15px 0;
-    height: 40px;
-    min-width: 50px;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
-  }
-
-  body .app-modal-slide h4 {
-    display: block;
-    text-transform: uppercase;
-    margin: 0px;
-    padding: 10px 5px 5px 5px;
-    color: #09203F;
-    font-size: 11px;
-  }
-
-  body .app-modal-slide .actions {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    margin: 0;
-    padding: 0;
-    text-align: right;
-    font-size: 14px;
-  }
-
-  body .app-modal-slide .actions button {
-    color: #537895;
-    background: none;
-    background-color: #fff;
-    border: none;
-    margin-left: 5px;
-    font-size: 14px;
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 700 !important;
-  }
-
-  body .app-modal-slide .actions button:hover {
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
-  }
-
-  body .app-modal-slide .actions button[disabled] {
-    color: #ccc;
-  }
-
-  body .app-modal-slide .actions a {
-    margin-left: 14px;
-    cursor: pointer;
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-
-  body .app-modal-slide .actions a.primary {
-    font-weight: bold;
-  }
-
-  body .app-modal-slide p {
-    font-size: 14px;
-    line-height: 20px;
   }
 
 /* app-form */
 body .app-form {
   padding: 15px;
   padding-bottom: 100px;
+}
+
+body .app-form h3 {
+  font-weight: bold;
+  display: block;
+  margin: 50px -20px 50px -20px !important;
+  padding: 10px 25px 5px 20px;
+  border-bottom: 1px solid #ddd;
+  color: #537895;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 body .app-form.standalone {
@@ -1386,6 +1417,18 @@ body .app-form.standalone {
     height: 40px;
     min-width: 250px;
     text-align: left;
+  }
+
+  body .app-form.settings-form label {
+    line-height: 18px;
+  }
+
+  body .app-form.settings-form input, body .app-form.settings-form select {
+    margin-bottom: 10px;
+  }
+
+  body .app-form.settings-form small {
+    margin-top: 0;
   }
 
 body .app-table {

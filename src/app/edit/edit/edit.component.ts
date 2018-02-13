@@ -27,12 +27,31 @@ export class EditComponent {
   editLinkVisible: boolean = false;
   editBlockVisible: boolean = false;
   addBlockVisible: boolean = false;
+  editTextVisible: boolean = false;
+  editMenuVisible: boolean = false;
 
-  type: string = 'element';
-  title: string = 'Element';
-  selector: string = '';
-  properties: any = {id: '', cssClass: '', html: ''};
-  attributes: any = {};
+  // type
+  type: string;
+
+  element: any = {
+    properties: {},
+    attributes: {}
+  }
+
+  block: any = {
+    properties: {},
+    attributes: {}
+  }
+
+  link: any = {
+    properties: {},
+    attributes: {}
+  }
+
+  image: any = {
+    properties: {},
+    attributes: {}
+  }
 
   @ViewChild('editFrame') el: ElementRef;
 
@@ -87,6 +106,8 @@ export class EditComponent {
     this.editLinkVisible = false;
     this.editBlockVisible = false;
     this.addBlockVisible = false;
+    this.editTextVisible = false;
+    this.editMenuVisible = false;
   }
 
   /**
@@ -115,14 +136,25 @@ export class EditComponent {
    */
   update(obj) {
 
-    // add type
-    obj.type = this.type;
+    if(obj.type != 'element' && obj.type != 'block') {
+      this.reset();
+    }
 
     // show menu in the editor
     this.el.nativeElement.contentWindow.editor.update(obj)
 
-    // reset
-    this.reset();
+  }
+
+  /**
+   * Calls sendCommand in the editor
+   */
+  sendCommand(command) {
+    // show menu in the editor
+    this.el.nativeElement.contentWindow.editor.execCommand(command);
+
+    if(command == 'element.remove' || command == 'block.remove') {
+      this.reset();
+    }
 
   }
 
@@ -153,6 +185,8 @@ export class EditComponent {
    * Shows the add menu
    */
   showAdd() {
+
+    this.reset();
 
     // show menu in the editor
     this.el.nativeElement.contentWindow.editor.showMenu();
@@ -199,7 +233,7 @@ export class EditComponent {
    */
   continueNavigation() {
     this.confirmVisible = false;
-    this._router.navigate(['/pages']);
+    history.go(-1);
   }
 
   @HostListener("window:message",["$event"])
@@ -207,34 +241,36 @@ export class EditComponent {
 
     let data = $event.data;
 
-    if(data.type) {
-      this.type = data.type;
-    }
-
     // look for element in message
-    if(data.properties) {
-
-      this.title = data.title;
-      this.selector = data.selector;
-      this.properties = data.properties;
-
-      // set attributes if available
-      if(data.attributes != null && data.attributes != undefined) {
-        this.attributes = data.attributes;
-      }
+    if(data.type && data.properties) {
     
       // show the appropriate modal
       if(data.type == 'image') {
+        this.type = 'image';
+        this.image.properties = data.properties;
         this.editImageVisible = true;
       }
       else if(data.type == 'link') {
+        this.type = 'link';
+        this.link.properties = data.properties;
         this.editLinkVisible = true;
       }
       else if(data.type == 'block') {
+        this.type = 'block';
+        this.block.properties = data.properties;
         this.editBlockVisible = true;
+        this.editTextVisible = true;
+        this.editMenuVisible = true;
       }
-      else {
+      else if(data.type == 'element'){
+        this.type = 'element';
+        this.element.properties = data.properties;
+        if(data.attributes != null && data.attributes != undefined) {
+          this.element.attributes = data.attributes;
+        }
         this.editElementVisible = true;
+        this.editTextVisible = true;
+        this.editMenuVisible = true;
       }
       
     }
