@@ -47,7 +47,7 @@ export class EditElementComponent {
                       };
   _attributes: any = [];
 
-  _visible: boolean = false;
+  _visible: boolean = true;
 
   @Input()
   set visible(visible: boolean){

@@ -24,7 +24,7 @@
 
   <h2>{{path}} <i *ngIf="path !== '/'" class="material-icons" (click)="up()">arrow_upward</i></h2>
   <ul>
-    <li *ngFor="let file of files">
+    <li *ngFor="let file of files" [class.selected]="file.path == selectedFile">
       <a *ngIf="file.isFolder === true" (click)="showFolder(file.path)"><i class="icon material-icons">folder_open</i> {{file.path}}</a>
       <a *ngIf="file.isFolder === false" (click)="showFile(file.path, file.isEditable)">
         <i class="icon material-icons">insert_drive_file</i> 

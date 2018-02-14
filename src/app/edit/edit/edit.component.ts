@@ -22,12 +22,9 @@ export class EditComponent {
 
   // visibles
   confirmVisible: boolean = false;
-  editElementVisible: boolean = false;
   editImageVisible: boolean = false;
   editLinkVisible: boolean = false;
-  editBlockVisible: boolean = false;
   addBlockVisible: boolean = false;
-  editTextVisible: boolean = false;
   editMenuVisible: boolean = false;
 
   // type
@@ -101,12 +98,9 @@ export class EditComponent {
   reset() {
     this.drawerVisible = false;
     this.confirmVisible = false;
-    this.editElementVisible = false;
     this.editImageVisible = false;
     this.editLinkVisible = false;
-    this.editBlockVisible = false;
     this.addBlockVisible = false;
-    this.editTextVisible = false;
     this.editMenuVisible = false;
   }
 
@@ -258,8 +252,6 @@ export class EditComponent {
       else if(data.type == 'block') {
         this.type = 'block';
         this.block.properties = data.properties;
-        this.editBlockVisible = true;
-        this.editTextVisible = true;
         this.editMenuVisible = true;
       }
       else if(data.type == 'element'){
@@ -268,8 +260,6 @@ export class EditComponent {
         if(data.attributes != null && data.attributes != undefined) {
           this.element.attributes = data.attributes;
         }
-        this.editElementVisible = true;
-        this.editTextVisible = true;
         this.editMenuVisible = true;
       }
       

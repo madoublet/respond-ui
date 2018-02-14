@@ -143,11 +143,6 @@ body .edit-main {
   margin: 0;
 }
 
-  [show-status] .edit-main {
-    padding-top: 40px;
-    height: calc(100% - 40px);
-  }
-
 /* .edit-frame */
 body .edit-frame {
   position: relative;
@@ -155,6 +150,10 @@ body .edit-frame {
   height: calc(100% - 100px);;
   margin: 50px 0 0 0;
   padding: 0;
+}
+
+body .edit-frame::-webkit-scrollbar { 
+  display: none; 
 }
 
 /* .app-search */
@@ -1087,26 +1086,19 @@ body .app-edit-menu {
   box-sizing: border-box;
   position: fixed;
   top: 50px;
-  right: 0;
+  left: 50px;
   z-index: 10001;
   width: 200px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 101px);
   padding: 0;
   overflow-x: auto;
   right: 0;
   box-sizing: border-box;
   color: #2F3243;
-  display: none;
+  display: block;
+  background-color: #EBF2F7;
+  border-right: 1px solid #ddd;
 }
-
-  body .app-edit-menu.visible {
-    display: block;
-  }
-
-  [show-status] .app-edit-menu {
-    top: 90px;
-    height: calc(100vh - 140px);
-  }
 
 body .app-edit-menu .format-icon {
   display: inline-block;
@@ -1817,15 +1809,16 @@ body .dropzone .dz-message {
   left: 0;
   height: calc(100% - 100px);
   width: 200px;
-  background-color: #fff;
   margin: 0;
   padding: 0;
   color: #888;
-  border-right: 1px solid #DDD;
   overflow-x: auto;
   transition: all 0.2s ease;
   font-size: 13px;
   overflow-y: scroll;
+  display: block;
+  background-color: #EBF2F7;
+  border-right: 1px solid #ddd;
 }
 
   [show-status] .code-menu {
@@ -1856,7 +1849,7 @@ body .dropzone .dz-message {
     list-style: none;
     font-size: 12px;
     text-transform: none;
-    border-top: 1px solid #f8f8f8;
+    border-top: 1px solid #ddd;
   }
 
   .code-menu li {
@@ -1867,6 +1860,10 @@ body .dropzone .dz-message {
     font-size: 12px;
     text-transform: uppercase;
   }
+  
+  .code-menu li.selected {
+    background-color: rgba(255,255,255,0.8);
+  }
 
   .code-menu li a {
     display: block;
@@ -1874,7 +1871,7 @@ body .dropzone .dz-message {
     line-height: 15px;
     color: #555;
     text-transform: none;
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid #ddd;
     position: relative;
   }
 
@@ -1924,24 +1921,24 @@ body .dropzone .dz-message {
     width: calc(100% - 250px);
   }
 
-  body[drawer-collapse] .app-footer {
+  body .app-footer[full-screen] {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .app-footer {
     left: 50px;
     width: calc(100% - 50px);
   }
 
   body .app-main {
-    padding-left: 250px;
   }
 
-  body[drawer-collapse] .app-main {
-    padding-left: 50px;
+  body .app-main[full-screen] {
+    padding-left: 0 !important;
   }
 
-  body .edit-main {
-    padding-left: 250px;
-  }
-
-  body[drawer-collapse] .edit-main {
+  .app-main {
     padding-left: 50px;
   }
 
@@ -1970,15 +1967,13 @@ body .dropzone .dz-message {
     border-right: none;
     overflow: hidden;
     background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    width: 50px;
+    z-index: 10002;
   }
 
-    [drawer-collapse] .app-drawer {
-      width: 50px;
-    }
-
-    [drawer-collapse] .app-drawer li a span {
-      display: none;
-    }
+  .app-drawer:hover {
+    width: 250px;
+  }
 
     [show-status] .app-drawer {
       top: 40px;
@@ -2031,7 +2026,7 @@ body .dropzone .dz-message {
     left: 250px;
   }
 
-  body[drawer-collapse] .code-menu {
+  .code-menu {
     left: 50px;
   }
 
@@ -2043,7 +2038,12 @@ body .dropzone .dz-message {
     color: #111;
   }
 
-    body[drawer-collapse] .app-menu {
+    body .app-menu[full-screen] {
+      width: 100% !important;
+      left: 0 !important;
+    }
+
+    .app-menu {
       width: calc(100% - 50px);
       left: 50px;
     }

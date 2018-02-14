@@ -34,7 +34,7 @@ export class EditBlockComponent {
                       };
   _attributes: any = {};
 
-  _visible: boolean = false;
+  _visible: boolean = true;
 
   @Input()
   set visible(visible: boolean){

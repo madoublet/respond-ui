@@ -30,6 +30,7 @@ export class CodeComponent {
   drawerVisible: boolean = false;
   path: string = '/';
   confirmVisible: boolean = false;
+  selectedFile: string = 'index.html'
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService, private _appService: AppService) {}
 
@@ -142,6 +143,7 @@ export class CodeComponent {
     if(isEditable == true) {
 
       this.codeUrl = this.path + path;
+      this.selectedFile = path;
       this.retrieve();
 
     }
