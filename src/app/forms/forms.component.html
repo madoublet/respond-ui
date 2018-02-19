@@ -59,17 +59,17 @@
 
 </section>
 
-<respond-add-form [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-form>
+<respond-add-form [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-form>
 
-<respond-edit-form [visible]="editVisible" [form]="selectedForm" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-edit-form>
+<respond-edit-form [visible]="editVisible" [form]="selectedForm" (onCancel)="reset()" (onUpdate)="list('edit')" (onError)="failure($event)"></respond-edit-form>
 
-<respond-remove-form [visible]="removeVisible" [form]="selectedForm" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-form>
+<respond-remove-form [visible]="removeVisible" [form]="selectedForm" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-form>
 
-<respond-add-form-field [visible]="addFieldVisible" [form]="selectedForm" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-form-field>
+<respond-add-form-field [visible]="addFieldVisible" [form]="selectedForm" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-form-field>
 
-<respond-edit-form-field [visible]="editFieldVisible" [form]="selectedForm" [field]="selectedField" [index]="selectedIndex" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-edit-form-field>
+<respond-edit-form-field [visible]="editFieldVisible" [form]="selectedForm" [field]="selectedField" [index]="selectedIndex" (onCancel)="reset()" (onAdd)="list('edit')" (onError)="failure($event)"></respond-edit-form-field>
 
-<respond-remove-form-field [visible]="removeFieldVisible" [form]="selectedForm" [field]="selectedField" [index]="selectedIndex" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-form-field>
+<respond-remove-form-field [visible]="removeFieldVisible" [form]="selectedForm" [field]="selectedField" [index]="selectedIndex" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-form-field>
 
 <respond-drawer active="forms" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 

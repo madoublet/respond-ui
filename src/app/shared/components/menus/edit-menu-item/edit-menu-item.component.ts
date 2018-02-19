@@ -12,6 +12,7 @@ export class EditMenuItemComponent {
 
   pages;
   errorMessage;
+  selectVisible: boolean = false;
 
   // model to store
   model = {
@@ -21,8 +22,6 @@ export class EditMenuItemComponent {
     url: '',
     target: ''
   };
-
-  flip: boolean = false;
 
   // visible input
   _visible: boolean = false;
@@ -119,25 +118,38 @@ export class EditMenuItemComponent {
   }
 
   /**
-   * Handles a successful add
+   * failure
    */
-  flipCard() {
+  failure(event) {
+    // reset
+    this.reset();
+  }
 
-    // flip
-    this.flip = !this.flip;
-
+  /* 
+   * shows the select file modal
+   */
+  showSelect() {
+    this.selectVisible = true;
   }
 
   /**
-   * Handles a successful add
+   * reset
    */
-  setUrl(item) {
-
-    // flip
-    this.flip = !this.flip;
-
-    this.model.url = item.url;
-
+  reset() {
+    this.selectVisible = false;
   }
+
+  /**
+   * select
+   */
+  select(event) {
+
+    // set href to selected url
+    this.model.url = event.url
+
+    // reset
+    this.reset();
+  }
+
 
 }

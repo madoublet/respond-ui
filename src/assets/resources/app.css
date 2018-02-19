@@ -1100,6 +1100,12 @@ body .app-edit-menu {
   border-right: 1px solid #ddd;
 }
 
+  body[show-status] .app-edit-menu {
+    top: 90px;
+    height: calc(100vh - 141px);
+  }
+
+
 body .app-edit-menu .format-icon {
   display: inline-block;
   cursor: pointer;

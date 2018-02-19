@@ -62,7 +62,7 @@ export class MenusComponent {
   /**
    * Updates the list
    */
-  list(source) {
+  list(source:string) {
 
     if(source != 'load') {
       this._appService.showToast('success', null);

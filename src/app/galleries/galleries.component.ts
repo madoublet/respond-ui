@@ -55,14 +55,18 @@ export class GalleriesComponent {
     this.selectedGallery = null;
     this.selectedImage = null;
 
-    this.list();
+    this.list('load');
 
   }
 
   /**
    * Updates the list
    */
-  list() {
+  list(source:string) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
 

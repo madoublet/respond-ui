@@ -54,14 +54,18 @@ export class FormsComponent {
     this.forms = [];
     this.fields = [];
 
-    this.list();
+    this.list('load');
 
   }
 
   /**
    * Updates the list
    */
-  list() {
+  list(source:string) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
 
