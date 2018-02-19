@@ -73,13 +73,13 @@ a, a:visited {
 
 /* logo */
 body .logo {
-  width: 200px;
+  width: 247px;
   margin: 50px auto 0 auto;
   padding: 0;
 }
 
 body .logo img {
-  width: 200px;
+  width: 247px;
 }
 
 body .app-selector ul {
@@ -1793,7 +1793,7 @@ body .dropzone .dz-message {
   display: block;
   margin: 0 0 50px 200px;
   width: calc(100% - 200px);
-  height: calc(100vh - 140px);
+  height: calc(100vh - 100px);
 }
 
   .code-editor.expanded {
