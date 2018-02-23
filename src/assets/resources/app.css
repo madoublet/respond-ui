@@ -152,6 +152,11 @@ body .edit-frame {
   padding: 0;
 }
 
+  body[show-status] .edit-frame {
+    height: calc(100% - 140px);;
+    margin: 90px 0 0 0;
+  }
+
 body .edit-frame::-webkit-scrollbar { 
   display: none; 
 }
