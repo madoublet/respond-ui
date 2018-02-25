@@ -39,13 +39,13 @@
           name="photo">
 
         <label>{{ 'Custom Header' | translate }}</label>
-        <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="256"
+        <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="2048"
           [(ngModel)]="model.customHeader"
           name="customHeader"></textarea>
         <small>{{ 'Custom HTML content to be put in the header (e.g. meta tags, stylesheets)' | translate }}</small>
 
         <label>{{ 'Custom Footer' | translate }}</label>
-        <textarea id="hashedit-page-settings-custom-footer" type="text" maxlength="256"
+        <textarea id="hashedit-page-settings-custom-footer" type="text" maxlength="2048"
           [(ngModel)]="model.customFooter"
           name="customFooter"></textarea>
         <small>{{ 'Custom HTML content to be put in the footer (e.g. javascript)' | translate }}</small>
