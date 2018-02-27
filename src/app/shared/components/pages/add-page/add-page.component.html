@@ -7,29 +7,30 @@
       <h2>{{ 'Add Page' | translate }}</h2>
 
       <label>{{ 'Path' | translate }}</label>
-      <select id="hashedit-add-page-path"
+      <select id="app-add-page-path"
         [(ngModel)]="model.path"
         name="path">
         <option *ngFor="let route of routes" [value]="route">{{route}}</option>
       </select>
 
+      <label>* {{ 'Title' | translate }}</label>
+      <input id="app-add-page-title" type="text" maxlength="128" required
+        [(ngModel)]="model.title"
+        (keyup)="onKey($event)"
+        name="title">
+
       <label>* {{ 'URL' | translate }}</label>
-      <input id="hashedit-add-page-url" type="text" maxlength="128" placeholder="new-page" required
+      <input id="app-add-page-url" type="text" maxlength="128" placeholder="new-page" required
         [(ngModel)]="model.url"
         name="url">
 
-      <label>* {{ 'Title' | translate }}</label>
-      <input id="hashedit-add-page-title" type="text" maxlength="128" required
-        [(ngModel)]="model.title"
-        name="title">
-
       <label>{{ 'Description' | translate }}</label>
-      <input id="hashedit-add-page-desc" type="text" maxlength="128"
+      <input id="app-add-page-desc" type="text" maxlength="128"
         [(ngModel)]="model.description"
         name="description">
 
       <label>{{ 'Template' | translate }}</label>
-      <select id="hashedit-add-page-template"
+      <select id="app-add-page-template"
         [(ngModel)]="model.template"
         name="template">
         <option *ngFor="let template of templates" [value]="template">{{template}}</option>
