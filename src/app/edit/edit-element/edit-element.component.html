@@ -3,14 +3,8 @@
   <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
     <h4 *ngIf="showRemove == false" (click)="toggleIsExpanded()" [class.collapsed]="isExpanded == false">{{ 'Element' | translate }} 
-      <i (click)="toggleShowRemove()" *ngIf="isExpanded == true" class="delete-icon material-icons" title="{{ 'Remove' | translate }} ">cancel</i>
       <i *ngIf="isExpanded == false" class="expand-icon material-icons">expand_more</i>
       <i *ngIf="isExpanded == true" class="expand-icon material-icons">expand_less</i>
-    </h4>
-
-    <h4 *ngIf="showRemove == true" class="remove">{{ 'Remove Element?' | translate }}
-      <i (click)="remove()" class="confirm-icon material-icons">check</i>
-      <i (click)="toggleShowRemove()" class="cancel-icon material-icons">close</i>
     </h4>
 
     <div *ngIf="isExpanded == true">
@@ -113,6 +107,8 @@
       <textarea id="edit-element-html"
         [(ngModel)]="model.html"
         name="html" (change)="submit()" *ngIf="isHtmlExpanded"></textarea>
+
+      <a class="button" (click)="remove()"><i  class="cancel-icon material-icons">close</i> {{'Remove' | translate }}</a>
 
     </div>
 

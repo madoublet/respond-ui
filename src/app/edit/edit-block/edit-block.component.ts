@@ -146,10 +146,26 @@ export class EditBlockComponent {
   }
 
   /**
-   * send command to remove element
+   * send command to remove block
    */
   remove() {
     this.onCommand.emit('block.remove');
+    this.showRemove = false;
+  }
+
+  /**
+   * send command to rmove block up
+   */
+  moveUp() {
+    this.onCommand.emit('block.moveUp');
+    this.showRemove = false;
+  }
+
+  /**
+   * send command to rmove block down
+   */
+  moveDown() {
+    this.onCommand.emit('block.moveDown');
     this.showRemove = false;
   }
 

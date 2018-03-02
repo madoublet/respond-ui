@@ -1133,6 +1133,29 @@ body .app-edit-menu .format-icon:hover {
   background-color: rgba(255,255,255,0.9);
 }
 
+body .app-edit-menu .button {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  margin: 5px 0 10px 0;
+  padding: 10px;
+  font-size: 13px;
+  color: #537895;
+  text-align: center;
+  border: 1px solid rgba(83,120,149,.1);
+}
+
+body .app-edit-menu .button i {
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  font-size: 15px;
+}
+
+body .app-edit-menu .button:hover {
+  background-color: rgba(255,255,255,0.9);
+}
+
 body .app-edit-menu h4 {
   position: relative;
   display: block;
