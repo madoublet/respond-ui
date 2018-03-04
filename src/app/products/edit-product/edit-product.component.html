@@ -47,6 +47,11 @@
       name="name">
     <small>{{ 'ID' | translate }}: {{ product.id }}</small>
 
+    <label>{{ 'Description' | translate }}</label>
+    <textarea id="edit-product-description" type="text" required
+      [(ngModel)]="product.description"
+      name="description"></textarea>
+
     <label>{{ 'Price' | translate }}</label>
     <input id="edit-product-price" type="number" maxlength="128" step="0.01" placeholder="" required
       [(ngModel)]="product.price"

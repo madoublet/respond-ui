@@ -46,6 +46,7 @@ export class EditProductComponent {
     this.product = {
       id: '',
       name: '',
+      description: '',
       shipped: false,
       price: 25.00,
       file: '', 
@@ -89,6 +90,7 @@ export class EditProductComponent {
                      .subscribe(
                        data => { 
                           context.product.name = data.name;
+                          context.product.description = data.description;
                           context.product.shipped = data.shipped;
                           context.product.price = data.price;
                           context.product.file = data.file;
@@ -242,7 +244,7 @@ export class EditProductComponent {
    * submits the form
    */
   submit() {
-    this._productService.edit(this.product.id, this.product.name, this.product.shipped, this.product.price, this.product.file, this.product.subscription, this.product.plan, this.product.planPrice)
+    this._productService.edit(this.product.id, this.product.name, this.product.description, this.product.shipped, this.product.price, this.product.file, this.product.subscription, this.product.plan, this.product.planPrice)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.failure(<any>error); }

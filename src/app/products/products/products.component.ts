@@ -119,6 +119,25 @@ export class ProductsComponent implements OnInit {
    *
    * @param {Product} product
    */
+  editPage(product) {
+
+    if(product.url == '' || product.url == null) {
+      this._appService.showToast('failure', 'Page not found');
+    }
+    else {
+      localStorage.setItem('respond.pageUrl', product.url);
+
+      var id = Math.random().toString(36).substr(2, 9);
+
+      this._router.navigate( ['/edit',  id, 'page'] );
+    }
+  }
+
+  /**
+   * Edits a product
+   *
+   * @param {Product} product
+   */
   edit(product) {
     this._router.navigate( ['/products/edit', product.id] );
   }

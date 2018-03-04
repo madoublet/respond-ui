@@ -4,6 +4,7 @@ import { GalleryService } from '../../shared/services/gallery.service';
 import { PageService } from '../../shared/services/page.service';
 import { ComponentService } from '../../shared/services/component.service';
 import { ProductService } from '../../shared/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'respond-edit-element',
@@ -135,7 +136,7 @@ export class EditElementComponent {
   @Output() onCommand = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _formService: FormService, private _gallerySerivce: GalleryService, private _pageService: PageService, private _componentService: ComponentService, private _productService: ProductService) {}
+  constructor (private _formService: FormService, private _gallerySerivce: GalleryService, private _pageService: PageService, private _componentService: ComponentService, private _productService: ProductService, private _router: Router) {}
 
   /**
    * Init
@@ -281,6 +282,15 @@ export class EditElementComponent {
     this.model.textColor = '';
 
     this.submit();
+  }
+
+  /**
+   * Edits a product
+   *
+   * @param {Product} product
+   */
+  editProduct(id) {
+    this._router.navigate( ['/products/edit', id] );
   }
 
 }

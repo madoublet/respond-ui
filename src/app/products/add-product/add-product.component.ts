@@ -23,6 +23,7 @@ export class AddProductComponent {
     // reset model
     this.model = {
       id: Math.random().toString(36).substr(2, 9).toUpperCase(),
+      url: '',
       name: '',
       shipped: false,
       price: 25.00,
@@ -49,7 +50,9 @@ export class AddProductComponent {
 
     this.model = {
       id:  '',
+      url: '',
       name: '',
+      description: '',
       shipped: false,
       price: 25.00,
       file: '', 
@@ -69,11 +72,19 @@ export class AddProductComponent {
   }
 
   /**
+   * Generates a URL based on the title
+   */
+  onKey(event) {
+    this.model.url = 'product/' + event.target.value.toLowerCase().replace(/ /g,"-").replace(/[`~!@#$%^&*()_|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    this.model.id = event.target.value.toLowerCase().replace(/ /g,"-").replace(/[`~!@#$%^&*()_|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+  }
+
+  /**
    * Submits the form
    */
   submit() {
 
-    this._productService.add(this.model.id, this.model.name, this.model.shipped, this.model.price, this.model.file, this.model.subscription, this.model.plan, this.model.planPrice)
+    this._productService.add(this.model.id, this.model.url, this.model.name, this.model.description, this.model.shipped, this.model.price, this.model.file, this.model.subscription, this.model.plan, this.model.planPrice)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { AppService } from '../../shared/services/app.service';
 

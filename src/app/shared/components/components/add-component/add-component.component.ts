@@ -53,6 +53,13 @@ export class AddComponentComponent {
   }
 
   /**
+   * Generates a URL based on the title
+   */
+  onKey(event) {
+    this.model.url = event.target.value.toLowerCase().replace(/ /g,"-").replace(/[`~!@#$%^&*()_|+=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+  }
+
+  /**
    * Submits the form
    */
   submit() {

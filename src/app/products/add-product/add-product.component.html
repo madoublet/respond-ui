@@ -6,17 +6,28 @@
 
     <div class="app-modal-body">
 
-      <label>{{ 'Name' | translate }}</label>
+      <label>* {{ 'Name' | translate }}</label>
       <input id="add-product-name" type="text" maxlength="128" placeholder="" required
         [(ngModel)]="model.name"
+        (keyup)="onKey($event)"
         name="name">
+      
+      <label>* {{ 'Url' | translate }}</label>
+      <input id="add-product-url" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.url"
+        name="url">
 
-      <label>{{ 'ID' | translate }}</label>
+      <label>* {{ 'ID' | translate }}</label>
       <input id="add-product-id" type="text" maxlength="128" placeholder="" required
         [(ngModel)]="model.id"
         name="id">
 
-      <label>{{ 'Price' | translate }}</label>
+      <label>* {{ 'Description' | translate }}</label>
+      <input id="add-product-description" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.description"
+        name="description">
+
+      <label>* {{ 'Price' | translate }}</label>
       <input id="add-product-price" type="number" maxlength="128" placeholder="" required
         [(ngModel)]="model.price"
         name="price">

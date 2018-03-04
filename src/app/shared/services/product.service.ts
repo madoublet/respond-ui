@@ -51,7 +51,9 @@ export class ProductService {
    * Adds a product
    *
    * @param {string} id The id for the product (must be unique)
+   * @param {string} url The url of the product page.
    * @param {string} name The name of the product
+   * @param {string} description The description of the product
    * @param {boolean} shipped Whether the product is shipped or not
    * @param {number} price The price of the product
    * @param {string} file The location of the file to be downloaded
@@ -60,9 +62,9 @@ export class ProductService {
    * @param {string} planPrice The text representation of the plan price (e.g. $25 /month)
    * @return {Observable}
    */
-  add (id: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
+  add (id: string, url: string, name: string, description: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ id, name, shipped, price, file, subscription, plan, planPrice });
+    let body = JSON.stringify({ id, url, name, description, shipped, price, file, subscription, plan, planPrice });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
@@ -84,9 +86,9 @@ export class ProductService {
    * @param {string} planPrice The text representation of the plan price (e.g. $25 /month)
    * @return {Observable}
    */
-  edit (id: string, name: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
+  edit (id: string, name: string, description: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ id, name, shipped, price, file, subscription, plan, planPrice });
+    let body = JSON.stringify({ id, name, description, shipped, price, file, subscription, plan, planPrice });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
