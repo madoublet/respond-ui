@@ -56,9 +56,9 @@ export class UserService {
    * @param {string} email The user's login email
    * @return {Observable}
    */
-  forgot (id: string, email: string) {
+  forgot (email: string) {
 
-    let body = JSON.stringify({ id, email });
+    let body = JSON.stringify({ email });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -74,9 +74,9 @@ export class UserService {
    * @param {string} password The new password
    * @return {Observable}
    */
-  reset (id: string, token: string, password: string) {
+  reset (token: string, password: string) {
 
-    let body = JSON.stringify({ id, token, password });
+    let body = JSON.stringify({ token, password });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

@@ -9,6 +9,7 @@ export class SiteService {
   constructor (private http: Http) {}
 
   private _createUrl = 'api/sites/create';
+  private _listUrl = 'api/sites/list';
   private _subscribeUrl = 'api/payment/subscribe';
   private _unsubscribeUrl = 'api/payment/unsubscribe';
   private _reloadUrl = 'api/sites/reload';
@@ -22,6 +23,7 @@ export class SiteService {
   private _removePluginUrl = 'api/plugins/remove';
   private _retrieveSubscriptionUrl = 'api/payment/subscription/retrieve';
   private _syncUrl = 'api/cloud/sync';
+  private _switchUrl = 'api/sites/switch';
 
   /**
    * Login to the application
@@ -40,6 +42,37 @@ export class SiteService {
     return this.http.post(this._createUrl, body, options)
                     .map((res:Response) => res.json());
 
+  }
+
+  /**
+   * Swtich sites
+   *
+   * @param {string} id The site id
+   * @return {Observable}
+   */
+  switch (id: string) {
+
+    let body = JSON.stringify({ id });
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });;
+
+    return this.http.post(this._switchUrl, body, options)
+                    .map((res:Response) => res.json());
+
+  }
+
+  /**
+   * Lists sites for a user
+   *
+   */
+  list () {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
   }
 
   /**

@@ -250,6 +250,10 @@ body .app-list {
     position: relative;
   }
 
+  body .app-list-item.active {
+    background-color: #EBF2F7;
+  }
+
   body .app-list-item.nested {
     border-left: 20px solid #f0f0f0;
   }
@@ -296,6 +300,10 @@ body .app-list {
   body .app-list-item.selected {
     background-color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .15);
+  }
+
+  body .app-list-item.selected.active {
+    background-color: #EBF2F7;
   }
 
   body .app-list-item h2 {
@@ -400,6 +408,7 @@ body .app-list {
     border: 1px solid #ddd;
     border-radius: 20px;
     cursor: pointer;
+    background-color: #fff;
   }
 
     body .app-list-item .app-list-actions a:hover {
@@ -529,12 +538,22 @@ body .app-list {
     background-color: #f8f8f8;
   }
 
+  .app-drawer li {
+    position: relative;
+  }
+
   .app-drawer li a {
     position: relative;
     padding-left: 52px;
   }
 
-  .app-drawer li a i {
+  .app-drawer li select {
+    position: relative;
+    margin-left: 52px;
+    width: 175px;
+  }
+
+  .app-drawer li i {
     position: absolute;
     top: 10px;
     left: 16px;

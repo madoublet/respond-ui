@@ -93,7 +93,7 @@
           </div>
 
           <div *ngSwitchCase="'product'">
-            <label>{{attribute.label | translate }}</label>
+            <label>{{attribute.label | translate }} <a (click)="editProduct(attribute.value)">{{ 'Edit' | translate }}</a></label>
             <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
             </select>

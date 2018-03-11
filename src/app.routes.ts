@@ -37,11 +37,11 @@ const appRoutes: Routes = [
     component: ForgotComponent
   },
   {
-    path: 'forgot/:id',
+    path: 'forgot',
     component: ForgotComponent
   },
   {
-    path: 'reset/:id/:token',
+    path: 'reset/:token',
     component: ResetComponent
   },
   {
@@ -103,6 +103,10 @@ const appRoutes: Routes = [
   {
     path: 'products',
     loadChildren: 'app/products/products.module#ProductsModule'
+  },
+  {
+    path: 'manage',
+    loadChildren: 'app/sites/sites.module#SitesModule'
   },
   {
     path: '',

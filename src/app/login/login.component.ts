@@ -116,6 +116,9 @@ export class LoginComponent {
     // set syncability
     this.setSyncability(this.data.sync.canSync);
 
+    // set sites
+    this.setSites(this.data.user.sites, this.data.user.sysadmin);
+
     // set site id
     localStorage.setItem('respond.siteId', this.data.user.siteId);
 
@@ -151,6 +154,14 @@ export class LoginComponent {
 
       // set language
       this._translate.use(language);
+  }
+
+  /**
+   * Sets the language for the app
+   */
+  setSites(sites, sysadmin) {
+    localStorage.setItem('respond_sites', JSON.stringify(sites));
+    localStorage.setItem('respond_sysadmin', JSON.stringify(sysadmin));
   }
 
   /**

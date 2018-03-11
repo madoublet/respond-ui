@@ -13,7 +13,6 @@ import { AppService } from '../shared/services/app.service';
 export class ForgotComponent {
 
   data;
-  id;
   errorMessage;
   logoUrl;
   hasMultipleSites = false;
@@ -23,10 +22,6 @@ export class ForgotComponent {
   ngOnInit() {
 
       this.logoUrl = '';
-
-      this._route.params.subscribe(params => {
-        this.id = params['id'];
-      });
 
       // retrieve settings
       this.settings();
@@ -51,21 +46,11 @@ export class ForgotComponent {
   /**
    * Submit forgot request
    */
-  forgot(event, email, site){
+  forgot(event, email){
 
       event.preventDefault();
 
-      let id = undefined;
-
-      if(this.id != undefined) {
-        id = this.id;
-      }
-      
-      if(site != '') {
-        id = site;
-      }
-
-      this._userService.forgot(id, email)
+      this._userService.forgot(email)
                    .subscribe(
                      () => { this._appService.showToast('success', null); },
                      error =>  { this.failure(<any>error); }

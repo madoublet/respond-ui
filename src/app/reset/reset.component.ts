@@ -12,7 +12,6 @@ import { AppService } from '../shared/services/app.service';
 export class ResetComponent {
 
   data;
-  id;
   token;
   errorMessage;
   logoUrl;
@@ -21,11 +20,6 @@ export class ResetComponent {
 
   ngOnInit() {
       this.logoUrl = '';
-
-      this._route.params.subscribe(params => {
-        this.id = params['id'];
-        this.token = params['token'];
-      });
 
       // retrieve settings
       this.settings();
@@ -58,7 +52,7 @@ export class ResetComponent {
         this._appService.showToast('failure', 'Password mismatch');
       }
       else {
-        this._userService.reset(this.id, this.token, password)
+        this._userService.reset(this.token, password)
                      .subscribe(
                        () => { this._appService.showToast('success', null); },
                        error =>  { this.failure(<any>error); }

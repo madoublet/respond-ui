@@ -1,0 +1,50 @@
+<respond-subscribe></respond-subscribe>
+
+<menu class="app-menu">
+
+  <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
+  
+  <h1>{{ 'Sites' | translate }}</h1>
+
+  <!--
+  <div class="app-actions">
+    <button (click)="showAdd()">
+      <i class="material-icons">add</i>
+      <span>{{ 'Add Site' | translate }}</span>
+    </button>
+  </div>-->
+
+</menu>
+
+<section class="app-main">
+
+    <div class="app-search">
+      <i class="search material-icons">search</i>
+      <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or ID' | translate }}">
+    </div>
+
+    <div id="sites-list" class="app-list">
+      <div class="app-list-item" *ngFor="let site of filteredSites" (mouseenter)="setActive(site)" (click)="setActive(site)" [class.selected]="site === selectedSite" [class.active]="site.id === id">
+        <h2>
+          <span class="primary"><a (click)="edit(site)">{{ site.name }}</a></span>
+          <span class="secondary">{{ site.id }}</span>
+        </h2>
+        <small>
+          {{ site.email }}
+        </small>
+        <div class="app-list-actions">
+            <!--
+            <a (click)="showRemove(site)">{{'Remove' | translate }}</a>
+            <a (click)="showSettings(site)">{{'Settings' | translate }}</a> -->
+            <a class="primary" (click)="switch(site)">{{'Switch' | translate }}</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="no-list-items" *ngIf="sites.length === 0">
+      {{ 'Nothing here yet' | translate }}
+    </p>
+  
+</section>
+
+<respond-drawer active="sites" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
