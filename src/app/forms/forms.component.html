@@ -45,7 +45,7 @@
       <h2><span class="primary"><a (click)="showEditField(field)">{{ field.label }}</a></span></h2>
       <small>{{ field.type | translate }}</small>
       <div class="app-list-actions">
-          <a (click)="showRemoveField(field)">{{ 'Remove' | translate }}</a>
+          <a *ngIf="role=='admin'" (click)="showRemoveField(field)">{{ 'Remove' | translate }}</a>
           <a class="primary" (click)="showEditField(field)">{{ 'Edit' | translate }}</a>
       </div>
     </div>
@@ -79,7 +79,7 @@
     <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
     <li><a (click)="showAdd()">{{ 'Add Form' | translate }}</a></li>
     <li><a (click)="showEdit()">{{ 'Edit Form' | translate }}</a></li>
-    <li><a (click)="showRemove()">{{ 'Remove Form' | translate }}</a></li>
+    <li><a *ngIf="role=='admin'" (click)="showRemove()">{{ 'Remove Form' | translate }}</a></li>
   </ul>
 
 </nav>

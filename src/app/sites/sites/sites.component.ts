@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { AppService } from '../../shared/services/app.service';
 import { SiteService } from '../../shared/services/site.service';
+import { DrawerComponent } from 'app/shared/components/drawer/drawer.component';
 
 @Component({
   selector: 'app-sites',
@@ -13,6 +14,7 @@ import { SiteService } from '../../shared/services/site.service';
 export class SitesComponent implements OnInit {
 
   id: string;
+  role: string;
   selectedSite: any = {};
   site: any = {};
   sites: any = [];
@@ -25,11 +27,14 @@ export class SitesComponent implements OnInit {
   settingsVisible: boolean = false;
   search: string = '';
 
+  @ViewChild('drawer') private drawer: DrawerComponent;
+
   constructor(public translate: TranslateService, private _router: Router, private _appService: AppService, private _siteService: SiteService) { }
 
 
   ngOnInit() {
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.isSysadmin = (localStorage.getItem('is_sysadmin').toLowerCase()  == 'true');
     this.list('load');
   }
@@ -149,10 +154,14 @@ export class SitesComponent implements OnInit {
                         this.setSyncability(data.sync.canSync);
                         this.id = data.user.siteId;
 
-                        // set site id
-                        localStorage.setItem('respond.siteId', data.user.siteId);
+                        // set site id and role
+                        localStorage.setItem('site_id', data.user.siteId);
+                        localStorage.setItem('site_role', data.user.role);
 
                         this._appService.showToast('success', null);
+
+                        // re-init the drawer
+                        this.drawer.init();
                        },
                       error =>  { this.failure(<any>error); }
                     );

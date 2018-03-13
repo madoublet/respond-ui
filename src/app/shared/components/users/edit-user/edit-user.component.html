@@ -13,6 +13,14 @@
           [(ngModel)]="model.email"
           name="email" disabled="disabled">
 
+        <label>{{ 'Role' | translate }}</label>
+        <select id="add-user-language"
+          [(ngModel)]="model.role"
+          name="role">
+          <option value="admin">{{ 'Administrator' | translate }}</option>
+          <option value="contributor">{{ 'Contributor' | translate }}</option>
+        </select>
+
         <label>{{ 'First Name' | translate }}</label>
         <input id="hashedit-edit-user-first-name" type="text" maxlength="128" required
           [(ngModel)]="model.firstName"

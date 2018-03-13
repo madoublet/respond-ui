@@ -11,7 +11,8 @@ import { AppService } from '../shared/services/app.service';
 
 export class SubmissionsComponent {
 
-  id;
+  id: string;
+  role: string;
   submission;
   submissions;
   errorMessage;
@@ -28,7 +29,8 @@ export class SubmissionsComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.removeVisible = false;
     this.drawerVisible = false;
     this.submission = {};

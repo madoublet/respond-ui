@@ -13,7 +13,8 @@ import { SortablejsOptions } from 'angular-sortablejs';
 
 export class MenusComponent {
 
-  id;
+  id: string;
+  role: string;
   menu;
   menus;
   items;
@@ -43,7 +44,8 @@ export class MenusComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.addVisible = false;
     this.editVisible = false;
     this.removeVisible = false;

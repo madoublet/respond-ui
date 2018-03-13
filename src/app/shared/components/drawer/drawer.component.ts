@@ -14,7 +14,8 @@ export class DrawerComponent {
 
   globalListener: any;
 
-  id;
+  id: string;
+  role: string;
   dev;
   siteUrl;
   route: any;
@@ -54,7 +55,15 @@ export class DrawerComponent {
    * Init pages
    */
   ngOnInit() {
-    this.id = localStorage.getItem('respond.siteId');
+    this.init();
+  }
+
+  /**
+   * Init the drawer component
+   */
+  public init() {
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.dev = false;
     this.siteUrl = '';
     this.hasAccount = false;
@@ -130,8 +139,8 @@ export class DrawerComponent {
    */
   viewCode() {
 
-    localStorage.setItem('respond.codeUrl', 'index.html');
-    localStorage.setItem('respond.codeType', 'default');
+    localStorage.setItem('code_url', 'index.html');
+    localStorage.setItem('code_type', 'default');
 
     var id = Math.random().toString(36).substr(2, 9);
 
@@ -159,7 +168,7 @@ export class DrawerComponent {
   signOut() {
 
     // remove token
-    localStorage.removeItem('respond.siteId');
+    localStorage.removeItem('site_id');
 
     // navigate
     this.navigate(['/login']);

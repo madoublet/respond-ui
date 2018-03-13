@@ -122,6 +122,10 @@ body .app-selector li.app-selector-add i {
   left: 10px;
 }
 
+body .app-settings {
+  border: 1px solid red;
+}
+
 /* .app-main */
 body .app-main {
   padding-top: 49px;
@@ -135,6 +139,10 @@ body .app-main {
   body .app-main p {
     padding: 20px;
     color: #888;
+  }
+
+  body .app-settings-container {
+    padding-top: 20px;
   }
 
 body .edit-main {

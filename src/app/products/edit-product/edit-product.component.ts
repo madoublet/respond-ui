@@ -40,7 +40,7 @@ export class EditProductComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
 
     // reset model
     this.product = {

@@ -31,7 +31,7 @@ export class LoginComponent {
 
       this._route.params.subscribe(params => {
         this.id = params['id'];
-        localStorage.setItem('respond.siteId', this.id);
+        localStorage.setItem('site_id', this.id);
       });
 
       // retrieve settings
@@ -48,7 +48,6 @@ export class LoginComponent {
                        data => {
                          this.logoUrl = data.logoUrl;
                          this.acknowledgement = data.acknowledgement;
-                         this.usesLDAP = data.usesLDAP;
                          this.defaultLanguage = data.defaultLanguage;
                          
                          // set mode
@@ -124,7 +123,8 @@ export class LoginComponent {
     localStorage.setItem('id_token', this.data.token);
 
     // set site id
-    localStorage.setItem('respond.siteId', this.data.user.siteId);
+    localStorage.setItem('site_id', this.data.user.siteId);
+    localStorage.setItem('site_role', this.data.user.role);
 
     // navigate
     this._router.navigate( ['/pages'] );

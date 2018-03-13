@@ -30,7 +30,7 @@ export class PluginsComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.removeVisible = false;
     this.drawerVisible = false;
     this.plugin = {};

@@ -39,7 +39,7 @@ export class SelectPageComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.list();
 
   }

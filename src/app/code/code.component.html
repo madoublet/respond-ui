@@ -43,7 +43,9 @@
 </section>
 
 <footer class="app-footer">
-    <button (click)="save()">{{ 'Save' | translate }}</button>
+    <div class="app-footer-actions">
+      <button (click)="save()" class="primary">{{ 'Save' | translate }}</button>
+    </div>
 </footer>
 
 <respond-add-code [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-code>

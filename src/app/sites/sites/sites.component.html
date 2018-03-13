@@ -48,4 +48,4 @@
 
 <respond-add-site [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-site>
 
-<respond-drawer active="sites" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+<respond-drawer #drawer active="sites" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

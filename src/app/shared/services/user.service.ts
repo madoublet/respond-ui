@@ -112,9 +112,9 @@ export class UserService {
    * @param {string} language
    * @return {Observable}
    */
-  add (email: string, firstName: string, lastName: string, password: string, language: string) {
+  add (email: string, role: string, firstName: string, lastName: string, password: string, language: string) {
 
-    let body = JSON.stringify({ email, firstName, lastName, password, language });
+    let body = JSON.stringify({ email, role, firstName, lastName, password, language });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -127,15 +127,16 @@ export class UserService {
    * Edits the user
    *
    * @param {string} email
+   * @param {string} role
    * @param {string} firstName
    * @param {string} lastName
    * @param {string} password
    * @param {string} language
    * @return {Observable}
    */
-  edit (email: string, firstName: string, lastName: string, password: string, language: string) {
+  edit (email: string, role: string, firstName: string, lastName: string, password: string, language: string) {
 
-    let body = JSON.stringify({ email, firstName, lastName, password, language });
+    let body = JSON.stringify({ email, role, firstName, lastName, password, language });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

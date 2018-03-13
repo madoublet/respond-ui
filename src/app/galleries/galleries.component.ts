@@ -13,7 +13,8 @@ import { SortablejsOptions } from 'angular-sortablejs';
 
 export class GalleriesComponent {
 
-  id;
+  id: string;
+  role: string;
   galleries;
   images;
   errorMessage;
@@ -42,7 +43,8 @@ export class GalleriesComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.addVisible = false;
     this.editVisible = false;
     this.removeVisible = false;

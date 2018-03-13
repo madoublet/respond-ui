@@ -13,7 +13,8 @@ import { SortablejsOptions } from 'angular-sortablejs';
 
 export class FormsComponent {
 
-  id;
+  id: string;
+  role: string;
   forms;
   fields;
   errorMessage;
@@ -42,7 +43,8 @@ export class FormsComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.addVisible = false;
     this.editVisible = false;
     this.removeVisible = false;

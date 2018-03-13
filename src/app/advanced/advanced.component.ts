@@ -28,7 +28,7 @@ export class AdvancedComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.canSync = (localStorage.getItem('can_sync') == 'true');
     this.settingsVisible = false;
     this.drawerVisible = false;

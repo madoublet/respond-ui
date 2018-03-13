@@ -32,7 +32,7 @@
           {{ product.id }}
         </small>
         <div class="app-list-actions">
-            <a (click)="showRemove(product)">{{'Remove' | translate }}</a>
+            <a *ngIf="role=='admin'" (click)="showRemove(product)">{{'Remove' | translate }}</a>
             <a (click)="editPage(product)">{{'Edit Page' | translate }}</a>
             <a class="primary" (click)="edit(product)">{{'Edit' | translate }}</a>
         </div>

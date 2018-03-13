@@ -34,7 +34,7 @@ export class AccountComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.hasAccount = (localStorage.getItem('site_has_account') == 'true'); // convert to boolean
     this.settingsVisible = false;
     this.drawerVisible = false;

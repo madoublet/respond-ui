@@ -29,7 +29,7 @@ export class UsersComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.addVisible = false;
     this.editVisible = false;
     this.removeVisible = false;

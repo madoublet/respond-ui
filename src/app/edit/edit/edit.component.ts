@@ -63,8 +63,8 @@ export class EditComponent {
 
     var editMode, fullPageUrl;
 
-    this.id = localStorage.getItem('respond.siteId');
-    this.pageUrl = localStorage.getItem('respond.pageUrl');
+    this.id = localStorage.getItem('site_id');
+    this.pageUrl = localStorage.getItem('page_url');
     
     this._route.params.subscribe(params => {
       this.mode = params['mode'];

@@ -46,9 +46,9 @@
       </small>
       <p>{{ page.description }}</p>
       <div class="app-list-actions">
-          <a (click)="showRemove(page)">{{'Remove' | translate }}</a>
+          <a *ngIf="role=='admin'" (click)="showRemove(page)">{{'Remove' | translate }}</a>
           <a (click)="showSettings(page)">{{'Settings' | translate }}</a>
-          <a (click)="editCode(page)">{{'Edit HTML' | translate }}</a>
+          <a *ngIf="role=='admin'" (click)="editCode(page)">{{'Edit HTML' | translate }}</a>
           <a class="primary" (click)="edit(page)">{{'Edit' | translate }}</a>
       </div>
     </div>

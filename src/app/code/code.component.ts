@@ -41,10 +41,10 @@ export class CodeComponent {
 
     var id, codeUrl;
 
-    id = localStorage.getItem('respond.siteId');
+    id = localStorage.getItem('site_id');
 
-    this.codeUrl = localStorage.getItem('respond.codeUrl');
-    this.codeType = localStorage.getItem('respond.codeType');
+    this.codeUrl = localStorage.getItem('code_url');
+    this.codeType = localStorage.getItem('code_type');
     this.showMenu = true;
     this.addVisible = false;
     this.drawerVisible = false;

@@ -11,6 +11,9 @@ import { ProductService } from '../../shared/services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
+  id: string;
+  role: string;
+
   selectedProduct: any = {};
   product: any = {};
   products: any = [];
@@ -24,6 +27,10 @@ export class ProductsComponent implements OnInit {
   constructor(public translate: TranslateService, private _router: Router, private _appService: AppService, private _productService: ProductService) { }
 
   ngOnInit() {
+
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
+    
     this.list('load');
   }
 
@@ -125,7 +132,7 @@ export class ProductsComponent implements OnInit {
       this._appService.showToast('failure', 'Page not found');
     }
     else {
-      localStorage.setItem('respond.pageUrl', product.url);
+      localStorage.setItem('page_url', product.url);
 
       var id = Math.random().toString(36).substr(2, 9);
 

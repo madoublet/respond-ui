@@ -79,7 +79,7 @@
     <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
     <li><a (click)="showAdd()">{{ 'Add Gallery' | translate }}</a></li>
     <li><a (click)="showEdit()">{{ 'Edit Gallery' | translate }}</a></li>
-    <li><a (click)="showRemove()">{{ 'Remove Gallery' | translate }}</a></li>
+    <li *ngIf="role=='admin'"><a (click)="showRemove()">{{ 'Remove Gallery' | translate }}</a></li>
   </ul>
 
 </nav>

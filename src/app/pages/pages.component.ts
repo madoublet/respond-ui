@@ -15,6 +15,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class PagesComponent {
 
   id: string;
+  role: string;
   page: any;
   pages: any;
   routes: any;
@@ -36,7 +37,8 @@ export class PagesComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
 
     this.addVisible = false;
     this.removeVisible = false;
@@ -226,7 +228,7 @@ export class PagesComponent {
    * @param {Page} page
    */
   edit(page) {
-    localStorage.setItem('respond.pageUrl', page.url);
+    localStorage.setItem('page_url', page.url);
 
     var id = Math.random().toString(36).substr(2, 9);
 
@@ -243,8 +245,8 @@ export class PagesComponent {
     let url = '', parts = page.url.split('.');
     url = parts[0] + '.html';
 
-    localStorage.setItem('respond.codeUrl', url);
-    localStorage.setItem('respond.codeType', 'page');
+    localStorage.setItem('code_url', url);
+    localStorage.setItem('code_type', 'page');
 
     var id = Math.random().toString(36).substr(2, 9);
 

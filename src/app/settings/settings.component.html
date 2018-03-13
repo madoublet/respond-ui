@@ -1,6 +1,6 @@
 <respond-subscribe></respond-subscribe>
 
-<menu class="app-menu">
+<menu class="app-menu no-border">
 
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
     
@@ -12,52 +12,69 @@
 
 <section class="app-main">
 
-    <div *ngFor="let setting of settings">
+    <nav class="app-selector">
+      <ul>
+        <li *ngFor="let tab of tabs" [class.selected]="tab.index === tabIndex">
+          <a (click)="showIndex(tab.index)">{{tab.title}}</a>
+        </li>
+      </ul>
+    </nav>
 
-      <div [ngSwitch]="setting.type">
+    <div class="app-settings-container">
 
-        <div *ngSwitchCase="'title'">
-          <h3>{{setting.label | translate }}</h3>
-        </div>
+    <ng-container *ngFor="let setting of settings">
 
-        <div *ngSwitchCase="'text'">
-          <label>{{setting.label | translate }}</label>
-          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
+      <ng-container *ngIf="setting.tabIndex == tabIndex">
 
-        <div *ngSwitchCase="'number'">
-          <label>{{setting.label | translate }}</label>
-          <input type="number" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
+        <ng-container [ngSwitch]="setting.type">
 
-        <div *ngSwitchCase="'color'">
-          <label>{{setting.label | translate }}</label>
-          <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
+          <div *ngSwitchCase="'text'">
+            <label>{{setting.label | translate }}</label>
+            <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+            <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          </div>
 
-        <div *ngSwitchCase="'image'">
-          <label>{{setting.label | translate }} <a (click)="showSelect(setting)">{{ 'Select' | translate }}</a></label>
-          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-        </div>
+          <div *ngSwitchCase="'number'">
+            <label>{{setting.label | translate }}</label>
+            <input type="number" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+            <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          </div>
 
-        <div *ngSwitchCase="'select'">
-          <label>{{setting.label | translate }}</label>
-          <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
-            <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
-          </select>
-        </div>
+          <div *ngSwitchCase="'color'">
+            <label>{{setting.label | translate }}</label>
+            <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+            <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          </div>
 
-      </div>
+          <div *ngSwitchCase="'image'">
+            <label>{{setting.label | translate }} <a (click)="showSelect(setting)">{{ 'Select' | translate }}</a></label>
+            <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+            <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          </div>
 
-      <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          <div *ngSwitchCase="'select'">
+            <label>{{setting.label | translate }}</label>
+            <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
+              <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
+            </select>
+            <small *ngIf="setting.description != ''">{{setting.description | translate }}</small>
+          </div>
 
-    </div>
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+
+  </div>
 
 </section>
 
 
 <footer class="app-footer">
-    <button type="submit">{{ 'Save' | translate }}</button>
+    <div class="app-footer-actions">
+      <button type="submit">{{ 'Save' | translate }}</button>
+    </div>
 </footer>
 
 </form>

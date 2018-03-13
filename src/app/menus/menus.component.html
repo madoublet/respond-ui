@@ -47,7 +47,7 @@
       <h2><span class="primary"><a (click)="showEditItem(item)">{{ item.html }}</a></span></h2>
       <small>{{ item.url }}</small>
       <div class="app-list-actions">
-         <a (click)="showRemoveItem(item)">{{ 'Remove' | translate }}</a>
+         <a *ngIf="role=='admin'" (click)="showRemoveItem(item)">{{ 'Remove' | translate }}</a>
          <a class="primary" (click)="showEditItem(item)">{{ 'Edit' | translate }}</a>
       </div>
     </div>
@@ -81,7 +81,7 @@
     <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
     <li><a (click)="showAdd()">{{ 'Add Menu' | translate }}</a></li>
     <li><a (click)="showEdit()">{{ 'Edit Menu' | translate }}</a></li>
-    <li><a (click)="showRemove(selectedMenu)">{{ 'Remove Menu' | translate }}</a></li>
+    <li *ngIf="role=='admin'"><a (click)="showRemove(selectedMenu)">{{ 'Remove Menu' | translate }}</a></li>
   </ul>
 
 </nav>

@@ -11,13 +11,18 @@ import { AppService } from '../shared/services/app.service';
 
 export class SettingsComponent {
 
-  id;
+  id: string;
+  role: string;
   setting;
-  settings;
+  settings: any = [];
+  tabs: any = [];
   errorMessage;
   selectedSetting;
   drawerVisible: boolean;
   selectVisible: boolean;
+
+  // set default index
+  tabIndex = 0;
 
   constructor (private _settingService: SettingService, private _router: Router, private _appService: AppService) {}
 
@@ -27,7 +32,8 @@ export class SettingsComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
+    this.role = localStorage.getItem('site_role');
     this.drawerVisible = false;
     this.selectVisible = false;
     this.settings;
@@ -46,10 +52,49 @@ export class SettingsComponent {
 
     this._settingService.list()
                      .subscribe(
-                       data => { this.settings = data; },
+                       data => { this.setupTabs(data); },
                        error =>  { this.failure(<any>error); }
                       );
 
+  }
+
+
+  /**
+   * Setup tabs
+   */
+  setupTabs(data) {
+
+    let tabIndex = 0;
+    this.tabs = [];
+
+    this.tabs.push({ index: 0, title: 'General'});
+
+    for(let x=0; x<data.length; x++) {
+
+      // set tab
+      data[x].tabIndex = tabIndex;
+
+      if(data[x].type == 'title') {
+
+        // increment tab index
+        tabIndex++;
+
+        // create a tab
+        this.tabs.push({ index: tabIndex, title: data[x].label});
+        
+
+      }
+    }
+
+    this.settings = data;
+
+  }
+
+  /**
+   * Shows a specific tab index
+   */
+  showIndex(index) {
+    this.tabIndex = index;
   }
 
   /**
@@ -57,9 +102,15 @@ export class SettingsComponent {
    */
   submit() {
 
-    this._settingService.edit(this.settings)
+    var data = this.settings;
+
+    for(let x=0; x<data.length; x++) {
+      delete data[x].tabIndex;
+    }
+
+    this._settingService.edit(data)
                      .subscribe(
-                       data => { this.success(); },
+                       data => { this.success(); this.list(); },
                        error =>  { this.failure(<any>error); }
                       );
 

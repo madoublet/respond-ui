@@ -15,7 +15,7 @@
       <h2><span class="primary"><a (click)="showView(submission)">{{ submission.name }}</a></span><span class="secondary">{{ submission.date | timeAgo }}</span></h2>
       <small>{{ submission.formId }}</small>
       <div class="app-list-actions">
-          <a (click)="showRemove(submission)">{{ 'Remove Submission' | translate }}</a>
+          <a *ngIf="role=='admin'" (click)="showRemove(submission)">{{ 'Remove Submission' | translate }}</a>
           <a (click)="showView(submission)" class="primary">{{ 'View Submission' | translate }}</a>
       </div>
     </div>

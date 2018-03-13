@@ -31,7 +31,7 @@ export class ComponentsComponent {
    */
   ngOnInit() {
 
-    this.id = localStorage.getItem('respond.siteId');
+    this.id = localStorage.getItem('site_id');
     this.addVisible = false;
     this.removeVisible = false;
     this.drawerVisible = false;
@@ -108,7 +108,7 @@ export class ComponentsComponent {
    * @param {Any} component
    */
   edit(component) {
-    localStorage.setItem('respond.pageUrl', 'components/' + component.url);
+    localStorage.setItem('page_url', 'components/' + component.url);
 
     var id = Math.random().toString(36).substr(2, 9);
 
@@ -121,8 +121,8 @@ export class ComponentsComponent {
    * @param {Any} component
    */
   editCode(component) {
-    localStorage.setItem('respond.codeUrl', 'components/' + component.url);
-    localStorage.setItem('respond.codeType', 'component');
+    localStorage.setItem('code_url', 'components/' + component.url);
+    localStorage.setItem('code_type', 'component');
 
     var id = Math.random().toString(36).substr(2, 9);
 
