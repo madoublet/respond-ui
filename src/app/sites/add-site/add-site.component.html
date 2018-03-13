@@ -1,0 +1,26 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
+
+    <h2>{{ 'Add Site' | translate }}</h2>
+
+    <label>* {{ 'Name' | translate }}</label>
+    <input id="add-site-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.name"
+      name="name">
+  
+    <label>* {{ 'Theme' | translate }}</label>
+    <select id="add-site-theme"
+      [(ngModel)]="model.theme"
+      name="theme" required>
+      <option *ngFor="let theme of themes" [value]="theme.location">{{theme.name}}</option>
+    </select>  
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Add Site' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

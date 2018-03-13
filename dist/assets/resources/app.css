@@ -1532,20 +1532,28 @@ body .acknowledgement {
     margin-right: 20px;
   }
 
-  .app-footer button {
+  .app-footer .app-footer-actions {
     position: absolute;
     right: 0;
     top: 6px;
+    margin-right: 10px;
+  }
+
+  .app-footer button {
     color: #537895;
     background: none;
     border: none;
     font-size: 14px;
     padding: 8px 15px;
-    margin-right: 10px;
+    margin-right: 5px;
     border: 1px solid #ddd;
     border-radius: 20px;
     cursor: pointer;
   }
+
+    .app-footer button.primary {
+      font-weight: bold;
+    }
 
     .app-footer button:hover {
       box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);

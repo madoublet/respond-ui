@@ -6,13 +6,12 @@
   
   <h1>{{ 'Sites' | translate }}</h1>
 
-  <!--
   <div class="app-actions">
-    <button (click)="showAdd()">
+    <button (click)="showAdd()" *ngIf="isSysadmin == true">
       <i class="material-icons">add</i>
-      <span>{{ 'Add Site' | translate }}</span>
+      <span>{{ 'Add Site ' | translate }}</span>
     </button>
-  </div>-->
+  </div>
 
 </menu>
 
@@ -46,5 +45,7 @@
     </p>
   
 </section>
+
+<respond-add-site [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-site>
 
 <respond-drawer active="sites" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

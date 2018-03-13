@@ -104,20 +104,24 @@ export class LoginComponent {
     // show the toast
     this._appService.showToast('success', null);
 
+
     // set language
     this.setLanguage(this.data.user.language);
-
-    // set token
-    this.setToken(this.data.token);
 
     // set status
     this.setStatus(this.data.user.status, this.data.user.days, this.data.user.hasAccount);
 
-    // set syncability
-    this.setSyncability(this.data.sync.canSync);
-
     // set sites
     this.setSites(this.data.user.sites, this.data.user.sysadmin);
+
+    // set syncability
+    localStorage.setItem('can_sync', this.data.sync.canSync);
+
+    // set is sysadmin
+    localStorage.setItem('is_sysadmin', this.data.user.sysadmin);
+
+    // set token
+    localStorage.setItem('id_token', this.data.token);
 
     // set site id
     localStorage.setItem('respond.siteId', this.data.user.siteId);
@@ -162,20 +166,6 @@ export class LoginComponent {
   setSites(sites, sysadmin) {
     localStorage.setItem('respond_sites', JSON.stringify(sites));
     localStorage.setItem('respond_sysadmin', JSON.stringify(sysadmin));
-  }
-
-  /**
-   * Sets whether the site can be synced to another data store (e.g. Amazon S3)
-   */
-  setSyncability(canSync) {
-      localStorage.setItem('can_sync', canSync);
-  }
-
-  /**
-   * Sets the token in local storage
-   */
-  setToken(token) {
-      localStorage.setItem('id_token', token);
   }
 
   /**

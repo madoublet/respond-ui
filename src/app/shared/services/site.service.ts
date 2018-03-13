@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 export class SiteService {
   constructor (private http: Http) {}
 
+  private _addUrl = 'api/sites/add';
   private _createUrl = 'api/sites/create';
   private _listUrl = 'api/sites/list';
   private _subscribeUrl = 'api/payment/subscribe';
@@ -26,11 +27,14 @@ export class SiteService {
   private _switchUrl = 'api/sites/switch';
 
   /**
-   * Login to the application
+   * Create to the application
    *
-   * @param {string} id The site id
+   * @param {string} name The site id
+   * @param {string} theme theme of site
    * @param {string} email The user's login email
    * @param {string} password The user's login password
+   * @param {string} passcode
+   * @param {string} recaptcahResponse
    * @return {Observable}
    */
   create (name: string, theme: string, email: string, password: string, passcode: string, recaptchaResponse: string) {
@@ -45,7 +49,26 @@ export class SiteService {
   }
 
   /**
-   * Swtich sites
+   * Adds a site
+   *
+   * @param {string} name The site id
+   * @param {string} theme theme of site
+   * @return {Observable}
+   */
+  add (name: string, theme: string) {
+
+    let body = JSON.stringify({ name, theme });
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });;
+
+    return this.http.post(this._addUrl, body, options)
+                    .map((res:Response) => res.json());
+
+  }
+
+  /**
+   * Switch sites
    *
    * @param {string} id The site id
    * @return {Observable}

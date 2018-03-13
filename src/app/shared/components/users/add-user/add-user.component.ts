@@ -16,8 +16,9 @@ export class AddUserComponent {
   // model to store
   model: {
     email: '',
-    firstName: '',
-    lastName: '',
+    role: 'admin',
+    firstName: 'New',
+    lastName: 'User',
     password: '',
     retype: '',
     language: 'en'
@@ -34,8 +35,9 @@ export class AddUserComponent {
     // reset model
     this.model = {
       email: '',
-      firstName: '',
-      lastName: '',
+      role: 'admin',
+      firstName: 'New',
+      lastName: 'User',
       password: '',
       retype: '',
       language: 'en'

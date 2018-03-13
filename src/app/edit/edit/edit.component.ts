@@ -127,6 +127,18 @@ export class EditComponent {
   /**
    * Calls save in the editor
    */
+  publish() {
+
+    // show menu in the editor
+    this.el.nativeElement.contentWindow.editor.publish();
+
+    this._appService.showToast('success', null);
+
+  }
+
+  /**
+   * Calls save in the editor
+   */
   update(obj) {
 
     if(obj.type != 'element' && obj.type != 'block') {

@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { SitesRoutingModule } from './sites-routing.module';
 import { SitesComponent } from './sites/sites.component';
+import { AddSiteComponent } from './add-site/add-site.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -13,6 +14,6 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     SitesRoutingModule
   ],
-  declarations: [SitesComponent]
+  declarations: [SitesComponent, AddSiteComponent]
 })
 export class SitesModule { }

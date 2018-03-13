@@ -50,7 +50,10 @@
 </aside>
 
 <footer class="app-footer">
-    <button (click)="save()">{{ 'Save' | translate }}</button>
+    <div class="app-footer-actions">
+        <button (click)="save()">{{ 'Save Draft' | translate }}</button>
+        <button (click)="publish()" class="primary">{{ 'Publish' | translate }}</button>
+    </div>
 </footer>
 
 <section class="edit-main">

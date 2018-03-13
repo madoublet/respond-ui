@@ -17,6 +17,7 @@ export class SitesComponent implements OnInit {
   site: any = {};
   sites: any = [];
   filteredSites: any = [];
+  isSysadmin: boolean = false;
 
   drawerVisible: boolean = false;
   addVisible: boolean = false;
@@ -29,6 +30,7 @@ export class SitesComponent implements OnInit {
 
   ngOnInit() {
     this.id = localStorage.getItem('respond.siteId');
+    this.isSysadmin = (localStorage.getItem('is_sysadmin').toLowerCase()  == 'true');
     this.list('load');
   }
 
