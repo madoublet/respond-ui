@@ -649,32 +649,49 @@ body .app-list {
   font-size: 20px;
 }
 
-.app-status.status-trial {
+/* green */
+.app-status[data-color="green"] {
   background-color: #dff0d8;
   border-top: 1px solid #ddd;
   color: #36763d;
 }
 
-  body .app-main .app-status.status-trial p {
+  body .app-main .app-status[data-color="green"] p {
     color: #36763d;
   }
 
-  .app-status.status-trial i { 
+  .app-status[data-color="green"] i { 
     color: #36763d;
   }
 
-.app-status.status-expired {
+/* red */
+.app-status[data-color="red"] {
   background-color: #FCF6F6;
   border-top: 1px solid #ddd;
   color: #CF4647;
 }
 
-  body .app-main .app-status.status-expired p {
+  body .app-main .app-status[data-color="red"] p {
     color: #CF4647;
   }
 
-  .app-status.status-expired i { 
+  .app-status[data-color="red"] i { 
     color: #CF4647;
+  }
+
+/* yellow */
+.app-status[data-color="yellow"] {
+  background-color: #EDE574;
+  border-top: 1px solid #ddd;
+  color: #111;
+}
+
+  body .app-main .app-status[data-color="red"] p {
+    color: #111;
+  }
+
+  .app-status[data-color="red"] i { 
+    color: #111;
   }
 
 /* modal background */
@@ -717,6 +734,7 @@ body .app-modal {
 
   body .app-modal-body {
     overflow-y: auto;
+    overflow-x: hidden;
     height: calc(100% - 50px);
   }
 
@@ -2172,6 +2190,7 @@ body .dropzone .dz-message {
 
   body .app-modal-body {
     overflow-y: auto;
+    overflow-x: hidden;
     height: 395px;
     border-bottom: 1px solid #ddd;
   }

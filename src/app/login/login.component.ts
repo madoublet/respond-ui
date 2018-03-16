@@ -103,15 +103,13 @@ export class LoginComponent {
     // show the toast
     this._appService.showToast('success', null);
 
-
     // set language
     this.setLanguage(this.data.user.language);
 
-    // set status
-    this.setStatus(this.data.user.status, this.data.user.days, this.data.user.hasAccount);
-
-    // set sites
-    this.setSites(this.data.user.sites, this.data.user.sysadmin);
+    // set color
+    localStorage.setItem('message_color', this.data.message.color);
+    localStorage.setItem('message_text', this.data.message.text);
+    localStorage.setItem('message_link', this.data.message.link);
 
     // set syncability
     localStorage.setItem('can_sync', this.data.sync.canSync);

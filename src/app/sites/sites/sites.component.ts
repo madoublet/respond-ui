@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../../shared/services/app.service';
 import { SiteService } from '../../shared/services/site.service';
 import { DrawerComponent } from 'app/shared/components/drawer/drawer.component';
+import { MessageComponent } from '../../shared/components/message/message.component';
 
 @Component({
   selector: 'app-sites',
@@ -28,6 +29,7 @@ export class SitesComponent implements OnInit {
   search: string = '';
 
   @ViewChild('drawer') private drawer: DrawerComponent;
+  @ViewChild('message') private message: MessageComponent;
 
   constructor(public translate: TranslateService, private _router: Router, private _appService: AppService, private _siteService: SiteService) { }
 
@@ -137,7 +139,6 @@ export class SitesComponent implements OnInit {
     this.site = site;
   }
 
-
   /**
    * Shows the settings dialog
    *
@@ -150,9 +151,16 @@ export class SitesComponent implements OnInit {
                     .subscribe(
                       data => { 
                         this.setToken(data.token);
-                        this.setStatus(data.user.status, data.user.days, data.user.hasAccount);
                         this.setSyncability(data.sync.canSync);
                         this.id = data.user.siteId;
+
+                        // set status
+                        localStorage.setItem('site_status', data.message.status);
+
+                        // set color
+                        localStorage.setItem('message_color', data.message.color);
+                        localStorage.setItem('message_text', data.message.text);
+                        localStorage.setItem('message_link', data.message.link);
 
                         // set site id and role
                         localStorage.setItem('site_id', data.user.siteId);
@@ -160,8 +168,9 @@ export class SitesComponent implements OnInit {
 
                         this._appService.showToast('success', null);
 
-                        // re-init the drawer
+                        // re-init the message
                         this.drawer.init();
+                        this.message.init();
                        },
                       error =>  { this.failure(<any>error); }
                     );
@@ -181,29 +190,6 @@ export class SitesComponent implements OnInit {
    */
   setToken(token) {
       localStorage.setItem('id_token', token);
-  }
-
-  /**
-   * Sets the status
-   */
-  setStatus(status, days, hasAccount) {
-
-      // set 
-      let strHasAccount:string = 'false';
-
-      // set expired
-      if(status == 'Trial' && days < 0) {
-        status = 'Expired';
-      }
-
-      // set has account
-      if(hasAccount == true) {
-        strHasAccount = 'true';
-      }
-
-      localStorage.setItem('site_status', status);
-      localStorage.setItem('site_has_account', strHasAccount);
-      localStorage.setItem('site_trial_days_remaining', days);
   }
 
 

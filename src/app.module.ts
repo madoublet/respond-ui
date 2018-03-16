@@ -28,10 +28,6 @@ import { AdvancedComponent } from './app/advanced/advanced.component';
 import { CodeComponent } from './app/code/code.component';
 import { AddCodeComponent } from './app/shared/components/code/add-code/add-code.component';
 
-// account
-import { AccountComponent } from './app/account/account.component';
-import { UnsubscribeComponent } from './app/shared/components/account/unsubscribe/unsubscribe.component';
-
 // edit
 import { EditComponent } from './app/edit/edit/edit.component';
 import { EditElementComponent } from './app/edit/edit-element/edit-element.component';
@@ -126,7 +122,7 @@ import { SharedModule } from './app/shared/shared.module';
       ResetComponent,
       CreateComponent,
       EditComponent, EditElementComponent, EditBlockComponent, AddBlockComponent, EditImageComponent, EditLinkComponent,
-      AdvancedComponent, CodeComponent, AddCodeComponent, AccountComponent, UnsubscribeComponent,
+      AdvancedComponent, CodeComponent, AddCodeComponent,
       FilesComponent, RemoveFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,

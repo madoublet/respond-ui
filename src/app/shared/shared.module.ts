@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { DrawerComponent } from './components/drawer/drawer.component';
-import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { MessageComponent } from './components/message/message.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { SelectFileComponent } from './components/files/select-file/select-file.component';
 import { DropzoneComponent } from './components/dropzone/dropzone.component';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     DrawerComponent, 
     ConfirmComponent,
-    SubscribeComponent,
+    MessageComponent,
     SelectFileComponent,
     DropzoneComponent
   ],
@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     TranslateModule,
     DrawerComponent,
-    SubscribeComponent,
+    MessageComponent,
     ConfirmComponent,
     SelectFileComponent,
     DropzoneComponent

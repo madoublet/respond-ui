@@ -15,7 +15,6 @@ import { SubmissionsComponent } from './app/submissions/submissions.component';
 import { GalleriesComponent } from './app/galleries/galleries.component';
 import { EditComponent } from './app/edit/edit/edit.component';
 import { AdvancedComponent } from './app/advanced/advanced.component';
-import { AccountComponent } from './app/account/account.component';
 import { CodeComponent } from './app/code/code.component';
 import { environment } from './environments/environment';
 
@@ -91,10 +90,6 @@ const appRoutes: Routes = [
   {
     path: 'advanced',
     component: AdvancedComponent
-  },
-  {
-    path: 'account',
-    component: AccountComponent
   },
   {
     path: 'code/:id',

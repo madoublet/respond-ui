@@ -1,0 +1,52 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
+
+    <h2>{{ 'Site Settings' | translate }}</h2>
+
+    <label>* {{ 'Name' | translate }}</label>
+    <input id="site-settings-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.name"
+      name="name">
+
+    <label>* {{ 'Email' | translate }}</label>
+    <input id="site-settings-email" type="text" maxlength="256" placeholder="" required
+      [(ngModel)]="model.email"
+      name="email">
+  
+    <label>* {{ 'Status' | translate }}</label>
+    <select id="site-settings-status"
+      [(ngModel)]="model.status"
+      name="status" required>
+      <option value="active">{{ 'Active' | translate }}</option>
+      <option value="trial">{{ 'Trial' | translate }}</option>\
+    </select>  
+
+    <label>* {{ 'Message' | translate }}</label>
+    <select id="site-settings-messageColor"
+      [(ngModel)]="model.messageColor"
+      name="messageColor" required>
+      <option value="none">{{ 'None' | translate }}</option>
+      <option value="green">{{ 'Green' | translate }}</option>
+      <option value="yellow">{{ 'Yellow' | translate }}</option>
+      <option value="red">{{ 'Red' | translate }}</option>
+    </select>  
+
+    <label>{{ 'Text' | translate }}</label>
+    <input id="site-settings-messageText" type="text" maxlength="512" placeholder=""
+      [(ngModel)]="model.messageText"
+      name="messageText"> 
+
+    <label>{{ 'Link' | translate }}</label>
+    <input id="site-settings-messageLink" type="text" maxlength="256" placeholder=""
+      [(ngModel)]="model.messageLink"
+      name="messageLink"> 
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

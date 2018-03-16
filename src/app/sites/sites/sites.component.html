@@ -1,4 +1,4 @@
-<respond-subscribe></respond-subscribe>
+<respond-message #message></respond-message>
 
 <menu class="app-menu">
 
@@ -32,9 +32,7 @@
           {{ site.email }}
         </small>
         <div class="app-list-actions">
-            <!--
-            <a (click)="showRemove(site)">{{'Remove' | translate }}</a>
-            <a (click)="showSettings(site)">{{'Settings' | translate }}</a> -->
+            <a *ngIf="isSysadmin == true" (click)="showSettings(site)">{{'Settings' | translate }}</a>
             <a class="primary" (click)="switch(site)">{{'Switch' | translate }}</a>
         </div>
       </div>
@@ -47,5 +45,6 @@
 </section>
 
 <respond-add-site [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-site>
+<respond-site-settings [site]="site" [visible]="settingsVisible" (onCancel)="reset()" (onUpdate)="list('update')" (onError)="failure($event)"></respond-site-settings>
 
 <respond-drawer #drawer active="sites" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

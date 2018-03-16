@@ -9,6 +9,7 @@ export class SiteService {
   constructor (private http: Http) {}
 
   private _addUrl = 'api/sites/add';
+  private _updateUrl = 'api/sites/update';
   private _createUrl = 'api/sites/create';
   private _listUrl = 'api/sites/list';
   private _subscribeUrl = 'api/payment/subscribe';
@@ -20,10 +21,10 @@ export class SiteService {
   private _templateUrl = 'api/sites/republish/templates';
   private _listTemplatesUrl = 'api/templates/list';
   private _listPluginsUrl = 'api/plugins/list';
-  private _updateUrl = 'api/sites/update/plugins';
+  private _updatePluginsUrl = 'api/sites/update/plugins';
   private _removePluginUrl = 'api/plugins/remove';
   private _retrieveSubscriptionUrl = 'api/payment/subscription/retrieve';
-  private _syncUrl = 'api/cloud/sync';
+  private _syncUrl = 'api/sites/sync';
   private _switchUrl = 'api/sites/switch';
 
   /**
@@ -64,6 +65,29 @@ export class SiteService {
 
     return this.http.post(this._addUrl, body, options)
                     .map((res:Response) => res.json());
+
+  }
+
+  /**
+   * Update sites
+   *
+   * @param {string} id The site id
+   * @param {string} name
+   * @param {string} email
+   * @param {string} status
+   * @param {string} messageColor
+   * @param {string} messageText
+   * @param {string} messageLink
+   * @return {Observable}
+   */
+  update (id: string, name: string, email: string, status: string, messageColor: string, messageText: string, messageLink: string) {
+
+    let body = JSON.stringify({ id, name, email, status, messageColor, messageText, messageLink });
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._updateUrl, body, options);
 
   }
 
@@ -241,7 +265,7 @@ export class SiteService {
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this._updateUrl, options);
+    return this.http.get(this._updatePluginsUrl, options);
 
   }
 

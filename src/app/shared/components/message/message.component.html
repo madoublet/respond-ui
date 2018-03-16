@@ -1,0 +1,4 @@
+<a class="app-status" *ngIf="showMessage" (click)="navigate()" [attr.data-color]="messageColor">
+  <p>{{ messageText }}</p>
+  <i *ngIf="canNavigate"  class="material-icons">keyboard_arrow_right</i>
+</a>
