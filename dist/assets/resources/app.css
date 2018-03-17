@@ -257,6 +257,7 @@ body .app-list {
   body .app-list-item {
     position: relative;
   }
+  
 
   body .app-list-item.active {
     background-color: #EBF2F7;
@@ -276,6 +277,11 @@ body .app-list {
 
   body .app-list-item.image {
     padding-left: 80px;
+    min-height: 50px;
+  }
+
+  body .app-list-item.icon {
+    padding-left: 65px;
     min-height: 50px;
   }
 
@@ -433,6 +439,39 @@ body .app-list {
     display: block;
     height: 15px;
   }
+
+/* message icon */
+body .app-list-item .message-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: inline-block;
+  font-size: 15px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+/* green */
+body .app-list-item .message-icon[data-color="green"] {
+  background-color: #dff0d8;
+  color: #36763d;
+}
+
+/* red */
+body .app-list-item .message-icon[data-color="red"] {
+  background-color: #FCF6F6;
+  color: #CF4647;
+}
+
+/* yellow */
+body .app-list-item .message-icon[data-color="yellow"] {
+  background-color: #ffffe0;
+  color: #111;
+}
 
 /* app-overflow */
 .app-drawer, .app-overflow {
@@ -681,7 +720,7 @@ body .app-list {
 
 /* yellow */
 .app-status[data-color="yellow"] {
-  background-color: #EDE574;
+  background-color: #ffffe0;
   border-top: 1px solid #ddd;
   color: #111;
 }

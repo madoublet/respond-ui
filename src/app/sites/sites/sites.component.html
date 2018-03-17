@@ -23,10 +23,11 @@
     </div>
 
     <div id="sites-list" class="app-list">
-      <div class="app-list-item" *ngFor="let site of filteredSites" (mouseenter)="setActive(site)" (click)="setActive(site)" [class.selected]="site === selectedSite" [class.active]="site.id === id">
+      <div class="app-list-item" *ngFor="let site of filteredSites" (mouseenter)="setActive(site)" (click)="setActive(site)" [class.selected]="site === selectedSite" [class.active]="site.id === id" [class.icon]="site.messageColor != 'none'">
+        <i *ngIf="site.messageColor != 'none'" [attr.data-color]="site.messageColor" class="material-icons message-icon">message</i>
         <h2>
           <span class="primary"><a (click)="edit(site)">{{ site.name }}</a></span>
-          <span class="secondary">{{ site.id }}</span>
+          <span class="secondary">{{ site.status }}</span>
         </h2>
         <small>
           {{ site.email }}
