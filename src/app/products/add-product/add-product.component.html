@@ -12,11 +12,6 @@
         (keyup)="onKey($event)"
         name="name">
       
-      <label>* {{ 'Url' | translate }}</label>
-      <input id="add-product-url" type="text" maxlength="128" placeholder="" required
-        [(ngModel)]="model.url"
-        name="url">
-
       <label>* {{ 'ID' | translate }}</label>
       <input id="add-product-id" type="text" maxlength="128" placeholder="" required
         [(ngModel)]="model.id"
@@ -31,6 +26,17 @@
       <input id="add-product-price" type="number" maxlength="128" placeholder="" required
         [(ngModel)]="model.price"
         name="price">
+
+      <div class="app-modal-sub-section">
+
+        <label class="app-modal-checkbox"><input type="checkbox" [checked]="generatePage" (change)="generatePage = !generatePage"> {{ 'Create a page for this product' | translate }}</label>  
+
+        <label>{{ 'Url' | translate }}</label>
+        <input id="add-product-url" type="text" maxlength="128" placeholder=""
+          [(ngModel)]="model.url"
+          name="url" class="small-bottom-margin">
+
+      </div>  
 
       <label>{{ 'Will the product be shipped?' | translate }}</label>
       <select id="add-product-is-shipped"

@@ -40,6 +40,7 @@ export class DropzoneComponent {
     // set dropzone options
     var options = {
       url: this._url,
+      timeout: 180000,
       headers: {}
     };
 

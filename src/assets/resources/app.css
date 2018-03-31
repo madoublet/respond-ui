@@ -793,6 +793,13 @@ body .app-modal {
     padding: 0 0 5px 0;
   }
 
+  body .app-modal label .optional {
+    color: #888;
+    font-size: 12px;
+    float: right;
+    text-transform: uppercase;
+  }
+
   body .app-modal label a {
     float: right;
     cursor: pointer;
@@ -807,6 +814,10 @@ body .app-modal {
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
+  }
+
+  body .app-modal input.small-bottom-margin {
+    margin-bottom: 7px;
   }
 
   body .app-modal input[type=color] {
@@ -951,6 +962,22 @@ body .app-modal {
     text-transform: uppercase;
   }
 
+  body .app-modal-sub-section {
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #EBF2F7;
+    margin-bottom: 15px;  
+  }
+
+  body .app-modal-sub-section label.app-modal-checkbox { 
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  body .app-modal-sub-section input[type=text] {
+    margin-bottom: 0;
+  } 
+
   /* app-modal-list */
   body .app-modal-list {
     height: 320px;
@@ -963,6 +990,10 @@ body .app-modal {
     overflow: hidden;
     overflow-y: scroll;
   }
+
+    body #files-list.app-modal-list {
+      height: 285px;
+    }
 
     body .app-modal-list .app-modal-list-item {
       position: relative;
@@ -1448,7 +1479,7 @@ body .app-form.standalone {
     display: block;
     margin: 0;
     padding: 0 0 5px 0;
-    max-width: 250px;
+    max-width: 275px;
   }
 
   body .app-form label a {

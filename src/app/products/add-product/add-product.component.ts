@@ -11,6 +11,7 @@ export class AddProductComponent {
 
   // model to store
   model: any;
+  generatePage: boolean = true;
 
   _visible: boolean = false;
 
@@ -19,6 +20,8 @@ export class AddProductComponent {
 
     // set visible
     this._visible = visible;
+
+    this.generatePage = true;
 
     // reset model
     this.model = {
@@ -83,6 +86,10 @@ export class AddProductComponent {
    * Submits the form
    */
   submit() {
+
+    if(this.generatePage == false) {
+      this.model.url = '';
+    }
 
     this._productService.add(this.model.id, this.model.url, this.model.name, this.model.description, this.model.shipped, this.model.price, this.model.file, this.model.subscription, this.model.plan, this.model.planPrice)
                      .subscribe(
