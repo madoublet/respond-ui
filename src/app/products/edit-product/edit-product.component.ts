@@ -197,6 +197,8 @@ export class EditProductComponent {
   select(event) {
 
     let caption = '', id = Math.random().toString(36).substr(2, 9).toUpperCase();
+
+    console.log(event);
     
     this._productService.addImage(id, event.name, event.url, event.thumb, caption, this.product.id)
                               .subscribe(

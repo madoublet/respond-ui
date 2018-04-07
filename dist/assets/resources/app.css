@@ -1016,7 +1016,6 @@ body .app-modal {
 
     body .app-modal-list .app-list-item small {
       color: #888;
-      text-transform: uppercase;
     }
 
     body .app-modal-list .app-list-item h2 span {
@@ -1084,7 +1083,6 @@ body .app-modal {
       padding: 0 0 15px 0;
       font-size: 11px;
       color: #537895;
-      text-transform: uppercase;
     }
 
     body .app-modal-list-item h2 span.secondary {

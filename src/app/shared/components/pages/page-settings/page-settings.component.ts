@@ -101,8 +101,8 @@ export class PageSettingsComponent {
    * Handles the selection of an image
    */
   select(event) {
-    this.model.photo = 'files/' + event.name;
-    this.model.thumb = 'files/thumbs/' + event.name;
+    this.model.photo = event.url;
+    this.model.thumb = event.thumb;
     this.selectVisible = false;
   }
 

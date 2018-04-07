@@ -41,7 +41,11 @@
       <i class="sortable-handle material-icons">apps</i>
       
       <h2><span class="primary"><a (click)="showEditImage(image)">{{ image.name }}</a></span></h2>
-      <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
+      
+      <img *ngIf="image.thumb !== '' && image.thumb.includes('//') == false" class="image" src="sites/{{id}}/{{image.thumb}}">
+      <img *ngIf="image.thumb !== '' && image.thumb.includes('//') == true" class="image" src="{{image.thumb}}">
+
+
       <small>{{ image.caption }}</small>
       <div class="app-list-actions">
           <a (click)="showRemoveImage(image)">{{ 'Remove' | translate }}</a>

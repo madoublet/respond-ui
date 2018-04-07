@@ -89,8 +89,7 @@ export class EditImageComponent {
    */
   select(event) {
 
-    // set src to selected file
-    this.model.src = 'files/' + event.name;
+    this.model.src = event.url;
 
     // reset
     this.reset();

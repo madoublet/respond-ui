@@ -21,7 +21,7 @@
     <div class="app-list-item" *ngFor="let file of filteredFiles" (mouseenter)="setActive(file)" (click)="setActive(file)" [class.selected]="file === selectedFile" [class.image]="file.thumb !== ''">
       <h2><span class="primary">{{ file.name }}</span><span class="secondary">{{ file.size }} MB</span></h2>
       <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
-      <small>/files/{{ file.name }}</small>
+      <small>{{ file.url }}</small>
       <div class="app-list-actions">
           <a (click)="showRemove(file)">{{ 'Remove' | translate }}</a>
       </div>

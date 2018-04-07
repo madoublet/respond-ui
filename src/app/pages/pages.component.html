@@ -40,7 +40,8 @@
         </svg>
         <span class="secondary">{{ page.lastModifiedDate | timeAgo }}</span>
       </h2>
-      <img *ngIf="page.thumb !== ''" class="image" src="sites/{{id}}/{{page.thumb}}">
+      <img *ngIf="page.thumb !== '' && page.thumb.includes('//') == false" class="image" src="sites/{{id}}/{{page.thumb}}">
+      <img *ngIf="page.thumb !== '' && page.thumb.includes('//') == true" class="image" src="{{page.thumb}}">
       <small>
         {{ page.url }}
       </small>

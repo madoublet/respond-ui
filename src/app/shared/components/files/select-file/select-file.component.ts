@@ -9,6 +9,7 @@ import { FileService } from '../../../../shared/services/file.service';
 
 export class SelectFileComponent {
 
+  id: string;
   file: any;
   files: any;
   filteredFiles: any = [];
@@ -37,6 +38,8 @@ export class SelectFileComponent {
    * Init files
    */
   ngOnInit() {
+
+    this.id = localStorage.getItem('site_id');
 
     this.list();
 
