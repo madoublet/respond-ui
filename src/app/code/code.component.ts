@@ -30,6 +30,7 @@ export class CodeComponent {
   drawerVisible: boolean = false;
   path: string = '/';
   confirmVisible: boolean = false;
+  hasChanged: boolean = false;
   selectedFile: string = 'index.html'
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService, private _appService: AppService) {}
@@ -81,7 +82,12 @@ export class CodeComponent {
    * Navigates back
    */
   back() {
-    this.confirmVisible = true; 
+    if(this.hasChanged == true) {
+      this.confirmVisible = true;
+    }
+    else {
+      this.continueNavigation();
+    }
   }
 
   /**
@@ -192,6 +198,12 @@ export class CodeComponent {
     this.editor.blur();
     this.editor.session.selection.clearSelection();
 
+    var context = this;
+
+    this.editor.on('change', function() {
+      context.hasChanged = true;
+    });
+
   }
 
   /**
@@ -224,7 +236,7 @@ export class CodeComponent {
     // save code from the editor
     this._codeService.save(this.editor.getValue(), this.codeUrl)
                      .subscribe(
-                       data => { this.success(); this.list(); },
+                       data => { this.success(); this.list(); this.hasChanged = false; },
                        error =>  { this.failure(<any>error); }
                       );
 

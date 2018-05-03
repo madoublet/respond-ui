@@ -19,6 +19,9 @@ export class EditComponent {
   fullPageUrl: string;
   mode: string = 'page';
 
+  // changed
+  hasChanged: boolean = false;
+
   // visibles
   confirmVisible: boolean = false;
   editImageVisible: boolean = false;
@@ -83,9 +86,9 @@ export class EditComponent {
         this._appService.retrieveSettings()
                          .subscribe(
                            data => {
-                             this.siteUrl = data.siteUrl;
-                             this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
-                             this.fullPageUrl = this.siteUrl + '/' + this.pageUrl;
+                              this.siteUrl = data.siteUrl;
+                              this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
+                              this.fullPageUrl = this.siteUrl + '/' + this.pageUrl;
                            },
                            error =>  { }
                           );
@@ -108,8 +111,12 @@ export class EditComponent {
    */
   back() {
 
-    this.confirmVisible = true;
-    
+    if(this.hasChanged == true) {
+      this.confirmVisible = true;
+    }
+    else {
+      this.continueNavigation();
+    }
   }
 
   /**
@@ -119,6 +126,7 @@ export class EditComponent {
 
     // show menu in the editor
     this.el.nativeElement.contentWindow.editor.save();
+    this.hasChanged = false;
 
     this._appService.showToast('success', null);
 
@@ -131,6 +139,7 @@ export class EditComponent {
 
     // show menu in the editor
     this.el.nativeElement.contentWindow.editor.publish();
+    this.hasChanged = false;
 
     this._appService.showToast('success', null);
 
@@ -248,7 +257,9 @@ export class EditComponent {
 
     // look for element in message
     if(data.type && data.properties) {
-    
+
+
+
       // show the appropriate modal
       if(data.type == 'image') {
         this.type = 'image';
@@ -268,10 +279,15 @@ export class EditComponent {
       else if(data.type == 'element'){
         this.type = 'element';
         this.element.properties = data.properties;
+        
         if(data.attributes != null && data.attributes != undefined) {
           this.element.attributes = data.attributes;
         }
         this.editMenuVisible = true;
+      }
+      else if(data.type == 'editorChanged') {
+        this.hasChanged = true;
+        console.log('[respond] set this.hasChanged=true');
       }
       
     }

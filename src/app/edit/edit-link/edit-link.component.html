@@ -4,6 +4,11 @@
 
     <h2>{{ 'Edit Element' | translate }}</h2>
 
+    <label>{{ 'HTML' | translate }}</label>
+    <input id="edit-element-html" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.html"
+      name="html">
+
     <label>{{ 'ID' | translate }}</label>
     <input id="edit-element-id" type="text" maxlength="128" placeholder=""
       [(ngModel)]="model.id"

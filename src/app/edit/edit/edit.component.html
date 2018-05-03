@@ -24,7 +24,7 @@
             <span>{{ 'Add Layout' | translate }}</span>
         </button>
 
-        <button (click)="showAdd()">
+        <button (click)="showAdd()" class="hide-wide-screen">
             <i class="material-icons">add</i>
             <span>{{ 'Add Content' | translate }}</span>
         </button>
@@ -60,7 +60,7 @@
     <iframe #editFrame [src]="url" class="edit-frame"></iframe>
 </section>
 
-<respond-drawer active="pages" [confirm]="true" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
+<respond-drawer active="pages" [confirm]="hasChanged" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
 
 <respond-add-block [visible]="addBlockVisible" (onCancel)="reset()" (onUpdate)="addBlock($event)"></respond-add-block>
 

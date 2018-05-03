@@ -22,6 +22,7 @@ export class EditLinkComponent {
   // model to store
   _title: string = 'Link';
   _properties: any = {
+                      html: '',
                       id: '',
                       cssClass: '',
                       href: '',
@@ -48,6 +49,7 @@ export class EditLinkComponent {
     this._properties = properties;
 
     // set model
+    this.model.html = properties.html;
     this.model.id = properties.id;
     this.model.cssClass = properties.cssClass;
     this.model.href = properties.href;

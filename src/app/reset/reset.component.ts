@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AppService } from '../shared/services/app.service';
 
@@ -16,10 +16,14 @@ export class ResetComponent {
   errorMessage;
   logoUrl;
 
-  constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute) {}
+  constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute, private _router: Router) {}
 
   ngOnInit() {
       this.logoUrl = '';
+
+      this._route.params.subscribe(params => {
+        this.token = params['token'];
+      });
 
       // retrieve settings
       this.settings();
