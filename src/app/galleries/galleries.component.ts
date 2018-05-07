@@ -74,7 +74,7 @@ export class GalleriesComponent {
 
     this._galleryService.list()
                      .subscribe(
-                       data => { this.galleries = data; this.success(); },
+                      (data: any) => { this.galleries = data; this.success(); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -119,7 +119,7 @@ export class GalleriesComponent {
 
     this._galleryImageService.list(this.selectedGallery.id)
                      .subscribe(
-                       data => { this.images = data; },
+                      (data: any) => { this.images = data; },
                        error => { this.failure(<any>error); }
                       );
 
@@ -212,7 +212,7 @@ export class GalleriesComponent {
 
    this._galleryImageService.add(event.name, event.url, event.thumb, caption, this.selectedGallery.id)
                    .subscribe(
-                     data => { this.listImages(); this._appService.showToast('success', null); },
+                    (data: any) => { this.listImages(); this._appService.showToast('success', null); },
                      error => { this.failure(<any>error); }
                     );
 
@@ -283,7 +283,7 @@ export class GalleriesComponent {
 
     this._galleryImageService.updateOrder(this.images, this.selectedGallery.id)
                      .subscribe(
-                       data => { this._appService.showToast('success', 'Order updated successfully'); },
+                      (data: any) => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -293,7 +293,7 @@ export class GalleriesComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.data);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

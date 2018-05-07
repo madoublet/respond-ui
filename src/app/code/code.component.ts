@@ -97,7 +97,7 @@ export class CodeComponent {
 
     this._codeService.retrieve(this.codeUrl)
                      .subscribe(
-                       data => { this.setupEditor(data); },
+                      (data: any) => { this.setupEditor(data); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -165,7 +165,7 @@ export class CodeComponent {
 
     this._codeService.listFiles(this.path)
                       .subscribe(
-                        data => { this.files = data; },
+                        (data: any) => { this.files = data; },
                         error =>  { this.failure(<any>error); }
                       );
   }
@@ -211,7 +211,7 @@ export class CodeComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
     //  this._router.navigate( ['/login'] );
@@ -236,7 +236,7 @@ export class CodeComponent {
     // save code from the editor
     this._codeService.save(this.editor.getValue(), this.codeUrl)
                      .subscribe(
-                       data => { this.success(); this.list(); this.hasChanged = false; },
+                       (data: any) => { this.success(); this.list(); this.hasChanged = false; },
                        error =>  { this.failure(<any>error); }
                       );
 

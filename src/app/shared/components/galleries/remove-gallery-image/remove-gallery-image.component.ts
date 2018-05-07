@@ -75,7 +75,7 @@ export class RemoveGalleryImageComponent {
 
     this._galleryImageService.remove(this.model.id, this.gallery.id)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

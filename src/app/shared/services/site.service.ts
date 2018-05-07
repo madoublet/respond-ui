@@ -1,12 +1,11 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SiteService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _addUrl = 'api/sites/add';
   private _updateUrl = 'api/sites/update';
@@ -25,6 +24,7 @@ export class SiteService {
   private _removePluginUrl = 'api/plugins/remove';
   private _retrieveSubscriptionUrl = 'api/payment/subscription/retrieve';
   private _syncUrl = 'api/sites/sync';
+  private _zipUrl = 'api/sites/zip';
   private _switchUrl = 'api/sites/switch';
 
   /**
@@ -40,12 +40,17 @@ export class SiteService {
    */
   create (name: string, theme: string, email: string, password: string, passcode: string, recaptchaResponse: string) {
 
-    let body = JSON.stringify({ name, theme, email, password, passcode, recaptchaResponse });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.post(this._createUrl, body, options)
-                    .map((res:Response) => res.json());
+    // data
+    let data = { name, theme, email, password, passcode, recaptchaResponse };
+
+    return this.http.post(this._createUrl, data, options);
 
   }
 
@@ -58,13 +63,16 @@ export class SiteService {
    */
   add (name: string, theme: string) {
 
-    let body = JSON.stringify({ name, theme });
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });;
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.post(this._addUrl, body, options)
-                    .map((res:Response) => res.json());
+    let data = { name, theme };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -82,12 +90,18 @@ export class SiteService {
    */
   update (id: string, name: string, email: string, status: string, messageColor: string, messageText: string, messageLink: string) {
 
-    let body = JSON.stringify({ id, name, email, status, messageColor, messageText, messageLink });
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._updateUrl, body, options);
+    // data
+    let data = { id, name, email, status, messageColor, messageText, messageLink };
+
+    return this.http.post(this._updateUrl, data, options);
 
   }
 
@@ -99,13 +113,16 @@ export class SiteService {
    */
   switch (id: string) {
 
-    let body = JSON.stringify({ id });
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });;
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.post(this._switchUrl, body, options)
-                    .map((res:Response) => res.json());
+    let data = { id };
+
+    return this.http.post(this._switchUrl, data, options);
 
   }
 
@@ -115,11 +132,14 @@ export class SiteService {
    */
   list () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -131,13 +151,16 @@ export class SiteService {
    */
   subscribe (token: string, email: string) {
 
-    let body = JSON.stringify({ token, email });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    let data = { token, email };
 
-    return this.http.post(this._subscribeUrl, body, options);
+    return this.http.post(this._subscribeUrl, data, options);
 
   }
 
@@ -148,13 +171,16 @@ export class SiteService {
    */
   unsubscribe () {
 
-    let body = JSON.stringify({  });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    let data = { };
 
-    return this.http.post(this._unsubscribeUrl, body, options);
+    return this.http.post(this._unsubscribeUrl, data, options);
 
   }
 
@@ -163,11 +189,15 @@ export class SiteService {
    *
    */
   retrieveSubscription () {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._retrieveSubscriptionUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._retrieveSubscriptionUrl, options);
   }
 
   /**
@@ -177,9 +207,12 @@ export class SiteService {
    */
   reload () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
     return this.http.get(this._reloadUrl, options);
 
@@ -192,9 +225,12 @@ export class SiteService {
    */
   reindex () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
     return this.http.get(this._reindexUrl, options);
 
@@ -207,9 +243,12 @@ export class SiteService {
    */
   sitemap () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
     return this.http.get(this._sitemapUrl, options);
 
@@ -222,9 +261,12 @@ export class SiteService {
    */
   republishTemplates () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
     return this.http.get(this._templateUrl, options);
 
@@ -235,11 +277,15 @@ export class SiteService {
    *
    */
   listTemplates () {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listTemplatesUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._listTemplatesUrl, options);
   }
 
   /**
@@ -247,11 +293,15 @@ export class SiteService {
    *
    */
   listPlugins () {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listPluginsUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._listPluginsUrl, options);
   }
 
   /**
@@ -261,9 +311,12 @@ export class SiteService {
    */
   updatePlugins () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
     return this.http.get(this._updatePluginsUrl, options);
 
@@ -277,12 +330,16 @@ export class SiteService {
    */
   removePlugin (selector: string) {
 
-    let body = JSON.stringify({ selector });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.post(this._removePluginUrl, body, options);
+    let data = { selector };
+
+    return this.http.post(this._removePluginUrl, data, options);
 
   }
 
@@ -293,13 +350,34 @@ export class SiteService {
    */
   sync () {
     
-      let headers = new Headers();
-      headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-      let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
   
       return this.http.get(this._syncUrl, options);
   
-    }
+  }
+
+  /**
+   * Downloads the site as a zip file
+   *
+   * @return {Observable}
+   */
+  zip () {
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
+
+    return this.http.get(this._zipUrl, options);
+
+  }
 
 
 }

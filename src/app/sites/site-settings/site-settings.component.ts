@@ -79,7 +79,7 @@ export class SiteSettingsComponent {
 
     this._siteService.update(this.model.id, this.model.name, this.model.email, this.model.status, this.model.messageColor, this.model.messageText, this.model.messageLink)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
@@ -101,7 +101,7 @@ export class SiteSettingsComponent {
     console.log('settings failure');
     console.log(obj);
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
   }
 
 }

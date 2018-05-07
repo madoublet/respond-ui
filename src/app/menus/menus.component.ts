@@ -74,7 +74,7 @@ export class MenusComponent {
 
     this._menuService.list()
                      .subscribe(
-                       data => { this.menus = data; this.success(); },
+                      (data: any) => { this.menus = data; this.success(); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -119,7 +119,7 @@ export class MenusComponent {
 
     this._menuItemService.list(this.selectedMenu.id)
                      .subscribe(
-                       data => { this.items = data; },
+                      (data: any) => { this.items = data; },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -265,7 +265,7 @@ export class MenusComponent {
 
     this._menuItemService.updateOrder(this.selectedMenu.id, this.items)
                      .subscribe(
-                       data => { this._appService.showToast('success', 'Order updated successfully'); },
+                      (data: any) => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -275,7 +275,7 @@ export class MenusComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/users/list';
   private _loginUrl = 'api/users/login';
@@ -22,12 +22,18 @@ export class UserService {
    *
    */
   list () {
-    
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
-  
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
+
+    // data
+    let data = {};
+
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -40,12 +46,16 @@ export class UserService {
    */
   login (id: string, email: string, password: string) {
 
-    let body = JSON.stringify({ id, email, password });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
 
-    return this.http.post(this._loginUrl, body, options)
-                    .map((res:Response) => res.json());
+    // data
+    let data = {id, email, password};
+    
+    return this.http.post(this._loginUrl, data, options);
 
   }
 
@@ -58,11 +68,17 @@ export class UserService {
    */
   forgot (email: string) {
 
-    let body = JSON.stringify({ email });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+     // options
+     let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._forgotUrl, body, options);
+    // data
+    let data = { email };
+
+    return this.http.post(this._forgotUrl, data, options);
 
   }
 
@@ -76,11 +92,17 @@ export class UserService {
    */
   reset (token: string, password: string) {
 
-    let body = JSON.stringify({ token, password });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._resetUrl, body, options);
+    // data
+    let data = { token, password };
+
+    return this.http.post(this._resetUrl, data, options);
 
   }
 
@@ -94,11 +116,16 @@ export class UserService {
    */
   hasMultipleSites (email: string) {
 
-    let body = JSON.stringify({ email });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
 
-    return this.http.post(this._countUrl, body, options);
+    // data
+    let data = { email };
+
+    return this.http.post(this._countUrl, data, options);
 
   }
 
@@ -114,12 +141,18 @@ export class UserService {
    */
   add (email: string, role: string, firstName: string, lastName: string, password: string, language: string) {
 
-    let body = JSON.stringify({ email, role, firstName, lastName, password, language });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, options);
+    // data
+    let data = { email, role, firstName, lastName, password, language };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -136,12 +169,22 @@ export class UserService {
    */
   edit (email: string, role: string, firstName: string, lastName: string, password: string, language: string) {
 
-    let body = JSON.stringify({ email, role, firstName, lastName, password, language });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, options);
+    // data
+    let data = { email, role, firstName, lastName, password, language };
+
+    let response = this.http.post(this._editUrl, data, options);
+
+    console.log(response);
+
+    return response;
 
   }
 
@@ -153,12 +196,18 @@ export class UserService {
    */
   remove (email: string) {
 
-    let body = JSON.stringify({ email });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { email };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 

@@ -49,7 +49,7 @@ export class PluginsComponent {
     this.reset();
     this._siteService.listPlugins()
                      .subscribe(
-                       data => { this.plugins = data; },
+                      (data: any) => { this.plugins = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -94,7 +94,7 @@ export class PluginsComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

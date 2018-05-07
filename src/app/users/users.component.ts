@@ -37,19 +37,23 @@ export class UsersComponent {
     this.user = {};
     this.users = [];
 
-    this.list();
+    this.list('load');
 
   }
 
   /**
    * Updates the list
    */
-  list() {
+  list(source) {
+
+    if(source != 'load') {
+      this._appService.showToast('success', null);
+    }
 
     this.reset();
     this._userService.list()
                      .subscribe(
-                       data => { this.users = data; },
+                      (data: any) => { this.users = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -113,7 +117,7 @@ export class UsersComponent {
    */
   failure (obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

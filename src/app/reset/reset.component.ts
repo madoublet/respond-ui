@@ -37,7 +37,7 @@ export class ResetComponent {
     // list themes in the app
     this._appService.retrieveSettings()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.logoUrl = data.logoUrl;
                        },
                        error =>  { this.failure(<any>error); }
@@ -58,7 +58,7 @@ export class ResetComponent {
       else {
         this._userService.reset(this.token, password)
                      .subscribe(
-                       () => { this._appService.showToast('success', null); },
+                       () => { this._appService.showToast('success', 'Success! Login with your new password.'); this._router.navigate( ['/login'] ); },
                        error =>  { this.failure(<any>error); }
                       );
       }
@@ -70,7 +70,7 @@ export class ResetComponent {
    */
   failure (obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
   }
 

@@ -60,7 +60,7 @@ export class AddSiteComponent {
     // list themes in the app
     this._appService.listThemes()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.themes = data;
                        },
                        error =>  { this.failure(<any>error); }
@@ -82,7 +82,7 @@ export class AddSiteComponent {
 
     this._siteService.add(this.model.name, this.model.theme)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
@@ -100,7 +100,7 @@ export class AddSiteComponent {
    * handles errors
    */
   failure(obj) {
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
   }
 
 }

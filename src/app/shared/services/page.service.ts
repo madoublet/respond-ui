@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class PageService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/pages/list';
   private _addUrl = 'api/pages/add';
@@ -18,11 +18,14 @@ export class PageService {
    *
    */
   list () {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -35,13 +38,18 @@ export class PageService {
    */
   add (url: string, title: string, description: string, template: string) {
 
-    let body = JSON.stringify({ url, title, description, template });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // data
+    let data = { url, title, description, template };
 
-    return this.http.post(this._addUrl, body, options);
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -63,12 +71,18 @@ export class PageService {
    */
   updateSettings (url: string, title: string, description: string, keywords: string, tags: string, callout: string, language: string, direction: string, template: string, customHeader: string, customFooter: string, photo: string, thumb: string, location: string) {
 
-    let body = JSON.stringify({ url, title, description, keywords, tags, callout, language, direction, template, customHeader, customFooter, photo, thumb, location });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._updateSettingsUrl, body, options);
+    // data
+    let data = { url, title, description, keywords, tags, callout, language, direction, template, customHeader, customFooter, photo, thumb, location };
+
+    return this.http.post(this._updateSettingsUrl, data, options);
 
   }
 
@@ -80,12 +94,18 @@ export class PageService {
    */
   remove (url: string) {
 
-    let body = JSON.stringify({ url });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+     // options
+     let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removePageUrl, body, options);
+    // data
+    let data = { url  };
+
+    return this.http.post(this._removePageUrl, data, options);
 
   }
 

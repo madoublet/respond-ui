@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CodeService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _retrieveUrl = 'api/code/retrieve';
   private _saveUrl = 'api/code/save';
@@ -20,11 +20,14 @@ export class CodeService {
    */
   listFiles (dir: string) {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listFilesUrl + '?dir=' + dir, options).map((res:Response) => res.json());
+    return this.http.get(this._listFilesUrl + '?dir=' + dir, options);
   }
 
   /**
@@ -32,11 +35,17 @@ export class CodeService {
    *
    */
   list (type: string) {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl + '/' + type, options).map((res:Response) => res.json());
+    // data
+    let data = {};
+
+    return this.http.get(this._listUrl + '/' + type, options);
   }
 
   /**
@@ -47,11 +56,15 @@ export class CodeService {
    */
   retrieve (url: string) {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.get(this._retrieveUrl + '?url=' + url, options).map((res:Response) => res.text());
+    return this.http.get(this._retrieveUrl + '?url=' + url, options);
 
   }
 
@@ -64,12 +77,18 @@ export class CodeService {
    */
   save (value: string, url: string) {
 
-    let body = JSON.stringify({ value, url });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+     // options
+     let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._saveUrl, body, options);
+    // data
+    let data = { value, url };
+
+    return this.http.post(this._saveUrl, data, options);
 
   }
 
@@ -82,12 +101,18 @@ export class CodeService {
    */
   add (type: string, name: string) {
 
-    let body = JSON.stringify({ type, name });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, options);
+    // data
+    let data = { type, name };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 

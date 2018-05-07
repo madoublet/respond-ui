@@ -60,7 +60,7 @@ export class SelectFileComponent {
     this.reset();
     this._fileService.list()
                      .subscribe(
-                       data => { this.files = data; this.copy() },
+                       (data: any) => { this.files = data; this.copy() },
                        error =>  { this.onError.emit(<any>error); }
                       );
   }

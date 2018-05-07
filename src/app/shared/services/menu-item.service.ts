@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MenuItemService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/menus/items/list';
   private _addUrl = 'api/menus/items/add';
@@ -22,11 +22,14 @@ export class MenuItemService {
 
     var url = this._listUrl + '/' + encodeURI(id);
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(url, options).map((res:Response) => res.json());
+    return this.http.get(url, options);
   }
 
   /**
@@ -42,12 +45,18 @@ export class MenuItemService {
    */
   add (id: string, html: string, cssClass: string, isNested: boolean, url: string, target: string) {
 
-    let body = JSON.stringify({ id, html, cssClass, isNested, url, target });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, options);
+    // data
+    let data = { id, html, cssClass, isNested, url, target };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -65,12 +74,18 @@ export class MenuItemService {
    */
   edit (id: string, index: number, html: string, cssClass: string, isNested: boolean, url: string, target: string) {
 
-    let body = JSON.stringify({ id, index, html, cssClass, isNested, url, target });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, options);
+    // data
+    let data = { id, index, html, cssClass, isNested, url, target };
+
+    return this.http.post(this._editUrl, data, options);
 
   }
 
@@ -83,12 +98,18 @@ export class MenuItemService {
    */
   remove (id: string, index: number) {
 
-    let body = JSON.stringify({ id, index });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { id, index };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 
@@ -100,13 +121,19 @@ export class MenuItemService {
    * @return {Observable}
    */
   updateOrder (id, items) {
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    let body = JSON.stringify({ id, items });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // data
+    let data = { id, items };
 
-    return this.http.post(this._updateOrderUrl, body, options);
+    return this.http.post(this._updateOrderUrl, data, options);
 
   }
 

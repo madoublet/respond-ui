@@ -52,7 +52,7 @@ export class SettingsComponent {
 
     this._settingService.list()
                      .subscribe(
-                       data => { this.setupTabs(data); },
+                      (data: any) => { this.setupTabs(data); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -110,7 +110,7 @@ export class SettingsComponent {
 
     this._settingService.edit(data)
                      .subscribe(
-                       data => { this.success(); this.list(); },
+                      (data: any) => { this.success(); this.list(); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -171,7 +171,7 @@ export class SettingsComponent {
    */
   failure (obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

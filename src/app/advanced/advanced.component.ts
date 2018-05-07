@@ -19,6 +19,7 @@ export class AdvancedComponent {
   drawerVisible: boolean = false;
   settingsVisible: boolean = false;
   canSync: boolean = false;
+  siteUrl: string = null;
 
   constructor (private _siteService: SiteService, private _router: Router, private _appService: AppService) {}
 
@@ -34,7 +35,24 @@ export class AdvancedComponent {
     this.drawerVisible = false;
 
     this.list();
+    this.settings();
 
+  }
+
+  /**
+   * Get settings
+   */
+  settings() {
+
+    // retrieve settings
+    this._appService.retrieveSettings()
+                     .subscribe(
+                       (data: any) => {
+                         this.siteUrl = data.siteUrl;
+                         this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
+                       },
+                       error =>  { }
+                      );
   }
 
   /**
@@ -75,7 +93,7 @@ export class AdvancedComponent {
 
     this._siteService.reload()
                      .subscribe(
-                       data => { 
+                       (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
@@ -90,7 +108,7 @@ export class AdvancedComponent {
 
     this._siteService.reindex()
                       .subscribe(
-                        data => { 
+                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
@@ -104,7 +122,7 @@ export class AdvancedComponent {
   sitemap() {
     this._siteService.sitemap()
                       .subscribe(
-                        data => { 
+                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
@@ -117,7 +135,7 @@ export class AdvancedComponent {
   templates() {
     this._siteService.republishTemplates()
                       .subscribe(
-                        data => { 
+                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
@@ -130,7 +148,7 @@ export class AdvancedComponent {
   update() {
     this._siteService.updatePlugins()
                       .subscribe(
-                        data => { 
+                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
@@ -143,13 +161,27 @@ export class AdvancedComponent {
   sync() {
     this._siteService.sync()
                       .subscribe(
-                        data => { 
+                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
                       error =>  { this.failure(<any>error); }
                       );
   }
 
+  /**
+   * Downloads the site as a ZIP file
+   */
+  zip() {
+    this._siteService.zip()
+                      .subscribe(
+                        (data: any) => { 
+                          this._appService.showToast('success', null); 
+
+                          window.open(this.siteUrl + '/archive.zip', '');
+                      },
+                      error =>  { this.failure(<any>error); }
+                      );
+  }
 
   /**
    * handles error
@@ -157,7 +189,7 @@ export class AdvancedComponent {
   failure (obj) {
 
     console.log(obj);
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

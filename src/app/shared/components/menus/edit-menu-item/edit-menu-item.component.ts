@@ -80,7 +80,7 @@ export class EditMenuItemComponent {
     // list pages
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; },
+                      (data: any) => { this.pages = data; },
                        error =>  this.errorMessage = <any>error
                       );
 
@@ -101,7 +101,7 @@ export class EditMenuItemComponent {
 
     this._menuItemService.edit(this.menu.id, this.index, this.model.html, this.model.cssClass, this.model.isNested, this.model.url, this.model.target)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

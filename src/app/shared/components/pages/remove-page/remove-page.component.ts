@@ -72,7 +72,7 @@ export class RemovePageComponent {
 
     this._pageService.remove(this.model.url)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

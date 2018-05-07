@@ -71,7 +71,7 @@ export class RemoveFormComponent {
 
     this._formService.remove(this.model.id)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

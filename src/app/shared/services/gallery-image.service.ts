@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class GalleryImageService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/galleries/images/list';
   private _addUrl = 'api/galleries/images/add';
@@ -22,11 +22,14 @@ export class GalleryImageService {
 
     let url = this._listUrl + '/' + encodeURI(galleryId);
     
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(url, options).map((res:Response) => res.json());
+    return this.http.get(url, options);
   }
 
   /**
@@ -40,12 +43,18 @@ export class GalleryImageService {
    */
   add (name: string, url: string, thumb: string, caption: string, galleryId: string) {
 
-    let body = JSON.stringify({ name, url, thumb, caption, galleryId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let _options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, _options);
+    // data
+    let data = { name, url, thumb, caption, galleryId };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -59,12 +68,18 @@ export class GalleryImageService {
    */
   edit (id: string, caption: string, galleryId: string) {
 
-    let body = JSON.stringify({ id, caption, galleryId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let _options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, _options);
+    // data
+    let data = { id, caption, galleryId };
+
+    return this.http.post(this._editUrl, data, options);
 
   }
 
@@ -76,12 +91,18 @@ export class GalleryImageService {
    */
   remove (id: string, galleryId: string) {
 
-    let body = JSON.stringify({ id, galleryId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { id, galleryId };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 
@@ -94,12 +115,18 @@ export class GalleryImageService {
    */
   updateOrder (images, galleryId: string) {
 
-    let body = JSON.stringify({ images, galleryId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._updateOrderUrl, body, options);
+    // data
+    let data = { images, galleryId };
+
+    return this.http.post(this._updateOrderUrl, data, options);
 
   }
 

@@ -81,7 +81,7 @@ export class EditProductImageComponent {
 
     this._productService.editImage(this.model.id, this.model.caption, this._productId)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

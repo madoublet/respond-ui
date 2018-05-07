@@ -66,7 +66,7 @@ export class RemoveComponentComponent {
 
     this._componentService.remove(this.model.url)
                      .subscribe(
-                       data => { this.success(); },
+                      (data:any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

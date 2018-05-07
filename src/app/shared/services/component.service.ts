@@ -1,12 +1,12 @@
-import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable }  from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ComponentService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/components/list';
   private _addUrl = 'api/components/add';
@@ -17,11 +17,18 @@ export class ComponentService {
    *
    */
   list () {
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+    // data
+    let data = {};
+
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -32,13 +39,18 @@ export class ComponentService {
    */
   add (name: string, url: string, codeOnly: boolean) {
 
-    let body = JSON.stringify({ name, url, codeOnly });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // data
+    let data = { name, url, codeOnly };
 
-    return this.http.post(this._addUrl, body, options);
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -50,12 +62,18 @@ export class ComponentService {
    */
   remove (url: string) {
 
-    let body = JSON.stringify({ url });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { url };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 

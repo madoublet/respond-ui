@@ -81,7 +81,7 @@ export class RemoveProductImageComponent {
 
     this._productService.removeImage(this.model.id, this._productId)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

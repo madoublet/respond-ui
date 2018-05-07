@@ -85,7 +85,7 @@ export class EditComponent {
         // retrieve settings
         this._appService.retrieveSettings()
                          .subscribe(
-                           data => {
+                          (data: any) => {
                               this.siteUrl = data.siteUrl;
                               this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
                               this.fullPageUrl = this.siteUrl + '/' + this.pageUrl;

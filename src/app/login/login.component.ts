@@ -45,7 +45,7 @@ export class LoginComponent {
 
     this._appService.retrieveSettings()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.logoUrl = data.logoUrl;
                          this.acknowledgement = data.acknowledgement;
                          this.defaultLanguage = data.defaultLanguage;
@@ -89,7 +89,7 @@ export class LoginComponent {
       // login
       this._userService.login(id, email, password)
                    .subscribe(
-                     data => { this.data = data; this.success(); },
+                    (data: any) => { this.data = data; this.success(); },
                      error => { this.failure(<any>error); }
                     );
 
@@ -214,7 +214,7 @@ export class LoginComponent {
     }
     
     // show the toast
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
   }
 

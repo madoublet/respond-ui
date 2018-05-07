@@ -70,7 +70,7 @@ export class RemoveGalleryComponent {
 
     this._galleryService.remove(this.model.id)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

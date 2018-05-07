@@ -76,7 +76,7 @@ export class RemoveFormFieldComponent {
 
     this._formFieldService.remove(this.form.id, this.index)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

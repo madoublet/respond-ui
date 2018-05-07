@@ -14,7 +14,6 @@ import { AppComponent }   from './app.component';
 import { SortablejsModule } from 'angular-sortablejs';
 
 // http
-import { HttpModule, Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 // logon, forgot, reset, create
@@ -139,7 +138,6 @@ import { SharedModule } from './app/shared/shared.module';
       FormsModule,
       RouterModule,
       routing,
-      HttpModule,
       HttpClientModule,
       TranslateModule.forRoot({
             loader: {

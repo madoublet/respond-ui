@@ -174,7 +174,7 @@ export class EditElementComponent {
   listForms() {
     this._formService.list()
                      .subscribe(
-                       data => { this.forms = data; },
+                      (data: any) => { this.forms = data; },
                        error =>  { }
                       );
   }
@@ -185,7 +185,7 @@ export class EditElementComponent {
   listGalleries() {
     this._gallerySerivce.list()
                      .subscribe(
-                       data => { this.galleries = data; },
+                      (data: any) => { this.galleries = data; },
                        error =>  { }
                       );
   }
@@ -196,7 +196,7 @@ export class EditElementComponent {
   listPages() {
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; },
+                      (data: any) => { this.pages = data; },
                        error =>  { }
                       );
   }
@@ -207,7 +207,7 @@ export class EditElementComponent {
   listComponents() {
     this._componentService.list()
                      .subscribe(
-                       data => { this.components = data; },
+                      (data: any) => { this.components = data; },
                        error =>  { }
                       );
   }
@@ -218,7 +218,7 @@ export class EditElementComponent {
   listProducts() {
     this._productService.list()
                      .subscribe(
-                       data => { this.products = data; },
+                      (data: any) => { this.products = data; },
                        error =>  { }
                       );
   }

@@ -54,13 +54,13 @@ export class AddPageComponent {
 
     this._routeService.list()
                      .subscribe(
-                       data => { this.routes = data; },
+                      (data: any) => { this.routes = data; },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
     this._siteService.listTemplates()
                      .subscribe(
-                       data => { this.templates = data; },
+                      (data: any) => { this.templates = data; },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
@@ -91,7 +91,7 @@ export class AddPageComponent {
 
     this._pageService.add(fullUrl, this.model.title, this.model.description, this.model.template)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

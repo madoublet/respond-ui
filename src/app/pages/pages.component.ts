@@ -75,14 +75,14 @@ export class PagesComponent {
     // list pages
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; this.copy(); },
+                      (data: any) => { this.pages = data; this.copy(); },
                        error =>  { this.failure(<any>error); }
                       );
 
     // list routes
     this._routeService.list()
                      .subscribe(
-                       data => { this.routes = data; },
+                      (data: any) => { this.routes = data; },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -258,7 +258,7 @@ export class PagesComponent {
    */
   failure (obj) {
     
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
     
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

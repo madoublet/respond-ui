@@ -73,7 +73,7 @@ export class FormsComponent {
 
     this._formService.list()
                      .subscribe(
-                       data => { this.forms = data; this.success(); },
+                      (data: any) => { this.forms = data; this.success(); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -118,7 +118,7 @@ export class FormsComponent {
 
     this._formFieldService.list(this.selectedForm.id)
                      .subscribe(
-                       data => { this.fields = data; },
+                      (data: any) => { this.fields = data; },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -263,7 +263,7 @@ export class FormsComponent {
 
     this._formFieldService.updateOrder(this.selectedForm.id, this.fields)
                      .subscribe(
-                       data => { this._appService.showToast('success', 'Order updated successfully'); },
+                       (data: any) => { this._appService.showToast('success', 'Order updated successfully'); },
                        error =>  this.errorMessage = <any>error
                       );
   }
@@ -273,7 +273,7 @@ export class FormsComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

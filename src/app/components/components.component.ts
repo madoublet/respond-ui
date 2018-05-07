@@ -54,7 +54,7 @@ export class ComponentsComponent {
     this.reset();
     this._componentService.list()
                      .subscribe(
-                       data => { this.components = data; },
+                      (data: any) => { this.components = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -134,7 +134,7 @@ export class ComponentsComponent {
    */
   failure (obj: any) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

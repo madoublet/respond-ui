@@ -60,7 +60,7 @@ export class AddCodeComponent {
 
     this._codeService.add(this.model.type, this.model.name)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

@@ -88,7 +88,7 @@ export class EditProductComponent {
 
     this._productService.retrieve(this.product.id)
                      .subscribe(
-                       data => { 
+                      (data: any) => { 
                           context.product.name = data.name;
                           context.product.description = data.description;
                           context.product.shipped = data.shipped;
@@ -202,7 +202,7 @@ export class EditProductComponent {
     
     this._productService.addImage(id, event.name, event.url, event.thumb, caption, this.product.id)
                               .subscribe(
-                                data => { this.success(); },
+                                (data: any) => { this.success(); },
                                 error =>  { this.failure(<any>error); }
                               );
 
@@ -237,7 +237,7 @@ export class EditProductComponent {
 
     this._productService.updateImageOrder(this.product.images, this.product.id)
                       .subscribe(
-                        data => { this._appService.showToast('success', 'Order updated successfully'); },
+                        (data: any) => { this._appService.showToast('success', 'Order updated successfully'); },
                         error =>  { this.failure(<any>error); }
                       );
   }
@@ -248,7 +248,7 @@ export class EditProductComponent {
   submit() {
     this._productService.edit(this.product.id, this.product.name, this.product.description, this.product.shipped, this.product.price, this.product.file, this.product.subscription, this.product.plan, this.product.planPrice)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -266,7 +266,7 @@ export class EditProductComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

@@ -78,7 +78,7 @@ export class CreateComponent {
 
       this._siteService.create(this.model.name, this.selectedTheme.location, this.model.email, this.model.password, this.model.passcode, this.recaptchaResponse)
                    .subscribe(
-                     data => { this.site = data; this.success(); },
+                    (data: any) => { this.site = data; this.success(); },
                      error =>  { this.failure(<any>error); }
                     );
 
@@ -92,7 +92,7 @@ export class CreateComponent {
     // list themes in the app
     this._appService.retrieveSettings()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.hasPasscode = data.hasPasscode;
                          this.logoUrl = data.logoUrl;
                          this.acknowledgement = data.acknowledgement;
@@ -115,7 +115,7 @@ export class CreateComponent {
     // list themes in the app
     this._appService.listThemes()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.themes = data;
                          this.selectedTheme = this.themes[0];
                          this.selectedThemeIndex = 0;
@@ -200,7 +200,7 @@ export class CreateComponent {
    * handles errors
    */
   failure(obj) {
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
   }
 
   /**

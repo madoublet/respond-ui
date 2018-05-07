@@ -1,11 +1,11 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/products/list';
   private _retrieveUrl = 'api/products/retrieve';
@@ -25,11 +25,14 @@ export class ProductService {
    */
   list () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -40,11 +43,14 @@ export class ProductService {
    */
   retrieve (id: string) {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._retrieveUrl + '/' + id, options).map((res:Response) => res.json());
+    return this.http.get(this._retrieveUrl + '/' + id, options);
   }
 
   /**
@@ -64,12 +70,18 @@ export class ProductService {
    */
   add (id: string, url: string, name: string, description: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ id, url, name, description, shipped, price, file, subscription, plan, planPrice });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let _options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, _options);
+    // data
+    let data = { id, url, name, description, shipped, price, file, subscription, plan, planPrice };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -88,12 +100,18 @@ export class ProductService {
    */
   edit (id: string, name: string, description: string, shipped: boolean, price: number, file: string, subscription: boolean, plan: string, planPrice: string) {
 
-    let body = JSON.stringify({ id, name, description, shipped, price, file, subscription, plan, planPrice });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let _options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, _options);
+    // data
+    let data = { id, name, description, shipped, price, file, subscription, plan, planPrice };
+
+    return this.http.post(this._editUrl, data, options);
 
   }
 
@@ -105,12 +123,18 @@ export class ProductService {
    */
   remove (id: string) {
 
-    let body = JSON.stringify({ id });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { id };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 
@@ -125,12 +149,18 @@ export class ProductService {
    */
   addImage (id: string, name: string, url: string, thumb: string, caption: string, productId: string) {
 
-    let body = JSON.stringify({ id, name, url, thumb, caption, productId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let _options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addImagesUrl, body, _options);
+    // data
+    let data = { id, name, url, thumb, caption, productId };
+
+    return this.http.post(this._addImagesUrl, data, options);
 
   }
 
@@ -143,12 +173,18 @@ export class ProductService {
    */
   updateImageOrder (images, productId: string) {
 
-    let body = JSON.stringify({ images, productId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._updateImageOrderUrl, body, options);
+    // data
+    let data = { images, productId };
+
+    return this.http.post(this._updateImageOrderUrl, data, options);
 
   }
 
@@ -160,12 +196,18 @@ export class ProductService {
    */
   removeImage (id: string, productId: string) {
 
-    let body = JSON.stringify({ id, productId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeImagesUrl, body, options);
+    // data
+    let data = { id, productId };
+
+    return this.http.post(this._removeImagesUrl, data, options);
 
   }
 
@@ -177,12 +219,18 @@ export class ProductService {
    */
   editImage (id: string, caption: string, productId: string) {
 
-    let body = JSON.stringify({ id, caption, productId });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editImagesUrl, body, options);
+    // data
+    let data = { id, caption, productId };
+
+    return this.http.post(this._editImagesUrl, data, options);
 
   }
 

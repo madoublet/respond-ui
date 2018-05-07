@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/operator/map';
+
 
 @Component({
     selector: 'respond-app',

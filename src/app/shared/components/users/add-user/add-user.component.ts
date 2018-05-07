@@ -68,7 +68,7 @@ export class AddUserComponent {
   list() {
     this._appService.listLanguages()
                      .subscribe(
-                       data => { this.languages = data;},
+                      (data: any) => { this.languages = data;},
                        error =>  { this.onError.emit(<any>error); }
                       );
   }
@@ -97,7 +97,7 @@ export class AddUserComponent {
     // add user
     this._userService.add(this.model.email, this.model.role, this.model.firstName, this.model.lastName, this.model.password, this.model.language)
                      .subscribe(
-                       data => { this.success(); },
+                      () => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

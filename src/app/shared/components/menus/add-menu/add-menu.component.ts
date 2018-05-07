@@ -61,7 +61,7 @@ export class AddMenuComponent {
 
     this._menuService.add(this.model.name)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

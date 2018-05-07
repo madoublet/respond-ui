@@ -93,7 +93,7 @@ export class AddProductComponent {
 
     this._productService.add(this.model.id, this.model.url, this.model.name, this.model.description, this.model.shipped, this.model.price, this.model.file, this.model.subscription, this.model.plan, this.model.planPrice)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

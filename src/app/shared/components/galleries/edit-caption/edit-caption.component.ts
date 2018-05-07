@@ -77,7 +77,7 @@ export class EditCaptionComponent {
 
     this._galleryImageService.edit(this.model.id, this.model.caption, this.gallery.id)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

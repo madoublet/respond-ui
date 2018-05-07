@@ -35,7 +35,7 @@ export class ForgotComponent {
     // list themes in the app
     this._appService.retrieveSettings()
                      .subscribe(
-                       data => {
+                      (data: any) => {
                          this.logoUrl = data.logoUrl;
                        },
                        error =>  { this.failure(<any>error); }
@@ -52,7 +52,7 @@ export class ForgotComponent {
 
       this._userService.forgot(email)
                    .subscribe(
-                     () => { this._appService.showToast('success', null); },
+                     () => { this._appService.showToast('success', 'Success! Check your email for the link to reset your password.'); },
                      error =>  { this.failure(<any>error); }
                     );
 
@@ -63,7 +63,7 @@ export class ForgotComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 409) {
       this.hasMultipleSites = true;

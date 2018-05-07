@@ -50,13 +50,13 @@ export class PageSettingsComponent {
 
     this._routeService.list()
                      .subscribe(
-                       data => { this.routes = data; },
+                      (data: any) => { this.routes = data; },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
     this._siteService.listTemplates()
                      .subscribe(
-                       data => { this.templates = data; },
+                      (data: any) => { this.templates = data; },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
@@ -77,7 +77,7 @@ export class PageSettingsComponent {
 
     this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.tags, this.model.callout, this.model.language, this.model.direction, this.model.template, this.model.customHeader, this.model.customFooter, this.model.photo, this.model.thumb, this.model.location)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.errorMessage = this.onError.emit(<any>error); }
                       );
 

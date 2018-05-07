@@ -61,7 +61,7 @@ export class AddGalleryComponent {
 
     this._galleryService.add(this.model.name)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

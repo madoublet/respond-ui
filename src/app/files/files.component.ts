@@ -59,7 +59,7 @@ export class FilesComponent {
     this.reset();
     this._fileService.list()
                      .subscribe(
-                       data => { this.files = data; this.copy(); },
+                       (data: any) => { this.files = data; this.copy(); },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -132,7 +132,7 @@ export class FilesComponent {
    */
   failure(obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

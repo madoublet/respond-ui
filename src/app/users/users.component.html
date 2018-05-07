@@ -32,10 +32,10 @@
 
 </section>
 
-<respond-add-user [visible]="addVisible" (onCancel)="reset()" (onAdd)="list()" (onError)="failure($event)"></respond-add-user>
+<respond-add-user [visible]="addVisible" (onCancel)="reset()" (onAdd)="list('add')" (onError)="failure($event)"></respond-add-user>
 
-<respond-edit-user [visible]="editVisible" [user]="user" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-edit-user>
+<respond-edit-user [visible]="editVisible" [user]="user" (onCancel)="reset()" (onUpdate)="list('edit')" (onError)="failure($event)"></respond-edit-user>
 
-<respond-remove-user [visible]="removeVisible" [user]="user" (onCancel)="reset()" (onUpdate)="list()" (onError)="failure($event)"></respond-remove-user>
+<respond-remove-user [visible]="removeVisible" [user]="user" (onCancel)="reset()" (onUpdate)="list('remove')" (onError)="failure($event)"></respond-remove-user>
 
 <respond-drawer active="users" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>

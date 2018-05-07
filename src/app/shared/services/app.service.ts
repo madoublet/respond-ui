@@ -1,7 +1,7 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 
@@ -9,8 +9,7 @@ declare var toast: any;
 
 @Injectable()
 export class AppService {
-  constructor (private http: Http, private translate: TranslateService) {}
-
+  constructor (private http: HttpClient, private translate: TranslateService) {}
 
   private _settingsUrl = 'api/app/settings';
   private _themesListUrl = 'api/themes/list';
@@ -24,7 +23,7 @@ export class AppService {
    */
   retrieveSettings () {
 
-    return this.http.get(this._settingsUrl).map((res:Response) => res.json());
+    return this.http.get(this._settingsUrl);
 
   }
 
@@ -33,7 +32,7 @@ export class AppService {
    */
   listThemes () {
 
-    return this.http.get(this._themesListUrl).map((res:Response) => res.json());
+    return this.http.get(this._themesListUrl);
 
   }
 
@@ -42,7 +41,7 @@ export class AppService {
    */
   listLanguages () {
 
-    return this.http.get(this._languagesListUrl).map((res:Response) => res.json());
+    return this.http.get(this._languagesListUrl);
 
   }
 
@@ -60,6 +59,8 @@ export class AppService {
     else if(text == null || text == '') {
       text = 'Uncategorized message';
     }
+
+    console.log(text);
 
     this.translate.get(text).subscribe((res: string) => {
       toast.show(type, res);

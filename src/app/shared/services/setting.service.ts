@@ -1,12 +1,12 @@
-import {Injectable}     from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Headers, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable }     from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SettingService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/settings/list';
   private _editUrl = 'api/settings/edit';
@@ -17,13 +17,14 @@ export class SettingService {
    */
   list () {
 
-    var url = this._listUrl;
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.get(url, options).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -34,12 +35,18 @@ export class SettingService {
    */
   edit (settings) {
 
-    let body = JSON.stringify({ settings });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, options);
+    // data
+    let data = { settings };
+
+    return this.http.post(this._editUrl, data, options);
 
   }
 

@@ -76,7 +76,7 @@ export class RemoveMenuItemComponent {
 
     this._menuItemService.remove(this.menu.id, this.index)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

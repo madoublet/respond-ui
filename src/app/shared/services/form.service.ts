@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class FormService {
-  constructor (private http: Http) {}
+  constructor (private http: HttpClient) {}
 
   private _listUrl = 'api/forms/list';
   private _addUrl = 'api/forms/add';
@@ -19,11 +19,17 @@ export class FormService {
    */
   list () {
 
-    let headers = new Headers();
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      })};
 
-    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
+    // data
+    let data = {};
+
+    return this.http.get(this._listUrl, options);
   }
 
   /**
@@ -35,12 +41,18 @@ export class FormService {
    */
   add (name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
 
-    let body = JSON.stringify({ name, cssClass, validate, success, error, recaptchaError, notify });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._addUrl, body, options);
+    // data
+    let data = { name, cssClass, validate, success, error, recaptchaError, notify };
+
+    return this.http.post(this._addUrl, data, options);
 
   }
 
@@ -52,12 +64,18 @@ export class FormService {
    */
   edit (id: string, name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
 
-    let body = JSON.stringify({ id, name, cssClass, validate, success, error, recaptchaError, notify });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._editUrl, body, options);
+    // data
+    let data = { id, name, cssClass, validate, success, error, recaptchaError, notify };
+
+    return this.http.post(this._editUrl, data, options);
 
   }
 
@@ -69,12 +87,18 @@ export class FormService {
    */
   remove (id: string) {
 
-    let body = JSON.stringify({ id });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
-    let options = new RequestOptions({ headers: headers });
+    // options
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
+      }),
+      responseType: 'text' as 'text'};
 
-    return this.http.post(this._removeUrl, body, options);
+    // data
+    let data = { id };
+
+    return this.http.post(this._removeUrl, data, options);
 
   }
 

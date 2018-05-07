@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
     // list pages
     this._productService.list()
                     .subscribe(
-                      data => { this.products = data; this.copy(); },
+                      (data: any) => { this.products = data; this.copy(); },
                       error =>  { this.failure(<any>error); }
                     );
   }
@@ -157,7 +157,7 @@ export class ProductsComponent implements OnInit {
 
     console.log(obj);
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

@@ -65,7 +65,7 @@ export class RemovePluginComponent {
 
     this._siteService.removePlugin(this.model.selector)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error => { this.onError.emit(<any>error) }
                       );
 

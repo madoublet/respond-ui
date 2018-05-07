@@ -61,7 +61,7 @@ export class SitesComponent implements OnInit {
     // list pages
     this._siteService.list()
                     .subscribe(
-                      data => { this.sites = data; this.copy(); },
+                      (data: any) => { this.sites = data; this.copy(); },
                       error =>  { this.failure(<any>error); }
                     );
   }
@@ -149,7 +149,7 @@ export class SitesComponent implements OnInit {
 
     this._siteService.switch(site.id)
                     .subscribe(
-                      data => { 
+                      (data: any) => { 
                         this.setToken(data.token);
                         this.setSyncability(data.sync.canSync);
                         this.id = data.user.siteId;
@@ -200,7 +200,7 @@ export class SitesComponent implements OnInit {
 
     console.log(obj);
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

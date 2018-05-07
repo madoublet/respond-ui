@@ -48,7 +48,7 @@ export class SubmissionsComponent {
     this.reset();
     this._submissionService.list()
                      .subscribe(
-                       data => { this.submissions = data; },
+                      (data: any) => { this.submissions = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -104,7 +104,7 @@ export class SubmissionsComponent {
    */
   failure (obj) {
 
-    this._appService.showToast('failure', obj._body);
+    this._appService.showToast('failure', obj.error);
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );

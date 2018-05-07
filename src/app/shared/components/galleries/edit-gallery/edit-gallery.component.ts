@@ -65,7 +65,7 @@ export class EditGalleryComponent {
 
     this._galleryService.edit(this.model.id, this.model.name)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

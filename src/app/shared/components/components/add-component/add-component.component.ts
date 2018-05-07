@@ -67,7 +67,7 @@ export class AddComponentComponent {
     // add component
     this._componentService.add(this.model.name, this.model.url, this.model.codeOnly)
                      .subscribe(
-                       data => { this.success(); },
+                      (data: any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 

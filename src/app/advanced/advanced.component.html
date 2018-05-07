@@ -20,6 +20,14 @@
     </div>
     <!-- sync -->
 
+    <div class="app-list-item" (mouseenter)="setActive('zip')" (click)="setActive('zip')" [class.selected]="selectedOption === 'zip'">
+      <h2><span class="primary">{{ 'Download Site as ZIP' | translate }}</span></h2>
+      <p>{{ 'Allows you to download your site as a ZIP file.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="zip()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- plugins -->
 
     <div class="app-list-item" (mouseenter)="setActive('plugins')" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
       <h2><span class="primary">{{ 'Re-publish Plugins' | translate }}</span></h2>
@@ -64,7 +72,7 @@
           <a class="primary" (click)="update()">{{'Execute' | translate }}</a>
       </div>
     </div>
-    <!-- republish template -->
+    <!-- update plugins -->
 
   </div>
 

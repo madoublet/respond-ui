@@ -59,7 +59,7 @@ export class SelectPageComponent {
     this.reset();
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; this.copy(); },
+                      (data: any) => { this.pages = data; this.copy(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
   }

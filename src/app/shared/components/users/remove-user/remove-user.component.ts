@@ -66,7 +66,7 @@ export class RemoveUserComponent {
 
     this._userService.remove(this.model.email)
                      .subscribe(
-                       data => { this.success(); },
+                       (data:any) => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
