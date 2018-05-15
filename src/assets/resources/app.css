@@ -145,10 +145,19 @@ body .app-main {
     padding-top: 20px;
   }
 
+/* edit-main */
 body .edit-main {
   height: 100%;
   padding: 0;
   margin: 0;
+}
+
+body .preview-frame {
+  position: relative;
+  width: calc(100% - 250px);
+  height: calc(100% - 100px);;
+  margin: 50px 0 0 250px;
+  padding: 0;
 }
 
 /* .edit-frame */
@@ -1377,6 +1386,32 @@ body .app-edit-menu-section {
     margin: 0 1px 10px 0;
     width: 30px;
     height: 29px;
+  }
+
+  /* rounded color picker */
+  body .edit-menu-color-group {
+    position: relative;
+    margin: 20px 0;
+  }
+
+  body .app-edit-menu-section .edit-menu-color-group .color-picker-wrapper {
+    position: absolute;
+    right: 0;
+    top: -7px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  body .app-edit-menu-section .edit-menu-color-group .color-picker-wrapper input[type=color] {
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+    cursor: pointer;
   }
 
   body .app-edit-menu-section .text-shadow-container {

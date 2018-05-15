@@ -16,6 +16,7 @@ import { GalleriesComponent } from './app/galleries/galleries.component';
 import { EditComponent } from './app/edit/edit/edit.component';
 import { AdvancedComponent } from './app/advanced/advanced.component';
 import { CodeComponent } from './app/code/code.component';
+import { ThemeComponent } from './app/theme/theme.component';
 import { environment } from './environments/environment';
 
 const appRoutes: Routes = [
@@ -94,6 +95,10 @@ const appRoutes: Routes = [
   {
     path: 'code/:id',
     component: CodeComponent
+  },
+  {
+    path: 'theme',
+    component: ThemeComponent
   },
   {
     path: 'products',

@@ -35,6 +35,9 @@ import { AddBlockComponent } from './app/edit/add-block/add-block.component';
 import { EditImageComponent } from './app/edit/edit-image/edit-image.component';
 import { EditLinkComponent } from './app/edit/edit-link/edit-link.component';
 
+// theme
+import { ThemeComponent } from './app/theme/theme.component';
+
 // files
 import { FilesComponent } from './app/files/files.component';
 import { RemoveFileComponent } from './app/shared/components/files/remove-file/remove-file.component';
@@ -120,6 +123,7 @@ import { SharedModule } from './app/shared/shared.module';
       ForgotComponent,
       ResetComponent,
       CreateComponent,
+      ThemeComponent,
       EditComponent, EditElementComponent, EditBlockComponent, AddBlockComponent, EditImageComponent, EditLinkComponent,
       AdvancedComponent, CodeComponent, AddCodeComponent,
       FilesComponent, RemoveFileComponent, PluginsComponent, RemovePluginComponent,

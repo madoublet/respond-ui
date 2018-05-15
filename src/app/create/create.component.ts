@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SiteService } from '../shared/services/site.service';
 import { AppService } from '../shared/services/app.service';
 import { ElementRef, ViewChild } from '@angular/core';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 declare var grecaptcha: any;
 
@@ -28,10 +29,11 @@ export class CreateComponent {
   recaptchaResponse;
   acknowledgement;
   defaultLanguage: any;
+  url: SafeResourceUrl;
 
   @ViewChild('container') container: ElementRef;
 
-  constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router, private _translate: TranslateService) {
+  constructor (private _sanitizer: DomSanitizer, private _siteService: SiteService, private _appService: AppService, private _router: Router, private _translate: TranslateService) {
     window['verifyCallback'] = this.verifyCallback.bind(this);
     window['onloadCallback'] = this.onloadCallback.bind(this)
   }
@@ -120,6 +122,7 @@ export class CreateComponent {
                          this.selectedTheme = this.themes[0];
                          this.selectedThemeIndex = 0;
                          this.visible = false;
+                         this.url = this._sanitizer.bypassSecurityTrustResourceUrl('themes' + this.selectedTheme.location);
                        },
                        error =>  { this.failure(<any>error); }
                       );
@@ -140,7 +143,8 @@ export class CreateComponent {
 
     // set new theme
     this.selectedTheme = this.themes[this.selectedThemeIndex];
-
+    this.url = this._sanitizer.bypassSecurityTrustResourceUrl('themes' + this.selectedTheme.location);
+                      
   }
 
   /**
@@ -150,6 +154,9 @@ export class CreateComponent {
 
     this.selectedThemeIndex = index;
     this.selectedTheme = this.themes[this.selectedThemeIndex];
+    this.url = this._sanitizer.bypassSecurityTrustResourceUrl('themes' + this.selectedTheme.location);
+                       
+    
 
     window.scrollTo(0, 0);
   }
