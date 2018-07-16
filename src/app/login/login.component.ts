@@ -56,6 +56,9 @@ export class LoginComponent {
                          // set language
                          this.setLanguage(this.defaultLanguage);
 
+                         // set features
+                         this.setFeatures(data);
+
                          // set activation
                          this.setActivation(data.activationMethod, data.activationUrl, data.stripeAmount, data.stripeName, data.stripeDescription, data.stripePublishableKey, data.stripeCurrency)
                        },
@@ -202,6 +205,15 @@ export class LoginComponent {
       localStorage.setItem('stripe_publishable_key', stripePublishableKey);
       localStorage.setItem('stripe_currency', stripeCurrency);
 
+  }
+  
+  /**
+   * Sets the features for the app
+   */
+  setFeatures(data: any) {
+    
+    localStorage.setItem('product_feature', data.productFeature);
+    localStorage.setItem('top_menu_feature', data.topMenuFeature);
   }
     
   /**

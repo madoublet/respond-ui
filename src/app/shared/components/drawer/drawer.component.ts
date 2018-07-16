@@ -26,6 +26,8 @@ export class DrawerComponent {
   _active: string;
   _confirm: boolean = false;
 
+  showProducts: boolean = false;
+
   @Input()
   set confirm(confirm: boolean){
     this._confirm = confirm;
@@ -70,10 +72,18 @@ export class DrawerComponent {
     this.confirmVisible = false;
     this.mode = localStorage.getItem('respond_mode');
 
-    var url = window.location.href;
+    // hide products if feature is disabled
+    let productFeature = localStorage.getItem('product_feature');
+    
+    if(productFeature == 'disable') {
+      this.showProducts = false;
+    }
 
-    if(url.indexOf('?dev') !== -1) {
-      this.dev = true;
+    // hide products if feature is disabled
+    let topMenuFeature = localStorage.getItem('top_menu_feature');
+
+    if(topMenuFeature == 'enable') {
+      document.body.setAttribute('show-top-menu', '');
     }
 
     // get app settings

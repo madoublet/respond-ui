@@ -37,10 +37,6 @@ const appRoutes: Routes = [
     component: ForgotComponent
   },
   {
-    path: 'forgot',
-    component: ForgotComponent
-  },
-  {
     path: 'reset/:token',
     component: ResetComponent
   },
