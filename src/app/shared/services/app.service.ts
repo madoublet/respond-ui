@@ -59,9 +59,7 @@ export class AppService {
     else if(text == null || text == '') {
       text = 'Uncategorized message';
     }
-
-    console.log(text);
-
+    
     this.translate.get(text).subscribe((res: string) => {
       toast.show(type, res);
     });

@@ -96,7 +96,7 @@ export class AdvancedComponent {
                        (data: any) => { 
                         this._appService.showToast('success', null); 
                       },
-                      error =>  { this.failure(<any>error); }
+                      error =>  { this.failure('test'); }
                       );
 
   }

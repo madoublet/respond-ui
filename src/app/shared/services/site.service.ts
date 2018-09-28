@@ -210,7 +210,7 @@ export class SiteService {
     // options
     let options = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'text/html',
         'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
       })};
 
@@ -228,7 +228,7 @@ export class SiteService {
     // options
     let options = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'text/html',
         'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
       })};
 
@@ -246,7 +246,7 @@ export class SiteService {
     // options
     let options = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'text/html',
         'X-AUTH':  'Bearer ' + localStorage.getItem('id_token')
       })};
 

@@ -48,7 +48,10 @@ export class ThemeComponent {
                       (data: any) => {
                          this.siteUrl = data.siteUrl;
                          this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
-                         this.siteUrl += '?' + Date.now();
+                         this.siteUrl += '/index.html?' + Date.now();
+
+                        alert(this.siteUrl);
+
                          this.url = this._sanitizer.bypassSecurityTrustResourceUrl(this.siteUrl);
                        },
                        error =>  { }
