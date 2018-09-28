@@ -50,7 +50,7 @@ export class ThemeComponent {
                          this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
                          this.siteUrl += '/index.html?' + Date.now();
 
-                        alert(this.siteUrl);
+                        console.log('loading=' + this.siteUrl);
 
                          this.url = this._sanitizer.bypassSecurityTrustResourceUrl(this.siteUrl);
                        },
