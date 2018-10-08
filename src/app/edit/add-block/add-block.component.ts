@@ -48,48 +48,48 @@ export class AddBlockComponent {
     let html = '';
 
     if(type == '1-column') {
-      html = '<div class="block row  mt-5 mb-5">' +
+      html = '<div class="block row">' +
           '<div class="col col-md-12"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
           '</div>';
     }
     else if(type == '2-column') {
-      html = '<div class="block row  mt-5 mb-5">' +
-        '<div class="col col-md-6"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' + 
-        '<div class="col col-md-6"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' + 
+      html = '<div class="block row">' +
+        '<div class="col col-md-6"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
+        '<div class="col col-md-6"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '</div>';
     }
     else if(type == '2-column-weighted-left') {
-      html = '<div class="block row  mt-5 mb-5">' +
+      html = '<div class="block row">' +
         '<div class="col col-md-9"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '</div>';
     }
     else if(type == '2-column-weighted-right') {
-      html = '<div class="block row mt-5 mb-5">' +
+      html = '<div class="block row">' +
         '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-9"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '</div>';
     }
     else if(type == '3-column') {
-      html = '<div class="block row mt-5 mb-5">' +
+      html = '<div class="block row">' +
         '<div class="col col-md-4"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-4"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-4"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '</div>';
     }
     else if(type == '4-column') {
-      html = '<div class="block row mt-5 mb-5">' +
+      html = '<div class="block row">' +
         '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
-        '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' + 
+        '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '<div class="col col-md-3"><h2>Cras justo odio</h2><p>Nullam id dolor id nibh</p></div>' +
         '</div>';
     }
     else if(type == 'jumbotron') {
-      html = '<div class="block row jumbotron mt-5 mb-5"><div class="col col-md-12"><h1>Cras justo odio</h1><p>Nullam id dolor id nibh</p></div></div>';
+      html = '<div class="block row jumbotron"><div class="col col-md-12"><h1>Cras justo odio</h1><p>Nullam id dolor id nibh</p></div></div>';
     }
     else if(type == 'triple-feature') {
-      html = '<div class="row center-content mt-5 mb-5">' +
+      html = '<div class="row center-content">' +
       '<div class="col col-lg-4">' +
        ' <div><img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140"></div>' +
        '<h2>Donec ullamcorper</h2>' +
@@ -113,8 +113,8 @@ export class AddBlockComponent {
        '<!-- /.col-lg-4 -->' +
        '</div>';
     }
-    else if(type == 'featured-image-left') { 
-      html = '<div class="row featurette mt-5 mb-5">' +
+    else if(type == 'featured-image-left') {
+      html = '<div class="row featurette">' +
         '<div class="col col-md-7">' +
         '<h2 class="featurette-heading">Donec ullamcorper. <span class="text-muted">Vestibulum id ligula porta.</span></h2>' +
         '<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>' +
@@ -126,8 +126,8 @@ export class AddBlockComponent {
         ' <!-- /.col-lg-5 -->' +
         '</div>';
     }
-    else if(type == 'featured-image-right') { 
-        html = '<div class="row featurette mt-5 mb-5">' +
+    else if(type == 'featured-image-right') {
+        html = '<div class="row featurette">' +
           '<div class="col col-md-7 order-md-2">' +
           '<h2 class="featurette-heading">Donec ullamcorper. <span class="text-muted">Vestibulum id ligula porta.</span></h2>' +
           '<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>' +
@@ -139,7 +139,7 @@ export class AddBlockComponent {
           ' <!-- /.col-lg-5 -->' +
           '</div>';
     }
-    
+
     this.onUpdate.emit({type: 'add-block', properties: {html: html}, attributes: []});
   }
 
