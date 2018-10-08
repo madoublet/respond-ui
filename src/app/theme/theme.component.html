@@ -52,7 +52,7 @@
         </select>
       </div>
 
-      <div *ngIf="customization.type == 'image'" class="image-picker-group">
+      <div *ngIf="customization.type == 'file'">
         <label>{{ customization.name }}  <a (click)="showImgSelect(customization.id)">{{ 'Select' | translate }}</a></label>
         <input type="text" [(ngModel)]="customization.value" style="float: left">
       </div>
