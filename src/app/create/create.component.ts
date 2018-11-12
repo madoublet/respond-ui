@@ -188,7 +188,7 @@ export class CreateComponent {
    */
   success() {
 
-    this._appService.showToast('success', null);
+    this._appService.showToast('success', 'Site created successfully.');
     
     this._router.navigate( ['/login', this.site.id] );
 
