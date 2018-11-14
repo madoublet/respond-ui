@@ -49,6 +49,8 @@ export class AppService {
    * Shows the system toast
    */
   showToast (type: string, text: string) {
+
+    console.log('show toast, type=' + type + ', text=' + text);
     
     if(type == 'failure'  && (text == null || text == '')) {
       text = 'Sorry, you encountered an error. Contact your site administrator if the problem continues.';
@@ -60,9 +62,7 @@ export class AppService {
       text = 'Uncategorized message';
     }
     
-    this.translate.get(text).subscribe((res: string) => {
-      toast.show(type, res);
-    });
+    toast.show(type, text)
 
   }
 
