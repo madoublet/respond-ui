@@ -57,6 +57,13 @@
         <input type="text" [(ngModel)]="customization.value" style="float: left">
       </div>
 
+      <div *ngIf="customization.type == 'select'">
+        <label>{{ customization.name }}</label>
+        <select [(ngModel)]="customization.value">
+          <option *ngFor="let option of customization.options" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+
   </div>
 
 </aside>
