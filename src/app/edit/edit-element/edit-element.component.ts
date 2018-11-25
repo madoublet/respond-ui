@@ -17,6 +17,8 @@ export class EditElementComponent {
   isExpanded: boolean = true;
   isHtmlExpanded: boolean = false;
   showRemove: boolean = false;
+  selectVisible: boolean = false;
+  _selectAttr: string = '';
 
   // lists
   forms: any = [];
@@ -104,22 +106,22 @@ export class EditElementComponent {
             else if(attributes[x].values[0] == 'respond.galleries') {
               attributes[x].type = 'gallery';
               this.listGalleries();
-            } 
+            }
             else if(attributes[x].values[0] == 'respond.pages') {
               attributes[x].type = 'page';
               this.listPages();
-            } 
+            }
             else if(attributes[x].values[0] == 'respond.components') {
               attributes[x].type = 'component';
               this.listComponents();
-            } 
+            }
             else if(attributes[x].values[0] == 'respond.products') {
               attributes[x].type = 'product';
               this.listProducts();
-            } 
+            }
           }
 
-      } 
+      }
 
     }
 
@@ -153,12 +155,49 @@ export class EditElementComponent {
     this.onCancel.emit(null);
   }
 
+  /*
+   * shows the select file modal
+   */
+  showSelect(attr: string) {
+    this.selectVisible = true;
+    this._selectAttr = attr;
+  }
+
   /**
    * Resets any transitional states
    */
   reset() {
     this.showRemove = false;
     this.isHtmlExpanded = false;
+    this.selectVisible = false;
+    this._selectAttr = '';
+  }
+
+  /**
+   * select file
+   */
+  select(event) {
+
+    // Walk through attributes and find the one for which the file select dialog was called
+    for(let x=0; x<this._attributes.length; x++) {
+      if (this._attributes[x].attr == this._selectAttr) {
+        this._attributes[x].value = 'files/' + event.name;
+      }
+    }
+
+    // reset
+    this.reset();
+
+    // submit
+    this.submit();
+  }
+
+  /**
+   * failure
+   */
+  failure(event) {
+    // reset
+    this.reset();
   }
 
   /**
