@@ -28,6 +28,8 @@ export class EditComponent {
   editLinkVisible: boolean = false;
   addBlockVisible: boolean = false;
   editMenuVisible: boolean = false;
+  editElementVisible: boolean = false;
+  editBlockVisible: boolean = false;
 
   // type
   type: string;
@@ -104,6 +106,8 @@ export class EditComponent {
     this.editLinkVisible = false;
     this.addBlockVisible = false;
     this.editMenuVisible = false;
+    this.editElementVisible = false;
+    this.editBlockVisible = false;
   }
 
   /**
@@ -275,6 +279,7 @@ export class EditComponent {
         this.type = 'block';
         this.block.properties = data.properties;
         this.editMenuVisible = true;
+        this.editBlockVisible = true;
       }
       else if(data.type == 'element'){
         this.type = 'element';
@@ -284,6 +289,7 @@ export class EditComponent {
           this.element.attributes = data.attributes;
         }
         this.editMenuVisible = true;
+        this.editElementVisible = true;
       }
       else if(data.type == 'editorChanged') {
         this.hasChanged = true;

@@ -11,14 +11,6 @@
 
   <div id="developer-list" class="app-list">
 
-    <div *ngIf="canSync == true" class="app-list-item" (mouseenter)="setActive('sync')" (click)="setActive('sync')" [class.selected]="selectedOption === 'sync'">
-      <h2><span class="primary">{{ 'Sync' | translate }}</span></h2>
-      <p>{{ 'Syncs the site to external provider (e.g. Amazon S3, FTP)' | translate }}</p>
-      <div class="app-list-actions">
-          <a class="primary" (click)="sync()">{{'Execute' | translate }}</a>
-      </div>
-    </div>
-    <!-- sync -->
 
     <div class="app-list-item" (mouseenter)="setActive('zip')" (click)="setActive('zip')" [class.selected]="selectedOption === 'zip'">
       <h2><span class="primary">{{ 'Download Site as ZIP' | translate }}</span></h2>
