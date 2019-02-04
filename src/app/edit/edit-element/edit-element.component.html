@@ -2,7 +2,7 @@
 
   <form (ngSubmit)="submit()" #addForm="ngForm" ngNativeValidate>
 
-    <h4 *ngIf="showRemove == false" (click)="toggleIsExpanded()" [class.collapsed]="isExpanded == false">{{ 'Element' | translate }} 
+    <h4 *ngIf="showRemove == false" (click)="toggleIsExpanded()" [class.collapsed]="isExpanded == false">{{ 'Element' | translate }}
       <i *ngIf="isExpanded == false" class="expand-icon material-icons">expand_more</i>
       <i *ngIf="isExpanded == true" class="expand-icon material-icons">expand_less</i>
     </h4>
@@ -58,7 +58,7 @@
           </div>
 
           <div *ngSwitchCase="'select'">
-            <label>{{attribute.label | translate }}</label>
+            <label>{{attribute.label | translate }}</label>headline
             <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
             </select>
@@ -99,6 +99,11 @@
             </select>
           </div>
 
+          <div *ngSwitchCase="'file'">
+            <label>{{attribute.label | translate }} <a (click)="showSelect(attribute.attr)">{{ 'Select' | translate }}</a></label>
+            <input type="text" id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
+          </div>
+
         </div>
 
       </div>
@@ -113,5 +118,7 @@
     </div>
 
   </form>
-  
+
 </div>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset()"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
