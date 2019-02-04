@@ -16,9 +16,11 @@ export class ThemeComponent {
   role: string;
   url: SafeResourceUrl;
   drawerVisible: boolean;
+  selectImgVisible: boolean = false;
+  selectImgControlTargetId: string = null;
+
   siteUrl: string;
 
-  
   settings: any = [];
 
   constructor (private _themeService: ThemeService, private _sanitizer: DomSanitizer, private _router: Router, private _appService: AppService) {}
@@ -31,7 +33,7 @@ export class ThemeComponent {
 
     this.id = localStorage.getItem('site_id');
     this.role = localStorage.getItem('site_role');
-   
+
     this.load();
     this.list('load');
 
@@ -80,7 +82,7 @@ export class ThemeComponent {
    */
   save () {
     var data = this.settings;
-    
+
     this._themeService.edit(data)
                      .subscribe(
                       (data: any) => { this.success(); this.list('save'); this.load(); },
@@ -89,7 +91,9 @@ export class ThemeComponent {
 
   }
 
-  reset() {}
+  reset() {
+    this.selectImgVisible = false;
+  }
 
   /**
    * Handles success
@@ -107,6 +111,22 @@ export class ThemeComponent {
     this.drawerVisible = !this.drawerVisible;
   }
 
+  showImgSelect(id: string) {
+    this.selectImgVisible = true;
+    this.selectImgControlTargetId = id;
+  }
+
+  /**
+   * image selected
+   */
+  imgSelected(event) {
+    // copy selected image to customizations model
+    const itemKey = Object.keys(this.settings.customizations).find(k => this.settings.customizations[k].id === this.selectImgControlTargetId);
+    this.settings.customizations[itemKey].value = event.url;
+
+    this.reset();
+  }
+
   /**
    * handles errors
    */
@@ -116,6 +136,8 @@ export class ThemeComponent {
 
     if(obj.status == 401) {
       this._router.navigate( ['/login'] );
+    } else {
+      this.reset();
     }
 
   }

@@ -52,6 +52,18 @@
         </select>
       </div>
 
+      <div *ngIf="customization.type == 'file'">
+        <label>{{ customization.name }}  <a (click)="showImgSelect(customization.id)">{{ 'Select' | translate }}</a></label>
+        <input type="text" [(ngModel)]="customization.value" style="float: left">
+      </div>
+
+      <div *ngIf="customization.type == 'select'">
+        <label>{{ customization.name }}</label>
+        <select [(ngModel)]="customization.value">
+          <option *ngFor="let option of customization.options" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+
   </div>
 
 </aside>
@@ -65,5 +77,7 @@
         <button (click)="save()" class="primary">{{ 'Save' | translate }}</button>
     </div>
 </footer>
+
+<respond-select-file [visible]="selectImgVisible" (onCancel)="reset()"  (onSelect)="imgSelected($event)" (onError)="failure($event)"></respond-select-file>
 
 <respond-drawer active="theme" [visible]="drawerVisible" (onHide)="reset()"></respond-drawer>
