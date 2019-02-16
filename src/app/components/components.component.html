@@ -3,7 +3,7 @@
 <menu class="app-menu">
 
     <button class="app-more" (click)="toggleDrawer()"><i class="material-icons">menu</i></button>
-    
+
     <h1>{{ 'Components' | translate }}</h1>
 
     <div class="app-actions">
@@ -20,7 +20,10 @@
   <div id="components-list" class="app-list">
     <div class="app-list-item" *ngFor="let component of components" (mouseenter)="setActive(component)" (click)="setActive(component)" [class.selected]="component === selectedComponent">
       <h2>
-        <span class="primary"><a (click)="edit(component)">{{ component.name }}</a></span>
+        <span class="primary">
+          <a *ngIf="component.codeOnly == true" (click)="editCode(component)">{{ component.name }}</a>
+          <a *ngIf="component.codeOnly == false" (click)="edit(component)">{{ component.name }}</a>
+        </span>
       </h2>
       <small>
         components/{{ component.url }}
