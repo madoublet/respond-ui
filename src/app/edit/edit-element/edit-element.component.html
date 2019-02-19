@@ -58,7 +58,7 @@
           </div>
 
           <div *ngSwitchCase="'select'">
-            <label>{{attribute.label | translate }}</label>headline
+            <label>{{attribute.label | translate }}</label>
             <select id="{{attribute.attr}}" name="{{attribute.attr}}" [(ngModel)]="attribute.value" (change)="submit()">
               <option *ngFor="let value of attribute.values" [value]="value">{{value}}</option>
             </select>
