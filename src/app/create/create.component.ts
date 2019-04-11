@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SiteService } from '../shared/services/site.service';
 import { AppService } from '../shared/services/app.service';
@@ -19,6 +19,7 @@ export class CreateComponent {
   themes;
   visible;
   selectedTheme;
+  passedTheme: string = null;
   selectedThemeIndex;
   hasPasscode;
   logoUrl;
@@ -33,7 +34,7 @@ export class CreateComponent {
 
   @ViewChild('container') container: ElementRef;
 
-  constructor (private _sanitizer: DomSanitizer, private _siteService: SiteService, private _appService: AppService, private _router: Router, private _translate: TranslateService) {
+  constructor (private _sanitizer: DomSanitizer, private _siteService: SiteService, private _appService: AppService, private _router: Router,  private _route: ActivatedRoute, private _translate: TranslateService) {
     window['verifyCallback'] = this.verifyCallback.bind(this);
     window['onloadCallback'] = this.onloadCallback.bind(this)
   }
@@ -46,6 +47,7 @@ export class CreateComponent {
     // init
     this.themes = [];
     this.visible = false;
+    this.passedTheme = null;
     this.selectedTheme = null;
     this.selectedThemeIndex = 0;
     this.hasPasscode = true;
@@ -64,11 +66,15 @@ export class CreateComponent {
       passcode: ''
     };
 
-    // list themes
-    this.list();
-
     // retrieve settings
     this.settings();
+
+    if(this._route.snapshot.queryParamMap.get('theme')) {
+      this.passedTheme = this._route.snapshot.queryParamMap.get('theme');
+    }
+
+    // list themes
+    this.list();
 
   }
 
@@ -114,14 +120,34 @@ export class CreateComponent {
    */
   list() {
 
+    var context = this;
+
     // list themes in the app
     this._appService.listThemes()
                      .subscribe(
                       (data: any) => {
+
+                         let index = 0;
+
                          this.themes = data;
-                         this.selectedTheme = this.themes[0];
-                         this.selectedThemeIndex = 0;
                          this.visible = false;
+
+                         // set passed theme
+                         if(this.passedTheme != null) {
+
+                          for(var x=0; x<this.themes.length; x++) {
+                            if(this.themes[x].name.toLowerCase() == this.passedTheme.toLowerCase()) {
+                              index = x;
+                            }
+                          }
+
+                          this.visible = true;
+
+                         }
+
+                         // set selected index
+                         this.selectedTheme = this.themes[index];
+                         this.selectedThemeIndex = index;
                          this.url = this._sanitizer.bypassSecurityTrustResourceUrl('themes' + this.selectedTheme.location);
                        },
                        error =>  { this.failure(<any>error); }
